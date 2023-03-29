@@ -1,5 +1,8 @@
 package com.example.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("OrderHistoryPageDTO")
 public class OrderInfoDTO {
 	private int OrderInfo_Code;
 	private int OrderInfo_Delivery;

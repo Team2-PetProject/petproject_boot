@@ -1,4 +1,8 @@
 package com.example.dto;
+
+import org.apache.ibatis.type.Alias;
+
+@Alias("CartInfoDTO")
 public class CartInfoDTO {
 	private int Cart_Code;
 	private String Member_Code;

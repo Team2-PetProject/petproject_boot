@@ -2,6 +2,9 @@ package com.example.dto;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("OrderHistoryPageDTO")
 public class OrderHistoryPageDTO {
 
 	private List<OrderHistoryDTO> list; //현재페이지에 들어갈 레코드를 perPage만큼만 저장할 것입니다.

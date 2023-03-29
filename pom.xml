@@ -43,16 +43,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- JSP 사용 -->
-	    <dependency>
-        	<groupId>javax.servlet</groupId>
-	        <artifactId>jstl</artifactId>
-    	</dependency>
-    	<dependency>
-        	<groupId>org.apache.tomcat.embed</groupId>
-        	<artifactId>tomcat-embed-jasper</artifactId>
-    	</dependency>
-		<!-- jsp끝 -->
 	</dependencies>
 
 	<build>

@@ -1,5 +1,8 @@
 package com.example.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ItemFavoriteDTO")
 public class ItemFavoriteDTO {
 	private String Member_Code;
 	private int Item_Code;

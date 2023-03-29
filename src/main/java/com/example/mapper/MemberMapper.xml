@@ -3,57 +3,5 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
-	<select id="selectOne" parameterType="String" resultType="MemberDTO">
-		select * from member where member_code = #{memberCode}
-	</select>
-	<select id="idSearch" resultType="string" 
-    parameterType="MemberDTO">
-         select member_code
-         from member
-         where member_name=#{member_name} and member_phone1=#{member_phone1} and member_phone2=#{member_phone2} and member_phone3=#{member_phone3}
-    </select>
-    
-   <update id="memberUpdate" parameterType="MemberDTO">
-     update member
-     set
-     member_passwd = #{Member_passwd}, 
-     member_post = #{member_post},
-     member_addr1 = #{member_addr1},
-     member_addr2 = #{member_addr2},
-     member_phone1 = #{member_phone1},
-     member_phone2 = #{member_phone2},
-     member_phone3 = #{member_phone3},
-     member_email1 = #{member_email1},
-     member_email2 = #{member_email2}
-    where member_code = #{member_code}
-   </update>
-
-
-   <insert id="memberAdd" parameterType="MemberDTO">
-     insert into member (member_code,member_passwd,member_name,member_post,member_addr1,member_addr2,
-                         member_phone1,member_phone2,member_phone3,member_email1,member_email2)
-     values( #{member_code},#{member_passwd},#{member_name},#{member_post},#{member_addr1},#{member_addr2},
-              #{member_phone1},#{member_phone2},#{member_phone3},#{member_email1},#{member_email2})
-   </insert>
-   
-   <select id="idCheck" parameterType="string"
-	            resultType="int">
-     select count(*)
-     from member
-     where member_code = #{member_code}
-	</select>
 	
-	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-	  select member_code,member_passwd,member_name,member_post,member_addr1,member_addr2,
-                         member_phone1,member_phone2,member_phone3,member_email1,member_email2
-      from member
-      where member_code = #{member_code} and member_passwd = #{member_passwd}
-	</select>
-	
-	<select id="mypage" parameterType="string" resultType="MemberDTO">
-	  select member_code,member_passwd,member_name,member_post,member_addr1,member_addr2,
-                         member_phone1,member_phone2,member_phone3,member_email1,member_email2
-      from member
-      where member_code = #{member_code}
-	</select>
 </mapper>

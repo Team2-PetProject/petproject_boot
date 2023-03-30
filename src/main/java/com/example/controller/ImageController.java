@@ -34,7 +34,7 @@ public class ImageController {
 	@ApiOperation(value = "이미지 업로드")
 	public HashMap<String, Integer> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
 			@RequestParam("price") int price, @RequestParam("category") String category) throws IOException {
-		System.out.println(price + name + category);
+		
 		ImageDTO dto = new ImageDTO();
 		dto.setMimeType(file.getContentType());
 		dto.setOriginal_name(file.getOriginalFilename());

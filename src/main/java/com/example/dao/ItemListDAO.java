@@ -1,17 +1,15 @@
 package com.example.dao;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.ItemDTO;
 
 @Repository
-public class ItemDAO {
+public class ItemListDAO {
 
-	public int insertItem(SqlSessionTemplate session, ItemDTO iDTO) {
-//		return session.insert("insertItem", iDTO);
-		return 1;
+	public int insertList(SqlSessionTemplate session, ItemDTO iDTO) {
+		return session.insert("insertList", iDTO);
 	}
 
-}//end class
+}

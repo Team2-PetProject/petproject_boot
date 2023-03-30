@@ -10,7 +10,7 @@ public class MainController {
 //	@RequestMapping(value = "/")
 	public String main() {
 		System.out.println("/ 주소 요청");
-		return "imageForm";
+		return "main";
 	}
 	
 }

@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 	
 	@GetMapping("/")
+//	@RequestMapping(value = "/")
 	public String main() {
-		System.out.println("main() 메소드 호출");
-		return "main";
+		System.out.println("/ 주소 요청");
+		return "imageForm";
 	}
 	
 }

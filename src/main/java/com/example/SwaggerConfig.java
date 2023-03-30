@@ -1,5 +1,8 @@
 package com.example;
 
+import java.util.HashSet;
+import java.util.Set;
+
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //
@@ -47,6 +50,8 @@ public class SwaggerConfig {
     @Bean
     public Docket imageApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
                 .groupName("image")
                 .useDefaultResponseMessages(false)
                 .select()
@@ -58,6 +63,8 @@ public class SwaggerConfig {
     @Bean
     public Docket mainApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
                 .groupName("main")
                 .useDefaultResponseMessages(false)
                 .select()
@@ -66,5 +73,17 @@ public class SwaggerConfig {
                 .paths(PathSelectors.ant("/app/"))
                 .build()
                 .apiInfo(commonInfo());
+    }
+    private Set<String> getConsumeContentTypes(){
+    	Set<String> consumes = new HashSet<String>();
+    	consumes.add("application/json;charset=UTF-8");
+    	consumes.add("application/x-www-form-urlencoded");
+    	return consumes;
+    }
+    
+    private Set<String> getProduceContentTypes(){
+    	Set<String> produces = new HashSet<String>();
+    	produces.add("application/json;charset=UTF-8");
+    	return produces;
     }
 }

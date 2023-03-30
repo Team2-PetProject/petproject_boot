@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.CartDAO;
 
-@Service("CartService")
+@Service("cartService")
 public class CartService {
 	@Autowired
 	CartDAO dao;
 	@Autowired
 	SqlSessionTemplate session;
+	public void print() {
+		System.out.println(session);
+	}
 	
 }

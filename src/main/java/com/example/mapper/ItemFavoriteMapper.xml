@@ -2,15 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="DeliveryInfoMapper">
-	<insert id="insertInfo" parameterType="DeliveryInfoDTO">
-		<selectKey keyProperty="OrderInfo_Code" resultType="int" order="BEFORE">
-			select orderinfo_seq.currval from dual
-		</selectKey>
-		insert into delivery_info values
-		(deliveryinfo_seq.nextval, #{delivery_info_status}, #{delivery_info_company},
-		#{delivery_info_invoice_number}, #{devliery_info_start_time}, #{delivery_info_end_time}, #{OrderInfo_Code})
-	</insert>
+<mapper namespace="ItemFavoriteMapper">
 	
-
 </mapper>

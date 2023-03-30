@@ -13,5 +13,12 @@ public class MainController {
 		return "imageForm";
 	}
 	
-}
-
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		System.out.println("로그인폼 주소 요청");
+		return "content/loginForm";
+		//return "layouts/default_layout";
+	}
+	
+	
+}//end class

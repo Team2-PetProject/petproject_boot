@@ -60,6 +60,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 	</dependency>
+	
+	<!-- thymeleaf layout사용위한 dependency -->
+	<dependency>
+	    <groupId>nz.net.ultraq.thymeleaf</groupId>
+	    <artifactId>thymeleaf-layout-dialect</artifactId>
+	    <version>3.2.1</version>
+	</dependency>
+	<!-- thymeleaf layout 디펜던시 끝 -->
 
 	</dependencies>
 

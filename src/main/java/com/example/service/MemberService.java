@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.MemberDAO;
 import com.example.dto.CartDTO;
 
-@Service("MemberService")
+@Service("memberService")
 public class MemberService {
 	@Autowired
 	MemberDAO dao;

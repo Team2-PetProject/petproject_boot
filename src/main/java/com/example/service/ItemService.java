@@ -13,7 +13,7 @@ import com.example.dto.ItemDTO;
 import com.example.dto.ItemFavoriteDTO;
 import com.example.dto.ItemListDTO;
 
-@Service("ItemService")
+@Service("itemService")
 public class ItemService {
 	@Autowired
 	ItemDAO dao;

@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import com.example.dao.CartDAO;
 import com.example.dto.CartDTO;
 
-@Service("CartService")
+@Service("cartService")
 public class CartService {
 	@Autowired
 	CartDAO dao;
 	@Autowired
 	SqlSessionTemplate session;
+	public void print() {
+		System.out.println(session);
+	}
 	
 	public int cartAdd(CartDTO cart) {
 		// TODO Auto-generated method stub

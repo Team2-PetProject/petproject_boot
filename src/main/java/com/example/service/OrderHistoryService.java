@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.OrderHistoryDAO;
 
-@Service("OrderHistoryService")
+@Service("orderHistoryService")
 public class OrderHistoryService {
 	@Autowired
 	OrderHistoryDAO dao;

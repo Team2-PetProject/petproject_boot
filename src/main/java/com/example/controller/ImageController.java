@@ -63,9 +63,11 @@ public class ImageController {
 	
 	@GetMapping("/user/{id}")
 	@ApiOperation(value = "회원")
-	public HashMap<String, String> user(@PathVariable String id){
-		HashMap<String, String> map = new HashMap<String, String>();
+	public HashMap<String, Object> user(@PathVariable String id){
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
+		map.put("name", "홍길동");
+		map.put("age", 20);
 		return map;
 	}
 }

@@ -29,6 +29,12 @@ public class CartService {
 		return 0;
 	}
 
+
+	public CartDTO specUpdate(int cart_cd, int item_amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,29 @@ public class MemberService {
 		
 		int n = dao.memberAdd(session,dto);
 		return n;
+	}
+	public MemberDTO mypage(String member_code) {
+		MemberDTO dto = dao.mypage(session,member_code);
+		return dto;
+	}
+	public MemberDTO login(Map<String, String> map) {
+		System.out.println("비밀번호 "+ map.get("member_passwd"));
+		String member_passwd = map.get("member_passwd");
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("sha-512");
+			messageDigest.reset();
+			messageDigest.update(member_passwd.getBytes(StandardCharsets.UTF_8));
+			member_passwd = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
+			map.put("member_passwd", member_passwd);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		MemberDTO dto = dao.login(session, map);
+		return dto;
 	}
 	
 }//end class

@@ -83,31 +83,31 @@ $(document).ready(function(){
 		console.log(email);
 		$("#member_email2").val(email);
 	});
-		$("#member_code").keyup(function() {
-		var id = $(this).val();
-		if(id.length != 0){
-			$.ajax({
-				url : "MemberIdCheckServlet",
-				dataType : "text",
-				type : "post",
-				data : {"member_code" : id},
-				success : function(data, status, xhr) {
-					$("#idresult").text(data);
-				},
-				error : function(xhr, status, error) {
-					console.log(error);
-				}
-			});
-		}else{
-			$("#idresult").text("");
-		}
 		
-	});
+		$("#member_code").on("keyup",function() {
+			
+				$.ajax({
+					url : 'idCheck',
+					type : 'post',
+					data : {
+						id : $("#member_code").val()
+					},
+					dataType : "text",
+					success : function(data, status, xhr) {
+						$("#idresult").text(data);
+					},
+					error : function(xhr, status, error) {
+						console.log(error);
+					}
+				});//end ajax
+			
+			
+		});//end keyup
 	});
 </script>
 </head>
 <body>
-	<form action="/app/member/memberAdd" method="post">
+	<form action="memberAdd" method="post">
 
 <b>아이디</b>&nbsp;<input type="text" name="member_code" id="member_code"><span id="idresult"></span><br> 
 <b>비밀번호</b>&nbsp;<input type="text" name="member_passwd" id="member_passwd"><br>

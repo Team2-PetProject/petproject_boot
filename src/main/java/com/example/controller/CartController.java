@@ -1,13 +1,10 @@
 package com.example.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +23,13 @@ public class CartController {
 	MemberService m_service;
 	@Autowired
 	CartService c_service;
+	//일단 완 더이상 건들지 말자.
+	//10시10..
+	//10시10.
 	
 	
-	//장바구니 추가
+	//5에서 일어나는 이벤트
+	//장바구니 추가 //restful 미적용
 	@PostMapping("/loginCheck/cartAdd")
 	public String cartAdd
 	(@RequestParam CartDTO cart, HttpSession session) {
@@ -53,7 +54,7 @@ public class CartController {
 //	}
     
 	
-	
+	//9에서 일어나는 이벤트
 	//한개 삭제
 	@DeleteMapping("/loginCheck/cartDelete/cart_cd/{cart_cd}")
 	@ResponseBody
@@ -65,6 +66,7 @@ public class CartController {
 	
 	}
 	
+	//9에서 일어나는 이벤트
 	//전체 삭제
 	@DeleteMapping("/loginCheck/checkDelete")
 	@ResponseBody
@@ -76,6 +78,7 @@ public class CartController {
 		System.out.println("전체 삭제  : " + num);
 	} 
 	
+	//9에서 일어나는 이벤트
 	//상품 옵션 변경
 	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/item_cd/{item_cd}")
 	@ResponseBody
@@ -86,6 +89,7 @@ public class CartController {
 		return c_service.specUpdate(cart_cd,item_cd);
 	}
 	
+	//9에서 일어나는 이벤트
 	//수량 변경
 	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/amount/{item_amount}")
 	@ResponseBody

@@ -19,4 +19,9 @@ public class item_FavoriteService {
 		return 0;
 	}
 
+	public int favoriteDelete(String member_cd, int item_code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

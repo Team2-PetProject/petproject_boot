@@ -23,16 +23,21 @@ import com.example.service.MemberService;
 // 상품리스트
 // 상품상세보기
 
+
 @Controller
 public class ItemController {
 	@Autowired
 	ItemService i_service;
 	@Autowired
 	MemberService m_service;
+	//10시10.
 	
+	//내 부분 아니고 성혁이 부분 그리고 restful 미적용
+	//4
 	@GetMapping("/itemList") //단순 조회는 get
 	public String itemList
 	(@RequestParam(value = "item_cat", defaultValue = "food") 
+	//path에서 안되는데 굳이 써야할까...
 	String item_cat, Model model) {
 	    List<ItemListDTO> list = i_service.itemList(item_cat);
 	    System.out.println("itemList: " + list);

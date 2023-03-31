@@ -31,25 +31,21 @@ public class OrderService {
 
 
 	public int totalCount(String member_cd) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.totalCount(member_cd);
 	}
 
 
 	public List<OrderHistoryDTO> orderSearch(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.orderSearch(map);
 	}
 
 
 	public List<OrderHistoryDTO> daySearch(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -39,6 +39,7 @@ public class ItemController {
 	(@RequestParam(value = "item_cat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
 	String item_cat, Model model) {
+		i_service = new ItemService();
 	    List<ItemListDTO> list = i_service.itemList(item_cat);
 	    System.out.println("itemList: " + list);
 	    model.addAttribute("itemList", list);
@@ -48,7 +49,8 @@ public class ItemController {
 	@GetMapping("/itemRetrieve") //단순 조회 부분
 	public String itemRetrieve
 	(@RequestParam("item_code") String item_cd, Model model) {
-	    ItemDTO i_dto = i_service.detail(item_cd);
+	    i_service = new ItemService();
+		ItemDTO i_dto = i_service.detail(item_cd);
 	    System.out.println("상품상세보기 : " + i_dto);
 	    model.addAttribute("itemDTO", i_dto);
 	    return "itemRetrieve";

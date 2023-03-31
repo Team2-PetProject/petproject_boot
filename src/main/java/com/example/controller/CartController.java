@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,8 +25,8 @@ public class CartController {
 	@Autowired
 	CartService c_service;
 	//일단 완 더이상 건들지 말자.
-	//10시10..
-	//10시10.
+	//4.1일.. 0.15분
+	
 	
 	
 	//5에서 일어나는 이벤트
@@ -74,7 +75,7 @@ public class CartController {
 	(@RequestParam("cart_cd") List<Integer>list) {
 		//cart_cd 리스트 받아서 한번에 삭제
 		System.out.println(list);
-		int num = c_service.checkDelete();
+		int num = c_service.checkDelete(list);
 		System.out.println("전체 삭제  : " + num);
 	} 
 	
@@ -82,21 +83,28 @@ public class CartController {
 	//상품 옵션 변경
 	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/item_cd/{item_cd}")
 	@ResponseBody
-	public CartDTO specUpdate
-	(@PathVariable int cart_cd, @PathVariable int item_cd)
+	public int specUpdate
+	(@PathVariable("cart_cd") int cart_cd, @PathVariable("item_cd") int item_cd)
 	{
 		//CartDTO 바로 사용하용하세요.
-		return c_service.specUpdate(cart_cd,item_cd);
+		//반환 값은 0 또는 1만 나옵니다.
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cart_cd", cart_cd);
+		map.put("item_cd", item_cd);
+		return c_service.specUpdate(map);
 	}
 	
 	//9에서 일어나는 이벤트
 	//수량 변경
 	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/amount/{item_amount}")
 	@ResponseBody
-	public CartDTO amountUpdate
-	(@PathVariable int cart_cd, @PathVariable int item_amount)
+	public int amountUpdate
+	(@PathVariable("cart_cd") int cart_cd, @PathVariable("item_amount") int item_amount)
 	{
 		//CartDTO 바로 사용하용하세요.
-		return c_service.specUpdate(cart_cd,item_amount);
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cart_cd",cart_cd);
+		map.put("item_amount",item_amount);
+		return c_service.amountUpdate(map);
 	}
 }

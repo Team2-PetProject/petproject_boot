@@ -30,6 +30,14 @@ public class ItemService {
 		return null;
 	}
 
+	public int favoriteAdd(ItemFavoriteDTO i_dto) {
+		return dao.favoriteAdd(i_dto);
+	}
+
+	public int favoriteDelete(String member_cd, int item_cd) {
+		return dao.favoriteDelete(member_cd,item_cd);
+	}
+
 
 
 

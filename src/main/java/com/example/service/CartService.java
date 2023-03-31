@@ -1,5 +1,8 @@
 package com.example.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +16,36 @@ public class CartService {
 	CartDAO dao;
 	@Autowired
 	SqlSessionTemplate session;
+	
 	public void print() {
 		System.out.println(session);
 	}
 	
 	public int cartAdd(CartDTO cart) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.cartAdd(cart);
 	}
 	
 	public int cartDelete(int cart_cd) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.cartDelete(cart_cd);
 	}
 
-	public int checkDelete() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int checkDelete(List<Integer> list) {
+		return dao.checkDelete(list);
+	}
+
+	public int specUpdate(HashMap<String, Integer> map) {
+
+		return dao.specUpdate(map);
+	}
+	
+	public int amountUpdate(HashMap<String, Integer> map) {
+
+		return dao.amountUpdate(map);
 	}
 
 
-	public CartDTO specUpdate(int cart_cd, int item_amount) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 
 

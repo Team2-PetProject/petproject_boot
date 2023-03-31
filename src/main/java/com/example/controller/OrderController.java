@@ -41,7 +41,8 @@ public class OrderController {
 	//현재 주문내역 조회는 날짜조회,아이템 조회만 있습니다.
 	//날짜 조회+아이템 조회는 고려중입니다.
 	//체크 박스로 체크해서 같이 넘길지 무언가 그냥 넘길지 고민 중입니다.
-	//10시10.
+	//또한 중복 코드가 많습니다. 이렇게 받아야하는지 고민입니다.
+	//10.31 11.17 일단 끝
 
 	//주문결제화면
 	//상품자세히보기 화면 찜화면 장바구니화면에서 넘어옵니다.
@@ -115,7 +116,7 @@ public class OrderController {
 	}
 	
 		//상품 주문내역 조회입니다.
-		//날짜 조회입니다.
+		//날짜 버튼 눌렀을 떄 조회입니다.
 		//ppt page 11번입니다.
 		@GetMapping("/loginCheck/orderSearch/startDay/{startDay}/endDay/{endDay}")
 		@ResponseBody
@@ -139,12 +140,12 @@ public class OrderController {
 		   List<OrderHistoryDTO> list = o_service.daySearch(map);
 		   return list;
 		}
-	
-		@GetMapping("/loginCheck/orderSearch/item_cd/{item_cd}")
+		// 직접 item_nm을 입력해서 
+		@GetMapping("/loginCheck/orderSearch/item_nm/{item_nm}")
 		@ResponseBody
 		public List<OrderHistoryDTO> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1") 
-		int curPage, @PathVariable("item_cd") String item_cd, HttpSession session) {
+		int curPage, @PathVariable("item_nm") String item_nm, HttpSession session) {
 		   MemberDTO m_dto = (MemberDTO) session.getAttribute("login");
 		   String member_cd = m_dto.getMember_code();
 		   int total_count = o_service.totalCount(member_cd);
@@ -156,7 +157,7 @@ public class OrderController {
 		   map.put("member_cd", member_cd);
 		   map.put("perPage", Integer.toString(perPage));
 		   map.put("startIdx", Integer.toString(startIdx));
-		   map.put("item_cd", item_cd);
+		   map.put("item_cd", item_nm);
 		   List<OrderHistoryDTO> list = o_service.itemSearch(map);
 		   return list;
 		}

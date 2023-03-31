@@ -23,6 +23,7 @@ public class FavoriteController {
 	//다시 상품 상세보기로 돌려야함
 	//찜목록 추가 restful로 변경필요 //
 	//03.31 오늘은 건들지 말자.
+	//10시10
 	
 	
 	@PostMapping("/loginCheck/favoriteAdd") 

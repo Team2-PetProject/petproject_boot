@@ -13,4 +13,9 @@ public class MainController {
 		return "main";
 	}
 	
+	@GetMapping("/register")
+	public String register() {
+		return "imageForm";
+	}
+	
 }

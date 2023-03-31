@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.ImageDTO;
-import com.example.dto.ItemDTO;
 import com.example.service.ImageService;
 
 import io.swagger.annotations.ApiOperation;
@@ -26,40 +26,47 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/image")
 public class ImageController {
 	
-	@Autowired
-	ImageService service;
+//	@Autowired
+//	ImageService service;
 	
-
 	@PostMapping("/upload")
 	@ApiOperation(value = "이미지 업로드")
-	public HashMap<String, Integer> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
-			@RequestParam("price") int price, @RequestParam("category") String category) throws IOException {
-		
-		ImageDTO dto = new ImageDTO();
-		dto.setMimeType(file.getContentType());
-		dto.setOriginal_name(file.getOriginalFilename());
-		dto.setData(file.getBytes());
-		ItemDTO iDTO = new ItemDTO();
-		iDTO.setItem_Name(name);
-		iDTO.setItem_Category(category);
-		iDTO.setItem_Price(price);
-		
-		int id = service.insertBoard(dto, iDTO);
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("id", id);
-		return map;
+	public HashMap<String,Object> handleFileUpload(@RequestParam("file") MultipartFile file, 
+			@RequestParam("name") String name, @RequestParam("price") int price, 
+			@RequestParam("category") String category, @RequestParam("option") List<String> option) 
+					throws IOException {
+		String add = "F";
+		if(option != null) {
+			add = "T";
+		}
+//		ImageDTO dto = new ImageDTO();
+//		dto.setMimeType(file.getContentType());
+//		dto.setOriginal_name(file.getOriginalFilename());
+//		dto.setData(file.getBytes());
+//		List<ItemDTO> list = new ArrayList<ItemDTO>();
+//		for (String opt : option) {
+//			list.add(new ItemDTO(0, 0, name, price, 0, category, opt, "T"));
+//		}
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("list", list);
+//		map.put("add", add);
+//		int id = service.insertBoard(dto, map);
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("id", 1);
+		result.put("add", add);
+		return result;
 	}
 	
-	@GetMapping("/view/{id}")
-	@ApiOperation(value = "이미지 보기")
-	public ResponseEntity<byte[]> findOne(@PathVariable int id){
-		ImageDTO dto = service.findOne(id);
-		System.out.println(dto);
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", dto.getMimeType());
-		headers.add("Content-Length", String.valueOf(dto.getData().length));
-		return new ResponseEntity<byte[]>(dto.getData(), headers, HttpStatus.OK);
-	}
+//	@GetMapping("/view/{id}")
+//	@ApiOperation(value = "이미지 보기")
+//	public ResponseEntity<byte[]> findOne(@PathVariable int id){
+//		ImageDTO dto = service.findOne(id);
+//		System.out.println(dto);
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Content-Type", dto.getMimeType());
+//		headers.add("Content-Length", String.valueOf(dto.getData().length));
+//		return new ResponseEntity<byte[]>(dto.getData(), headers, HttpStatus.OK);
+//	}
 	
 	@GetMapping("/user/{id}")
 	@ApiOperation(value = "회원")

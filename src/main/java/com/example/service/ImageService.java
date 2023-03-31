@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +26,12 @@ public class ImageService {
 	SqlSessionTemplate session;
 	
 	@Transactional
-	public int insertBoard(ImageDTO dto, ItemDTO iDTO) {
+	public int insertBoard(ImageDTO dto, List<ItemDTO> list) {
 		// TODO Auto-generated method stub
 		int n = dao.insertBoard(session, dto);
 		System.out.println("insert 성공 : " + n);
-		int result1 = lDAO.insertList(session, iDTO);
-		int result2 = iDAO.insertItem(session, iDTO);
+//		int result1 = iDAO.insertItem(session, list);
+//		int result2 = lDAO.insertList(session, list);
 		
 		return n;
 	}

@@ -30,6 +30,7 @@ public class ItemController {
 	ItemService i_service;
 	@Autowired
 	MemberService m_service;
+	//10시10.
 	
 	//내 부분 아니고 성혁이 부분 그리고 restful 미적용
 	//4

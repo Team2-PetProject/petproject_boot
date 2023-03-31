@@ -24,6 +24,8 @@ public class CartController {
 	@Autowired
 	CartService c_service;
 	//일단 완 더이상 건들지 말자.
+	//10시10..
+	//10시10.
 	
 	
 	//5에서 일어나는 이벤트

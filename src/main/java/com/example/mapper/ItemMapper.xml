@@ -3,14 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemMapper">
-	<!-- <insert id="insertItems" parameterType="list">
-		<selectkey keyProperty="Item_List_Code" resultType="int" order="before">
-			select tb_item_list_seq.nextval from dual
-		</selectkey>
-		insert into tb_item(item_cd, item_img_cd, item_li_cd, item_nm,
-		item_price, item_cat, item_spec, item_add) values 
-		(#{Item_List_Code}, tb_item_image_seq.currval, #{Item_Name}, 
-		#{Item_Price}, #{Item_Category}, #{Item_Spec}, #{Item_Add})
-		
-	</insert> -->
+	<insert id="insertItems" parameterType="HashMap">
+			<selectKey keyProperty="Item_List_Code,Item_Image" resultType="int" order="BEFORE">
+				select tb_item_list_seq.nextval as Item_List_Code, tb_image_seq.currval as Item_Image from dual
+			</selectKey>
+			insert all
+			<foreach collection="list" item="item" index="index"  open="" separator=" " close="SELECT * FROM DUAL">
+				into tb_item(item_cd, item_img_cd, item_li_cd, item_nm, item_price, item_cat, item_spec, item_add)
+				values (tb_item_seq.nextval, #{Item_Image}, tb_item_list_seq.currval, #{item.Item_Name},
+				#{item.Item_Price}, #{item.Item_Category}, #{item.Item_Spec}, #{item.Item_Add})
+								
+				into tb_item_list(item_cd, item_li_cd)
+				values (tb_item_seq.currval, tb_item_list_seq.currval) 
+			</foreach>
+	</insert>
 </mapper>

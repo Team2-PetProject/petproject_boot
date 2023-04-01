@@ -10,7 +10,8 @@ public class ImageDAO {
 
 	public int insertBoard(SqlSessionTemplate session, ImageDTO dto) {
 		System.out.println("dao");
-		return session.insert("insertBoard", dto);
+		int n = session.insert("insertBoard", dto);
+		return dto.getId();
 	}
 
 	public ImageDTO findOne(SqlSessionTemplate session, int id) {

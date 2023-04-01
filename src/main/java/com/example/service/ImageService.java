@@ -1,6 +1,7 @@
 package com.example.service;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class ImageService {
 	SqlSessionTemplate session;
 	
 	@Transactional
-	public int insertBoard(ImageDTO dto, List<ItemDTO> list) {
+	public int insertBoard(ImageDTO dto, HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		int n = dao.insertBoard(session, dto);
 		System.out.println("insert 성공 : " + n);
-//		int result1 = iDAO.insertItem(session, list);
-//		int result2 = lDAO.insertList(session, list);
+		map.put("img_cd", n);
+		int result1 = iDAO.insertItem(session, map);		
 		
 		return n;
 	}

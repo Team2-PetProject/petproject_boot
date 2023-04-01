@@ -6,7 +6,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("ImageDTO")
 public class ImageDTO {
-	private Integer id;
+	private int id;
 	private String mimeType;
 	private String original_name;
 	private byte[] data;
@@ -15,7 +15,7 @@ public class ImageDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ImageDTO(Integer id, String mimeType, String original_name, byte[] data, String created) {
+	public ImageDTO(int id, String mimeType, String original_name, byte[] data, String created) {
 		super();
 		this.id = id;
 		this.mimeType = mimeType;
@@ -23,7 +23,7 @@ public class ImageDTO {
 		this.data = data;
 		this.created = created;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(Integer id) {

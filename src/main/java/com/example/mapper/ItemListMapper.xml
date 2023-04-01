@@ -3,11 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemListMapper">
-	<insert id="insertList" parameterType="ItemDTO">
-		insert into tb_item_list values (TB_ITEM_SEQ.currval, TB_ITEM_LIST_SEQ.nextval)
-		<foreach collection=""></foreach>
-		<selectKey keyProperty="Item_Code" resultType="int" order="AFTER">
-			select tb_item_seq.currval from dual
-		</selectKey>
-	</insert>
+	<!-- <insert id="insertList" parameterType="hashmap">
+		<selectKey keyProperty="Item_Code, Item_List_Code" resultType="hashmap" order="BEFORE">
+			select item_code as Item_Code, item_list_code as Item_List_Code from tb_item where item_img_cd = #{img_cd}
+		</selectKey> 
+		insert all
+		<foreach collection="list" item="item">
+			into tb_item_list values ()
+		</foreach>
+	</insert> -->
 </mapper>

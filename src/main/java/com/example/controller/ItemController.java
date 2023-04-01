@@ -27,20 +27,20 @@ import com.example.service.MemberService;
 @Controller
 public class ItemController {
 	@Autowired
-	ItemService i_service;
+	ItemService itemService;
 	@Autowired
-	MemberService m_service;
+	MemberService memberService;
 	//10시10.
 	
 	//내 부분 아니고 성혁이 부분 그리고 restful 미적용
 	//4
 	@GetMapping("/itemList") //단순 조회는 get
 	public String itemList
-	(@RequestParam(value = "item_cat", defaultValue = "food") 
+	(@RequestParam(value = "itemcat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
-	String item_cat, Model model) {
-		i_service = new ItemService();
-	    List<ItemListDTO> list = i_service.itemList(item_cat);
+	String itemcat, Model model) {
+		itemService = new ItemService();
+	    List<ItemListDTO> list = itemService.itemList(itemcat);
 	    System.out.println("itemList: " + list);
 	    model.addAttribute("itemList", list);
 	    return "main";
@@ -48,11 +48,11 @@ public class ItemController {
 
 	@GetMapping("/itemRetrieve") //단순 조회 부분
 	public String itemRetrieve
-	(@RequestParam("item_code") String item_cd, Model model) {
-	    i_service = new ItemService();
-		ItemDTO i_dto = i_service.detail(item_cd);
-	    System.out.println("상품상세보기 : " + i_dto);
-	    model.addAttribute("itemDTO", i_dto);
+	(@RequestParam("itemCode") String itemCd, Model model) {
+	    itemService = new ItemService();
+		ItemDTO itemDto = itemService.detail(itemCd);
+	    System.out.println("상품상세보기 : " + itemDto);
+	    model.addAttribute("itemDTO", itemDto);
 	    return "itemRetrieve";
 	}
 	

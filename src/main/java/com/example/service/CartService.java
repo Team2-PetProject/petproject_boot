@@ -14,13 +14,7 @@ import com.example.dto.CartDTO;
 public class CartService {
 	@Autowired
 	CartDAO dao;
-	@Autowired
-	SqlSessionTemplate session;
-	
-	public void print() {
-		System.out.println(session);
-	}
-	
+
 	public int cartAdd(CartDTO cart) {
 		return dao.cartAdd(cart);
 	}

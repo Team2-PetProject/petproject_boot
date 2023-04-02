@@ -21,11 +21,9 @@ import com.example.service.MemberService;
 @Controller
 public class CartController {
 	@Autowired
-	MemberService m_service;
+	MemberService memberService;
 	@Autowired
-	CartService c_service;
-	//일단 완 더이상 건들지 말자.
-	//4.1일.. 0.15분
+	CartService cartService;
 	
 	
 	
@@ -34,9 +32,9 @@ public class CartController {
 	@PostMapping("/loginCheck/cartAdd")
 	public String cartAdd
 	(@RequestParam CartDTO cart, HttpSession session) {
-	    MemberDTO m_dto = (MemberDTO) session.getAttribute("login");
-	    cart.setMember_Code(m_dto.getMember_code());
-	    int num = c_service.cartAdd(cart);
+	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
+	    cart.setMember_Code(memberDTO.getMember_code());
+	    Integer insertCart = cartService.cartAdd(cart);
 	    return "redirect:/itemRetrieve?item_code=" + cart.getItem_Code();
 	}
 	
@@ -57,13 +55,13 @@ public class CartController {
 	
 	//9에서 일어나는 이벤트
 	//한개 삭제
-	@DeleteMapping("/loginCheck/cartDelete/cart_cd/{cart_cd}")
+	@DeleteMapping("/loginCheck/cartDelete/{cart_cd}")
 	@ResponseBody
 	public void cartDelete
-	(@PathVariable int cart_cd) {
+	(@PathVariable int cartCD) {
 		//cart_cd로 바로 삭제
-	int n = c_service.cartDelete(cart_cd);
-	System.out.println("하나 삭제된 갯수 : "+ n);
+		Integer deleteOne = cartService.cartDelete(cartCD);
+	System.out.println("하나 삭제된 갯수 : "+ deleteOne);
 	
 	}
 	
@@ -72,39 +70,39 @@ public class CartController {
 	@DeleteMapping("/loginCheck/checkDelete")
 	@ResponseBody
 	public void checkDelete
-	(@RequestParam("cart_cd") List<Integer>list) {
+	(@RequestParam("cartCD") List<Integer>list) {
 		//cart_cd 리스트 받아서 한번에 삭제
 		System.out.println(list);
-		int num = c_service.checkDelete(list);
-		System.out.println("전체 삭제  : " + num);
+		Integer allDelete = cartService.checkDelete(list);
+		System.out.println("전체 삭제  : " + allDelete);
 	} 
 	
 	//9에서 일어나는 이벤트
 	//상품 옵션 변경
-	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/item_cd/{item_cd}")
+	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemCd}")
 	@ResponseBody
 	public int specUpdate
-	(@PathVariable("cart_cd") int cart_cd, @PathVariable("item_cd") int item_cd)
+	(@PathVariable("cartCd") int cartCd, @PathVariable("itemCd") int itemCd)
 	{
 		//CartDTO 바로 사용하용하세요.
 		//반환 값은 0 또는 1만 나옵니다.
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("cart_cd", cart_cd);
-		map.put("item_cd", item_cd);
-		return c_service.specUpdate(map);
+		map.put("cartCd", cartCd);
+		map.put("itemCd", itemCd);
+		return cartService.specUpdate(map);
 	}
 	
 	//9에서 일어나는 이벤트
 	//수량 변경
-	@PutMapping("/logunCheck/specUpdate/cart_cd/{cart_cd}/amount/{item_amount}")
+	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemAmount}")
 	@ResponseBody
 	public int amountUpdate
-	(@PathVariable("cart_cd") int cart_cd, @PathVariable("item_amount") int item_amount)
+	(@PathVariable("cartCd") int cartCd, @PathVariable("itemAmount") int itemAmount)
 	{
 		//CartDTO 바로 사용하용하세요.
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("cart_cd",cart_cd);
-		map.put("item_amount",item_amount);
-		return c_service.amountUpdate(map);
+		map.put("cartCd",cartCd);
+		map.put("itemamount",itemAmount);
+		return cartService.amountUpdate(map);
 	}
 }

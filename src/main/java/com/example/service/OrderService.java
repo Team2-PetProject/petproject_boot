@@ -3,7 +3,6 @@ package com.example.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +22,11 @@ public class OrderService {
 	public void orderDone(List<CartDTO> carts, OrderInfoDTO orderInfoDTO, String memberCd) {
 		dao.ordItem(memberCd, carts);
 		dao.ordInfo(memberCd, orderInfoDTO);
+		//TO:DO insert dlvy sta 
+		//start time == orderDone
+		//end time  == 
+		
+		
 	}
 	
 	

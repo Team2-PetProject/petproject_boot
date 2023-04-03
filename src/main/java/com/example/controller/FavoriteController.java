@@ -13,6 +13,8 @@ import com.example.dto.MemberItemDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
+
+import io.swagger.annotations.ApiOperation;
 @Controller
 public class FavoriteController {
 	@Autowired
@@ -27,6 +29,7 @@ public class FavoriteController {
 	//상세페이지에서 찜 버튼을 눌러도 그대로 그 상품페이지다.
 	@PostMapping("/loginCheck/favorite/{item_cd}")
 	@ResponseBody
+	@ApiOperation(value = "favoriteAdd")
 	public void favoriteAdd
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
@@ -39,6 +42,7 @@ public class FavoriteController {
 	
 	@DeleteMapping("/loginCheck/favorite/{item_cd}")
 	@ResponseBody
+	@ApiOperation(value = "favoriteDelete")
 	public void favoriteDelete
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");

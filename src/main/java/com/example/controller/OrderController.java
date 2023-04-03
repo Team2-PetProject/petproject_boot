@@ -27,6 +27,8 @@ import com.example.service.MemberService;
 import com.example.service.OrderService;
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
+import io.swagger.annotations.ApiOperation;
+
 @Controller
 public class OrderController {
 
@@ -51,7 +53,7 @@ public class OrderController {
 	//구매하기 버튼 누를 때입니다.
 	//modleandview->entity로 변환 해줘야함
 	//order 숫자 확인도 해야함
-	
+	@ApiOperation(value = "orderConfirm")
 	@PostMapping("/loginCheck/orderConfirm/")
 	public ModelAndView orderConfirm
 	(@RequestBody List<CartDTO> carts, HttpSession session) {
@@ -75,6 +77,7 @@ public class OrderController {
 	//ppt 7 page 결제하기 버튼 누른 후
 	//ppt 8 page 주문결제 완료 화면으로 넘어갑니다.
 	@PostMapping("/loginCheck/orderDone")
+	@ApiOperation(value = "orderDone")
 	public ModelAndView orderDone
 	(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
 	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
@@ -91,6 +94,7 @@ public class OrderController {
 	//  이 함수는 중복 코드 부분을 빼서 만들었습니다.
 	//  이 때 필요한 것들이 있습니다.
 	//  경고 창을 보고 밑에 변수들을 잘 보고 처리해주면 쉽게 해결됩니다.
+	
 	private HashMap<String, String> searchPaging(Integer curPage, HttpSession session) {
 		//여기서 path은자제해야합니다.
 		//curPage는 cuurentPage에 약자로 현재 페이지입니다.
@@ -119,6 +123,7 @@ public class OrderController {
 	//ppt page 11번입니다.
 	@GetMapping("/loginCheck/orderSearch/")
 	@ResponseBody
+	@ApiOperation(value = "orderSearch")
 	public List<OrderHistoryDTO> orderSearch
 	(@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage, HttpSession session) {
 		HashMap<String, String> map = searchPaging(curPage, session);
@@ -133,6 +138,7 @@ public class OrderController {
 		//ppt page 11번입니다.
 		@GetMapping("/loginCheck/orderSearch/{startDay}/{endDay}")
 		@ResponseBody
+		@ApiOperation(value = "daySearch")
 		public List<OrderHistoryDTO> daySearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1") 
 		int curPage, @PathVariable("startDay") String startDay, 
@@ -149,11 +155,12 @@ public class OrderController {
 		// 직접 item_nm을 입력해서 
 		@GetMapping("/loginCheck/orderSearch/{itemNm}")
 		@ResponseBody
+		@ApiOperation(value = "itemSearch")
 		public List<OrderHistoryDTO> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1") 
-		int curPage, @PathVariable("item_nm") String item_nm, HttpSession session) {
+		int curPage, @PathVariable("itemNm") String itemNm, HttpSession session) {
 		   HashMap<String, String> map = searchPaging(curPage, session);
-		   map.put("itemCd", item_nm);
+		   map.put("itemCd", itemNm);
 		   List<OrderHistoryDTO> list = orderService.itemSearch(map);
 		   return list;
 		}

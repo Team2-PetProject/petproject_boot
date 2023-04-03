@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
-import com.example.dto.ItemFavoriteDTO;
-import com.example.dto.ItemListDTO;
+import com.example.dto.MemberItemDTO;
+import com.example.dto.OptionDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
@@ -40,7 +40,7 @@ public class ItemController {
 	//path에서 안되는데 굳이 써야할까...
 	String item_cat, Model model) {
 		i_service = new ItemService();
-	    List<ItemListDTO> list = i_service.itemList(item_cat);
+	    List<OptionDTO> list = i_service.itemList(item_cat);
 	    System.out.println("itemList: " + list);
 	    model.addAttribute("itemList", list);
 	    return "main";

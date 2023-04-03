@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.dto.ItemFavoriteDTO;
+import com.example.dto.MemberItemDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
@@ -30,7 +30,7 @@ public class FavoriteController {
 	public void favoriteAdd
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		ItemFavoriteDTO itemFavoriteDTO = new ItemFavoriteDTO();
+		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
 		itemFavoriteDTO.setMember_Code(memberDTO.getMember_code());
 		itemFavoriteDTO.setItem_Code(itemCd);
 		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
@@ -43,7 +43,7 @@ public class FavoriteController {
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 		String memberCd= memberDTO.getMember_code();
-		ItemFavoriteDTO itemFavoriteDTO = new ItemFavoriteDTO();
+		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
 		Integer favoriteDel = itemService.favoriteDelete(memberCd,itemCd);
 		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");
 	}

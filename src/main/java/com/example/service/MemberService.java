@@ -10,8 +10,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.example.dao.MemberDAO;
 import com.example.dto.MemberDTO;
+
+
 
 @Service("memberService")
 public class MemberService {
@@ -20,12 +23,12 @@ public class MemberService {
 	@Autowired
 	SqlSessionTemplate session;
 	public int memberAdd(MemberDTO dto) throws NoSuchAlgorithmException {
-		String password = dto.getMember_passwd();
+		String password = dto.getPw();
 		MessageDigest messageDigest = MessageDigest.getInstance("sha-512");
 		messageDigest.reset();
 		messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
 		password = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
-		dto.setMember_passwd(password);
+		dto.setPw(password);
 		
 		int n = dao.memberAdd(session,dto);
 		return n;
@@ -53,5 +56,6 @@ public class MemberService {
 		MemberDTO dto = dao.login(session, map);
 		return dto;
 	}
+	
 	
 }//end class

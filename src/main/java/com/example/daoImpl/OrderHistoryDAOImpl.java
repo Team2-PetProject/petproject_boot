@@ -1,8 +1,9 @@
-package com.example.dao;
+package com.example.daoImpl;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class OrderItemDAO {
+public class OrderHistoryDAOImpl {
+
 
 }

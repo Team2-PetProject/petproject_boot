@@ -1,4 +1,4 @@
-package com.example;
+package com.example.common;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,9 +40,6 @@ public class SwaggerConfig {
     private ApiInfo commonInfo() {
         return new ApiInfoBuilder()
                 .title("PetProject")
-                //.description("")
-                //.license("leeys")
-                //.licenseUrl("http://leeys.tistory.com")
                 .version("1.0")
                 .build();
     }

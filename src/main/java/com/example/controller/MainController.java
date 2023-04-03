@@ -14,6 +14,13 @@ public class MainController {
 		return "imageForm";
 	}
 	
+	@GetMapping("/main")
+	public String mainpage() {
+		System.out.println("/main페이지");
+		return "content/main";
+	}
+	
+	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		System.out.println("로그인폼 주소 요청");

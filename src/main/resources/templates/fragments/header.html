@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- headerFragment 선언 -->
-<th:block th:fragment="headerFragment"> <!-- th:fragment="fragment명" 이게 해당 부분을 fragment로 선언한단 의미 -->
-	<h3>Header Section</h3>
+<th:block th:fragment="headerFragment">
+	<!-- th:fragment="fragment명" 이게 해당 부분을 fragment로 선언한단 의미 -->
+	<p>Header Section</p>
+
+	<div class="inner">
+		<div class="hearder-container">
+			<!-- <div class="title"> -->
+			<a href="#"><img><b class="title">Kkosunnae</b></a>
+			<!-- </div>  -->
+			<!-- title -->
+
+			<div class="right-box">
+				<button>채팅</button>
+				&nbsp;
+				<button>알림</button>
+				&nbsp;
+
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-primary dropdown-toggle"
+						data-bs-toggle="dropdown" aria-expanded="false">회원</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="LoginUIServlet">로그인</a></li>
+						<li><a class="dropdown-item" href="MemberUIServlet">회원가입</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- header-container -->
+	</div>
+	
+	<hr>
 </th:block>
 </html>

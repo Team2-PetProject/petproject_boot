@@ -34,8 +34,8 @@ public class FavoriteController {
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
-		itemFavoriteDTO.setMember_Code(memberDTO.getMember_code());
-		itemFavoriteDTO.setItem_Code(itemCd);
+		itemFavoriteDTO.setMbID(memberDTO.getMbId());
+		itemFavoriteDTO.setItCd(itemCd);
 		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
 		System.out.println("favoriteAdd : " + favoriteAdd);
 	}
@@ -46,7 +46,7 @@ public class FavoriteController {
 	public void favoriteDelete
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		String memberCd= memberDTO.getMember_code();
+		String memberCd= memberDTO.getMbId();
 		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
 		Integer favoriteDel = itemService.favoriteDelete(memberCd,itemCd);
 		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");

@@ -48,11 +48,11 @@ public class CartController {
 	@ApiOperation(value = "cartAdd")
 	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart, HttpSession session){
 		 MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
-		 cart.setMember_Code(memberDTO.getMember_code());
+		 cart.setMbId(memberDTO.getMbId());
 		 Integer AddItem = cartService.cartAdd(cart);
 		 Map<String, Object> cartAdd = new HashMap<String, Object>();
 		 cartAdd.put("success", AddItem > 0);
-		 cartAdd.put("item_cd", cart.getCart_Code());
+		 cartAdd.put("item_cd", cart.getCartCd());
 		 return ResponseEntity.ok(cartAdd);
 	}
     

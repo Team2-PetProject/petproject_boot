@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.dto.ImageDTO;
+import com.example.dto.FileUploadDTO;
 import com.example.dto.ItemDTO;
 import com.example.service.ImageService;
 
@@ -35,14 +35,15 @@ public class ImageController {
 	public HashMap<String, Integer> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
 			@RequestParam("price") int price, @RequestParam("category") String category) throws IOException {
 		
-		ImageDTO dto = new ImageDTO();
-		dto.setMimeType(file.getContentType());
-		dto.setOriginal_name(file.getOriginalFilename());
-		dto.setData(file.getBytes());
+		FileUploadDTO dto = new FileUploadDTO();
+		dto.setDi(file.getContentType());
+		dto.setImgNm(file.getOriginalFilename());
+		dto.setFl(file.getBytes());
+		dto.setSz(String.valueOf(file.getSize()));
 		ItemDTO iDTO = new ItemDTO();
-		iDTO.setItem_Name(name);
-		iDTO.setItem_Category(category);
-		iDTO.setItem_Price(price);
+		iDTO.setItNm(name);
+		iDTO.setCat(category);
+		iDTO.setPrice(price);
 		
 		int id = service.insertBoard(dto, iDTO);
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -53,21 +54,12 @@ public class ImageController {
 	@GetMapping("/view/{id}")
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable int id){
-		ImageDTO dto = service.findOne(id);
+		FileUploadDTO dto = service.findOne(id);
 		System.out.println(dto);
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", dto.getMimeType());
-		headers.add("Content-Length", String.valueOf(dto.getData().length));
-		return new ResponseEntity<byte[]>(dto.getData(), headers, HttpStatus.OK);
+		headers.add("Content-Type", dto.getDi());
+		headers.add("Content-Length", String.valueOf(dto.getFl().length));
+		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
 	}
 	
-	@GetMapping("/user/{id}")
-	@ApiOperation(value = "회원")
-	public HashMap<String, Object> user(@PathVariable String id){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("name", "홍길동");
-		map.put("age", 20);
-		return map;
-	}
 }

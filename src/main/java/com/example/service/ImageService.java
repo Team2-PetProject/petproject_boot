@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.dao.ImageDAO;
 import com.example.dao.ItemDAO;
 import com.example.dao.ItemListDAO;
-import com.example.dto.ImageDTO;
+import com.example.dto.FileUploadDTO;
 import com.example.dto.ItemDTO;
 
 @Service("ImageService")
@@ -24,7 +24,7 @@ public class ImageService {
 	SqlSessionTemplate session;
 	
 	@Transactional
-	public int insertBoard(ImageDTO dto, ItemDTO iDTO) {
+	public int insertBoard(FileUploadDTO dto, ItemDTO iDTO) {
 		// TODO Auto-generated method stub
 		int n = dao.insertBoard(session, dto);
 		System.out.println("insert 성공 : " + n);
@@ -34,8 +34,8 @@ public class ImageService {
 		return n;
 	}
 
-	public ImageDTO findOne(int id) {
-		ImageDTO dto = dao.findOne(session, id);
+	public FileUploadDTO findOne(int id) {
+		FileUploadDTO dto = dao.findOne(session, id);
 		return dto;
 	}
 

@@ -60,8 +60,8 @@ public class OrderController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 		Integer confirm = 0;
 		for (CartDTO cart : carts) {
-			cart.setMember_Code(memberDTO.getMember_code());
-			confirm += cartService.cartAdd(cart);
+			cart.setMbId(memberDTO.getMember_code());
+			confirm = confirm + cartService.cartAdd(cart);
 		}
 		System.out.println("총 주문 갯수는 " + confirm + " 개 입니다.");
 		//ModelAndView mav = new ModelAndView("orderItem");

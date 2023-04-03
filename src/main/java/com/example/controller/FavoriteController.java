@@ -34,8 +34,8 @@ public class FavoriteController {
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
-		itemFavoriteDTO.setMember_Code(memberDTO.getMember_code());
-		itemFavoriteDTO.setItem_Code(itemCd);
+		itemFavoriteDTO.setMbID(memberDTO.getMember_code());
+		itemFavoriteDTO.setItCd(itemCd);
 		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
 		System.out.println("favoriteAdd : " + favoriteAdd);
 	}

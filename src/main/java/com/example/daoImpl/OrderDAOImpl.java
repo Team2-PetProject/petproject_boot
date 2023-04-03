@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.example.daoImpl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
 //data access object 데이터 접근 물체
 @Repository
-public class OrderDAO {
+public class OrderDAOImpl {
 	@Autowired
 	SqlSessionTemplate session;
 	

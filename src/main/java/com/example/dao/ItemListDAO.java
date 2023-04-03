@@ -5,8 +5,6 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.dto.ItemDTO;
-
 @Repository
 public class ItemListDAO {
 

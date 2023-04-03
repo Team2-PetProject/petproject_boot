@@ -8,7 +8,7 @@ import org.apache.ibatis.type.Alias;
 public class ImageDTO {
 	private int id;
 	private String mimeType;
-	private String original_name;
+	private String originalName;
 	private byte[] data;
 	private String created;
 	public ImageDTO() {
@@ -19,7 +19,7 @@ public class ImageDTO {
 		super();
 		this.id = id;
 		this.mimeType = mimeType;
-		this.original_name = original_name;
+		this.originalName = original_name;
 		this.data = data;
 		this.created = created;
 	}
@@ -36,10 +36,10 @@ public class ImageDTO {
 		this.mimeType = mimeType;
 	}
 	public String getOriginal_name() {
-		return original_name;
+		return originalName;
 	}
 	public void setOriginal_name(String original_name) {
-		this.original_name = original_name;
+		this.originalName = original_name;
 	}
 	public byte[] getData() {
 		return data;
@@ -55,7 +55,7 @@ public class ImageDTO {
 	}
 	@Override
 	public String toString() {
-		return "ImageDTO [id=" + id + ", mimeType=" + mimeType + ", original_name=" + original_name + ", data="
+		return "ImageDTO [id=" + id + ", mimeType=" + mimeType + ", original_name=" + originalName + ", data="
 				+ Arrays.toString(data) + ", created=" + created + "]";
 	}
 	

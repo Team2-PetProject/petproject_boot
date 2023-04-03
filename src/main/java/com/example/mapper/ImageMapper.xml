@@ -5,7 +5,7 @@
 <mapper namespace="ImageMapper">
 	<insert id="insertBoard" parameterType="ImageDTO">
 		insert into image(id, mimetype, original_name, data)
-		values (tb_image_seq.nextval, #{mimeType}, #{original_name}, #{data})
+		values (tb_image_seq.nextval, #{mimeType}, #{originalName}, #{data})
 		<selectKey keyProperty="id" resultType="int" order="AFTER">
 			SELECT TB_IMAGE_SEQ.CURRVAL FROM DUAL
 		</selectKey>

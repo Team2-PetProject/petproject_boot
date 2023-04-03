@@ -4,13 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemMapper">
 	<insert id="insertItems" parameterType="HashMap">
-			<selectKey keyProperty="Item_List_Code,Item_Image" resultType="int" order="BEFORE">
-				select tb_item_list_seq.nextval as Item_List_Code, tb_image_seq.currval as Item_Image from dual
+			<!-- <selectKey keyProperty="itemListCode,itemImage" resultType="SequenceDTO" order="BEFORE">
+				SELECT 
+					TB_ITEM_LIST_SEQ.NEXTVAL AS itemListCode
+					, TB_IMAGE_SEQ.CURRVAL AS itemImage 
+				FROM DUAL
+			</selectKey> -->
+			<selectKey keyProperty="id" resultType="int" order="BEFORE">
+				select 
 			</selectKey>
 			insert all
 			<foreach collection="list" item="item" index="index"  open="" separator=" " close="SELECT * FROM DUAL">
 				into tb_item(item_cd, item_img_cd, item_li_cd, item_nm, item_price, item_cat, item_spec, item_add)
-				values (tb_item_seq.nextval, #{Item_Image}, tb_item_list_seq.currval, #{item.Item_Name},
+				values (tb_item_seq.nextval, #{id}, tb_item_list_seq.currval, #{item.Item_Name},
 				#{item.Item_Price}, #{item.Item_Category}, #{item.Item_Spec}, #{item.Item_Add})
 								
 				into tb_item_list(item_cd, item_li_cd)

@@ -1,9 +1,7 @@
 package com.example.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,38 +10,35 @@ import com.example.dao.ImageDAO;
 import com.example.dao.ItemDAO;
 import com.example.dao.ItemListDAO;
 import com.example.dto.ImageDTO;
-import com.example.dto.ItemDTO;
 
 @Service("ImageService")
 public class ImageService {
 
 	@Autowired
-	ImageDAO dao;
+	private ImageDAO imageDao;
 	@Autowired
-	ItemDAO iDAO;
+	private ItemDAO itemDao;
 	@Autowired
-	ItemListDAO lDAO;
-	@Autowired
-	SqlSessionTemplate session;
+	private ItemListDAO itemListDao;
 	
 	@Transactional
 	public int insertBoard(ImageDTO dto, HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		int n = dao.insertBoard(session, dto);
-		System.out.println("insert 성공 : " + n);
-		map.put("img_cd", n);
-		int result1 = iDAO.insertItem(session, map);		
+		int insertCount = imageDao.insertBoard(dto);
+		System.out.println("insert 성공 : " + insertCount);
+		map.put("img_cd", insertCount);
+		int result1 = itemDao.insertItem(map);		
 		
-		return n;
+		return insertCount;
 	}
 
 	public ImageDTO findOne(int id) {
-		ImageDTO dto = dao.findOne(session, id);
+		ImageDTO dto = imageDao.findOne(id);
 		return dto;
 	}
 
 	public void selectAll() {
-		System.out.println(session);
+		System.out.println();
 	}
 
 }

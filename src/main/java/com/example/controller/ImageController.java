@@ -72,14 +72,4 @@ public class ImageController {
 		headers.add("Content-Length", String.valueOf(dto.getData().length));
 		return new ResponseEntity<byte[]>(dto.getData(), headers, HttpStatus.OK);
 	}
-	
-	@GetMapping("/user/{id}")
-	@ApiOperation(value = "회원")
-	public HashMap<String, Object> user(@PathVariable String id){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("name", "홍길동");
-		map.put("age", 20);
-		return map;
-	}
 }

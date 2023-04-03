@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.dao.ImageDAO;
-import com.example.dao.ItemDAO;
-import com.example.dao.ItemListDAO;
+import com.example.daoimpl.ImageDAOImpl;
+import com.example.daoimpl.ItemDAOImpl;
+import com.example.daoimpl.ItemListDAOImpl;
 import com.example.dto.ImageDTO;
 import com.example.dto.ItemDTO;
 
@@ -15,11 +15,11 @@ import com.example.dto.ItemDTO;
 public class ImageService {
 
 	@Autowired
-	ImageDAO dao;
+	ImageDAOImpl dao;
 	@Autowired
-	ItemDAO iDAO;
+	ItemDAOImpl iDAO;
 	@Autowired
-	ItemListDAO lDAO;
+	ItemListDAOImpl lDAO;
 	@Autowired
 	SqlSessionTemplate session;
 	

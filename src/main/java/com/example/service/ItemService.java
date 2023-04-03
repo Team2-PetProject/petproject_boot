@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dao.ItemDAO;
+import com.example.daoimpl.ItemDAOImpl;
 import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.ItemFavoriteDTO;
@@ -16,7 +16,7 @@ import com.example.dto.ItemListDTO;
 @Service("itemService")
 public class ItemService {
 	@Autowired
-	ItemDAO dao;
+	ItemDAOImpl dao;
 	@Autowired
 	SqlSessionTemplate session;
 	

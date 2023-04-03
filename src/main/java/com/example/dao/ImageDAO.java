@@ -1,20 +1,8 @@
 package com.example.dao;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-import com.example.dto.ImageDTO;
+@Mapper
+public interface ImageDAO {
 
-@Repository
-public class ImageDAO {
-
-	public int insertBoard(SqlSessionTemplate session, ImageDTO dto) {
-		System.out.println("dao");
-		return session.insert("insertBoard", dto);
-	}
-
-	public ImageDTO findOne(SqlSessionTemplate session, int id) {
-		return session.selectOne("findOne", id);
-	}
-	
 }

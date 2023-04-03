@@ -27,6 +27,8 @@ import com.example.service.MemberService;
 import com.example.service.OrderService;
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
+import io.swagger.annotations.ApiOperation;
+
 @Controller
 public class OrderController {
 
@@ -51,14 +53,14 @@ public class OrderController {
 	//구매하기 버튼 누를 때입니다.
 	//modleandview->entity로 변환 해줘야함
 	//order 숫자 확인도 해야함
-	
+	@ApiOperation(value = "orderConfirm")
 	@PostMapping("/loginCheck/orderConfirm/")
 	public ModelAndView orderConfirm
 	(@RequestBody List<CartDTO> carts, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 		Integer confirm = 0;
 		for (CartDTO cart : carts) {
-			cart.setMember_Code(memberDTO.getMember_code());
+			cart.setMbId(memberDTO.getMbId());
 			confirm += cartService.cartAdd(cart);
 		}
 		System.out.println("총 주문 갯수는 " + confirm + " 개 입니다.");
@@ -66,7 +68,7 @@ public class OrderController {
 		//위 코드처럼 작성하면 알아서 orderItem.html을 찾아갑니다.
 		ModelAndView mav = new ModelAndView();
 		//학원에서 사용한 일반적인 코드입니다.
-		mav.addObject("member_cd", memberDTO.getMember_code());
+		mav.addObject("member_cd", memberDTO.getMbId());
 		mav.addObject("carts", carts);
 		mav.setViewName("orderConfirm");
 		return mav;
@@ -75,15 +77,16 @@ public class OrderController {
 	//ppt 7 page 결제하기 버튼 누른 후
 	//ppt 8 page 주문결제 완료 화면으로 넘어갑니다.
 	@PostMapping("/loginCheck/orderDone")
+	@ApiOperation(value = "orderDone")
 	public ModelAndView orderDone
 	(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
 	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-	    String memberCD = memberDTO.getMember_code();
+	    String memberCD = memberDTO.getMbId();
 	    orderService.orderDone(carts, info, memberCD);
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("carts", carts);
 	    mav.addObject("info", info);
-		mav.addObject("memberCD", memberDTO.getMember_code());
+		mav.addObject("memberCD", memberDTO.getMbId());
 		mav.setViewName("orderDone");
 	    return mav;
 	}
@@ -91,13 +94,14 @@ public class OrderController {
 	//  이 함수는 중복 코드 부분을 빼서 만들었습니다.
 	//  이 때 필요한 것들이 있습니다.
 	//  경고 창을 보고 밑에 변수들을 잘 보고 처리해주면 쉽게 해결됩니다.
+	
 	private HashMap<String, String> searchPaging(Integer curPage, HttpSession session) {
 		//여기서 path은자제해야합니다.
 		//curPage는 cuurentPage에 약자로 현재 페이지입니다.
 		//perPage는 페이지 당 입니다. 페이지 당 게시글 숫자입니다.
 	   MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 	   //로그인정보
-	   String memberCD = memberDTO.getMember_code();
+	   String memberCD = memberDTO.getMbId();
 	   //아이디 끌어오기
 	   Integer totalCount = orderService.totalCount(memberCD);
 	   //게시글 전체 갯수
@@ -119,6 +123,7 @@ public class OrderController {
 	//ppt page 11번입니다.
 	@GetMapping("/loginCheck/orderSearch/")
 	@ResponseBody
+	@ApiOperation(value = "orderSearch")
 	public List<OrderHistoryDTO> orderSearch
 	(@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage, HttpSession session) {
 		HashMap<String, String> map = searchPaging(curPage, session);
@@ -133,6 +138,7 @@ public class OrderController {
 		//ppt page 11번입니다.
 		@GetMapping("/loginCheck/orderSearch/{startDay}/{endDay}")
 		@ResponseBody
+		@ApiOperation(value = "daySearch")
 		public List<OrderHistoryDTO> daySearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1") 
 		int curPage, @PathVariable("startDay") String startDay, 
@@ -149,11 +155,12 @@ public class OrderController {
 		// 직접 item_nm을 입력해서 
 		@GetMapping("/loginCheck/orderSearch/{itemNm}")
 		@ResponseBody
+		@ApiOperation(value = "itemSearch")
 		public List<OrderHistoryDTO> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1") 
-		int curPage, @PathVariable("item_nm") String item_nm, HttpSession session) {
+		int curPage, @PathVariable("itemNm") String itemNm, HttpSession session) {
 		   HashMap<String, String> map = searchPaging(curPage, session);
-		   map.put("itemCd", item_nm);
+		   map.put("itemCd", itemNm);
 		   List<OrderHistoryDTO> list = orderService.itemSearch(map);
 		   return list;
 		}

@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.dto.ItemFavoriteDTO;
+import com.example.dto.MemberItemDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
+
+import io.swagger.annotations.ApiOperation;
 @Controller
 public class FavoriteController {
 	@Autowired
@@ -27,23 +29,25 @@ public class FavoriteController {
 	//상세페이지에서 찜 버튼을 눌러도 그대로 그 상품페이지다.
 	@PostMapping("/loginCheck/favorite/{item_cd}")
 	@ResponseBody
+	@ApiOperation(value = "favoriteAdd")
 	public void favoriteAdd
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		ItemFavoriteDTO itemFavoriteDTO = new ItemFavoriteDTO();
-		itemFavoriteDTO.setMember_Code(memberDTO.getMember_code());
-		itemFavoriteDTO.setItem_Code(itemCd);
+		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
+		itemFavoriteDTO.setMbID(memberDTO.getMbId());
+		itemFavoriteDTO.setItCd(itemCd);
 		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
 		System.out.println("favoriteAdd : " + favoriteAdd);
 	}
 	
 	@DeleteMapping("/loginCheck/favorite/{item_cd}")
 	@ResponseBody
+	@ApiOperation(value = "favoriteDelete")
 	public void favoriteDelete
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		String memberCd= memberDTO.getMember_code();
-		ItemFavoriteDTO itemFavoriteDTO = new ItemFavoriteDTO();
+		String memberCd= memberDTO.getMbId();
+		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
 		Integer favoriteDel = itemService.favoriteDelete(memberCd,itemCd);
 		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");
 	}

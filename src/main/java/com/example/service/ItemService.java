@@ -7,20 +7,20 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoimpl.ItemDAOImpl;
+import com.example.dao.ItemDAO;
 import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
-import com.example.dto.ItemFavoriteDTO;
-import com.example.dto.ItemListDTO;
+import com.example.dto.MemberItemDTO;
+import com.example.dto.OptionDTO;
 
 @Service("itemService")
 public class ItemService {
 	@Autowired
-	ItemDAOImpl dao;
+	ItemDAO dao;
 	@Autowired
 	SqlSessionTemplate session;
 	
-	public List<ItemListDTO> itemList(String item_cat) {
+	public List<OptionDTO> itemList(String item_cat) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -30,7 +30,7 @@ public class ItemService {
 		return null;
 	}
 
-	public int favoriteAdd(ItemFavoriteDTO i_dto) {
+	public int favoriteAdd(MemberItemDTO i_dto) {
 		return dao.favoriteAdd(i_dto);
 	}
 
@@ -43,4 +43,3 @@ public class ItemService {
 
 	
 }//end class
-

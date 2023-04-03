@@ -1,4 +1,4 @@
-package com.example.daoimpl;
+package com.example.daoImpl;
 
 import java.util.HashMap;
 import java.util.List;

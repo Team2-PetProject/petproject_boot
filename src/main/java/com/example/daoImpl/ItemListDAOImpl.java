@@ -1,4 +1,4 @@
-package com.example.daoimpl;
+package com.example.daoImpl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

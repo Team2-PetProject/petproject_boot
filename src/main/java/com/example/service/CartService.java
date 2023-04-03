@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoimpl.CartDAOImpl;
+import com.example.daoImpl.CartDAOImpl;
 import com.example.dto.CartDTO;
 
 @Service("cartService")

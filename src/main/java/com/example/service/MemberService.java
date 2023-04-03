@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoimpl.MemberDAOImpl;
+import com.example.daoImpl.MemberDAOImpl;
 import com.example.dto.CartDTO;
 
 @Service("memberService")

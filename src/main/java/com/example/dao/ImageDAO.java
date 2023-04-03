@@ -1,25 +1,21 @@
 package com.example.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.dto.ImageDTO;
+import com.example.dto.FileUploadDTO;
 
 @Repository
 public class ImageDAO {
 
-	@Autowired
-	SqlSessionTemplate session;
-	
-	public int insertBoard(ImageDTO dto) {
-		System.out.println("dao");
-		int n = session.insert("insertBoard", dto);
-		return dto.getId();
+
+	public FileUploadDTO findOne(SqlSessionTemplate session, Integer id) {
+		return session.selectOne("findOne", id);
 	}
 
-	public ImageDTO findOne(int id) {
-		return session.selectOne("findOne", id);
+	public int insertFile(SqlSessionTemplate session, FileUploadDTO fileUploadDTO) {
+		int imgCd = session.insert("insertFile", fileUploadDTO);
+		return fileUploadDTO.getImgCd();
 	}
 	
 }

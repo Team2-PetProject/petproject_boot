@@ -5,10 +5,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: PetProject
     password: pet
-#타임리프
-  thymeleaf:
-    prefix: /template/
-    suffix: .html
+
 #image, css, js
   mvc:
     static-path-pattern: /resources/**
@@ -25,7 +22,7 @@ mybatis:
 
 #server 설정
 server:
-  port: 8090
+  port: 8093
   servlet:
     context-path: /app
     
@@ -35,4 +32,6 @@ logging:
   config: classpath:log4j/log4j2.xml
 
 
-
+#타임리프
+prefix: /templates/
+suffix: .html

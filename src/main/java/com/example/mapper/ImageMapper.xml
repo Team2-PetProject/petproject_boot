@@ -3,14 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ImageMapper">
-	<insert id="insertBoard" parameterType="ImageDTO">
-		insert into image(id, mimetype, original_name, data)
-		values (tb_image_seq.nextval, #{mimeType}, #{original_name}, #{data})
+	<insert id="insertBoard" parameterType="FileUploadDTO">
+		INSERT INTO TB_FILE_UPLOAD(
+			IMG_CD
+			, IMG_NM
+			, SZ
+			, DI
+			, FL
+		) VALUES (
+			TB_FILE_UPLOAD_SEQ.NEXTVAL
+			, #{imgNm}
+			, #{sz}
+			, #{di}
+			, #{fl}
+		)
 		<selectKey keyProperty="id" resultType="int" order="AFTER">
-			select tb_image_seq.currval from dual
+			SELECT 
+				TB_FILE_UPLOAD_SEQ.CURRVAL
+			FROM DUAL
 		</selectKey>
 	</insert>
-	<select id="findOne" resultType="ImageDTO" parameterType="int">
+	<select id="findOne" resultType="FileUploadDTO" parameterType="int">
 		select * from image where id=#{id}
+		SELECT 
+			IMG_CD
+			, IMG_NM
+			, SZ
+			, UP_TM
+			, DI
+			, FL
+		FROM TB_FILE_UPLOAD
+		WHERE 
+			ID = #{imgCd}
 	</select>
 </mapper>

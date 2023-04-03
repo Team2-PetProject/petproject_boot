@@ -1,9 +1,8 @@
 package com.example.dao;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
-public class OrderHistoryDAO {
-
+@Mapper
+public interface OrderHistoryDAO {
 
 }

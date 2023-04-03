@@ -10,7 +10,7 @@ public class FileUploadDTO {
 	private String imgNm;
 	private String sz;
 	private String upTm;
-	private String dl;
+	private String di;
 	private byte[] fl;
 	public Integer getImgCd() {
 		return imgCd;
@@ -36,11 +36,11 @@ public class FileUploadDTO {
 	public void setUpTm(String upTm) {
 		this.upTm = upTm;
 	}
-	public String getDl() {
-		return dl;
+	public String getDi() {
+		return di;
 	}
-	public void setDl(String dl) {
-		this.dl = dl;
+	public void setDi(String dl) {
+		this.di = dl;
 	}
 	public byte[] getFl() {
 		return fl;
@@ -60,7 +60,7 @@ public class FileUploadDTO {
 		builder.append(", upTm=");
 		builder.append(upTm);
 		builder.append(", dl=");
-		builder.append(dl);
+		builder.append(di);
 		builder.append(", fl=");
 		builder.append(Arrays.toString(fl));
 		builder.append("]");

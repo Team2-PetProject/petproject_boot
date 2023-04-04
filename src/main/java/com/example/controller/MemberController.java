@@ -3,16 +3,27 @@ package com.example.controller;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.function.ServerRequest.Headers;
 
+import com.example.dto.LoginDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.MemberService;
 
@@ -25,6 +36,8 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
+	private static final Logger logger = LogManager.getLogger(MemberController.class);
+	
 
 	@RequestMapping(value = "/memberForm",method = RequestMethod.GET)
 	public String memberForm() {
@@ -33,30 +46,32 @@ public class MemberController {
 	}
 	
 	
-	
-	@RequestMapping(value = "/memberAdd", method = RequestMethod.POST)
+
+	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
 	@ResponseBody
-	public String register(MemberDTO dto) throws NoSuchAlgorithmException {
-		System.out.println("/member/memberAdd : " + dto);
-		int n = service.memberAdd(dto);
+	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO) throws NoSuchAlgorithmException {
+		System.out.println("/member/memberAdd : " + memberDTO);
+		int n = service.memberAdd(memberDTO);
 		System.out.println("insert 갯수 : "+n);
+		logger.debug("insert 갯수 : "+n);
 		
-		return "회원가입 성공";
+		return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST )
+
+	@PostMapping("/idCheck/{mbId}")
 	@ApiOperation(value = "아이디 중복체크")
-	@ResponseBody
-	public String idCheck(@RequestParam("id") String member_code) {
-		System.out.println("/idCheck 주소 : " + member_code);
+	public ResponseEntity<Object> idCheck(@PathVariable("mbId") String mbId) {
+		System.out.println("/idCheck 주소 : " + mbId);
 		
-		MemberDTO dto = service.mypage(member_code);
+		MemberDTO memberDTO = service.mypage(mbId);
 		String mesg = "아이디 사용가능";
-		if(dto!=null) {
-			mesg = "아이디 중복";
+		if(memberDTO!=null) {
+			mesg ="아이디 중복";
+			return new ResponseEntity<>(mesg, HttpStatus.CONFLICT);
 		}
-		return mesg;
+		return new ResponseEntity<>(mesg, HttpStatus.OK);
 		
 	}
 	
@@ -67,18 +82,22 @@ public class MemberController {
 		return "loginForm";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	@ResponseBody
-	public String login(@RequestParam Map<String,String> map, HttpSession session) {
-		System.out.println("/login 주소 : "+map);
-		MemberDTO dto = service.login(map);
-//		System.out.println("db에서 가져온  dto "+dto);
-		if(dto!=null) {
-			session.setAttribute("login", dto);
-			return "redirect:main";
+	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session) {
+		System.out.println("/login 주소 : "+loginDTO);
+		MemberDTO memberDTO = service.login(loginDTO); 
+//		System.out.println("db에서 가져온  memberDTO "+memberDTO);
+		if(memberDTO!=null) {
+			session.setAttribute("memberInfo", memberDTO);
+			return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
+//			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
+					
+					
 		}else {
-			return "loginForm";
+			return new ResponseEntity<>("존재하지 않는 회원",HttpStatus.NOT_FOUND);
+//			return ResponseEntity.notFound().build();
 		}
 		
 	}

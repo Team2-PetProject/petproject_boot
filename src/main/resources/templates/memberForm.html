@@ -7,6 +7,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 		$("form").on("submit",function(){
+			
+			
+			
+			
+			
 			var member_code = $("#member_code").val();
 			var member_passwd = $("#member_passwd").val();
 			var member_passwd2 = $("#member_passwd2").val();
@@ -81,16 +86,16 @@ $(document).ready(function(){
 		$("#email").click(function() {
 		var email = $(this).val();
 		console.log(email);
-		$("#member_email2").val(email);
+		$("#email2").val(email);
 	});
 		
-		$("#member_code").on("keyup",function() {
+		$("#mbId").on("keyup",function() {
 			
 				$.ajax({
 					url : 'idCheck',
 					type : 'post',
 					data : {
-						id : $("#member_code").val()
+						id : $("#mbId").val()
 					},
 					dataType : "text",
 					success : function(data, status, xhr) {
@@ -109,27 +114,27 @@ $(document).ready(function(){
 <body>
 	<form action="memberAdd" method="post">
 
-<b>아이디</b>&nbsp;<input type="text" name="member_code" id="member_code"><span id="idresult"></span><br> 
-<b>비밀번호</b>&nbsp;<input type="text" name="member_passwd" id="member_passwd"><br>
-<b>비밀번호 확인</b>&nbsp;<input type="text" name="member_passwd2" id="member_passwd2">
+<b>아이디</b>&nbsp;<input type="text" name="mbId" id="mbId"><span id="idresult"></span><br> 
+<b>비밀번호</b>&nbsp;<input type="text" name="pw" id="pw"><br>
+<b>비밀번호 확인</b>&nbsp;<input type="text" name="pw2" id="pw2">
 <span id="result"></span>
 <br> 
-<b>이름</b>&nbsp;<input type="text" name="member_name" id="member_name"><br> 
+<b>이름</b>&nbsp;<input type="text" name="nm" id="nm"><br> 
 <b>주소</b>
-<input type="text" name="member_post" id="sample4_postcode" placeholder="우편번호">
+<input type="text" name="post" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="member_addr1" id="sample4_roadAddress" placeholder="도로명주소">
-<input type="text" name="member_addr2" id="sample4_jibunAddress" placeholder="지번주소">
+<input type="text" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
+<input type="text" name="addr2" id="sample4_jibunAddress" placeholder="지번주소">
 <span id="guide" style="color:#999"></span>
 <br>
-<b>전화번호</b>&nbsp;<select name="member_phone1">
+<b>전화번호</b>&nbsp;<select name="tel1">
   <option value="010">010</option>
   <option value="011">011</option>
 </select>-
-<input type="text" name="member_phone2" id="member_phone2">-<input type="text" name="member_phone3" id="member_phone3">
+<input type="text" name="tel2" id="tel2">-<input type="text" name="tel3" id="tel3">
 <br>
-<b>이메일</b>&nbsp;<input type="text" name="member_email1" id="member_email1">@
-       <input type="text" name="member_email2" id="member_email2" placeholder="직접입력">
+<b>이메일</b>&nbsp;<input type="text" name="email1" id="email1">@
+       <input type="text" name="email2" id="email2" placeholder="직접입력">
        <select id="email">
         <option value="daum.net">daum.net</option>
         <option value="naver.com">naver.com</option>

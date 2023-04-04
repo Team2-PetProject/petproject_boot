@@ -2,10 +2,10 @@ package com.example.dto;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("ItemOptionDTO")
-public class ItemOptionDTO {
+@Alias("OptionTypeDTO")
+public class OptionTypeDTO {
 	private Integer tyCd;
-	private Integer idCd;
+	private Integer itCd;
 	private String tyNm;
 	public Integer getTyCd() {
 		return tyCd;
@@ -13,11 +13,11 @@ public class ItemOptionDTO {
 	public void setTyCd(Integer tyCd) {
 		this.tyCd = tyCd;
 	}
-	public Integer getIdCd() {
-		return idCd;
+	public Integer getItCd() {
+		return itCd;
 	}
-	public void setIdCd(Integer idCd) {
-		this.idCd = idCd;
+	public void setItCd(Integer idCd) {
+		this.itCd = idCd;
 	}
 	public String getTyNm() {
 		return tyNm;
@@ -31,7 +31,7 @@ public class ItemOptionDTO {
 		builder.append("ItemOptionDTO [tyCd=");
 		builder.append(tyCd);
 		builder.append(", idCd=");
-		builder.append(idCd);
+		builder.append(itCd);
 		builder.append(", tyNm=");
 		builder.append(tyNm);
 		builder.append("]");

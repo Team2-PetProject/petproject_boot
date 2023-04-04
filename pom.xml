@@ -69,11 +69,11 @@
 	</dependency>
 	<!-- thymeleaf layout 디펜던시 끝 -->
 	
-	<!-- bootstrap 최신버전 -->
+	<!-- bootstrap -->
 	<dependency>
 	    <groupId>org.webjars</groupId>
 	    <artifactId>bootstrap</artifactId>
-	    <version>5.2.3</version>
+	    <version>5.0.2</version>
 	</dependency>
 	<!-- bootstrap 끝 -->
 

@@ -13,7 +13,7 @@ import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
 
-@Service("orderService")
+@Service
 public class OrderService {
 	@Autowired
 	OrderDAOImpl dao;

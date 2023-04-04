@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.daoImpl.CartDAOImpl;
 import com.example.dto.CartDTO;
 
-@Service("cartService")
+@Service
 public class CartService {
 	@Autowired
 	CartDAOImpl dao;

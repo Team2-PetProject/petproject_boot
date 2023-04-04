@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
@@ -32,30 +33,52 @@ public class ItemController {
 	MemberService memberService;
 	//10시10.
 	
-	//4
-	@GetMapping("/itemList") //단순 조회는 get
+	//ppt 4p
+//	@GetMapping("/itemList") //단순 조회는 get
+//	public String itemList
+//	(@RequestParam(value = "itemcat", defaultValue = "food") 
+//	String itemcat, Model model) {
+//		itemService = new ItemService();
+//	    List<ItemListDTO> list = itemService.itemList(itemcat);
+//	    System.out.println("itemList: " + list);
+//	    model.addAttribute("itemList", list);
+//	    return "main";
+//	}
+
+//	@GetMapping("/itemRetrieve") //단순 조회 부분
+//	public String itemRetrieve
+//	(@RequestParam("itemCode") String itemCd, Model model) {
+//	    itemService = new ItemService();
+//		ItemDTO itemDto = itemService.detail(itemCd);
+//	    System.out.println("상품상세보기 : " + itemDto);
+//	    model.addAttribute("itemDTO", itemDto);
+//	    return "itemRetrieve";
+//	}
+	
+	@GetMapping("/itemList")
+	@ResponseBody
 	public String itemList
-	(@RequestParam(value = "itemcat", defaultValue = "food") 
-	String itemcat, Model model) {
+	(@RequestParam(value = "itemcat", defaultValue = "food")
+	String itemcat) {
 		itemService = new ItemService();
 	    List<ItemListDTO> list = itemService.itemList(itemcat);
 	    System.out.println("itemList: " + list);
-	    model.addAttribute("itemList", list);
-	    return "main";
-	}
+		return "main";
 
+	}
+	
 	@GetMapping("/itemRetrieve") //단순 조회 부분
+	@ResponseBody
 	public String itemRetrieve
-	(@RequestParam("itemCode") String itemCd, Model model) {
+	(@RequestParam("itemCode") String itemCd) {
 	    itemService = new ItemService();
 		ItemDTO itemDto = itemService.detail(itemCd);
 	    System.out.println("상품상세보기 : " + itemDto);
-	    model.addAttribute("itemDTO", itemDto);
 	    return "itemRetrieve";
 	}
-	
-	
-	
 
-
+	@GetMapping("/itemList")
+	@ResponseBody
+	public List<ItemListDTO> List
+	@RequestParam(value = "curPage", required = false, defalutValue = "1")
 }

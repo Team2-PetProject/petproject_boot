@@ -17,8 +17,6 @@ import com.example.dto.ItemListDTO;
 public class ItemService {
 	@Autowired
 	ItemDAO dao;
-	@Autowired
-	SqlSessionTemplate session;
 	
 	public List<ItemListDTO> itemList(String item_cat) {
 		// TODO Auto-generated method stub

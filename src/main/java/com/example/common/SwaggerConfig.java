@@ -49,11 +49,11 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
         		.consumes(getConsumeContentTypes())
         		.produces(getProduceContentTypes())
-                .groupName("image")
+                .groupName("file")
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/app/api/image/**"))
+                .paths(PathSelectors.ant("/app/api/file/**"))
                 .build()
                 .apiInfo(commonInfo());
     }
@@ -68,6 +68,19 @@ public class SwaggerConfig {
                 //.apis(RequestHandlerSelectors.any())
                 .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 .paths(PathSelectors.ant("/app/"))
+                .build()
+                .apiInfo(commonInfo());
+    }
+    @Bean
+    public Docket itemApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("item")
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/app/item/**"))
                 .build()
                 .apiInfo(commonInfo());
     }

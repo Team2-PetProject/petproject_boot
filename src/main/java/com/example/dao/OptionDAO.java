@@ -11,4 +11,6 @@ public interface OptionDAO {
 
 	public void insertOptions(List<OptionDTO> optionList);
 
+	public List<String> selectOption(Integer tyCd);
+
 }

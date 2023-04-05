@@ -25,4 +25,16 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
+	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
+		SELECT 
+			IT_CD as itCd
+			, IMG_CD as imgCd
+			, IT_NM as itNm
+			, PRICE as price
+			, CAT as cat
+			, OPT_ADD as optAdd
+		FROM TB_ITEM
+		WHERE 
+			IT_CD = #{itCd}
+	</select>
 </mapper>

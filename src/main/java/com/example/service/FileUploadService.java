@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.FileUploadDAO;
 import com.example.dao.ItemDAO;
@@ -25,15 +26,18 @@ public class FileUploadService {
 	@Autowired
 	OptionDAO optionDao;
 
+	@Transactional
 	public void insertImgItem(FileUploadDTO fileUploadDTO, ItemDTO itemDTO) {
 		insertFileItem(fileUploadDTO, itemDTO);
 	}
-
+	
+	@Transactional
 	public FileUploadDTO findOne(Integer imgCd) {
 		FileUploadDTO fileUploadDto = fileUploadDao.selectFile(imgCd);
 		return fileUploadDto;
 	}
-
+	
+	@Transactional
 	public void insertImgItemOpt(FileUploadDTO fileUploadDTO, ItemDTO itemDTO, OptionTypeDTO optionTypeDTO,
 			List<OptionDTO> optionList) {
 		Integer itCd = insertFileItem(fileUploadDTO, itemDTO);
@@ -47,6 +51,7 @@ public class FileUploadService {
 		optionDao.insertOptions(optionList);
 	}
 	
+	@Transactional
 	private Integer insertFileItem(FileUploadDTO fileUploadDTO, ItemDTO itemDTO) {
 		fileUploadDao.insertFile(fileUploadDTO);
 		int imgCd = fileUploadDTO.getImgCd();

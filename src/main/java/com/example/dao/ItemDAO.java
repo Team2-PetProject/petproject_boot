@@ -13,5 +13,7 @@ public interface ItemDAO {
 	public int favoriteDelete(String member_cd, int item_cd);
 
 	public void insertItem(ItemDTO itemDTO);
+
+	public ItemDTO selectItem(Integer itCd);
 	
 }

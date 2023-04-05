@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ItemListMapper">
+<mapper namespace="com.example.dao.ItemListDAO">
 	<insert id="insertList" parameterType="ItemDTO">
 		insert into tb_item_list values (TB_ITEM_SEQ.currval, TB_ITEM_LIST_SEQ.nextval)
 		<foreach collection=""></foreach>

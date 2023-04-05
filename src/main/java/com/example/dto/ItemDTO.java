@@ -4,104 +4,47 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("ItemDTO")
 public class ItemDTO {
-	private int itemcode;
-	private int itemlistcode;
-	private String itemname;
-	private int itemprice;
-	private int itemimage;
-	private String itemcategory;
-	private String itemspec;
-	private String itemadd;
-	public ItemDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	private Integer itCd;
+	private Integer imgCd;
+	private String itNm;
+	private Integer price;
+	private String cat;
+	private String optAdd;
+	public Integer getItCd() {
+		return itCd;
 	}
-	
-	public int getItem_Code() {
-		return itemcode;
+	public void setItCd(Integer itCd) {
+		this.itCd = itCd;
 	}
-	
-	public void setItem_Code(int item_Code) {
-		itemcode = item_Code;
+	public Integer getImgCd() {
+		return imgCd;
 	}
-	
-	public int getItem_List_Code() {
-		return itemlistcode;
+	public void setImgCd(Integer imgCd) {
+		this.imgCd = imgCd;
 	}
-	
-	public void setItem_List_Code(int item_List_Code) {
-		itemlistcode = item_List_Code;
+	public String getItNm() {
+		return itNm;
 	}
-	
-	public String getItem_Name() {
-		return itemname;
+	public void setItNm(String itNm) {
+		this.itNm = itNm;
 	}
-	
-	public void setItem_Name(String item_Name) {
-		itemname = item_Name;
+	public Integer getPrice() {
+		return price;
 	}
-	
-	public int getItem_Price() {
-		return itemprice;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
-	
-	public void setItem_Price(int item_Price) {
-		itemprice = item_Price;
+	public String getCat() {
+		return cat;
 	}
-	
-	public int getItem_Image() {
-		return itemimage;
+	public void setCat(String cat) {
+		this.cat = cat;
 	}
-	
-	public void setItem_Image(int item_Image) {
-		itemimage = item_Image;
+	public String getOptAdd() {
+		return optAdd;
 	}
-	
-	public String getItem_Category() {
-		return itemcategory;
-	}
-	
-	public void setItem_Category(String item_Category) {
-		itemcategory = item_Category;
-	}
-	
-	public String getItem_Spec() {
-		return itemspec;
-	}
-	
-	public void setItem_Spec(String item_Spec) {
-		itemspec = item_Spec;
-	}
-	
-	public String getItem_Add() {
-		return itemadd;
-	}
-	
-	public void setItem_Add(String item_Add) {
-		itemadd = item_Add;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ItemDTO [itemcode=");
-		builder.append(itemcode);
-		builder.append(", itemlistcode=");
-		builder.append(itemlistcode);
-		builder.append(", itemname=");
-		builder.append(itemname);
-		builder.append(", itemprice=");
-		builder.append(itemprice);
-		builder.append(", itemimage=");
-		builder.append(itemimage);
-		builder.append(", itemcategory=");
-		builder.append(itemcategory);
-		builder.append(", itemspec=");
-		builder.append(itemspec);
-		builder.append(", itemadd=");
-		builder.append(itemadd);
-		builder.append("]");
-		return builder.toString();
+	public void setOptAdd(String optAdd) {
+		this.optAdd = optAdd;
 	}
 	
 	

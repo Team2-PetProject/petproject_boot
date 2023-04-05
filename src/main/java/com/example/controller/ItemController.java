@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
-import com.example.dto.ItemFavoriteDTO;
+//import com.example.dto.ItemFavoriteDTO;
 import com.example.dto.ItemListDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.ItemService;
@@ -55,17 +55,17 @@ public class ItemController {
 //	    return "itemRetrieve";
 //	}
 	
-	@GetMapping("/itemList")
-	@ResponseBody
-	public String itemList
-	(@RequestParam(value = "itemcat", defaultValue = "food")
-	String itemcat) {
-		itemService = new ItemService();
-	    List<ItemListDTO> list = itemService.itemList(itemcat);
-	    System.out.println("itemList: " + list);
-		return "main";
-
-	}
+//	@GetMapping("/itemList")
+//	@ResponseBody
+//	public String itemList
+//	(@RequestParam(value = "itemcat", defaultValue = "food")
+//	String item_cat) {
+//		itemService = new ItemService();
+//	    List<ItemListDTO> list = itemService.itemList(item_cat);
+//	    System.out.println("itemList: " + list);
+//		return "main";
+//
+//	}
 	
 	@GetMapping("/itemRetrieve") //단순 조회 부분
 	@ResponseBody
@@ -77,8 +77,8 @@ public class ItemController {
 	    return "itemRetrieve";
 	}
 
-	@GetMapping("/itemList")
-	@ResponseBody
-	public List<ItemListDTO> List
-	@RequestParam(value = "curPage", required = false, defalutValue = "1")
+//	@GetMapping("/itemList")
+//	@ResponseBody
+//	public List<ItemListDTO> List
+//	@RequestParam(value = "curPage", required = false, defalutValue = "1")
 }

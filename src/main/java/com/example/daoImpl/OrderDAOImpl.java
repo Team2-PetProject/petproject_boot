@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.example.daoImpl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
-
+//data access object 데이터 접근 물체
 @Repository
-public class OrderDAO {
+public class OrderDAOImpl {
 	@Autowired
 	SqlSessionTemplate session;
 	
@@ -32,6 +32,17 @@ public class OrderDAO {
 		return 0;
 	}
 	public List<OrderHistoryDTO> orderSearch(HashMap<String, String> map) {
+		return null;
+	}
+
+
+	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<OrderHistoryDTO> daySearch(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

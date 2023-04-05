@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.dao.OrderDAO;
+import com.example.daoImpl.OrderDAOImpl;
 import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
@@ -16,37 +16,40 @@ import com.example.dto.OrderInfoDTO;
 @Service("orderService")
 public class OrderService {
 	@Autowired
-	OrderDAO dao;
-	@Autowired
-	SqlSessionTemplate session;
+	OrderDAOImpl dao;
+
 	
 	@Transactional
-	public void orderDone(List<CartDTO> carts, OrderInfoDTO info, String member_cd) {
-		dao.ordItem(member_cd, carts);
-		dao.ordInfo(member_cd, info);
+	public void orderDone(List<CartDTO> carts, OrderInfoDTO orderInfoDTO, String memberCd) {
+		dao.ordItem(memberCd, carts);
+		dao.ordInfo(memberCd, orderInfoDTO);
 	}
 	
 	
-	//주문내역
-
-
-	public int totalCount(String member_cd) {
-		return dao.totalCount(member_cd);
+	
+	//페이징 처리를 위한 토탈카운트
+	@Transactional
+	public int totalCount(String memberCd) {
+		return dao.totalCount(memberCd);
 	}
 
-
+	
+	//주문 내역 기본화면
+	@Transactional
 	public List<OrderHistoryDTO> orderSearch(HashMap<String, String> map) {
 		return dao.orderSearch(map);
 	}
 
-
+	//기간 주문 내역 조회
+	@Transactional
 	public List<OrderHistoryDTO> daySearch(HashMap<String, String> map) {
-		return null;
+		return dao.daySearch(map);
 	}
 
-
+	//특정 아이템 내역 조회
+	@Transactional
 	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
-		return null;
+		return dao.itemSearch(map);
 	}
 
 

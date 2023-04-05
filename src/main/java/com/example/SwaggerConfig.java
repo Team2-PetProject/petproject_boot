@@ -52,7 +52,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 .paths(PathSelectors.ant("/app/"))
                 .build()
-                .apiInfo(commonInfo());
+                .apiInfo(commonInfo()); 
     }
     private Set<String> getConsumeContentTypes(){
     	Set<String> consumes = new HashSet<String>();

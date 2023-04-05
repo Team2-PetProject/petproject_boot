@@ -37,7 +37,6 @@ public class ItemService {
 		itemRetrieveDTO.setItemDTO(itemDTO);
 		if("T".equals(itemDTO.getOptAdd())) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
-			System.out.println(typeDto.getTyNm());
 			List<String> option = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
 			itemRetrieveDTO.setOption(option);

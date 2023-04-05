@@ -40,19 +40,7 @@
 				$("#category").focus();
 				return false;
 			}
-			var formData = $("#form").serializeObject();
-			$.ajax({
-				url : 'api/file/upload',
-				type:'POST',
-				contentType : 'application/json',
-				data : JSON.stringify(formData),
-				success : function(data){
-					alert(data);
-				},
-				error : function(xhr, status, error){
-					console.log(error);
-				}
-			});
+			
 		});
 		
 	});

@@ -21,6 +21,12 @@ public class MainController {
 		return "content/main";
 	}
 	
+	@GetMapping("/mainTest")
+	public String mainTest() {
+		System.out.println("/mainTest페이지");
+		return "/main";
+	}
+	
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {

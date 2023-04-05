@@ -3363,3 +3363,9 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [image
 [2023-04-05 16:27:10] WARN org.springframework.web.servlet.PageNotFound(DispatcherServlet.java:1282) - No mapping for GET /app/imageForm.html
 [2023-04-05 16:29:43] WARN org.springframework.web.servlet.PageNotFound(DispatcherServlet.java:1282) - No mapping for GET /app/imageForm.html
 [2023-04-05 16:29:48] WARN org.springframework.web.servlet.PageNotFound(DispatcherServlet.java:1282) - No mapping for GET /app/imageForm.html
+[2023-04-05 16:30:46] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 150 class path changes (117 additions, 10 deletions, 23 modifications)
+[2023-04-05 16:30:46] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-05 16:30:46] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-05 16:30:46] INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-05 16:30:46] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-05 16:30:46] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]

@@ -42,7 +42,7 @@ public class SwaggerConfig {
                 .title("PetProject")
                 .version("1.0")
                 .build();
-    }
+    } 
 
     @Bean
     public Docket imageApi() {

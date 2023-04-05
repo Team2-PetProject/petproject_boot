@@ -20,5 +20,14 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
+	
+	<select id="selectType" parameterType="int" resultType="TypeDTO">
+		SELECT 
+			TY_CD as tyCd
+			, TY_NM as tyNm
+		FROM TB_OPTION_TYPE
+		WHERE
+			IT_CD = #{itCd}
+	</select>
 
 </mapper>

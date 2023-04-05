@@ -18,4 +18,13 @@
 			)
 		</foreach>
 	</insert>
+	
+	<select id="selectOption" parameterType="int" resultType="String">
+		SELECT 
+			OPT_NM as optNm
+		FROM TB_OPTION
+		WHERE 
+			TY_CD = #{tyCd}
+	</select>
+
 </mapper>

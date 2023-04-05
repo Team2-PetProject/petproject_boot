@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,10 +21,12 @@ import com.example.dto.FileUploadDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.OptionDTO;
 import com.example.dto.OptionTypeDTO;
+import com.example.dto.RegisterInfoDTO;
 import com.example.service.FileUploadService;
 import com.example.service.ItemService;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/file")
@@ -38,12 +39,8 @@ public class FileUploadController {
 	
 	@PostMapping("/upload")
 	@ApiOperation(value = "이미지 업로드")
-	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
-			@RequestParam("name") String name,@RequestParam("price") int price, 
-			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
-			@RequestParam(value = "optionName") String optionName,
-			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
-		
+	public ResponseEntity<String> handleFileUpload(@RequestBody RegisterInfoDTO registerInfoDTO) throws IOException {
+		MultipartFile file = registerInfoDTO.getFile();
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
 		fileUploadDTO.setDi(file.getContentType());
 		fileUploadDTO.setImgNm(file.getOriginalFilename());
@@ -51,18 +48,18 @@ public class FileUploadController {
 		fileUploadDTO.setSz(String.valueOf(file.getSize()));
 		
 		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setItNm(name);
-		itemDTO.setCat(category);
-		itemDTO.setPrice(price);
+		itemDTO.setItNm(registerInfoDTO.getName());
+		itemDTO.setCat(registerInfoDTO.getCategory());
+		itemDTO.setPrice(registerInfoDTO.getPrice());
 		
-		if(add!=null) {
+		if(registerInfoDTO.getAdd()!=null) {
 			itemDTO.setOptAdd("T");
 			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
-			optionTypeDTO.setTyNm(optionName);
+			optionTypeDTO.setTyNm(registerInfoDTO.getOptionName());
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
-			for(int i=0;i<option.size();i++) {
+			for(int i=0;i<registerInfoDTO.getOption().size();i++) {
 				OptionDTO optionDTO = new OptionDTO();
-				optionDTO.setOptNm(option.get(i));
+				optionDTO.setOptNm(registerInfoDTO.getOption().get(i));
 				optionList.add(optionDTO); 
 			}
 			

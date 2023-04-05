@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- headerFragment 선언 -->
 <th:block th:fragment="headerFragment">
-	<!-- th:fragment="fragment명" 이게 해당 부분을 fragment로 선언한단 의미 -->
+<!-- th:fragment="fragment명" 이게 해당 부분을 fragment로 선언한단 의미 -->
+	
 	<p>Header Section</p>
 
 	<div class="inner">
@@ -15,6 +16,13 @@
 				&nbsp;
 				<button>알림</button>
 				&nbsp;
+				
+				<div class="form-group"></div>
+					<select class="form-control selectpicker">
+						<option>로그인</option>
+					</select>
+				
+				
 				<th:block class="dropdown">
 					<button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1"
 						data-bs-toggle="dropdown" aria-expanded="false">dkssud</button>

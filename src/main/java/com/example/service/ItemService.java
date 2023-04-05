@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.ItemDAO;
-import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
@@ -37,8 +36,6 @@ public class ItemService {
 	public int favoriteDelete(String member_cd, int item_cd) {
 		return dao.favoriteDelete(member_cd,item_cd);
 	}
-
-
 
 
 	

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.daoImpl.MemberDAOImpl;
-import com.example.dto.CartDTO;
 
 @Service
 public class MemberService {
@@ -13,6 +12,5 @@ public class MemberService {
 	MemberDAOImpl dao;
 	@Autowired
 	SqlSessionTemplate session;
-	
 	
 }//end class

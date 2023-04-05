@@ -68,7 +68,7 @@ public class OrderController {
 		//위 코드처럼 작성하면 알아서 orderItem.html을 찾아갑니다.
 		ModelAndView mav = new ModelAndView();
 		//학원에서 사용한 일반적인 코드입니다.
-		mav.addObject("member_cd", memberDTO.getMember_code());
+		mav.addObject("member_cd", memberDTO.getMbId());
 		mav.addObject("carts", carts);
 		mav.setViewName("orderConfirm");
 		return mav;
@@ -81,12 +81,12 @@ public class OrderController {
 	public ModelAndView orderDone
 	(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
 	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-	    String memberCD = memberDTO.getMember_code();
+	    String memberCD = memberDTO.getMbId();
 	    orderService.orderDone(carts, info, memberCD);
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("carts", carts);
 	    mav.addObject("info", info);
-		mav.addObject("memberCD", memberDTO.getMember_code());
+		mav.addObject("memberCD", memberDTO.getMbId());
 		mav.setViewName("orderDone");
 	    return mav;
 	}
@@ -101,7 +101,7 @@ public class OrderController {
 		//perPage는 페이지 당 입니다. 페이지 당 게시글 숫자입니다.
 	   MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
 	   //로그인정보
-	   String memberCD = memberDTO.getMember_code();
+	   String memberCD = memberDTO.getMbId();
 	   //아이디 끌어오기
 	   Integer totalCount = orderService.totalCount(memberCD);
 	   //게시글 전체 갯수

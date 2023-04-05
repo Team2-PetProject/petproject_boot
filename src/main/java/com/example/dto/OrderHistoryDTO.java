@@ -8,8 +8,6 @@ public class OrderHistoryDTO {
 	private String member_code;
 	private String item_name;
 	private String item_image;
-	private String item_spec;
-	private String dlvy_info_start;
 	private int item_price;
 	private int cart_amount;
 	private String orderinfo_orderday;

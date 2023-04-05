@@ -3,17 +3,16 @@ package com.example.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoImpl.CartDAOImpl;
+import com.example.dao.CartDAO;
 import com.example.dto.CartDTO;
 
-@Service("cartService")
+@Service
 public class CartService {
 	@Autowired
-	CartDAOImpl dao;
+	CartDAO dao;
 
 	public int cartAdd(CartDTO cart) {
 		return dao.cartAdd(cart);
@@ -37,12 +36,5 @@ public class CartService {
 		return dao.amountUpdate(map);
 	}
 
-
-
-
-
-
-
-	
 	
 }

@@ -32,17 +32,37 @@
    </insert>
    
    <select id="mypage" parameterType="string" resultType="MemberDTO">
-	  select mb_Id, pw, nm, post, addr1, addr2,
-      tel1,tel2,tel3,email1,email2
-      from TB_MEMBER
-      where mb_Id = #{mbId}
+	  SELECT 
+		  	MB_ID as mbId
+		  	, PW
+		  	, NM
+		  	, POST
+		  	, ADDR1
+		  	, ADDR2
+		  	, TEL1
+		  	, TEL2
+		  	, TEL3
+		  	, EMAIL1
+		  	, EMAIL2
+      FROM TB_MEMBER
+      WHERE MB_ID = #{mbId}
 	</select>
 	
 	<select id="login" parameterType="LoginDTO" resultType="MemberDTO">
-	  select mb_Id, pw, nm, post, addr1, addr2,
-      tel1, tel2, tel3, email1, email2
-      from TB_MEMBER
-      where mb_Id = #{mbId} and pw = #{pw}
+	  SELECT 
+	  		MB_ID
+	  		, PW
+	  		, NM
+	  		, POST
+	  		, ADDR1
+	  		, ADDR2
+	  		, TEL1
+	  		, TEL2
+	  		, TEL3
+	  		, EMAIL1
+	  		, EMAIL2
+      FROM TB_MEMBER
+      WHERE MB_ID = #{mbId} AND PW = #{pw}
 		
 	</select>
    

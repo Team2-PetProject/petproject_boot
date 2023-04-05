@@ -92,11 +92,11 @@ $(document).ready(function(){
 		$("#mbId").on("keyup",function() {
 			
 				$.ajax({
-					url : 'idCheck',
+					url : '/app/member/idCheck/'+$("#mbId").val(),
 					type : 'post',
-					data : {
+					/* data : {
 						id : $("#mbId").val()
-					},
+					}, */
 					dataType : "text",
 					success : function(data, status, xhr) {
 						$("#idresult").text(data);

@@ -10,13 +10,6 @@ public class CartDTO {
 	private int Item_List_Code;
 	private int Item_Amount;
 	private String Item_Spec;
-	private String Item_Add;
-	public String getItem_Add() {
-		return Item_Add;
-	}
-	public void setItem_Add(String item_Add) {
-		Item_Add = item_Add;
-	}
 	public CartDTO() {
 		super();
 		// TODO Auto-generated constructor stub

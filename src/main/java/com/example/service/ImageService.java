@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.ImageDAO;
 import com.example.dao.ItemDAO;
-import com.example.dao.ItemListDAO;
 import com.example.dto.ImageDTO;
 import com.example.dto.ItemDTO;
 
@@ -19,8 +18,6 @@ public class ImageService {
 	@Autowired
 	ItemDAO iDAO;
 	@Autowired
-	ItemListDAO lDAO;
-	@Autowired
 	SqlSessionTemplate session;
 	
 	@Transactional
@@ -28,9 +25,7 @@ public class ImageService {
 		// TODO Auto-generated method stub
 		int n = dao.insertBoard(session, dto);
 		System.out.println("insert 성공 : " + n);
-		int result1 = lDAO.insertList(session, iDTO);
-		int result2 = iDAO.insertItem(session, iDTO);
-		
+//		int result = iDAO.insertItem(session, iDTO);
 		return n;
 	}
 

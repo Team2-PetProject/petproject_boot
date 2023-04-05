@@ -4079,3 +4079,21 @@ java.sql.SQLException: 부적합한 열 유형: 1111
 [2023-04-04 22:15:47] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:110) - HikariPool-2 - Starting...
 [2023-04-04 22:15:47] WARN com.zaxxer.hikari.util.DriverDataSource(DriverDataSource.java:70) - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
 [2023-04-04 22:15:47] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:123) - HikariPool-2 - Start completed.
+[2023-04-04 22:19:59] INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin(SpringApplicationAdminMXBeanRegistrar.java:159) - Application shutdown requested.
+[2023-04-04 22:19:59] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-04 22:19:59] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-04 22:19:59] INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-04 22:19:59] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-04 22:19:59] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-04 22:19:59] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-04 22:19:59] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:350) - HikariPool-2 - Shutdown initiated...
+[2023-04-04 22:19:59] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:352) - HikariPool-2 - Shutdown completed.

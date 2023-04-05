@@ -5,9 +5,18 @@
 	layout:decorate="~{layout/default_layout}">
 
 <head>
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+window.onload=function(){
+	
+	
+}
+function signUp(){
+	console.log("SignUp");
+	location.href="SignUp";
+}
+</script>
 </head>
-
 
 <body>
 
@@ -29,23 +38,13 @@
 		  <hr>
 	  </div>
 	  
-	<th:block class="btn-group bg-white text-dark" role="group" aria-label="Basic outlined example">
-	  <button type="button" th:onclick="a()" class="btn">회원가입</button>
+	<div class="btn-group bg-white text-dark" role="group" aria-label="Basic outlined example">
+	  <button type="button" onclick="signUp()" class="btn">회원가입</button>
 	  <button type="button" class="btn" id="idSearch">아이디찾기</button>
 	  <button type="button" class="btn" id="pwSearch">비밀번호찾기</button>
-	</th:block>
+	</div>
 	
 </div>
-
-<script type="text/javascript" th:inline="javascript">
-window.onload=function(){
-	function a(){
-		console.log("SignUp");
-
-	}
-}
-</script>
-
 
 </body>
 </html>

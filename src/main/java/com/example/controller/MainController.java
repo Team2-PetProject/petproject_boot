@@ -20,12 +20,10 @@ public class MainController {
 		return "content/main";
 	}
 	
-	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		System.out.println("로그인폼 주소 요청");
 		return "content/loginForm";
-		//return "layouts/default_layout";
 	}
 	
 	@GetMapping("/login")
@@ -33,6 +31,12 @@ public class MainController {
 	public String login() {
 		System.out.println("로그인");
 		return "login";
+	}
+	
+	@GetMapping("/SignUp")
+	public String signUp() {
+		System.out.println("회원가입");
+		return "content/SignUp";
 	}
 	
 }//end class

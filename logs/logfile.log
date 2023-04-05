@@ -71,3 +71,8 @@
 [2023-04-05 17:15:51] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
 [2023-04-05 17:15:52] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 2.77 seconds (JVM running for 72.182)
 [2023-04-05 17:15:52] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-05 17:16:19] INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin(SpringApplicationAdminMXBeanRegistrar.java:159) - Application shutdown requested.
+[2023-04-05 17:16:20] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-05 17:16:20] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-05 17:16:20] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-05 17:16:20] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]

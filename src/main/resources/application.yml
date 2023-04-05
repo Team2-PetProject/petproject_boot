@@ -7,8 +7,9 @@ spring:
     password: pet
 #타임리프
   thymeleaf:
-    prefix: /template/
+    prefix: /template
     suffix: .html
+    cache: false
 #image, css, js
   mvc:
     static-path-pattern: /resources/**

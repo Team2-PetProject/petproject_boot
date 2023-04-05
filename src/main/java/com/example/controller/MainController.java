@@ -15,7 +15,7 @@ public class MainController {
 	}
 
 	
-	@GetMapping("main")
+	@GetMapping("/main")
 	public String mainpage() {
 		System.out.println("/main페이지");
 		return "content/main";

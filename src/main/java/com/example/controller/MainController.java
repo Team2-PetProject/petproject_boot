@@ -24,7 +24,7 @@ public class MainController {
 	@GetMapping("/mainTest")
 	public String mainTest() {
 		System.out.println("/mainTest페이지");
-		return "/main";
+		return "/mainTest";
 	}
 	
 	

@@ -7,7 +7,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
    
-    	 $("form").on("submit",function(event){		
+    	/*  $("form").on("submit",function(event){		
     		 var mbId = $("#mbId").val();
     		 var member_passwd = $("#member_passwd").val();
     	    		if(mbId.length==0){
@@ -19,7 +19,59 @@
     	    			$("#member_passwd").focus();
     	    			event.preventDefault();
     	    		}
-    	    	});
+    	    	
+    	   /*  var formData = $("#login").serialize();		 */
+    	 /*   var form = $('#login')[0];
+    	   var formData = new FormData(form); */
+    	     $.ajax({
+    	    	 url:"login",
+    	    	 type :'post',
+    	    	/*  enctype:'mutlipart/form-data', */
+    	    	 dataType:"text",
+    	    	 /* contentType: "application/json; charset=utf-8", */
+    	    	 headers:{
+				"Content-Type":"application/json"
+			},
+    	    	 /* contentType: false,
+    	    	 data: formData, */
+    	    	 data :JSON.stringify({
+    	    		 mbId : $("#mbId").val(),
+    	    		 pw : $("#pw").val()
+    	    	 }) , 
+    	    	 success : function(data, status, xhr) {
+						alert(data);
+				 },
+				 error : function(xhr, status, error) {
+						console.log(error);
+				 }
+    	     });//ajax
+    	  }); */
+    	 
+    	 $("#signin").on("click",function(){
+    		   $.ajax({
+    	    	 url:"login",
+    	    	 type :'post',
+    	    	/*  enctype:'mutlipart/form-data', */
+    	    	 dataType:"text",
+    	    	 /* contentType: "application/json; charset=utf-8", */
+    	    	 headers:{
+				"Content-Type":"application/json"
+			},
+    	    	 /* contentType: false,
+    	    	 data: formData, */
+    	    	 data :JSON.stringify({
+    	    		 mbId : '$("#mbId").val()',
+    	    		 pw : $("#pw").val()
+    	    	 }) , 
+    	    	 success : function(data, status, xhr) {
+						alert(data);
+				 },
+				 error : function(xhr, status, error) {
+						console.log(error);
+				 }
+    	     });//ajax
+    	 })
+    	 
     	 
     	 $("#pwSearch").on("click",function(){
     		 location.href = "PwSearchUIServlet";
@@ -29,13 +81,14 @@
 </head>
 <body>
 
-<form action="login" method="post">
+ <form action=""> 
 아이디<input type="text" name="mbId" id="mbId"><br>
-비밀번호<input type="text" name="member_passwd" id="member_passwd"><br> 
+비밀번호<input type="text" name="pw" id="pw"><br> 
 <input type="submit" value="로그인">
+<button id="signin">로그인</button>
 <input type="button" value="아이디찾기" onClick="location.href='MemberIdSearchUIServlet'">
 
-</form>
+ </form> 
 <button id="pwSearch">비밀번호찾기</button>
 </body>
 </html>

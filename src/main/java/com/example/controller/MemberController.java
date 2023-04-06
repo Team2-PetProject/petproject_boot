@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,10 +103,19 @@ public class MemberController {
 //	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session) {
-		System.out.println("/login 주소 : "+loginDTO);
+	public ResponseEntity<Object> login(@RequestParam String mbId,@RequestParam String pw, HttpSession session) {
+		System.out.println("/login 주소 : "+mbId+"\t"+pw);
+		
+	
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setMbId(mbId);
+		loginDTO.setPw(pw);
 		MemberDTO memberDTO = service.login(loginDTO); 
-//		System.out.println("db에서 가져온  memberDTO "+memberDTO);
+		System.out.println("db에서 가져온  memberDTO "+memberDTO);
+		
+		
+//		return "hello"; 
+
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
 			return new ResponseEntity<>("로그인 성공",HttpStatus.OK);

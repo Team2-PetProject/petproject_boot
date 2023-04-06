@@ -2,8 +2,11 @@ package com.example.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.dto.LoginDTO;
 
 @Controller
 public class MainController {
@@ -28,8 +31,9 @@ public class MainController {
 	
 	@GetMapping("/login")
 	@ResponseBody
-	public String login() {
+	public String login(@RequestBody LoginDTO dto) {
 		System.out.println("로그인됨");
+		System.out.println(dto);
 		return "login";
 	}
 	

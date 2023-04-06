@@ -6,8 +6,12 @@
 	
 <head>
 <style>
+.md-2 row{
+	margin-bottom
+}
 .phone{
-	width:85px;
+	display:flex;
+	width:240px;
 }
 
 </style>
@@ -71,18 +75,6 @@
 <div layout:fragment="content">
 <h1>회원가입 화면</h1>
 
-  <div class="row g-3 align-items-center">
-   <div class="col-auto">
-    <label for="userid" class="col-form-label">A</label>
-    <input type="text" class="form-control" id="userid">
-    </div>
-	<div class="col-auto">
-    <label for="password" class="form-label">B</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-  </div>
-
-
 <form>
  
 
@@ -144,8 +136,8 @@
 		<label for="username" class="col-sm-1 col-form-label">휴대폰 번호</label>
 		<div class="col-md-1">
 		<div class="phone">
-			<input type="text" class="form-control">-
-			<input type="text" class="form-control">-
+			<input type="text" class="form-control">&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" class="form-control">&nbsp;&nbsp;-&nbsp;&nbsp;
 			<input type="text" class="form-control">
 		</div>
 		</div>

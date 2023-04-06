@@ -2,6 +2,39 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ItemMapper">
-	
+<mapper namespace="com.example.dao.ItemDAO">
+	<insert id="insertItem" parameterType="ItemDTO">
+		INSERT INTO TB_ITEM(
+			IT_CD
+			, IMG_CD
+			, IT_NM
+			, PRICE
+			, CAT
+			, OPT_ADD
+		) VALUES (
+			TB_ITEM_SEQ.NEXTVAL
+			, #{imgCd}
+			, #{itNm}
+			, #{price}
+			, #{cat}
+			, #{optAdd}
+		)
+		<selectKey keyProperty="itCd" resultType="int">
+			SELECT 
+				TB_ITEM_SEQ.CURRVAL 
+			FROM DUAL
+		</selectKey>
+	</insert>
+	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
+		SELECT 
+			IT_CD as itCd
+			, IMG_CD as imgCd
+			, IT_NM as itNm
+			, PRICE as price
+			, CAT as cat
+			, OPT_ADD as optAdd
+		FROM TB_ITEM
+		WHERE 
+			IT_CD = #{itCd}
+	</select>
 </mapper>

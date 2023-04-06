@@ -2,6 +2,67 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="MemberMapper">
+<mapper namespace="com.example.dao.MemberDAO">
+	<insert id="memberAdd" parameterType="MemberDTO">
+     INSERT INTO TB_MEMBER(
+     	MB_ID
+     	, PW
+     	, NM
+     	, POST
+     	, ADDR1
+     	, ADDR2
+     	, TEL1
+     	, TEL2
+     	, TEL3
+     	, EMAIL1
+     	, EMAIL2
+     ) VALUES ( 
+     	#{mbId}
+     	, #{pw}
+     	, #{nm}
+     	, #{post}
+     	, #{addr1}
+     	, #{addr2}
+     	, #{tel1}
+     	, #{tel2}
+     	, #{tel3}
+     	, #{email1}
+     	, #{email2}
+     )
+   </insert>
+   
+   <select id="mypage" parameterType="string" resultType="MemberDTO">
+	  SELECT 
+		  	MB_ID as mbId
+		  	, PW
+		  	, NM
+		  	, POST
+		  	, ADDR1
+		  	, ADDR2
+		  	, TEL1
+		  	, TEL2
+		  	, TEL3
+		  	, EMAIL1
+		  	, EMAIL2
+      FROM TB_MEMBER
+      WHERE MB_ID = #{mbId}
+	</select>
 	
+	<select id="login" parameterType="LoginDTO" resultType="MemberDTO">
+	  SELECT 
+	  		MB_ID
+	  		, PW
+	  		, NM
+	  		, POST
+	  		, ADDR1
+	  		, ADDR2
+	  		, TEL1
+	  		, TEL2
+	  		, TEL3
+	  		, EMAIL1
+	  		, EMAIL2
+      FROM TB_MEMBER
+      WHERE MB_ID = #{mbId} AND PW = #{pw}
+		
+	</select>
 </mapper>

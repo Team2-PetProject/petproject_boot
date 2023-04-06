@@ -12,29 +12,36 @@ import com.example.dto.CartDTO;
 @Service
 public class CartService {
 	@Autowired
-	CartDAO dao;
-
+	CartDAO cartDao;
+	
 	public int cartAdd(CartDTO cart) {
-		return dao.cartAdd(cart);
+		return cartDao.cartAdd(cart);
 	}
 	
-	public int cartDelete(int cart_cd) {
-		return dao.cartDelete(cart_cd);
+	public int cartDelete(int cartCd) {
+		return cartDao.cartDelete(cartCd);
 	}
 
 	public int checkDelete(List<Integer> list) {
-		return dao.checkDelete(list);
+		return cartDao.checkDelete(list);
 	}
 
 	public int specUpdate(HashMap<String, Integer> map) {
 
-		return dao.specUpdate(map);
+		return cartDao.specUpdate(map);
 	}
 	
 	public int amountUpdate(HashMap<String, Integer> map) {
 
-		return dao.amountUpdate(map);
+		return cartDao.amountUpdate(map);
 	}
 
+
+
+
+
+
+
+	
 	
 }

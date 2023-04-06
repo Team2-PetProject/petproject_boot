@@ -15,43 +15,40 @@ import com.example.dto.OrderInfoDTO;
 @Service
 public class OrderService {
 	@Autowired
-	OrderDAO orderDao;
+	OrderDAO dao;
 
-	 
+	
 	@Transactional
 	public void orderDone(List<CartDTO> carts, OrderInfoDTO orderInfoDTO, String memberCd) {
-		orderDao.ordItem(memberCd, carts);
-		orderDao.ordInfo(memberCd, orderInfoDTO);
-		//TO:DO insert dlvy sta 
-		//start time == orderDone
-		//end time  == 
-		
-		
+		dao.ordItem(memberCd, carts);
+		dao.ordInfo(memberCd, orderInfoDTO);
 	}
+	
+	
 	
 	//페이징 처리를 위한 토탈카운트
 	@Transactional
 	public int totalCount(String memberCd) {
-		return orderDao.totalCount(memberCd);
+		return dao.totalCount(memberCd);
 	}
 
 	
 	//주문 내역 기본화면
 	@Transactional
 	public List<OrderHistoryDTO> orderSearch(HashMap<String, String> map) {
-		return orderDao.orderSearch(map);
+		return dao.orderSearch(map);
 	}
 
 	//기간 주문 내역 조회
 	@Transactional
 	public List<OrderHistoryDTO> daySearch(HashMap<String, String> map) {
-		return orderDao.daySearch(map);
+		return dao.daySearch(map);
 	}
 
 	//특정 아이템 내역 조회
 	@Transactional
 	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
-		return orderDao.itemSearch(map);
+		return dao.itemSearch(map);
 	}
 	
 }

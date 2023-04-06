@@ -4,23 +4,20 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import com.example.dao.MemberDAO;
 import com.example.dto.LoginDTO;
 import com.example.dto.MemberDTO;
 
 
-
-@Service("memberService")
+@Service
 public class MemberService {
 	@Autowired
-	MemberDAO dao;
+	MemberDAO memberDao;
+	
 	public int memberAdd(MemberDTO memberDTO) throws NoSuchAlgorithmException {
 		String password = memberDTO.getPw();
 		MessageDigest messageDigest = MessageDigest.getInstance("sha-512");
@@ -29,12 +26,12 @@ public class MemberService {
 		password = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
 		memberDTO.setPw(password);
 		
-		int n = dao.memberAdd(memberDTO);
+		int n = memberDao.memberAdd(memberDTO);
 		return n;
 	}
 	
 	public MemberDTO mypage(String mbId) {
-		MemberDTO memberDTO = dao.mypage(mbId);
+		MemberDTO memberDTO = memberDao.mypage(mbId);
 		return memberDTO;
 	}
 	
@@ -54,9 +51,8 @@ public class MemberService {
 		}
 		
 		
-		MemberDTO memberDTO = dao.login( loginDTO);
+		MemberDTO memberDTO = memberDao.login( loginDTO);
 		return memberDTO;
 	}
-	
 	
 }//end class

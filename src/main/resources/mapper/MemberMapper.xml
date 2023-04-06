@@ -65,5 +65,4 @@
       WHERE MB_ID = #{mbId} AND PW = #{pw}
 		
 	</select>
-   
 </mapper>

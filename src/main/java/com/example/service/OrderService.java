@@ -3,20 +3,19 @@ package com.example.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.daoImpl.OrderDAOImpl;
+import com.example.dao.OrderDAO;
 import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
 
-@Service("orderService")
+@Service
 public class OrderService {
 	@Autowired
-	OrderDAOImpl dao;
+	OrderDAO dao;
 
 	
 	@Transactional
@@ -51,12 +50,5 @@ public class OrderService {
 	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
 		return dao.itemSearch(map);
 	}
-
-
-
-
-
-	
-
 	
 }

@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper namespace="com.example.dao.ItemDAO">
 	<insert id="insertItem" parameterType="ItemDTO">
 		INSERT INTO TB_ITEM(
@@ -38,13 +37,4 @@
 		WHERE 
 			IT_CD = #{itCd}
 	</select>
-=======
-<mapper namespace="ItemMapper">
-	<insert id="insertItem" parameterType="ItemDTO">
-		insert into tb_item(item_cd, item_img_cd, item_li_cd, item_nm,
-		item_price, item_cat, item_spec, item_add) values 
-		(tb_item_seq.nextval, tb_item_image_seq.currval, #{Item_Name}, 
-		#{Item_Price}, #{Item_Category}, #{Item_Spec}, #{Item_Add})
-	</insert>
->>>>>>> refs/remotes/dami/gu
 </mapper>

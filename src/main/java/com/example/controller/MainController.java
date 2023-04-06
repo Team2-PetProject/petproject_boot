@@ -7,12 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 	
-	@GetMapping("/")
-	public String main() {
-		System.out.println("/ 주소 요청");
-		return "imageForm";
-	}
-	
 	@GetMapping("/main")
 	public String mainpage() {
 		System.out.println("/main페이지");

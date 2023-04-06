@@ -17,10 +17,10 @@ import com.example.service.MemberService;
 import io.swagger.annotations.ApiOperation;
 @Controller
 public class FavoriteController {
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	ItemService itemService;
+//	@Autowired
+//	MemberService memberService;
+//	@Autowired
+//	ItemService itemService;
 	//다시 상품 상세보기로 돌려야함
 	//찜목록 추가 restful로 변경필요 //
 	//03.31 오늘은 건들지 말자.
@@ -32,12 +32,12 @@ public class FavoriteController {
 	@ApiOperation(value = "favoriteAdd")
 	public void favoriteAdd
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
-		itemFavoriteDTO.setMbID(memberDTO.getMbId());
-		itemFavoriteDTO.setItCd(itemCd);
-		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
-		System.out.println("favoriteAdd : " + favoriteAdd);
+//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
+//		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
+//		itemFavoriteDTO.setMbID(memberDTO.getMbId());
+//		itemFavoriteDTO.setItCd(itemCd);
+//		Integer favoriteAdd = itemService.favoriteAdd(itemFavoriteDTO);
+//		System.out.println("favoriteAdd : " + favoriteAdd);
 	}
 	
 	@DeleteMapping("/loginCheck/favorite/{item_cd}")
@@ -45,10 +45,10 @@ public class FavoriteController {
 	@ApiOperation(value = "favoriteDelete")
 	public void favoriteDelete
 	(@PathVariable("itemCd") int itemCd, HttpSession session) {
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-		String memberCd= memberDTO.getMbId();
-		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
-		Integer favoriteDel = itemService.favoriteDelete(memberCd,itemCd);
-		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");
+//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
+//		String memberCd= memberDTO.getMbId();
+//		MemberItemDTO itemFavoriteDTO = new MemberItemDTO();
+//		Integer favoriteDel = itemService.favoriteDelete(memberCd,itemCd);
+//		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");
 	}
 }

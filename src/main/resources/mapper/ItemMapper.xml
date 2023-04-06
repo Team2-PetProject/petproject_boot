@@ -39,10 +39,12 @@
 	</select>
 	<select id="itemList" parameterType="String" resultType="ItemDTO">
 	select
-			it_Cd as itCd
-			, it_Nm as itNm
-			, price
-			, cat
+			IT_CD as itCd
+			, IMG_CD as imgCd
+			, IT_NM as itNm
+			, PRICE as price
+			, CAT as cat
+			, OPT_ADD as optAdd
 		from
 			tb_Item
 		where

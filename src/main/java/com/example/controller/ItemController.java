@@ -37,17 +37,17 @@ public class ItemController {
 	//10시10.
 	
 	//4
-	@GetMapping("/itemList")//(/itemList/{cat}) //단순 조회는 get
-	public String itemList //(@PathVariable("cat") 
-	(@RequestParam(value = "cat", defaultValue = "food") 
+	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
+	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat") 
+//	(@RequestParam(value = "cat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
-	String cat, Model model) {
-		itemService = new ItemService();
-	   ItemListDTO list = itemService.itemList(cat);
-	    System.out.println("itemList: " + list);
-	    model.addAttribute("itemList", list);
-	    return "main";
-	}
+	String cat) {
+	   ItemListDTO itemListDTO = itemService.itemList(cat);
+	   HttpHeaders header = new HttpHeaders();
+	   header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+	   
+	    return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
+	} 
 
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")

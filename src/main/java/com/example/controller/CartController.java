@@ -24,22 +24,24 @@ import com.example.service.MemberService;
 import io.swagger.annotations.ApiOperation;
 @Controller
 public class CartController {
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	CartService cartService;
+	//이제 세션 대신에 SessionAttributeManager클래스 함수 사용해서 회원정보 가져와주세요!
+//	@Autowired
+//	MemberService memberService;
+//	@Autowired
+//	CartService cartService;
+//	
 	
 	
-	
-//	//5에서 일어나는 이벤트
-//	//장바구니 추가 //restful 미적용
+	//5에서 일어나는 이벤트
+	//장바구니 추가 //restful 미적용
 //	@PostMapping("/loginCheck/cartAdd")
 //	public String cartAdd
 //	(@RequestParam CartDTO cart, HttpSession session) {
 //	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-//	    cart.setMember_Code(memberDTO.getMember_code());
+//	    cart.setMbId(memberDTO.getMbId());
 //	    Integer insertCart = cartService.cartAdd(cart);
-//	    return "redirect:/itemRetrieve?item_code=" + cart.getItem_Code();
+//	    return "redirect:/itemRetrieve?item_code=" + cart.getItCd();
+//		return null;
 //	}
 	
 	
@@ -47,13 +49,14 @@ public class CartController {
 	@ResponseBody
 	@ApiOperation(value = "cartAdd")
 	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart, HttpSession session){
-		 MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
-		 cart.setMbId(memberDTO.getMbId());
-		 Integer AddItem = cartService.cartAdd(cart);
-		 Map<String, Object> cartAdd = new HashMap<String, Object>();
-		 cartAdd.put("success", AddItem > 0);
-		 cartAdd.put("item_cd", cart.getCartCd());
-		 return ResponseEntity.ok(cartAdd);
+//		 MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
+//		 cart.setMbId(memberDTO.getMbId());
+//		 Integer AddItem = cartService.cartAdd(cart);
+//		 Map<String, Object> cartAdd = new HashMap<String, Object>();
+//		 cartAdd.put("success", AddItem > 0);
+//		 cartAdd.put("item_cd", cart.getCartCd());
+//		 return ResponseEntity.ok(cartAdd);
+		 return null;
 	}
     
 	
@@ -65,22 +68,21 @@ public class CartController {
 	public void cartDelete
 	(@PathVariable int cartCD) {
 		//cart_cd로 바로 삭제
-		Integer deleteOne = cartService.cartDelete(cartCD);
-	System.out.println("하나 삭제된 갯수 : "+ deleteOne);
-	
+//		Integer deleteOne = cartService.cartDelete(cartCD);
+//		System.out.println("하나 삭제된 갯수 : "+ deleteOne);
 	}
 	
 	//9에서 일어나는 이벤트
 	//전체 삭제
 	@DeleteMapping("/loginCheck/checkDelete")
-	@ResponseBody
+	@ResponseBody 
 	@ApiOperation(value = "checkDelete")
 	public void checkDelete
 	(@RequestParam("cartCD") List<Integer>list) {
 		//cart_cd 리스트 받아서 한번에 삭제
-		System.out.println(list);
-		Integer allDelete = cartService.checkDelete(list);
-		System.out.println("전체 삭제  : " + allDelete);
+//		System.out.println(list);
+//		Integer allDelete = cartService.checkDelete(list);
+//		System.out.println("전체 삭제  : " + allDelete);
 	} 
 	
 	//9에서 일어나는 이벤트
@@ -93,10 +95,11 @@ public class CartController {
 	{
 		//CartDTO 바로 사용하용하세요.
 		//반환 값은 0 또는 1만 나옵니다.
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("cartCd", cartCd);
-		map.put("itemCd", itemCd);
-		return cartService.specUpdate(map);
+//		HashMap<String, Integer> map = new HashMap<String, Integer>();
+//		map.put("cartCd", cartCd);
+//		map.put("itemCd", itemCd);
+//		return cartService.specUpdate(map);
+		return 0;
 	}
 	
 	//9에서 일어나는 이벤트
@@ -108,9 +111,10 @@ public class CartController {
 	(@PathVariable("cartCd") int cartCd, @PathVariable("itemAmount") int itemAmount)
 	{
 		//CartDTO 바로 사용하용하세요.
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("cartCd",cartCd);
-		map.put("itemamount",itemAmount);
-		return cartService.amountUpdate(map);
+//		HashMap<String, Integer> map = new HashMap<String, Integer>();
+//		map.put("cartCd",cartCd);
+//		map.put("itemamount",itemAmount);
+//		return cartService.amountUpdate(map);
+		return 0;
 	}
 }

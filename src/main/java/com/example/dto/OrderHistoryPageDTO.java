@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
+import com.example.common.SessionAttributeManager;
+
 @Alias("OrderHistoryPageDTO")
 public class OrderHistoryPageDTO {
 

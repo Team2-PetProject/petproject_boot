@@ -1,9 +1,19 @@
 package com.example.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 
-import org.springframework.stereotype.Repository;
+import com.example.dto.ItemDTO;
+import com.example.dto.MemberItemDTO;
 
-@Repository
-public class ItemDAO {
+@Mapper
+public interface ItemDAO {
 
-}//end class
+//	public int favoriteAdd(MemberItemDTO i_dto);
+//
+//	public int favoriteDelete(String member_cd, int item_cd);
+
+	public void insertItem(ItemDTO itemDTO);
+
+	public ItemDTO selectItem(Integer itCd); 
+	
+}

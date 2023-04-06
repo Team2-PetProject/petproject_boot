@@ -1,9 +1,17 @@
 package com.example.dao;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
-public class MemberDAO {
+import com.example.dto.LoginDTO;
+import com.example.dto.MemberDTO;
 
-	
+@Mapper
+public interface MemberDAO {
+
+	public int memberAdd(MemberDTO memberDTO);
+
+	public MemberDTO mypage(String mbId);
+
+	public MemberDTO login(LoginDTO loginDTO);
 }
+

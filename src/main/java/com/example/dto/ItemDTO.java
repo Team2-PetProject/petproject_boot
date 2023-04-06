@@ -46,6 +46,24 @@ public class ItemDTO {
 	public void setOptAdd(String optAdd) {
 		this.optAdd = optAdd;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ItemDTO [itCd=");
+		builder.append(itCd);
+		builder.append(", imgCd=");
+		builder.append(imgCd);
+		builder.append(", itNm=");
+		builder.append(itNm);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", cat=");
+		builder.append(cat);
+		builder.append(", optAdd=");
+		builder.append(optAdd);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 	
 	

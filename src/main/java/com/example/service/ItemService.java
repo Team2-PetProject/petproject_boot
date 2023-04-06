@@ -26,11 +26,16 @@ public class ItemService {
 	@Autowired
 	OptionDAO optionDao;
 	
+	//public ItemDTO itemList(String cat) {
 	public ItemListDTO itemList(String cat) {
+		//ItemDTO itemDTO = new ItemDTO();
 		ItemListDTO itemListDTO = new ItemListDTO();
 		System.out.println(cat);
 		List<ItemDTO> list = itemDao.itemList(cat);
-		itemListDTO.setList(list);
+		itemListDTO.getList();
+		//itemListDTO.setList(list);
+		
+		//return itemDTO;
 		return itemListDTO;
 	}
 	

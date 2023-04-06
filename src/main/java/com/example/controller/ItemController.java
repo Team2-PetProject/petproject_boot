@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.ItemDTO;
 import com.example.dto.ItemListDTO;
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.OptionDTO;
@@ -39,13 +40,15 @@ public class ItemController {
 	//4
 	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
 	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat") 
+	//public ResponseEntity<ItemDTO> itemList(@PathVariable("cat") 
 //	(@RequestParam(value = "cat", defaultValue = "food") 
-	//path에서 안되는데 굳이 써야할까...
 	String cat) {
 	   ItemListDTO itemListDTO = itemService.itemList(cat);
+	   //ItemDTO itemDTO = itemService.itemList(cat);
 	   HttpHeaders header = new HttpHeaders();
 	   header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
 	   
+	    //return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
 	    return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
 	} 
 

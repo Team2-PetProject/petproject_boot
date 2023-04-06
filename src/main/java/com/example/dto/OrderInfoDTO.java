@@ -4,102 +4,93 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("OrderInfoDTO")
 public class OrderInfoDTO {
-	private int OrderInfo_Code;
-	private int OrderInfo_Delivery;
-	private String Member_Code;
-	private String OrderInfo_OrderName;
-	private String OrderInfo_Post;
-	private String OrderInfo_Addr1;
-	private String OrderInfo_Addr2;
-	private String OrderInfo_Phone;
-	private String OrderInfo_PayMethod;
-	private String OrderInfo_OrderDay;
-	public OrderInfoDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	private Integer ordCd;
+	private Integer dlvyCd;
+	private String ordNm;
+	private Integer ordPost;
+	private String ordAddr1;
+	private String ordAddr2;
+	private String ordTel;
+	private String payMethod;
+	private String payTm;
+	public Integer getOrdCd() {
+		return ordCd;
 	}
-	public OrderInfoDTO(int orderInfo_Code, String member_Code, String orderInfo_OrderName, String orderInfo_Post,
-			String orderInfo_Addr1, String orderInfo_Addr2, String orderInfo_Phone, String orderInfo_PayMethod,
-			String orderInfo_OrderDay, int orderInfo_Delivery) {
-		super();
-		OrderInfo_Code = orderInfo_Code;
-		Member_Code = member_Code;
-		OrderInfo_OrderName = orderInfo_OrderName;
-		OrderInfo_Post = orderInfo_Post;
-		OrderInfo_Addr1 = orderInfo_Addr1;
-		OrderInfo_Addr2 = orderInfo_Addr2;
-		OrderInfo_Phone = orderInfo_Phone;
-		OrderInfo_PayMethod = orderInfo_PayMethod;
-		OrderInfo_OrderDay = orderInfo_OrderDay;
-		OrderInfo_Delivery = orderInfo_Delivery;
+	public void setOrdCd(Integer ordCd) {
+		this.ordCd = ordCd;
 	}
-	public int getOrderInfo_Code() {
-		return OrderInfo_Code;
+	public Integer getDlvyCd() {
+		return dlvyCd;
 	}
-	public void setOrderInfo_Code(int orderInfo_Code) {
-		OrderInfo_Code = orderInfo_Code;
+	public void setDlvyCd(Integer dlvyCd) {
+		this.dlvyCd = dlvyCd;
 	}
-	public String getMember_Code() {
-		return Member_Code;
+	public String getOrdNm() {
+		return ordNm;
 	}
-	public void setMember_Code(String member_Code) {
-		Member_Code = member_Code;
+	public void setOrdNm(String ordNm) {
+		this.ordNm = ordNm;
 	}
-	public String getOrderInfo_OrderName() {
-		return OrderInfo_OrderName;
+	public Integer getOrdPost() {
+		return ordPost;
 	}
-	public void setOrderInfo_OrderName(String orderInfo_OrderName) {
-		OrderInfo_OrderName = orderInfo_OrderName;
+	public void setOrdPost(Integer ordPost) {
+		this.ordPost = ordPost;
 	}
-	public String getOrderInfo_Post() {
-		return OrderInfo_Post;
+	public String getOrdAddr1() {
+		return ordAddr1;
 	}
-	public void setOrderInfo_Post(String orderInfo_Post) {
-		OrderInfo_Post = orderInfo_Post;
+	public void setOrdAddr1(String ordAddr1) {
+		this.ordAddr1 = ordAddr1;
 	}
-	public String getOrderInfo_Addr1() {
-		return OrderInfo_Addr1;
+	public String getOrdAddr2() {
+		return ordAddr2;
 	}
-	public void setOrderInfo_Addr1(String orderInfo_Addr1) {
-		OrderInfo_Addr1 = orderInfo_Addr1;
+	public void setOrdAddr2(String ordAddr2) {
+		this.ordAddr2 = ordAddr2;
 	}
-	public String getOrderInfo_Addr2() {
-		return OrderInfo_Addr2;
+	public String getOrdTel() {
+		return ordTel;
 	}
-	public void setOrderInfo_Addr2(String orderInfo_Addr2) {
-		OrderInfo_Addr2 = orderInfo_Addr2;
+	public void setOrdTel(String ordTel) {
+		this.ordTel = ordTel;
 	}
-	public String getOrderInfo_Phone() {
-		return OrderInfo_Phone;
+	public String getPayMethod() {
+		return payMethod;
 	}
-	public void setOrderInfo_Phone(String orderInfo_Phone) {
-		OrderInfo_Phone = orderInfo_Phone;
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
 	}
-	public String getOrderInfo_PayMethod() {
-		return OrderInfo_PayMethod;
+	public String getPayTm() {
+		return payTm;
 	}
-	public void setOrderInfo_PayMethod(String orderInfo_PayMethod) {
-		OrderInfo_PayMethod = orderInfo_PayMethod;
-	}
-	public String getOrderInfo_OrderDay() {
-		return OrderInfo_OrderDay;
-	}
-	public void setOrderInfo_OrderDay(String orderInfo_OrderDay) {
-		OrderInfo_OrderDay = orderInfo_OrderDay;
-	}
-	public int getOrderInfo_Delivery() {
-		return OrderInfo_Delivery;
-	}
-	public void setOrderInfo_Delivery(int orderInfo_Delivery) {
-		OrderInfo_Delivery = orderInfo_Delivery;
+	public void setPayTm(String payTm) {
+		this.payTm = payTm;
 	}
 	@Override
 	public String toString() {
-		return "OrderInfoDTO [OrderInfo_Code=" + OrderInfo_Code + ", Member_Code=" + Member_Code
-				+ ", OrderInfo_OrderName=" + OrderInfo_OrderName + ", OrderInfo_Post=" + OrderInfo_Post
-				+ ", OrderInfo_Addr1=" + OrderInfo_Addr1 + ", OrderInfo_Addr2=" + OrderInfo_Addr2 + ", OrderInfo_Phone="
-				+ OrderInfo_Phone + ", OrderInfo_PayMethod=" + OrderInfo_PayMethod + ", OrderInfo_OrderDay="
-				+ OrderInfo_OrderDay + ", OrderInfo_Delivery=" + OrderInfo_Delivery + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderInfoDTO [ordCd=");
+		builder.append(ordCd);
+		builder.append(", dlvyCd=");
+		builder.append(dlvyCd);
+		builder.append(", ordNm=");
+		builder.append(ordNm);
+		builder.append(", ordPost=");
+		builder.append(ordPost);
+		builder.append(", ordAddr1=");
+		builder.append(ordAddr1);
+		builder.append(", ordAddr2=");
+		builder.append(ordAddr2);
+		builder.append(", ordTel=");
+		builder.append(ordTel);
+		builder.append(", payMethod=");
+		builder.append(payMethod);
+		builder.append(", payTm=");
+		builder.append(payTm);
+		builder.append("]");
+		return builder.toString();
 	}
-	 
+	
+	
 }

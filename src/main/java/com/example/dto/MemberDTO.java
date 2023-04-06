@@ -4,111 +4,113 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("MemberDTO")
 public class MemberDTO {
-	private String Member_code;
-	private String Member_passwd;
-	private String Member_name;
-	private String Member_post;
-	private String Member_addr1;
-	private String Member_addr2;
-	private String Member_phone1;
-	private String Member_phone2;
-	private String Member_phone3;
-	private String Member_email1;
-	private String Member_email2;
-	public MemberDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	private String mbId;
+	private String pw;
+	private String nm;
+	private String post;
+	private String addr1;
+	private String addr2;
+	private String tel1;
+	private String tel2;
+	private String tel3;
+	private String email1;
+	private String email2;
+	
+	public String getMbId() {
+		return mbId;
 	}
-	public MemberDTO(String member_code, String member_passwd, String member_name, String member_post,
-			String member_addr1, String member_addr2, String member_phone1, String member_phone2, String member_phone3,
-			String member_email1, String member_email2) {
-		super();
-		Member_code = member_code;
-		Member_passwd = member_passwd;
-		Member_name = member_name;
-		Member_post = member_post;
-		Member_addr1 = member_addr1;
-		Member_addr2 = member_addr2;
-		Member_phone1 = member_phone1;
-		Member_phone2 = member_phone2;
-		Member_phone3 = member_phone3;
-		Member_email1 = member_email1;
-		Member_email2 = member_email2;
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
 	}
-	public String getMember_code() {
-		return Member_code;
+	public String getPw() {
+		return pw;
 	}
-	public void setMember_code(String member_code) {
-		Member_code = member_code;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
-	public String getMember_passwd() {
-		return Member_passwd;
+	public String getNm() {
+		return nm;
 	}
-	public void setMember_passwd(String member_passwd) {
-		Member_passwd = member_passwd;
+	public void setNm(String nm) {
+		this.nm = nm;
 	}
-	public String getMember_name() {
-		return Member_name;
+	public String getPost() {
+		return post;
 	}
-	public void setMember_name(String member_name) {
-		Member_name = member_name;
+	public void setPost(String post) {
+		this.post = post;
 	}
-	public String getMember_post() {
-		return Member_post;
+	public String getAddr1() {
+		return addr1;
 	}
-	public void setMember_post(String member_post) {
-		Member_post = member_post;
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
 	}
-	public String getMember_addr1() {
-		return Member_addr1;
+	public String getAddr2() {
+		return addr2;
 	}
-	public void setMember_addr1(String member_addr1) {
-		Member_addr1 = member_addr1;
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
-	public String getMember_addr2() {
-		return Member_addr2;
+	public String getTel1() {
+		return tel1;
 	}
-	public void setMember_addr2(String member_addr2) {
-		Member_addr2 = member_addr2;
+	public void setTel1(String tel1) {
+		this.tel1 = tel1;
 	}
-	public String getMember_phone1() {
-		return Member_phone1;
+	public String getTel2() {
+		return tel2;
 	}
-	public void setMember_phone1(String member_phone1) {
-		Member_phone1 = member_phone1;
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
 	}
-	public String getMember_phone2() {
-		return Member_phone2;
+	public String getTel3() {
+		return tel3;
 	}
-	public void setMember_phone2(String member_phone2) {
-		Member_phone2 = member_phone2;
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
 	}
-	public String getMember_phone3() {
-		return Member_phone3;
+	public String getEmail1() {
+		return email1;
 	}
-	public void setMember_phone3(String member_phone3) {
-		Member_phone3 = member_phone3;
+	public void setEmail1(String email1) {
+		this.email1 = email1;
 	}
-	public String getMember_email1() {
-		return Member_email1;
+	public String getEmail2() {
+		return email2;
 	}
-	public void setMember_email1(String member_email1) {
-		Member_email1 = member_email1;
-	}
-	public String getMember_email2() {
-		return Member_email2;
-	}
-	public void setMember_email2(String member_email2) {
-		Member_email2 = member_email2;
+	public void setEmail2(String email2) {
+		this.email2 = email2;
 	}
 	@Override
 	public String toString() {
-		return "MemberDTO [Member_code=" + Member_code + ", Member_passwd=" + Member_passwd + ", Member_name="
-				+ Member_name + ", Member_post=" + Member_post + ", Member_addr1=" + Member_addr1 + ", Member_addr2="
-				+ Member_addr2 + ", Member_phone1=" + Member_phone1 + ", Member_phone2=" + Member_phone2
-				+ ", Member_phone3=" + Member_phone3 + ", Member_email1=" + Member_email1 + ", Member_email2="
-				+ Member_email2 + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("MemberDTO [mbId=");
+		builder.append(mbId);
+		builder.append(", pw=");
+		builder.append(pw);
+		builder.append(", nm=");
+		builder.append(nm);
+		builder.append(", post=");
+		builder.append(post);
+		builder.append(", addr1=");
+		builder.append(addr1);
+		builder.append(", addr2=");
+		builder.append(addr2);
+		builder.append(", tel1=");
+		builder.append(tel1);
+		builder.append(", tel2=");
+		builder.append(tel2);
+		builder.append(", tel3=");
+		builder.append(tel3);
+		builder.append(", email1=");
+		builder.append(email1);
+		builder.append(", email2=");
+		builder.append(email2);
+		builder.append("]");
+		return builder.toString();
 	}
+	
 	
 }
 	

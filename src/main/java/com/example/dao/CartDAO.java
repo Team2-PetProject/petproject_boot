@@ -1,9 +1,25 @@
 package com.example.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.HashMap;
+import java.util.List;
 
-@Repository
-public class CartDAO {
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.dto.CartDTO;
 
-}//end class
+@Mapper
+public interface CartDAO {
+
+	int cartAdd(CartDTO cart);
+
+	int cartDelete(int cartCd);
+
+	int checkDelete(List<Integer> list);
+
+	int specUpdate(HashMap<String, Integer> map);
+
+	int amountUpdate(HashMap<String, Integer> map);
+
+	
+ 
+}

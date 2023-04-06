@@ -84,6 +84,20 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(commonInfo());
     }
+	@Bean
+    public Docket memberApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("member")
+                .useDefaultResponseMessages(false)
+                .select()
+                //.apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .paths(PathSelectors.ant("/app/member/**"))
+                .build()
+                .apiInfo(commonInfo());
+    }
     private Set<String> getConsumeContentTypes(){
     	Set<String> consumes = new HashSet<String>();
     	consumes.add("application/json;charset=UTF-8");

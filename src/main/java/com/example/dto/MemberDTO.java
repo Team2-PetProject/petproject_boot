@@ -15,6 +15,7 @@ public class MemberDTO {
 	private String tel3;
 	private String email1;
 	private String email2;
+	
 	public String getMbId() {
 		return mbId;
 	}

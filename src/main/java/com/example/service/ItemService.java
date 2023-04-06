@@ -16,7 +16,7 @@ import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
 import com.example.dto.TypeDTO;
 
-@Service("itemService")
+@Service
 public class ItemService {
 	@Autowired
 	ItemDAO itemDao;

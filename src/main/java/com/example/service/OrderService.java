@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.daoImpl.OrderDAOImpl;
+import com.example.dao.OrderDAO;
 import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
@@ -15,7 +15,7 @@ import com.example.dto.OrderInfoDTO;
 @Service
 public class OrderService {
 	@Autowired
-	OrderDAOImpl dao;
+	OrderDAO dao;
 
 	
 	@Transactional

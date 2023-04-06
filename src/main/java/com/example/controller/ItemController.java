@@ -48,7 +48,7 @@ public class ItemController {
 //	    model.addAttribute("itemList", list);
 //	    return "main";
 		return null;
-	}
+	} 
 
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")

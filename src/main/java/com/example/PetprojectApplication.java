@@ -11,9 +11,4 @@ public class PetprojectApplication {
 		SpringApplication.run(PetprojectApplication.class, args);
 		System.out.println("hello");
 	}
-	 
-	
-
 }
-
-

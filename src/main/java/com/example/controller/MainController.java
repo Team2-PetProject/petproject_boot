@@ -29,7 +29,7 @@ public class MainController {
 	@GetMapping("/login")
 	@ResponseBody
 	public String login() {
-		System.out.println("로그인");
+		System.out.println("로그인됨");
 		return "login";
 	}
 	

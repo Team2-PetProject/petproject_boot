@@ -16,7 +16,7 @@ import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
 import com.example.dto.TypeDTO;
 
-@Service("itemService")
+@Service
 public class ItemService {
 	@Autowired
 	ItemDAO itemDao;
@@ -44,13 +44,13 @@ public class ItemService {
 		return itemRetrieveDTO;
 	}
 
-	public int favoriteAdd(MemberItemDTO i_dto) {
-		return itemDao.favoriteAdd(i_dto);
-	}
-
-	public int favoriteDelete(String member_cd, int item_cd) {
-		return itemDao.favoriteDelete(member_cd,item_cd);
-	}
+//	public int favoriteAdd(MemberItemDTO i_dto) {
+//		return itemDao.favoriteAdd(i_dto);
+//	}
+//
+//	public int favoriteDelete(String member_cd, int item_cd) {
+//		return itemDao.favoriteDelete(member_cd,item_cd);
+//	}
 
 
 

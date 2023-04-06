@@ -3,11 +3,11 @@ package com.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dao.OrderHistoryDAO;
+import com.example.dao.MemberItemDAO;
 
-@Service("orderHistoryService")
-public class OrderHistoryService {
+@Service
+public class MemberItemService {
 	@Autowired
-	OrderHistoryDAO dao;
-	
+	MemberItemDAO memberItemDao;
+
 }

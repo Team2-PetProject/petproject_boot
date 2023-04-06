@@ -11,6 +11,7 @@ import com.example.dao.ItemDAO;
 import com.example.dao.OptionDAO;
 import com.example.dao.OptionTypeDAO;
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
@@ -25,9 +26,10 @@ public class ItemService {
 	@Autowired
 	OptionDAO optionDao;
 	
-	public List<OptionDTO> itemList(String item_cat) {
-		// TODO Auto-generated method stub
-		return null;
+	public ItemListDTO itemList(String cat) {
+		ItemListDTO itemListDTO = new ItemListDTO();
+		List<ItemDTO> itemDTO = itemDao.itemList(cat);
+		return itemListDTO;
 	}
 	
 	@Transactional

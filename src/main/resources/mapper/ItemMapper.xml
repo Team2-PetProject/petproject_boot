@@ -37,4 +37,17 @@
 		WHERE 
 			IT_CD = #{itCd}
 	</select>
+	<select id="itemList" parameterType="String" resultType="ItemDTO">
+	select
+			it_Cd as itCd
+			, it_Nm as itNm
+			, price
+			, cat
+		from
+			tb_Item
+		where
+			cat = #{cat}
+		order by itCd
+		DESC
+	</select>
 </mapper>

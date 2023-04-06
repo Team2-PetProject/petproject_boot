@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.ItemListDTO;
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.OptionDTO;
 import com.example.service.ItemService;
@@ -35,15 +36,14 @@ public class ItemController {
 	MemberService memberService;
 	//10시10.
 	
-	//내 부분 아니고 성혁이 부분 그리고 restful 미적용
 	//4
-	@GetMapping("/itemList") //단순 조회는 get
-	public String itemList
-	(@RequestParam(value = "item_cat", defaultValue = "food") 
+	@GetMapping("/itemList")//(/itemList/{cat}) //단순 조회는 get
+	public String itemList //(@PathVariable("cat") 
+	(@RequestParam(value = "cat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
-	String item_cat, Model model) {
+	String cat, Model model) {
 		itemService = new ItemService();
-	    List<OptionDTO> list = itemService.itemList(item_cat);
+	   ItemListDTO list = itemService.itemList(cat);
 	    System.out.println("itemList: " + list);
 	    model.addAttribute("itemList", list);
 	    return "main";

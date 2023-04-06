@@ -42,12 +42,13 @@ public class ItemController {
 	(@RequestParam(value = "item_cat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
 	String item_cat, Model model) {
-		itemService = new ItemService();
-	    List<OptionDTO> list = itemService.itemList(item_cat);
-	    System.out.println("itemList: " + list);
-	    model.addAttribute("itemList", list);
-	    return "main";
-	}
+//		itemService = new ItemService();
+//	    List<OptionDTO> list = itemService.itemList(item_cat);
+//	    System.out.println("itemList: " + list);
+//	    model.addAttribute("itemList", list);
+//	    return "main";
+		return null;
+	} 
 
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")

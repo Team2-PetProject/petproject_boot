@@ -33,9 +33,9 @@ public class FileUploadController {
 	
 	@Autowired
 	ItemService itemService;
-	@Autowired
+	@Autowired 
 	FileUploadService fileUploadService; 
-	
+	 
 	@PostMapping("/upload")
 	@ApiOperation(value = "이미지 업로드")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
@@ -43,7 +43,6 @@ public class FileUploadController {
 			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
-		
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
 		fileUploadDTO.setDi(file.getContentType());
 		fileUploadDTO.setImgNm(file.getOriginalFilename());
@@ -74,7 +73,7 @@ public class FileUploadController {
 		
 		HttpHeaders header = new HttpHeaders();
 		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));		
-		
+		 
 		return new ResponseEntity<String>("등록 성공", header, HttpStatus.OK);
 	}
 	

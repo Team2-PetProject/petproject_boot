@@ -3,38 +3,37 @@ package com.example.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoImpl.CartDAOImpl;
+import com.example.dao.CartDAO;
 import com.example.dto.CartDTO;
 
-@Service("cartService")
+@Service
 public class CartService {
 	@Autowired
-	CartDAOImpl dao;
-
+	CartDAO cartDao;
+	
 	public int cartAdd(CartDTO cart) {
-		return dao.cartAdd(cart);
+		return cartDao.cartAdd(cart);
 	}
 	
-	public int cartDelete(int cart_cd) {
-		return dao.cartDelete(cart_cd);
+	public int cartDelete(int cartCd) {
+		return cartDao.cartDelete(cartCd);
 	}
 
 	public int checkDelete(List<Integer> list) {
-		return dao.checkDelete(list);
+		return cartDao.checkDelete(list);
 	}
 
 	public int specUpdate(HashMap<String, Integer> map) {
 
-		return dao.specUpdate(map);
+		return cartDao.specUpdate(map);
 	}
 	
 	public int amountUpdate(HashMap<String, Integer> map) {
 
-		return dao.amountUpdate(map);
+		return cartDao.amountUpdate(map);
 	}
 
 

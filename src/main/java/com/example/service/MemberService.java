@@ -1,18 +1,58 @@
 package com.example.service;
 
-import org.mybatis.spring.SqlSessionTemplate;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.daoImpl.MemberDAOImpl;
-import com.example.dto.CartDTO;
+import com.example.dao.MemberDAO;
+import com.example.dto.LoginDTO;
+import com.example.dto.MemberDTO;
 
-@Service("memberService")
+
+@Service
 public class MemberService {
 	@Autowired
-	MemberDAOImpl dao;
-	@Autowired
-	SqlSessionTemplate session;
+	MemberDAO memberDao;
 	
+	public int memberAdd(MemberDTO memberDTO) throws NoSuchAlgorithmException {
+		String password = memberDTO.getPw();
+		MessageDigest messageDigest = MessageDigest.getInstance("sha-512");
+		messageDigest.reset();
+		messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
+		password = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
+		memberDTO.setPw(password);
+		
+		int n = memberDao.memberAdd(memberDTO);
+		return n;
+	}
+	
+	public MemberDTO mypage(String mbId) {
+		MemberDTO memberDTO = memberDao.mypage(mbId);
+		return memberDTO;
+	}
+	
+	public MemberDTO login(LoginDTO loginDTO) {
+		System.out.println("비밀번호 "+ loginDTO.getPw());
+		String pw = loginDTO.getPw();
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("sha-512");
+			messageDigest.reset();
+			messageDigest.update(pw.getBytes(StandardCharsets.UTF_8));
+			pw = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
+			loginDTO.setPw(pw);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		MemberDTO memberDTO = memberDao.login( loginDTO);
+		return memberDTO;
+	}
 	
 }//end class

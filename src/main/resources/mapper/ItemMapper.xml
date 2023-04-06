@@ -3,5 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemMapper">
+	<insert id="favoriteAdd" parameterType="MemberItemDTO">
+			 INSERT INTO 
+			 MP_MEMBER_ITEM
+			 (
+			 	MB_ID
+			 	,IT_CD
+			 )
+			 VALUES
+			 (
+			 #{mbId}
+			 ,#{itCd}
+			 )
+	</insert>
+	
+	<delete id="favoriteDelete" parameterType="MemberItemDTO">
+			DELETE
+			FROM
+			MP_MEMBER_ITEM
+			WHERE 
+			MB_ID=#{mbId}
+			AND
+			IT_CD=#{itCd}
+	</delete>
 	
 </mapper>

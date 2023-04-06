@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.CartDTO;
-import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
+import com.example.dto.OrderSearchDTO;
 
 @Mapper
 public interface OrderHistoryDAO {
@@ -16,12 +16,12 @@ public interface OrderHistoryDAO {
 
 	void ordInfo(String memberCd, OrderInfoDTO orderInfoDTO);
 
-	int totalCount(String memberCd);
+	int totalCount(String mbId);
 
-	List<OrderHistoryDTO> orderSearch(HashMap<String, String> map);
+	List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderHistoryDTO> daySearch(HashMap<String, String> map);
+	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderHistoryDTO> itemSearch(HashMap<String, String> map);
+	List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO);
 
 }

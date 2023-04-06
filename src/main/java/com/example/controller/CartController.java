@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.common.SessionAttributeManager;
 import com.example.dto.CartDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.CartService;
@@ -28,6 +29,8 @@ public class CartController {
 	MemberService memberService;
 	@Autowired
 	CartService cartService;
+	@Autowired
+	SessionAttributeManager memberInfo;
 	
 	
 	
@@ -43,36 +46,37 @@ public class CartController {
 //	}
 	
 	
-	@PostMapping("/loginCheck/cartAdd")
+	@PostMapping("/check/cartAdd")
 	@ResponseBody
 	@ApiOperation(value = "cartAdd")
-	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart, HttpSession session){
-		 MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
-		 cart.setMbId(memberDTO.getMbId());
+	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
+		 String mbId=memberInfo.getMemberId();
+		 cart.setMbId(mbId);
 		 Integer AddItem = cartService.cartAdd(cart);
+		 
 		 Map<String, Object> cartAdd = new HashMap<String, Object>();
 		 cartAdd.put("success", AddItem > 0);
-		 cartAdd.put("item_cd", cart.getCartCd());
+		 cartAdd.put("itemCd", cart.getCartCd());
 		 return ResponseEntity.ok(cartAdd);
 	}
     
 	
 	//9에서 일어나는 이벤트
 	//한개 삭제
-	@DeleteMapping("/loginCheck/cartDelete/{cart_cd}")
+	@DeleteMapping("/check/cartDelete/{cart_cd}")
 	@ResponseBody
 	@ApiOperation(value = "cartDelete")
 	public void cartDelete
 	(@PathVariable int cartCD) {
-		//cart_cd로 바로 삭제
+		//cartCd로 바로 삭제
 		Integer deleteOne = cartService.cartDelete(cartCD);
-	System.out.println("하나 삭제된 갯수 : "+ deleteOne);
+		System.out.println("하나 삭제된 갯수 : "+ deleteOne);
 	
 	}
 	
 	//9에서 일어나는 이벤트
 	//전체 삭제
-	@DeleteMapping("/loginCheck/checkDelete")
+	@DeleteMapping("/check/checkDelete")
 	@ResponseBody
 	@ApiOperation(value = "checkDelete")
 	public void checkDelete
@@ -85,7 +89,7 @@ public class CartController {
 	
 	//9에서 일어나는 이벤트
 	//상품 옵션 변경
-	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemCd}")
+	@PutMapping("/check/specUpdate/{cartCd}/{itemCd}")
 	@ResponseBody
 	@ApiOperation(value = "specUpdate")
 	public int specUpdate
@@ -101,7 +105,7 @@ public class CartController {
 	
 	//9에서 일어나는 이벤트
 	//수량 변경
-	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemAmount}")
+	@PutMapping("/check/specUpdate/{cartCd}/{itemAmount}")
 	@ResponseBody
 	@ApiOperation(value = "amountUpdate")
 	public int amountUpdate

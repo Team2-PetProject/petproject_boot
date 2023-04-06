@@ -4,4 +4,58 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.CartDAO">
 	
+	<insert id="cartAdd" parameterType="CartDTO">
+		INSERT INTO TB_CART
+			(
+			CART_CD
+			,IT_CD
+			,MB_ID
+			,AMOUNT
+			,OPT_ADD
+			,OPT_CD
+			)
+			VALUES
+			(
+			#{cartCd}
+			,#{itCd}
+			,#{mbId}
+			,#{amount}
+			,#{optAdd}
+			,#{optCd}
+			)
+	</insert>
+	
+	<delete id="cartDelete" parameterType="int">
+			DELETE FROM TB_CART
+			WHERE
+			CART_CD = #{CART_CD}
+	</delete>
+	
+	<delete id="checkDelete" parameterType="List">
+			DELETR FROM TB_CART
+			WHERE
+			CART_CD IN
+		<foreach collection = "list" item = "item" index = "index" 
+				open ="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="specUpdate" parameterType="hashmap">
+		UPDATE TB_CART
+		SET
+		OPT_CD=#{optCd}
+		WHERE
+		MB_ID=#{mbId}
+	</update>
+	
+	<update id="amountUpdate" parameterType="hashmap">
+			UPDATE TB_CART
+			SET
+			AMOUNT=#{amount}
+			WHERE
+			MB_ID=#{mbId}
+	</update>
+	
+	
 </mapper>

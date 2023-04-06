@@ -11,6 +11,7 @@ import com.example.dao.OrderHistoryDAO;
 import com.example.dto.CartDTO;
 import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
+import com.example.dto.OrderSearchDTO;
 
 @Service
 public class OrderService {
@@ -38,20 +39,20 @@ public class OrderService {
 	
 	//주문 내역 기본화면
 	@Transactional
-	public List<OrderHistoryDTO> orderSearch(HashMap<String, String> map) {
-		return orderDao.orderSearch(map);
+	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.orderSearch(orderSearchDTO);
 	}
 
 	//기간 주문 내역 조회
 	@Transactional
-	public List<OrderHistoryDTO> daySearch(HashMap<String, String> map) {
-		return orderDao.daySearch(map);
+	public List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.daySearch(orderSearchDTO);
 	}
 
 	//특정 아이템 내역 조회
 	@Transactional
-	public List<OrderHistoryDTO> itemSearch(HashMap<String, String> map) {
-		return orderDao.itemSearch(map);
+	public List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.itemSearch(orderSearchDTO);
 	}
-	
+
 }

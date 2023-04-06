@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="30">
     <Properties>
-        <Property name="BASE_DIR">C:\test_logs</Property>
+        <Property name="BASE_DIR">C:\log</Property>
         <Property name="LOG_PATTERN" value="[%date{yyyy-MM-dd HH:mm:ss}] %level %logger{36}(%file:%line) - %msg%n"></Property>
     </Properties>
  
@@ -22,7 +22,7 @@
                     <IfFileName glob="*.log"/>
                     <IfLastModified age="30d"/>
                 </Delete>
-            </DefaultRolloverStrategy>
+            </DefaultRolloverStrategy> 
         </RollingFile>
     </Appenders>
  

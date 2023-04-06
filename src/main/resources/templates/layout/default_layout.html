@@ -21,7 +21,7 @@
 
 	<!-- headerFragment사용 -->
 	<header th:insert="fragments/header::headerFragment"></header>
-	<div th:layout:fragment="content" id="container"></div>
+	<th:block layout:fragment="content" id="container"></th:block>
 	<footer th:insert="fragments/footer::footerFragment"></footer>
 	<!-- "fragment위치::fragment명" 형식을 이용해 호출 -->
 

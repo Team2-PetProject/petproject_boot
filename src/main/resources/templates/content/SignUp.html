@@ -9,13 +9,25 @@
 .md-2 row{
 	margin-bottom
 }
-.phone{
-	display:flex;
-	width:240px;
+.forIdFormBlank{
+	width:50px;
 }
 
+.form_phone_row{
+	display:flex;
+}
+.form_email_row{
+	display:flex;
+}
+.forGap{
+	height:20px;
+}
+.container-max-widths: (
+  xxl: 1320px
+);
 </style>
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -67,83 +79,165 @@
                 }
             }
         }).open();
-    }
+    }//end 우편번호찾기 fn
+
+window.onload=function(){
+    	
+    //비밀번호 확인
+    var passwordCk = document.getElementById("passwordCheck");
+    passwordCk.addEventListener("keyup", passwordCheck, false);
+    function passwordCheck(){
+    	var password = document.getElementById("password");
+    	var msg="비밀번호 불일치";
+    	if(passwordCk.value==password.value){
+    		msg="";
+    	}
+    	document.getElementById("checkMsg").innerText=msg;
+    }//end passwordCheck fn
+    
+    
+    //회원가입 버튼처리
+   // const signUp = document.getElementById("signUp");
+  //  signUp.addEventListener("click", )
+    
+  //유효성 검사
+  /*   function signUp(){
+    	var userid = document.getElementById("userid").value;
+    	var password = document.getElementById("password").value;
+    	console.log(userid)
+    } *///end signUp btn fn
+
+  /*   function idCk(){
+    	var userid = document.getElementById("userid").value;
+    	console.log("아이디 중복 확인>>", userid);
+    } */
+    
+    
+}//end doc
+
+
 </script>
+
+
 </head>	
 <body>
-
 <div layout:fragment="content">
-<h1>회원가입 화면</h1>
-
+<h1>회원가입 화면-----------------------------------------------------------------------------------------------</h1>
 <form>
  
-
-
+	
 	<div class="md-2 row">
-		<label for="userid" class="col-sm-1 col-form-label">아이디</label>
-		<div class="col-md-2">
+		<label for="userid" class="col-sm-2 col-form-label">아이디</label>
+		<div class="col-md-3">
 			<input type="text" class="form-control" id="userid">
+		</div>
+		<div class="forIdFormBlank"></div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary" id="idCheck">아이디 중복 확인</button>
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="password" class="col-sm-1 col-form-label">비밀번호</label>
-		<div class="col-md-2">
+		<label for="password" class="col-sm-2 col-form-label">비밀번호</label>
+		<div class="col-md-5">
 			<input type="password" class="form-control" id="password">
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="password" class="col-sm-1 col-form-label">비밀번호 확인</label>
-		<div class="col-md-2">
-			<input type="password" class="form-control">
+		<label for="password" class="col-sm-2 col-form-label">비밀번호 확인</label>
+		<div class="col-md-5">
+			<input type="password" class="form-control" id="passwordCheck">
+		</div>
+		<div class="col-md-5">
+			<span id="checkMsg"></span>
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="username" class="col-sm-1 col-form-label">이름</label>
-		<div class="col-md-2">
+		<label for="username" class="col-sm-2 col-form-label">이름</label>
+		<div class="col-md-5">
 			<input type="text" class="form-control" id="username">
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="address" class="col-sm-1 col-form-label">주소</label>
-		<div class="col-md-1">
-			<input type="text" class="form-control" id="sample4_postcode" placeholder="우편변호">
+		<label for="address" class="col-sm-2 col-form-label">주소</label>
+		<div class="col-md-2">
+			<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호">
 		</div>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<div class="col-md-3">
+		<div class="col-md-5">
 			<button type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="address" class="col-sm-1 col-form-label"></label>
-		<div class="col-md-2">
+		<label for="address" class="col-sm-2 col-form-label"></label>
+		<div class="col-md-5">
 			<input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소">
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="address" class="col-sm-1 col-form-label"></label>
-		<div class="col-md-2">
+		<label for="address" class="col-sm-2 col-form-label"></label>
+		<div class="col-md-5">
 			<input type="text" class="form-control" id="sample4_detailAddress" placeholder="상세주소">
 		</div>
 	</div>
 	
+	<div class="forGap"></div>
+	
 	<div class="md-2 row">
-		<label for="username" class="col-sm-1 col-form-label">휴대폰 번호</label>
-		<div class="col-md-1">
-		<div class="phone">
-			<input type="text" class="form-control">&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" class="form-control">&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" class="form-control">
-		</div>
+		<label for="username" class="col-sm-2 col-form-label">휴대폰 번호</label>
+		<div class="col-md-5">
+			<div class="form_phone_row">
+				<select class="form-select" aria-label="Default select example">
+				  <option selected>010</option>
+				  <option>011</option>
+				  <option>017</option>
+				</select>
+				&nbsp;&nbsp;-&nbsp;&nbsp;
+				<input type="text" class="form-control">&nbsp;&nbsp;-&nbsp;&nbsp;
+				<input type="text" class="form-control">
+			</div>
 		</div>
 	</div>
-  
-<button type="submit" class="btn btn-primary">Submit</button>
+	
+	<div class="forGap"></div>
+		
+	<div class="md-2 row">
+		<label for="email" class="col-sm-2 col-form-label">이메일</label>
+		<div class="col-md-5">
+			<div class="form_email_row">
+				<input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+				&nbsp;&nbsp;@&nbsp;&nbsp;
+				<select class="form-select" aria-label="Default select example">
+					<option selected value="naver.com">naver.com</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="daum.net">daum.net</option>
+					<option id="emailAddressNotForm">직접입력</option>
+				</select>
+			</div>		
+		</div>
+	</div>
+	
+	<div class="forGap"></div>
+	
+<button type="submit" class="btn btn-primary" id="signUp">회원가입</button>
+<button type="reset" class="btn btn-secondary">취소</button>
+
 </form>
 
 </div>

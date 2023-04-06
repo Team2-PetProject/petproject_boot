@@ -10,13 +10,19 @@
 function login(){
 	var userid = document.getElementById("userid").value;
 	var password = document.getElementById("password").value;
-	console.log(userid, password);
+	//console.log(userid, password);
 	
 	$.ajax({
-		url: 'login',
+		url: 'member/login',
 		type: 'post',
 		dataType: 'text',
-		data:JSON.stringify({MB_ID:userid, PW:password}),
+		headers:{
+			"Content-Type":"application/json"
+			},
+		data:JSON.stringify({
+			mbId:userid, 
+			pw:password
+			}),
 		success:function(data, status, xhr){
 			console.log(data);
 		},

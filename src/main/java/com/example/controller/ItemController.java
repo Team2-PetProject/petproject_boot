@@ -74,9 +74,6 @@ public class ItemController {
 	    //return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
 	    return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
 	} 
-
-
-	
 	
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")

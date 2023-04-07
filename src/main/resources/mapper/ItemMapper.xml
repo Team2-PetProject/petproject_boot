@@ -46,7 +46,7 @@
 			IT_CD = #{itCd}
 			ORDER BY IT_CD DESC) "ORD"
 			)
-			WHERE IDX BETWEEN #startIdx} AND #{endIdx};
+			WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
 	</select>
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO 

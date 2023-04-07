@@ -7,19 +7,61 @@
 <script type="text/javascript">
     $(document).ready(function(){
    
-    	 $("form").on("submit",function(event){		
+    	 $("#login").on("click",function(event){		
     		 var mbId = $("#mbId").val();
-    		 var member_passwd = $("#member_passwd").val();
+    		 var pw = $("#pw").val();
     	    		if(mbId.length==0){
     	    			alert("userid 필수")
     	    			$("#mbId").focus();
     	    			event.preventDefault();
-    	    		}else if(member_passwd.length==0){
-    	    			alert("passwd 필수")
-    	    			$("#member_passwd").focus();
+    	    		}else if(pw.length==0){
+    	    			alert("pw 필수")
+    	    			$("#pw").focus();
     	    			event.preventDefault();
     	    		}
-    	    	});
+    	    		
+    	    		  $.ajax({
+    	     	    	 url:"login",
+    	     	    	 type :'post',
+    	     	    	
+    	     	    	 dataType:"text",
+    	     	    	 /* contentType: "application/json; charset=utf-8", */
+    	     	    	 headers:{
+    	 				"Content-Type":"application/json"
+    	 			   	 },
+    	     	    
+    	     	    	 data :JSON.stringify({
+    	     	    		 mbId : $("#mbId").val(),
+    	     	    		 pw : $("#pw").val()
+    	     	    	 }) , 
+    	     	    	 success : function(data, status, xhr) {
+    	 						alert(data);
+    	 				 },
+    	 				 error : function(xhr, status, error) {
+    	 						console.log(error);
+    	 						alert(error);
+    	 				 }
+    	     	     });//ajax 
+    	  });
+    	 
+    	 
+    	 
+    	 $("#logout").on("click",function(){
+    		 $.ajax({
+    			 url: 'check/logout',
+    			 type: 'delete',
+    			 dataType:'text',
+    			 success : function(data, status, xhr) {
+						alert(data);
+				 },
+				 error : function(xhr, status, error) {
+						console.log(error);
+						alert(error);
+				 }
+    		 });//end ajax
+    	 })
+    	 
+    	 
     	 
     	 $("#pwSearch").on("click",function(){
     		 location.href = "PwSearchUIServlet";
@@ -29,13 +71,17 @@
 </head>
 <body>
 
-<form action="login" method="post">
+<!-- <form action=""> -->
+
+
 아이디<input type="text" name="mbId" id="mbId"><br>
-비밀번호<input type="text" name="member_passwd" id="member_passwd"><br> 
+비밀번호<input type="text" name="pw" id="pw"><br> 
 <input type="submit" value="로그인">
+<button id="login">로그인</button>
+<button  id="logout">로그아웃</button>
 <input type="button" value="아이디찾기" onClick="location.href='MemberIdSearchUIServlet'">
 
-</form>
+<!-- </form> -->
 <button id="pwSearch">비밀번호찾기</button>
 </body>
 </html>

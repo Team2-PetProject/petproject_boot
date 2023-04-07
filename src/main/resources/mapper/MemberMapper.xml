@@ -50,8 +50,8 @@
 	
 	<select id="login" parameterType="LoginDTO" resultType="MemberDTO">
 	  SELECT 
-	  		MB_ID
-	  		, PW
+	  		MB_ID as mbId
+	  		, PW as pw
 	  		, NM
 	  		, POST
 	  		, ADDR1

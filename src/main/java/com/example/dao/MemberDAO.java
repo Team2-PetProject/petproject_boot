@@ -16,4 +16,3 @@ public interface MemberDAO {
 
 	public Integer memberUpdate(MemberDTO memberDTO);
 }
-

@@ -8,12 +8,12 @@ import com.example.dto.MemberItemDTO;
 @Mapper
 public interface ItemDAO {
 
-//	public int favoriteAdd(MemberItemDTO i_dto);
-//
-//	public int favoriteDelete(String member_cd, int item_cd);
+	public int favoriteAdd(MemberItemDTO memberItemDTO);
+
+	public int favoriteDelete(MemberItemDTO memberItemDTO);
 
 	public void insertItem(ItemDTO itemDTO);
 
-	public ItemDTO selectItem(Integer itCd); 
+	public ItemDTO selectItem(Integer itCd);
 	
 }

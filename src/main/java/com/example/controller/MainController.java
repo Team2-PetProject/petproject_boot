@@ -33,11 +33,5 @@ public class MainController {
 		return "imageForm";
 	}
 	
-	@GetMapping("/check")
-	@ResponseBody
-	public String check() {
-		return "check";
-	}
-	
 	
 }//end class

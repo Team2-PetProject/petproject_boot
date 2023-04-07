@@ -9,6 +9,7 @@ public class CartDTO {
 	private String mbId;
 	private Integer amount;
 	private String optAdd;
+	private String optCd;
 	public Integer getCartCd() {
 		return cartCd;
 	}
@@ -38,6 +39,13 @@ public class CartDTO {
 	}
 	public void setOptAdd(String optAdd) {
 		this.optAdd = optAdd;
+	}
+	
+	public String getOptCd() {
+		return optCd;
+	}
+	public void setOptCd(String optCd) {
+		this.optCd = optCd;
 	}
 	@Override
 	public String toString() {

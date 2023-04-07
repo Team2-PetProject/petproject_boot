@@ -7,9 +7,6 @@ public class LoginDTO {
 	
 	private String mbId;
 	private String pw;
-	
-	
-	
 	public String getMbId() {
 		return mbId;
 	}

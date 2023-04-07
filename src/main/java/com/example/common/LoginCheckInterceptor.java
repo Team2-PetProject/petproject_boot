@@ -21,7 +21,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 			//로그인 화면으로
 			//response.sendRedirect("loginForm");
 			return false;
-		}else { //로그인 시 
+		}else { //로그인 시
 			return true;
 		}
 		

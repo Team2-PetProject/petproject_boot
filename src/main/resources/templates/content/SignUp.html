@@ -97,20 +97,27 @@ window.onload=function(){
     
     
     //회원가입 버튼처리
-   // const signUp = document.getElementById("signUp");
-  //  signUp.addEventListener("click", )
+    const signUp = document.getElementById("signUp");
+    signUp.addEventListener("click", )
     
   //유효성 검사
-  /*   function signUp(){
+     function signUp(){
     	var userid = document.getElementById("userid").value;
     	var password = document.getElementById("password").value;
+    	var passwordCheck = document.getElementById("passwordCheck").value;
+    	var username = document.getElementById("username").value;
+    	var postNum = document.getElementById("sample4_postcode").value;
+    	var address1 = document.getElementById("sample4_roadAddress").value;
+    	var address2 = document.getElementById("sample4_detailAddress").value;
+    	var selectBox = document.getElementsByClass("form-select").value;
+    	var address2 = document.getElementById("sample4_detailAddress").value;
     	console.log(userid)
-    } *///end signUp btn fn
+    }//end signUp btn fn
 
-  /*   function idCk(){
+     function idCk(){
     	var userid = document.getElementById("userid").value;
     	console.log("아이디 중복 확인>>", userid);
-    } */
+    }
     
     
 }//end doc
@@ -204,7 +211,7 @@ window.onload=function(){
 		<div class="col-md-5">
 			<div class="form_phone_row">
 				<select class="form-select" aria-label="Default select example">
-				  <option selected>010</option>
+				  <option selected name="tel1">010</option>
 				  <option>011</option>
 				  <option>017</option>
 				</select>

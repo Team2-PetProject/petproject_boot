@@ -1,33 +1,24 @@
 package com.example.controller;
 
-import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map;
-
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.ServerRequest.Headers;
 
+import com.example.common.SessionAttributeManager;
 import com.example.dto.LoginDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.MemberService;
@@ -65,11 +56,7 @@ public class MemberController {
 	}
 	
 	
-//	@RequestMapping("/idCheck")
-//	@ResponseBody
-//	public String idCheck() {
-//		return "";
-//	}//id가 없을 시 404 에러가 나서.....................ㅠㅠ
+
 	
 
 	@PostMapping("/idCheck/{mbId}")
@@ -100,27 +87,21 @@ public class MemberController {
 		return "loginForm";
 	}
 	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	
+	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ResponseEntity<Object> login(@RequestParam String mbId,@RequestParam String pw, HttpSession session) {
-		System.out.println("/login 주소 : "+mbId+"\t"+pw);
-		
-	
-		LoginDTO loginDTO = new LoginDTO();
-		loginDTO.setMbId(mbId);
-		loginDTO.setPw(pw);
+	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session) {
+
+//		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
-		System.out.println("db에서 가져온  memberDTO "+memberDTO);
-		
-		
-//		return "hello"; 
+//		logger.info("db에서 가져온  memberDTO "+memberDTO);
 
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
+			MemberDTO dto = (MemberDTO) session.getAttribute("memberInfo");
 			return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
 //			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
-					
 					
 		}else {
 			return new ResponseEntity<>("존재하지 않는 회원",HttpStatus.NOT_FOUND);
@@ -128,6 +109,19 @@ public class MemberController {
 		}
 		
 	}
+	
+	
+	@DeleteMapping("check/logout")
+	@ApiOperation(value = "로그아웃")
+	public ResponseEntity<Object> logout(HttpSession session){
+		
+		SessionAttributeManager.getSession().invalidate();
+		
+		return new ResponseEntity<>("로그아웃 성공", HttpStatus.OK);
+	}
+	
+	
+	
 	
 	
 	

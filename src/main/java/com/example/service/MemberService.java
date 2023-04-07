@@ -36,7 +36,7 @@ public class MemberService {
 	}
 	
 	public MemberDTO login(LoginDTO loginDTO) {
-		System.out.println("비밀번호 "+ loginDTO.getPw());
+//		System.out.println("비밀번호 "+ loginDTO.getPw());
 		String pw = loginDTO.getPw();
 		MessageDigest messageDigest;
 		try {

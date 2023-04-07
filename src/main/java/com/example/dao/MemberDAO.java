@@ -14,4 +14,3 @@ public interface MemberDAO {
 
 	public MemberDTO login(LoginDTO loginDTO);
 }
-

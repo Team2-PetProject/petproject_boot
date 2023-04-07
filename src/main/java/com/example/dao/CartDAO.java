@@ -12,14 +12,13 @@ public interface CartDAO {
 
 	int cartAdd(CartDTO cart);
 
-	int cartDelete(int cartCd);
+	int cartDelete(int cart_cd);
 
 	int checkDelete(List<Integer> list);
 
 	int specUpdate(HashMap<String, Integer> map);
 
 	int amountUpdate(HashMap<String, Integer> map);
-
 	
- 
+
 }

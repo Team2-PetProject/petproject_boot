@@ -10,14 +10,12 @@
 			, IT_NM
 			, PRICE
 			, CAT
-			, OPT_ADD
 		) VALUES (
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-			, #{optAdd}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
 			SELECT 
@@ -32,9 +30,42 @@
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, OPT_ADD as optAdd
+			, TY_CD as tyCd
 		FROM TB_ITEM
 		WHERE 
 			IT_CD = #{itCd}
 	</select>
+	<insert id="favoriteAdd" parameterType="MemberItemDTO">
+			 INSERT INTO 
+			 MP_MEMBER_ITEM
+			 (
+			 	MB_ID
+			 	,IT_CD
+			 )
+			 VALUES
+			 (
+			 #{mbId}
+			 ,#{itCd}
+			 )
+	</insert>
+	
+	<delete id="favoriteDelete" parameterType="MemberItemDTO">
+			DELETE
+			FROM
+			MP_MEMBER_ITEM
+			WHERE 
+			MB_ID=#{mbId}
+			AND
+			IT_CD=#{itCd}
+	</delete>
+	
+	<insert id="insertTyCd" parameterType="RegisterDTO">
+		UPDATE 
+			TB_ITEM 
+		SET 
+			TY_CD = #{tyCd}
+		WHERE 
+			IT_CD = #{itCd}
+	</insert>
+	
 </mapper>

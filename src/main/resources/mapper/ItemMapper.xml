@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.ItemDAO">
+	<select id="totalC" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_ITEM
+	</select>
 	<insert id="insertItem" parameterType="ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
@@ -46,7 +52,7 @@
 			IT_CD = #{itCd}
 			ORDER BY IT_CD DESC) "ORD"
 			)
-			WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+			WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 	</select>
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO 

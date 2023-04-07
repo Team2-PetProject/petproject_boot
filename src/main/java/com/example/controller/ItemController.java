@@ -68,19 +68,21 @@ public class ItemController {
 	    return new ResponseEntity<ItemRetrieveDTO>(itemRetrieveDTO, header, HttpStatus.OK);
 	}
 	
-	@PostMapping("/itemPage/{curpage}")
+	@PostMapping("/itemPage/{curPage}")
 	@ApiOperation(value = "에윽")
 	private ItemPageDTO searchPaging(@PathVariable("curPage")Integer curPage) {
-		  
-		   String mbId = SessionAttributeManager.getMemberId();
-		   Integer totalCount = itemService.totalCount(mbId);
-		   Integer perPage = itemPage.getPerPage();
-		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
-		   if (curPage==0) {curPage=1;}
-		   Integer startIdx = (curPage-1) * perPage+1;
-		   Integer endIdx = perPage*startIdx;
+		  System.out.println(curPage);
+		   Integer totalCount = itemService.totalCount();
+//		   Integer perPage = itemPage.getPerPage();
+//		   System.out.println(perPage);
+//		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		   PagingDTO pagingDto = new PagingDTO();
+		   pagingDto.setCurPage(curPage);
+		   pagingDto.setPerPage(8);
+		   Integer startIdx = pagingDto.getStartIdx();
+		   Integer endIdx = pagingDto.getEndIdx();
 		   ItemPageDTO itemPage= new ItemPageDTO();
-		   itemPage.setPerPage(Integer.toString(perPage));
+		   itemPage.setPerPage(Integer.toString(8));
 		   itemPage.setStartIdx(Integer.toString(startIdx));
 		   itemPage.setEndIdx(Integer.toString(startIdx));
 		   

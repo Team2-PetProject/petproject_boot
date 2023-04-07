@@ -18,5 +18,7 @@ public interface ItemDAO {
 	public ItemDTO selectItem(Integer itCd);
 
 	public void insertTyCd(RegisterDTO registerDto);
+
+	public int totalCount(String memberCd);
 	
 }

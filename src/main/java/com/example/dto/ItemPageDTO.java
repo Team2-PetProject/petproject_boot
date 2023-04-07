@@ -3,14 +3,16 @@ package com.example.dto;
 import org.apache.ibatis.type.Alias;
 
 @Alias("ItemDTO")
-public class ItemDTO {
+public class ItemPageDTO {
 	private Integer itCd;
 	private Integer imgCd;
 	private String itNm;
 	private Integer price;
 	private String cat;
 	private Integer tyCd;
-	
+	private String  perPage;
+	private String startIdx;
+	private String endIdx;
 	public Integer getItCd() {
 		return itCd;
 	}
@@ -47,6 +49,25 @@ public class ItemDTO {
 	public void setTyCd(Integer tyCd) {
 		this.tyCd = tyCd;
 	}
+	
+	public String getPerPage() {
+		return perPage;
+	}
+	public void setPerPage(String perPage) {
+		this.perPage = perPage;
+	}
+	public String getStartIdx() {
+		return startIdx;
+	}
+	public void setStartIdx(String startIdx) {
+		this.startIdx = startIdx;
+	}
+	public String getEndIdx() {
+		return endIdx;
+	}
+	public void setEndIdx(String endIdx) {
+		this.endIdx = endIdx;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -62,9 +83,17 @@ public class ItemDTO {
 		builder.append(cat);
 		builder.append(", tyCd=");
 		builder.append(tyCd);
+		builder.append(", perPage=");
+		builder.append(perPage);
+		builder.append(", startIdx=");
+		builder.append(startIdx);
+		builder.append(", endIdx=");
+		builder.append(endIdx);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
 	
 	
 }//end class

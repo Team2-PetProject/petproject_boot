@@ -52,4 +52,9 @@ public class ItemService {
 		return itemDao.favoriteDelete(memberItemDTO);
 	}
 	
+	//페이징 처리를 위한 토탈카운트
+	@Transactional
+	public int totalCount(String memberCd) {
+		return itemDao.totalCount(memberCd);
+	}
 }//end class

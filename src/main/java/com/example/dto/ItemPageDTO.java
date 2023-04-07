@@ -2,7 +2,7 @@ package com.example.dto;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("ItemDTO")
+@Alias("ItemPageDTO")
 public class ItemPageDTO {
 	private Integer itCd;
 	private Integer imgCd;

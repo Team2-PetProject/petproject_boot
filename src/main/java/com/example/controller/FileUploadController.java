@@ -79,7 +79,6 @@ public class FileUploadController {
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
-		System.out.println(dto);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));

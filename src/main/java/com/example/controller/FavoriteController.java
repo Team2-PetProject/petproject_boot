@@ -25,7 +25,7 @@ public class FavoriteController {
 	
 	
 	//상세페이지에서 찜 버튼을 눌러도 그대로 그 상품페이지다.
-	@PostMapping("/check/favorite/{item_cd}")
+	@PostMapping("/check/favorite/{itemCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
 	public void favoriteAdd

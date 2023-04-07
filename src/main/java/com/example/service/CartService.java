@@ -27,7 +27,7 @@ public class CartService {
 		return dao.checkDelete(list);
 	}
 
-	public int specUpdate(HashMap<String, Integer> map) {
+	public int specUpdate(HashMap<String, Integer> map) { 
 
 		return dao.specUpdate(map);
 	}

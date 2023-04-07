@@ -25,15 +25,28 @@
 	</insert>
 	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
 		SELECT 
-			IT_CD as itCd
-			, IMG_CD as imgCd
-			, IT_NM as itNm
-			, PRICE as price
-			, CAT as cat
-			, TY_CD as tyCd
-		FROM TB_ITEM
-		WHERE 
+		*
+		FROM
+		(
+			SELECT
+			ROWNUM "IDX"
+			,ORD
+			. *
+			FROM
+			(
+				SELECT
+				IT_CD as itCd
+				, IMG_CD as imgCd
+				, IT_NM as itNm
+				, PRICE as price
+				, CAT as cat
+				, TY_CD as tyCd
+					FROM TB_ITEM
+			WHERE 
 			IT_CD = #{itCd}
+			ORDER BY IT_CD DESC) "ORD"
+			)
+			WHERE IDX BETWEEN #startIdx} AND #{endIdx};
 	</select>
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO 

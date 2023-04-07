@@ -5,6 +5,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: PetProject
     password: pet
+
 #image, css, js
   mvc:
     static-path-pattern: /resources/**
@@ -34,4 +35,3 @@ logging:
 #타임리프
 prefix: /templates/
 suffix: .html
-

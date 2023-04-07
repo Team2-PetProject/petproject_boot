@@ -22,7 +22,7 @@
                     <IfFileName glob="*.log"/>
                     <IfLastModified age="30d"/>
                 </Delete>
-            </DefaultRolloverStrategy>
+            </DefaultRolloverStrategy> 
         </RollingFile>
     </Appenders>
  

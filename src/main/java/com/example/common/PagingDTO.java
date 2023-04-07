@@ -46,4 +46,9 @@ public class PagingDTO {
 		return (curPage-1)*perPage+1;
 	}
 	
+	public Integer getEndIdx() {
+		Integer startIdx = getStartIdx();
+		return this.perPage*startIdx;
+	}
+	
 }

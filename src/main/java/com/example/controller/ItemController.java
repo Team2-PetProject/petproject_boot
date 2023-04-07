@@ -35,11 +35,10 @@ public class ItemController {
 	MemberService memberService;
 	//10시10.
 	
-	//내 부분 아니고 성혁이 부분 그리고 restful 미적용
 	//4
-	@GetMapping("/itemList") //단순 조회는 get
+	@GetMapping("/itemList/{cat}") //단순 조회는 get
 	public String itemList
-	(@RequestParam(value = "item_cat", defaultValue = "food") 
+	(@RequestParam(value = "cat", defaultValue = "food") 
 	//path에서 안되는데 굳이 써야할까...
 	String item_cat, Model model) {
 //		itemService = new ItemService();

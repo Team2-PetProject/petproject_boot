@@ -50,9 +50,8 @@ public class MemberController {
 	@ResponseBody
 	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO){
 		System.out.println("/member/memberAdd : " + memberDTO);
-		int n = service.memberAdd(memberDTO);
-		System.out.println("insert 갯수 : "+n);
-		logger.debug("insert 갯수 : "+n);
+		Integer n = service.memberAdd(memberDTO);
+		logger.info("insert 갯수 : "+n);
 		
 		return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
 	}
@@ -64,14 +63,14 @@ public class MemberController {
 	@PostMapping("/idCheck/{mbId}")
 	@ApiOperation(value = "아이디 중복체크")
 	public ResponseEntity<String> idCheck(@PathVariable("mbId") String mbId) {
-		System.out.println("/idCheck 주소 : " + mbId);
+		logger.info("/idCheck 주소 : " + mbId);
 		
-		MemberDTO memberDTO = service.mypage(mbId);
-		System.out.println("/idCheck " + memberDTO);
+		Integer count = service.idCheck(mbId);
+		logger.info("/idCheck id count " + count);
 		String mesg = "아이디 사용가능";
 //		HttpHeaders header = new HttpHeaders();
 //		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
-		if(memberDTO!=null) {
+		if(count == 1) {
 			mesg ="아이디 중복";
 			return new ResponseEntity<String>(mesg, HttpStatus.OK);  
 			

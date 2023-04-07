@@ -8,11 +8,15 @@ import com.example.dto.MemberDTO;
 @Mapper
 public interface MemberDAO {
 
-	public int memberAdd(MemberDTO memberDTO);
+	public Integer memberAdd(MemberDTO memberDTO);
+	
+	public Integer idCheck(String mbId);
 
 	public MemberDTO mypage(String mbId);
 
 	public MemberDTO login(LoginDTO loginDTO);
 
 	public Integer memberUpdate(MemberDTO memberDTO);
+
+	
 }

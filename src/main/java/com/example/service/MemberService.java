@@ -19,22 +19,33 @@ public class MemberService {
 	@Autowired
 	MemberDAO memberDao;
 	
-	public int memberAdd(MemberDTO memberDTO) {
-		String password = memberDTO.getPw();
+	public static String encryptSHA512(String password){
 		MessageDigest messageDigest;
 		try {
 			messageDigest = MessageDigest.getInstance("sha-512");
 			messageDigest.reset();
 			messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
 			password = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
-			memberDTO.setPw(password);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return password;
+	}
+	
+	public Integer memberAdd(MemberDTO memberDTO) {
+		String password = memberDTO.getPw();
+		password = encryptSHA512(password);
+		memberDTO.setPw(password);
 		
-		int n = memberDao.memberAdd(memberDTO);
+		Integer n = memberDao.memberAdd(memberDTO);
 		return n;
+	}
+	
+	
+	public Integer idCheck(String mbId) {
+		Integer count = memberDao.idCheck(mbId);
+		return count;
 	}
 	
 	public MemberDTO mypage(String mbId) {
@@ -45,18 +56,8 @@ public class MemberService {
 	public MemberDTO login(LoginDTO loginDTO) {
 //		System.out.println("비밀번호 "+ loginDTO.getPw());
 		String pw = loginDTO.getPw();
-		
-		MessageDigest messageDigest;
-		try {
-			messageDigest = MessageDigest.getInstance("sha-512");
-			messageDigest.reset();
-			messageDigest.update(pw.getBytes(StandardCharsets.UTF_8));
-			pw = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
-			loginDTO.setPw(pw);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		pw = encryptSHA512(pw);
+		loginDTO.setPw(pw);
 		
 		MemberDTO memberDTO = memberDao.login(loginDTO);
 		return memberDTO;
@@ -66,20 +67,13 @@ public class MemberService {
 		String prePw =  SessionAttributeManager.getMemberInfo().getPw();
 		String newPw = memberDTO.getPw();
 		if(newPw != prePw) {
-			MessageDigest messageDigest;
-			try {
-				messageDigest = MessageDigest.getInstance("sha-512");
-				messageDigest.reset();
-				messageDigest.update(newPw.getBytes(StandardCharsets.UTF_8));
-				newPw = String.format("%0128x", new BigInteger(1,messageDigest.digest()));
-				memberDTO.setPw(newPw);
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			newPw = encryptSHA512(newPw);
+			memberDTO.setPw(newPw);
 		}
 		Integer n = memberDao.memberUpdate(memberDTO);
 		return n;
 	}
+
+	
 	
 }//end class

@@ -38,37 +38,38 @@ public class FileUploadController {
 	 
 	@PostMapping("/upload")
 	@ApiOperation(value = "이미지 업로드")
-	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
+	public ResponseEntity<String> handleFileUpload(@RequestParam("di") String di, @RequestParam("file") MultipartFile file, 
 			@RequestParam("name") String name,@RequestParam("price") int price, 
 			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
-		FileUploadDTO fileUploadDTO = new FileUploadDTO();
-		fileUploadDTO.setDi(file.getContentType());
-		fileUploadDTO.setImgNm(file.getOriginalFilename());
-		fileUploadDTO.setFl(file.getBytes());
-		fileUploadDTO.setSz(String.valueOf(file.getSize()));
-		
-		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setItNm(name);
-		itemDTO.setCat(category);
-		itemDTO.setPrice(price);
-		
-		if(add!=null) {
-			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
-			optionTypeDTO.setTyNm(optionName);
-			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
-			for(int i=0;i<option.size();i++) {
-				OptionDTO optionDTO = new OptionDTO();
-				optionDTO.setOptNm(option.get(i));
-				optionList.add(optionDTO); 
-			}
-			
-			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
-		}else {
-			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
-		}
-		
+		System.out.println(di);
+//		FileUploadDTO fileUploadDTO = new FileUploadDTO();
+//		fileUploadDTO.setDi(di);
+//		fileUploadDTO.setImgNm(file.getOriginalFilename());
+//		fileUploadDTO.setFl(file.getBytes());
+//		fileUploadDTO.setSz(String.valueOf(file.getSize()));
+//		
+//		ItemDTO itemDTO = new ItemDTO();
+//		itemDTO.setItNm(name);
+//		itemDTO.setCat(category);
+//		itemDTO.setPrice(price);
+//		
+//		if(add!=null) {
+//			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
+//			optionTypeDTO.setTyNm(optionName);
+//			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
+//			for(int i=0;i<option.size();i++) {
+//				OptionDTO optionDTO = new OptionDTO();
+//				optionDTO.setOptNm(option.get(i));
+//				optionList.add(optionDTO); 
+//			}
+//			
+//			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
+//		}else {
+//			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
+//		}
+//		
 		HttpHeaders header = new HttpHeaders();
 		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));		
 		 

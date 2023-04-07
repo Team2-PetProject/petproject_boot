@@ -15,7 +15,7 @@ public class SessionAttributeManager {
 		HttpSession session = getSession();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute(ComConstant.MEMBER_ID);
 		return memberDTO;
-	}
+	} 
 
 	public static String getMemberId() {
 		MemberDTO memberDTO = getMemberInfo();

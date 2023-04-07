@@ -9,6 +9,7 @@ public class CartDTO {
 	private String mbId;
 	private Integer amount;
 	private String optAdd;
+	private String optCd;
 	public Integer getCartCd() {
 		return cartCd;
 	}

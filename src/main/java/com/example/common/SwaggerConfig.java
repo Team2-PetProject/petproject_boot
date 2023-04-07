@@ -49,11 +49,11 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
         		.consumes(getConsumeContentTypes())
         		.produces(getProduceContentTypes())
-                .groupName("file")
+                .groupName("image")
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/app/api/file/**"))
+                .paths(PathSelectors.ant("/app/api/image/**"))
                 .build()
                 .apiInfo(commonInfo());
     }
@@ -68,33 +68,6 @@ public class SwaggerConfig {
                 //.apis(RequestHandlerSelectors.any())
                 .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 .paths(PathSelectors.ant("/app/"))
-                .build()
-                .apiInfo(commonInfo());
-    }
-    @Bean
-    public Docket itemApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-        		.consumes(getConsumeContentTypes())
-        		.produces(getProduceContentTypes())
-                .groupName("item")
-                .useDefaultResponseMessages(false)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/app/item/**"))
-                .build()
-                .apiInfo(commonInfo());
-    }
-	@Bean
-    public Docket memberApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-        		.consumes(getConsumeContentTypes())
-        		.produces(getProduceContentTypes())
-                .groupName("member")
-                .useDefaultResponseMessages(false)
-                .select()
-                //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
-                .paths(PathSelectors.ant("/app/member/**"))
                 .build()
                 .apiInfo(commonInfo());
     }

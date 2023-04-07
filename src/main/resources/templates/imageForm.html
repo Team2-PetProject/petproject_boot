@@ -6,41 +6,8 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var optName = false;
 		$("#myfile").change(function(){
 			readURL(this);
-		});
-		$("#AddOpt").click(function(){
-			var add = "<tr><th>옵션값</th><td><input type='text' name='option'/></td></tr>";
-			$("#tableForm").append(add);
-			return false;
-		});
-		$("#add").click(function(){
-			if(this.checked == true && optName == false){
-				
-				var value = "<tr><th>옵션값</th><td><input type='text' name='option' value=''/></td></tr>";
-				$("#tableForm").append(value);
-				optName = true;
-			}
-		});
-		$("form").submit(function(){
-			var name = $("#name").val();
-			var price = $("#price").val();
-			var category = $("#category").val();
-			if(name.length==0){
-				alert('상품이름을 작성하세요.');
-				$("#name").focus();
-				return false;
-			} else if(price.length ==0){
-				alert("가격을 입력하세요.");
-				$("#price").focus();
-				return false;
-			} else if(category.length==0){
-				alert("카테고리를 입력하세요");
-				$("#category").focus();
-				return false;
-			}
-			
 		});
 		
 	});
@@ -56,35 +23,13 @@
 </script>
 </head>
 <body>
-<h1>상품등록</h1><hr>
-<form method="post" action="api/file/upload" enctype="multipart/form-data">
-  <input type="file" accept="image/*,.txt" multiple required capture='user' name="file" id="myfile"/><br>
+<form method="post" action="api/image/upload" enctype="multipart/form-data">
+  <input type="file" accept="image/*,.txt" multiple required capture='user' onchange='aaa' name="file" id="myfile"/><br>
   <img id="view" src="#" alt = "이미지 미리보기" width = "100" height = "100"/><br>
-
-  <table border='1' id="tableForm">
-  	<tr>
-  		<th>상품이름</th>
-  		<td><input type="text" name="name" value = "aaa" id="name"/></td>
-  	</tr>
-  	<tr>
-  		<th>가격</th>
-  		<td><input type="text" name="price" value="10000" id="price"/></td>
-  	</tr>
-  	<tr>
-  		<th>카테고리</th>
-  		<td><input type="text" name="category" value = "사료" id="category"/></td>
-  	</tr>
-  	<tr>
-  		<th>옵션</th>
-  		<td>
-  			<input type="checkbox" name="add" value="add" id="add"/> 옵션여부
-  			<input type="button" id="AddOpt" value = "옵션명 추가"/></td>
-  	</tr>
-  		<tr><th>옵션명</th><td><input type='text' name='optionName' value = ''/></td></tr>
-  	
-  	
-  </table>
-  <input type="submit" value="등록">
+  상품 이름 : <input type="text" name="name"/><br>
+  가격 : <input type="text" name="price"/><br>
+  카테고리 : <input type="text" name="category"/><br>
+  <input type="submit">
 </form>
 </body>
 </html>

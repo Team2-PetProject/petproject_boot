@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.MemberItemDAO;
 
-@Service
-public class MemberItemService {
+@Service("item_FavoriteService")
+public class item_FavoriteService {
 	@Autowired
 	MemberItemDAO memberItemDao;
 

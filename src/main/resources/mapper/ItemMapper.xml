@@ -85,6 +85,36 @@
 			TY_CD = #{tyCd}
 		WHERE 
 			IT_CD = #{itCd}
+<<<<<<< HEAD
 	</insert>
 	
+=======
+	</select>
+	<select id="itemList" parameterType="String" resultType="ItemDTO">
+	SELECT
+	*
+	FROM
+	(
+		SELECT
+		ROWNUM "IDX"
+		,ORD
+		. *
+		FROM
+		(
+			IT_CD as itCd
+			, IMG_CD as imgCd
+			, IT_NM as itNm
+			, PRICE as price
+			, CAT as cat
+			, OPT_ADD as optAdd
+		FROM
+			FROM TB_ITEM
+		WHERE
+			CAT = #{cat}
+		ORDER BY IT_CD DESC
+		) "ORD"
+		)
+		WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+	</select>
+>>>>>>> refs/remotes/origin/aawaa
 </mapper>

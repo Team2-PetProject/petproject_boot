@@ -59,6 +59,5 @@ public class ItemListDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 }
+	

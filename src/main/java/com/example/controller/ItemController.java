@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.common.PagingDTO;
 import com.example.common.SessionAttributeManager;
 import com.example.dto.ItemListDTO;
 import com.example.dto.ItemPageDTO;
+
+import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
+
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.OptionDTO;
 import com.example.dto.OrderSearchDTO;
@@ -40,8 +45,9 @@ public class ItemController {
 	@Autowired
 	MemberService memberService;
 	//10시10.
+
 	ItemListDTO itemPage;
-	//4
+
 	@GetMapping("/itemList/{cat}") //단순 조회는 get
 	public String itemList
 	(@RequestParam(value = "cat", defaultValue = "food") 
@@ -54,6 +60,21 @@ public class ItemController {
 //	    return "main";
 		return null;
 	} 
+
+	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
+	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat") 
+	//public ResponseEntity<ItemDTO> itemList(@PathVariable("cat") 
+//	(@RequestParam(value = "cat", defaultValue = "food") 
+	String cat) {
+	   ItemListDTO itemListDTO = itemService.itemList(cat);
+	   //ItemDTO itemDTO = itemService.itemList(cat);
+	   HttpHeaders header = new HttpHeaders();
+	   header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+	   
+	    //return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
+	    return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
+	} 
+
 
 	
 	

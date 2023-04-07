@@ -49,11 +49,11 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
         		.consumes(getConsumeContentTypes())
         		.produces(getProduceContentTypes())
-                .groupName("image")
+                .groupName("file")
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/app/api/image/**"))
+                .paths(PathSelectors.ant("/app/api/file/**"))
                 .build()
                 .apiInfo(commonInfo());
     }
@@ -68,6 +68,47 @@ public class SwaggerConfig {
                 //.apis(RequestHandlerSelectors.any())
                 .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 .paths(PathSelectors.ant("/app/"))
+                .build()
+                .apiInfo(commonInfo());
+    }
+    @Bean
+    public Docket itemApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("item")
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/app/item/**"))
+                .build()
+                .apiInfo(commonInfo());
+    }
+	@Bean
+    public Docket memberApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("member")
+                .useDefaultResponseMessages(false)
+                .select()
+                //.apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .paths(PathSelectors.ant("/app/member/**"))
+                .build()
+                .apiInfo(commonInfo());
+    }
+	@Bean
+    public Docket checkApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("check")
+                .useDefaultResponseMessages(false)
+                .select()
+                //.apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .paths(PathSelectors.ant("/app/check/**"))
                 .build()
                 .apiInfo(commonInfo());
     }

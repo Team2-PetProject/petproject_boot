@@ -1,14 +1,11 @@
 package com.example.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.common.SessionAttributeManager;
 import com.example.dto.CartDTO;
 import com.example.dto.MemberDTO;
-import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderHistoryPageDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
 import com.example.service.CartService;
 import com.example.service.MemberService;
 import com.example.service.OrderService;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -40,8 +35,7 @@ public class OrderController {
 	MemberService memberService;
 	@Autowired
 	CartService cartService;
-	@Autowired
-	SessionAttributeManager memberInfo;
+	
 	OrderHistoryPageDTO orderSearchPage;
 	//현재 주문내역 조회는 날짜조회,아이템 조회만 있습니다.
 	//날짜 조회+아이템 조회는 고려중입니다.
@@ -60,7 +54,7 @@ public class OrderController {
 	@PostMapping("/check/orderConfirm/")
 	public ModelAndView orderConfirm
 	(@RequestBody List<CartDTO> carts) {
-		String mbId=memberInfo.getMemberId();
+		String mbId=SessionAttributeManager.getMemberId();
 		Integer confirm = 0;
 		for (CartDTO cart : carts) {
 			cart.setMbId(mbId);
@@ -100,7 +94,7 @@ public class OrderController {
 	
 	private OrderSearchDTO searchPaging(@PathVariable("curPage")Integer curPage) {
 	  
-	   String mbId = memberInfo.getMemberId();
+	   String mbId = SessionAttributeManager.getMemberId();
 	   Integer totalCount = orderService.totalCount(mbId);
 	   Integer perPage = orderSearchPage.getPerPage();
 //	   페이지당.10개야.

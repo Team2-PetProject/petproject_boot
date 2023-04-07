@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,24 +11,23 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.common.SessionAttributeManager;
 import com.example.dto.CartDTO;
-import com.example.dto.MemberDTO;
 import com.example.service.CartService;
 import com.example.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
-@Controller
+@RestController
 public class CartController {
 	@Autowired
 	MemberService memberService;
 	@Autowired
 	CartService cartService;
-	@Autowired
-	SessionAttributeManager memberInfo;
 	
 	
 	
@@ -47,10 +44,9 @@ public class CartController {
 	
 	
 	@PostMapping("/check/cartAdd")
-	@ResponseBody
 	@ApiOperation(value = "cartAdd")
 	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
-		 String mbId=memberInfo.getMemberId();
+		 String mbId=SessionAttributeManager.getMemberId();
 		 cart.setMbId(mbId);
 		 Integer AddItem = cartService.cartAdd(cart);
 		 
@@ -64,7 +60,6 @@ public class CartController {
 	//9에서 일어나는 이벤트
 	//한개 삭제
 	@DeleteMapping("/check/cartDelete/{cart_cd}")
-	@ResponseBody
 	@ApiOperation(value = "cartDelete")
 	public void cartDelete
 	(@PathVariable int cartCD) {
@@ -77,7 +72,6 @@ public class CartController {
 	//9에서 일어나는 이벤트
 	//전체 삭제
 	@DeleteMapping("/check/checkDelete")
-	@ResponseBody
 	@ApiOperation(value = "checkDelete")
 	public void checkDelete
 	(@RequestParam("cartCD") List<Integer>list) {
@@ -90,7 +84,6 @@ public class CartController {
 	//9에서 일어나는 이벤트
 	//상품 옵션 변경
 	@PutMapping("/check/specUpdate/{cartCd}/{itemCd}")
-	@ResponseBody
 	@ApiOperation(value = "specUpdate")
 	public int specUpdate
 	(@PathVariable("cartCd") int cartCd, @PathVariable("itemCd") int itemCd)
@@ -106,7 +99,6 @@ public class CartController {
 	//9에서 일어나는 이벤트
 	//수량 변경
 	@PutMapping("/check/specUpdate/{cartCd}/{itemAmount}")
-	@ResponseBody
 	@ApiOperation(value = "amountUpdate")
 	public int amountUpdate
 	(@PathVariable("cartCd") int cartCd, @PathVariable("itemAmount") int itemAmount)

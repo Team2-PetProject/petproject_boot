@@ -1,6 +1,5 @@
 package com.example.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.OrderHistoryDAO;
 import com.example.dto.CartDTO;
-import com.example.dto.OrderHistoryDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
 

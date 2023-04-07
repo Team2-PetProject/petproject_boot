@@ -32,7 +32,7 @@
 	</delete>
 	
 	<delete id="checkDelete" parameterType="List">
-			DELETR FROM TB_CART
+			DELETE FROM TB_CART
 			WHERE
 			CART_CD IN
 		<foreach collection = "list" item = "item" index = "index" 

@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,9 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.dto.MemberItemDTO;
 import com.example.common.SessionAttributeManager;
-import com.example.dto.MemberDTO;
+import com.example.dto.MemberItemDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
 
@@ -22,8 +19,6 @@ public class FavoriteController {
 	MemberService memberService;
 	@Autowired
 	ItemService itemService;
-	@Autowired
-	SessionAttributeManager memberInfo;
 	//다시 상품 상세보기로 돌려야함
 	//찜목록 추가 restful로 변경필요 //
 	//03.31 오늘은 건들지 말자.
@@ -35,7 +30,7 @@ public class FavoriteController {
 	@ApiOperation(value = "favoriteAdd")
 	public void favoriteAdd
 	(@PathVariable("itemCd") int itemCd) {
-		String mbId=memberInfo.getMemberId();
+		String mbId=SessionAttributeManager.getMemberId();
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setMbID(mbId);
 		memberItemDTO.setItCd(itemCd);
@@ -48,7 +43,7 @@ public class FavoriteController {
 	@ApiOperation(value = "favoriteDelete")
 	public void favoriteDelete
 	(@PathVariable("itemCd") int itCd) {
-		String mbId=memberInfo.getMemberId();
+		String mbId=SessionAttributeManager.getMemberId();
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setItCd(itCd);
 		memberItemDTO.setMbID(mbId);

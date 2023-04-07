@@ -40,6 +40,13 @@ public class CartDTO {
 	public void setOptAdd(String optAdd) {
 		this.optAdd = optAdd;
 	}
+	
+	public String getOptCd() {
+		return optCd;
+	}
+	public void setOptCd(String optCd) {
+		this.optCd = optCd;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

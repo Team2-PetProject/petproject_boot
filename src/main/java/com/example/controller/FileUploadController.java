@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
 public class FileUploadController {
 	
 	@Autowired
-	ItemService itemService;
+	ItemService itemService; 
 	@Autowired 
 	FileUploadService fileUploadService; 
 	 

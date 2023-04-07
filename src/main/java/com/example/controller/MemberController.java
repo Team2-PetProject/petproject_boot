@@ -11,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +48,7 @@ public class MemberController {
 	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
 	@ResponseBody
-	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO) throws NoSuchAlgorithmException {
+	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO){
 		System.out.println("/member/memberAdd : " + memberDTO);
 		int n = service.memberAdd(memberDTO);
 		System.out.println("insert 갯수 : "+n);
@@ -91,15 +93,14 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session) {
+	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session){
 
 //		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
-//		logger.info("db에서 가져온  memberDTO "+memberDTO);
+		logger.info("db에서 가져온  memberDTO "+memberDTO);
 
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
-			MemberDTO dto = (MemberDTO) session.getAttribute("memberInfo");
 			return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
 //			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
 					
@@ -116,8 +117,31 @@ public class MemberController {
 	public ResponseEntity<Object> logout(HttpSession session){
 		
 		SessionAttributeManager.getSession().invalidate();
-		
 		return new ResponseEntity<>("로그아웃 성공", HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("check/mypage/{mbId}")
+	@ApiOperation(value = "회원정보보기")
+	public ResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
+		
+		MemberDTO memberDTO = service.mypage(mbId);
+		return new ResponseEntity<MemberDTO>(memberDTO, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	@PutMapping("check/update")
+	@ApiOperation(value = "회원정보수정")
+	public ResponseEntity<Object> update(@RequestBody MemberDTO memberDTO){
+		
+		Integer n = service.memberUpdate(memberDTO);
+		
+		logger.info("업데이트갯수>>>>>>"+n);
+		
+		return new ResponseEntity<>("회원정보수정 성공", HttpStatus.OK);
+				
 	}
 	
 	

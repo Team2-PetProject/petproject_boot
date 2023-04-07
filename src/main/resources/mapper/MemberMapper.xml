@@ -65,4 +65,21 @@
       WHERE MB_ID = #{mbId} AND PW = #{pw}
 		
 	</select>
+	
+	
+	<update id="memberUpdate" parameterType="MemberDTO">
+		UPDATE TB_MEMBER
+		SET
+			PW = #{pw}
+			, POST = #{post}
+			, ADDR1 = #{addr1}
+			, ADDR2 = #{addr2}
+			, TEL1 = #{tel1}
+			, TEL2 = #{tel2}
+			, TEL3 = #{tel3}
+			, EMAIL1 = #{email1}
+			, EMAIL2 = #{email2}
+		WHERE MB_ID = #{mbId}
+			
+	</update>
 </mapper>

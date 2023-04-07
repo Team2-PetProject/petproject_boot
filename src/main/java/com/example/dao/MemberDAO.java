@@ -13,5 +13,7 @@ public interface MemberDAO {
 	public MemberDTO mypage(String mbId);
 
 	public MemberDTO login(LoginDTO loginDTO);
+
+	public Integer memberUpdate(MemberDTO memberDTO);
 }
 

@@ -48,18 +48,18 @@ public class ItemController {
 
 	ItemListDTO itemPage;
 
-	@GetMapping("/itemList/{cat}") //단순 조회는 get
-	public String itemList
-	(@RequestParam(value = "cat", defaultValue = "food") 
-	//path에서 안되는데 굳이 써야할까...
-	String item_cat, Model model) {
-//		itemService = new ItemService();
-//	    List<OptionDTO> list = itemService.itemList(item_cat);
-//	    System.out.println("itemList: " + list);
-//	    model.addAttribute("itemList", list);
-//	    return "main";
-		return null;
-	} 
+//	@GetMapping("/itemList/{cat}") //단순 조회는 get
+//	public String itemList
+//	(@RequestParam(value = "cat", defaultValue = "food") 
+//	//path에서 안되는데 굳이 써야할까...
+//	String item_cat, Model model) {
+////		itemService = new ItemService();
+////	    List<OptionDTO> list = itemService.itemList(item_cat);
+////	    System.out.println("itemList: " + list);
+////	    model.addAttribute("itemList", list);
+////	    return "main";
+//		return null;
+//	} 
 
 	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
 	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat") 
@@ -102,7 +102,7 @@ public class ItemController {
 		   ItemPageDTO itemPage= new ItemPageDTO();
 		   itemPage.setPerPage(Integer.toString(8));
 		   itemPage.setStartIdx(Integer.toString(startIdx));
-		   itemPage.setEndIdx(Integer.toString(startIdx));
+		   itemPage.setEndIdx(Integer.toString(endIdx));
 		   
 		   return itemPage;
 		}

@@ -64,6 +64,6 @@ public class ItemService {
 	//페이징 처리를 위한 토탈카운트
 	@Transactional
 	public int totalCount() {
-		return itemDao.totalC();
+		return itemDao.totalCount();
 	}
 }//end class

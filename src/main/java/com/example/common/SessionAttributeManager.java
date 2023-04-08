@@ -23,7 +23,7 @@ public class SessionAttributeManager {
 		return memberId;
 	}
 	
-	private static HttpSession getSession() {
+	public static HttpSession getSession() {
 		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		HttpSession session = req.getSession();
 		return session;

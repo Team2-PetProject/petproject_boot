@@ -1,13 +1,15 @@
 package com.example.controller;
 
-import java.security.NoSuchAlgorithmException;
+import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -68,8 +70,8 @@ public class MemberController {
 		Integer count = service.idCheck(mbId);
 		logger.info("/idCheck id count " + count);
 		String mesg = "아이디 사용가능";
-//		HttpHeaders header = new HttpHeaders();
-//		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
 		if(count == 1) {
 			mesg ="아이디 중복";
 			return new ResponseEntity<String>(mesg, HttpStatus.OK);  

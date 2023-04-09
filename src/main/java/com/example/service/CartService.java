@@ -15,8 +15,8 @@ public class CartService {
 	@Autowired
 	CartDAO dao;
 
-	public int cartAdd(CartDTO cart) {
-		return dao.cartAdd(cart);
+	public int cartAdd(CartDTO cartDTO) {
+		return dao.cartAdd(cartDTO);
 
 	}
 

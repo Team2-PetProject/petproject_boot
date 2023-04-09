@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.common.SessionAttributeManager;
 import com.example.dto.CartDTO;
-import com.example.dto.MemberDTO;
+import com.example.dto.CartOrdDTO;
+import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.OrderHistoryPageDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
-import com.example.dto.SearchResultDTO;
-import com.example.service.CartService;
 import com.example.service.MemberService;
 import com.example.service.OrderService;
 
@@ -35,39 +33,51 @@ public class OrderController {
 	OrderService orderService;
 	@Autowired
 	MemberService memberService;
-	@Autowired
-	CartService cartService;
 
 	OrderHistoryPageDTO orderSearchPage;
-
-	@ApiOperation(value = "orderConfirm")
-	@PostMapping("/check/orderConfirm/")
-	public ModelAndView orderConfirm
-	(@RequestBody List<CartDTO> carts) {
-		String mbId=SessionAttributeManager.getMemberId();
-		Integer confirm = 0;
-		for (CartDTO cart : carts) {
-			cart.setMbId(mbId);
-			confirm = confirm + cartService.cartAdd(cart);
-		}
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("mbId", mbId);
-		mav.addObject("carts", carts);
-		mav.setViewName("orderConfirm");
-		return mav;
+	//상품자세히-주문결제 화면
+	//아이템 조인해서 넘겨줘야함.
+	@ApiOperation(value = "fastOrderConfirm")
+	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
+	public ResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
+//		String mbId=SessionAttributeManager.getMemberId();
+		String mbId="1";
+		cartOrdJoinDTO.setMbId(mbId);
+		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
+		List<CartOrdJoinDTO>itemJoinList=orderService.cartOrdJoin(cartOrdJoinDTO);
+		return ResponseEntity.ok(itemJoinList);
 	}
 
+
+
+//	@ApiOperation(value = "orderConfirm")
+//	@PostMapping("/check/orderConfirm/")
+//	public ModelAndView orderConfirm(@RequestBody List<CartDTO> carts) {
+////		String mbId=SessionAttributeManager.getMemberId();
+//		String mbId="1";
+//		Integer confirm = 0;
+//		for (CartDTO cart : carts) {
+//			cart.setMbId(mbId);
+//			confirm = confirm +
+//					cartService.cartAdd(cart);
+//		}
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("mbId", mbId);
+//		mav.addObject("carts", carts);
+//		mav.setViewName("orderConfirm");
+//		return mav;
+//	}
+//	//주문완료
 	@PostMapping("/check/orderDone")
 	@ApiOperation(value = "orderDone")
-	public ModelAndView orderDone
-	(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
-	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-	    String memberCD = memberDTO.getMbId();
-	    orderService.orderDone(carts, info, memberCD);
+	public ModelAndView orderDone(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
+//		String mbId=SessionAttributeManager.getMemberId();
+		String mbId="1";
+	    orderService.orderDone(carts, info, mbId);
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("carts", carts);
 	    mav.addObject("info", info);
-		mav.addObject("memberCD", memberDTO.getMbId());
+		mav.addObject("mbId", mbId);
 		mav.setViewName("orderDone");
 	    return mav;
 	}

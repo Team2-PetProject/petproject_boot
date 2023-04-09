@@ -18,7 +18,8 @@ spring:
 mybatis:
   mapper-locations: mapper/*.xml
   type-aliases-package: com.example.dto
-  
+  configuration:
+    map-underscore-to-camel-case: true
 
 #server 설정
 server:

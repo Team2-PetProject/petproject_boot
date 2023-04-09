@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.common.SessionAttributeManager;
-import com.example.controller.OrderController;
 import com.example.dao.OrderDAO;
 import com.example.dto.CartDTO;
+import com.example.dto.CartOrdDTO;
+import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
@@ -23,6 +23,10 @@ public class OrderService {
 
 	private static final Logger logger = LogManager.getLogger(OrderService.class);
 
+	@Transactional
+	public Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO) {
+		return orderDao.fastOrderConfirm(cartOrdJoinDTO);
+	}
 	@Transactional
 	public void orderDone(List<CartDTO> carts, OrderInfoDTO orderInfoDTO, String mbId) {
 		orderDao.ordItem(mbId, carts);
@@ -60,6 +64,11 @@ public class OrderService {
 		 logger.info("", dlvyCd);
 		return orderDao.delevery(dlvyCd);
 	}
+	public List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO) {
+		return orderDao.cartOrdJoin(cartOrdJoinDTO);
+	}
+
+
 
 
 

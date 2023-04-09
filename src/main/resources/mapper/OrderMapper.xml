@@ -3,6 +3,45 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.OrderDAO">
+
+	<insert id="fastOrderConfirm" parameterType="CartDTO" useGeneratedKeys="true" keyProperty="cartCd" keyColumn="CART_CD">
+		INSERT INTO TB_CART
+			(
+			CART_CD
+			,IT_CD
+			,MB_ID
+			,AMOUNT
+			,OPT_CD
+			)
+			VALUES
+			(
+			TB_CART_SEQ.NEXTVAL
+			,#{itCd}
+			,#{mbId}
+			,#{amount}
+			,#{optCd}
+			)
+	</insert>
+	<select id="cartOrdJoin" parameterType="CartOrdJoinDTO" resultType="CartOrdJoinDTO">
+	SELECT
+			CART_CD
+			,MB_ID
+			,TB_CART.IT_CD "IT_CD"
+			,AMOUNT
+			,PRICE
+			,IMG_CD
+			,TB_CART.OPT_CD "OPT_CD"
+	FROM
+	TB_CART TB_CART
+	INNER JOIN
+	TB_ITEM TB_ITEM ON
+	TB_CART.IT_CD = TB_ITEM.IT_CD
+	WHERE
+	CART_CD = #{cartCd}
+	</select>
+
+
+
 	<select id="totalCount" parameterType="String">
 		SELECT
 		COUNT(*)

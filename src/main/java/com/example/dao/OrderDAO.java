@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.CartDTO;
+import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
@@ -25,5 +26,11 @@ public interface OrderDAO {
 	List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO);
 
 	DeliveryInfoDTO delevery(int dlvyCd);
+
+
+	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
+
+	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
+
 
 }

@@ -15,7 +15,7 @@
 			)
 			VALUES
 			(
-			#{cartCd}
+			TB_CART_SEQ.NEXTVAL
 			,#{itCd}
 			,#{mbId}
 			,#{amount}

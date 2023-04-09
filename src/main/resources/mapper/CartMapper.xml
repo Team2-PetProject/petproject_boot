@@ -29,14 +29,10 @@
 			CART_CD = #{CART_CD}
 	</delete>
 
-	<delete id="checkDelete" parameterType="List">
+	<delete id="checkDelete" parameterType="int">
 			DELETE FROM TB_CART
 			WHERE
-			CART_CD IN
-		<foreach collection = "list" item = "item" index = "index"
-				open ="(" separator="," close=")">
-			#{item}
-		</foreach>
+			CART_CD = #{CART_CD}
 	</delete>
 
 	<update id="specUpdate" parameterType="SpecUpdateDTO">

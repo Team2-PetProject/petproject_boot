@@ -16,11 +16,12 @@ public interface CartDAO {
 
 	int cartDelete(int cartCd);
 
-	int checkDelete(List<Integer> list);
+	int checkDelete(int cartCd);
 
 	int specUpdate(SpecUpdateDTO specUpdateDTO);
 
 	int amountUpdate(AmountUpdateDTO amountUpdateDTO);
+
 
 
 }

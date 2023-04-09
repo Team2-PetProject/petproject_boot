@@ -1,6 +1,5 @@
 package com.example.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,11 @@ public class CartService {
 	}
 
 	public int checkDelete(List<Integer> list) {
-		return dao.checkDelete(list);
+		Integer deleteCount = 0;
+		for (Integer cartCd : list) {
+			deleteCount = deleteCount + dao.checkDelete(cartCd);
+		}
+		return deleteCount;
 	}
 
 	public int specUpdate(SpecUpdateDTO specUpdateDTO) {

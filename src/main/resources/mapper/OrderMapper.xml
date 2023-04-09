@@ -8,10 +8,10 @@
 		COUNT(*)
 		FROM
 		MP_CART_ORD
-		WHERE MB_ID=#{mbId};
+		WHERE MB_ID=#{mbId}
 	</select>
-	
-	<select id="orderSearch" parameterType="OrderSearchDTO" resultType="OrderSearchDTO">
+
+	<select id="orderSearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
 			SELECT
 		    *
 		    FROM
@@ -44,10 +44,10 @@
 		    MB_ID=#{mbId}
 		    ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		    )
-		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 	</select>
-	
-	<select id="daySearch" parameterType="OrderSearchDTO" resultType="OrderSearchDTO">
+
+	<select id="daySearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
 			SELECT
 		    *
 		    FROM
@@ -79,14 +79,14 @@
 		    WHERE
 		    MB_ID=#{mbId}
 		    AND
-		    PAY_TM BETWEEN 
+		    PAY_TM BETWEEN
 		    TO_DATE(#{startDay}, 'YYYYMMDD') AND TO_DATE(#{endDay}, 'YYYYMMDD')
 		    ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		    )
-		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 	</select>
-	
-	<select id="itemSearch" parameterType="OrderSearchDTO" resultType="OrderSearchDTO">
+
+	<select id="itemSearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
 			SELECT
 		    *
 		    FROM
@@ -118,9 +118,9 @@
 		    WHERE
 		    MB_ID=#{mbId}
 		    AND
-		    IT_NM=#{itemNm}
+		    IT_NM=#{itNm}
 		    ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		    )
-		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 			</select>
 </mapper>

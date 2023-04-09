@@ -55,7 +55,6 @@ public class CartController {
 	@DeleteMapping("/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
 	public ResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer>list) {
-		//cart_cd 리스트 받아서 한번에 삭제
 		System.out.println(list);
 		Integer allDelete = cartService.checkDelete(list);
 		System.out.println("전체 삭제  : " + allDelete);

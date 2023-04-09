@@ -20,12 +20,8 @@ public class FavoriteController {
 	MemberService memberService;
 	@Autowired
 	ItemService itemService;
-	//다시 상품 상세보기로 돌려야함
-	//찜목록 추가 restful로 변경필요 //
-	//03.31 오늘은 건들지 말자.
 
 
-	//상세페이지에서 찜 버튼을 눌러도 그대로 그 상품페이지다.
 	@PostMapping("/check/favorite/{itemCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
@@ -37,7 +33,6 @@ public class FavoriteController {
 		memberItemDTO.setMbId(mbId);
 		memberItemDTO.setItCd(itemCd);
 		Integer favoriteAdd = itemService.favoriteAdd(memberItemDTO);
-		System.out.println("favoriteAdd : " + favoriteAdd);
 		return ResponseEntity.ok().build();
 	}
 
@@ -52,7 +47,6 @@ public class FavoriteController {
 		memberItemDTO.setItCd(itCd);
 		memberItemDTO.setMbId(mbId);
 		Integer favoriteDel = itemService.favoriteDelete(memberItemDTO);
-		System.out.println("해당 "+ favoriteDel +" 번호 가 삭제되었습니다");
 		return ResponseEntity.ok().build();
 	}
 }

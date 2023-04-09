@@ -9,7 +9,7 @@
 			(
 			CART_CD
 			,IT_CD
-			,MB_ID
+			,MB_ID "mbId"
 			,AMOUNT
 			,OPT_ADD
 			,OPT_CD

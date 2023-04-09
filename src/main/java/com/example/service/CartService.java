@@ -15,8 +15,8 @@ public class CartService {
 	CartDAO dao;
 
 	public int cartAdd(CartDTO cart) {
-		//getopt ==if절 추가로 맵퍼 두개작성은 어떨까?
 		return dao.cartAdd(cart);
+		
 	}
 	
 	public int cartDelete(int cart_cd) {

@@ -44,6 +44,25 @@
     	     	     });//ajax 
     	  });
     	 
+    	 
+    	 
+    	 $("#logout").on("click",function(){
+    		 $.ajax({
+    			 url: 'check/logout',
+    			 type: 'delete',
+    			 dataType:'text',
+    			 success : function(data, status, xhr) {
+						alert(data);
+				 },
+				 error : function(xhr, status, error) {
+						console.log(error);
+						alert(error);
+				 }
+    		 });//end ajax
+    	 })
+    	 
+    	 
+    	 
     	 $("#pwSearch").on("click",function(){
     		 location.href = "PwSearchUIServlet";
     	 });//end click
@@ -59,6 +78,7 @@
 비밀번호<input type="text" name="pw" id="pw"><br> 
 <input type="submit" value="로그인">
 <button id="login">로그인</button>
+<button  id="logout">로그아웃</button>
 <input type="button" value="아이디찾기" onClick="location.href='MemberIdSearchUIServlet'">
 
 <!-- </form> -->

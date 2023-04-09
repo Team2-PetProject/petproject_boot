@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
@@ -7,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +29,7 @@ import com.example.dto.MemberDTO;
 import com.example.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
+
 
 //@RestController   //@Controller + @ResponseBody
 @Controller
@@ -97,14 +101,17 @@ public class MemberController {
 //		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
 		logger.info("db에서 가져온  memberDTO "+memberDTO);
+		
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
 
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
-			return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
+			return new ResponseEntity<>("로그인 성공",header,HttpStatus.OK);
 //			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
 					
 		}else {
-			return new ResponseEntity<>("존재하지 않는 회원",HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("존재하지 않는 회원",header,HttpStatus.NOT_FOUND);
 //			return ResponseEntity.notFound().build();
 		}
 		

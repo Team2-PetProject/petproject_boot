@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -44,29 +45,30 @@ public class OrderController {
 		String mbId="1";
 		cartOrdJoinDTO.setMbId(mbId);
 		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
-		List<CartOrdJoinDTO>itemJoinList=orderService.cartOrdJoin(cartOrdJoinDTO);
+		List<CartOrdJoinDTO>itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		return ResponseEntity.ok(itemJoinList);
 	}
 
 
 
-//	@ApiOperation(value = "orderConfirm")
-//	@PostMapping("/check/orderConfirm/")
-//	public ModelAndView orderConfirm(@RequestBody List<CartDTO> carts) {
-////		String mbId=SessionAttributeManager.getMemberId();
-//		String mbId="1";
-//		Integer confirm = 0;
-//		for (CartDTO cart : carts) {
-//			cart.setMbId(mbId);
-//			confirm = confirm +
-//					cartService.cartAdd(cart);
-//		}
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("mbId", mbId);
-//		mav.addObject("carts", carts);
-//		mav.setViewName("orderConfirm");
-//		return mav;
-//	}
+	@ApiOperation(value = "orderConfirm")
+	@GetMapping("/check/orderConfirm/")
+	public ResponseEntity<List<CartOrdJoinDTO>> orderConfirm
+	(@RequestBody List<CartDTO> carts) {
+//		String mbId=SessionAttributeManager.getMemberId();
+		String mbId="1";
+		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
+		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
+
+		for (CartDTO cartDTO : carts) {
+		cartOrdJoinDTO.setCartCd(cartDTO.getCartCd());
+		List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
+		itemJoinLists.addAll(itemJoinList);
+		}
+		return ResponseEntity.ok(itemJoinLists);
+	}
+
+
 //	//주문완료
 	@PostMapping("/check/orderDone")
 	@ApiOperation(value = "orderDone")

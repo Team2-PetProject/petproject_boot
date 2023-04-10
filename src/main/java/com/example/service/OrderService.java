@@ -27,6 +27,7 @@ public class OrderService {
 	public Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO) {
 		return orderDao.fastOrderConfirm(cartOrdJoinDTO);
 	}
+	
 	@Transactional
 	public void orderDone(List<CartDTO> carts, OrderInfoDTO orderInfoDTO, String mbId) {
 		orderDao.ordItem(mbId, carts);

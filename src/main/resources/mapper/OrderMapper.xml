@@ -167,13 +167,8 @@
 		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 			</select>
 
-			<insert id="dlvyInfo" parameterType="OrderInfoDTO">
-			<selectKey keyProperty="dlvyCd" resultType="OrderInfoDTO" order="BEFORE">
-        	SELECT
-        			TB_DELIVERY_INFO_SEQ.NEXTVAL
-        	FROM
-        			DUAL
-   			</selectKey>
+			<insert id="dlvyInfo" parameterType="DeliveryInfoDTO" useGeneratedKeys="true" keyProperty="dlvyCd" keyColumn="DLVY_CD" >
+
 			INSERT INTO
 					TB_DELIVERY_INFO
 					(
@@ -230,7 +225,7 @@
     			MP_CART_ORD
 			</select>
 
-			<insert id="orderDone" parameterType="CartOrdDTO">
+			<insert id="orderDone" parameterType="CartOrdDTO" >
 			INSERT INTO
 					MP_CART_ORD
 					(
@@ -258,4 +253,23 @@
 					)
 
 			</insert>
+
+			<select id="cartOrdSet" parameterType="Integer" resultType="CartOrdJoinDTO">
+			SELECT
+					CART_CD
+					,MB_ID
+					,TB_CART.IT_CD "IT_CD"
+					,AMOUNT
+					,PRICE
+					,IMG_CD
+					,TB_CART.OPT_CD "OPT_CD"
+			FROM
+					TB_CART TB_CART
+					INNER JOIN
+					TB_ITEM TB_ITEM ON
+					TB_CART.IT_CD = TB_ITEM.IT_CD
+					WHERE
+					CART_CD = #{cartCd}
+			</select>
+
 </mapper>

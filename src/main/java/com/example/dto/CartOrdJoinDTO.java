@@ -53,6 +53,26 @@ public class CartOrdJoinDTO {
 	public void setCartCd(Integer cartCd) {
 		this.cartCd = cartCd;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CartOrdJoinDTO [cartCd=");
+		builder.append(cartCd);
+		builder.append(", mbId=");
+		builder.append(mbId);
+		builder.append(", itCd=");
+		builder.append(itCd);
+		builder.append(", amount=");
+		builder.append(amount);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", imgCd=");
+		builder.append(imgCd);
+		builder.append(", optCd=");
+		builder.append(optCd);
+		builder.append("]");
+		return builder.toString();
+	}
 
 
 }

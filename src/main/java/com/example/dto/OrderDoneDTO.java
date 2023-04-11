@@ -4,7 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("OrderDoneDTO")
 public class OrderDoneDTO {
-	private String  tItCd;
+	private Integer tItCd;
 	private Integer cartCd;
 	private Integer OrdCd;
 	private String mbId;
@@ -16,10 +16,13 @@ public class OrderDoneDTO {
 	private String ORD_NM;
 	private String ORD_TEL;
 	private String PAY_METH;
-	public String gettItCd() {
+
+
+
+	public Integer gettItCd() {
 		return tItCd;
 	}
-	public void settItCd(String tItCd) {
+	public void settItCd(Integer tItCd) {
 		this.tItCd = tItCd;
 	}
 	public Integer getCartCd() {

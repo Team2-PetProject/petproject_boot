@@ -2,7 +2,6 @@ package com.example.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,11 +9,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
-import com.example.common.SessionAttributeManager;
 import com.example.dao.OrderDAO;
-import com.example.dto.CartDTO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.DeliveryInfoDTO;
@@ -70,46 +66,49 @@ public class OrderService {
 	}
 
 	@Transactional
-	public List<OrderDoneDTO> orderDone(List<Integer> cartCd, OrderInfoDTO orderInfoDTO) {
+	public List<CartOrdDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
 //		String mbId=SessionAttributeManager.getMemberId();
-		String mbId = "1";
-		//배송장 번호 생성
+		String mbId = "PET";
 		Integer inv = invRandom();
-		DeliveryInfoDTO dlvyInfo = orderDao.dlvyInfo(inv);
-		Integer dlvyCd = dlvyInfo.getDlvyCd();
-		//오더인포 전보 전달s
-		orderInfoDTO = orderDao.ordInfo(dlvyCd);
-
-		//mp_cart
-		Integer ordCd = orderInfoDTO.getOrdCd();
-
-		//로그 심기
-//		logger.info("dlvyCd: {}", dlvyCd);
+		System.err.println(inv);
+		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
+		dlvyInfo.setInv(inv);
+		Integer dlvyCd =orderDao.dlvyInfo(dlvyInfo);
+		orderInfoDTO.setDlvyCd(dlvyCd);
+//		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
+		Integer ordCd = 2;
+		System.err.println("ordCd"+ordCd);
 		logger.info(dlvyCd);
-		//
 
-//		T_IT_CD이 문제임. ...
-//		서버 갔다오면서 해결함 이거 문제있어보임.
-		//I_IT_CD 구하기
-		Integer seachCount = orderDao.seachCount();
-		if (seachCount==0) {
-			seachCount = 1;
+		Integer seachCountTItCd = orderDao.seachCount();
+		if (seachCountTItCd==0) {
+			seachCountTItCd = 1;
 		}
-		Integer tItCd = seachCount+1;
+		Integer tItCd = seachCountTItCd+1;
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
-
-		List<OrderDoneDTO> orderDoneLists = new ArrayList<OrderDoneDTO>();
-		for ( Integer cd : cartCd ) {
-			cartOrdDTO.setCartCd(cd);
-			List<OrderDoneDTO> orderDoneList =	orderDao.orderDone(cartOrdDTO);
-			orderDoneLists.addAll(orderDoneList);
+		cartOrdDTO.setOrdCd(ordCd);
+		cartOrdDTO.setMbId(mbId);
+		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
+		for ( Integer cartCd : cartCds ) {
+			cartOrdSet = orderDao.cartOrdSet(cartCd);
+			cartOrdDTO.setCartCd(cartCd);
+			cartOrdDTO.setItCd(cartOrdSet.getItCd());
+			cartOrdDTO.setAmount(cartOrdSet.getAmount());
+			cartOrdDTO.setPrice(cartOrdSet.getPrice());
+			cartOrdDTO.setImgCd(cartOrdSet.getImgCd());
+			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
+			orderDao.orderDone(cartOrdDTO);
 		}
-		return orderDoneLists;
+//		orderDao.cartOrdSet();
+		List<OrderDoneDTO> orderDoneLists = new ArrayList<OrderDoneDTO>();
+
+
+		return null;
 	}
 
-	
-	
+
+
 	//배송장번호 생성
 	public Integer invRandom() {
 		Integer minNum = 10000000; // 8자리 최소값

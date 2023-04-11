@@ -29,12 +29,18 @@ public interface OrderDAO {
 
 	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
 
-	DeliveryInfoDTO dlvyInfo(Integer inv);
 
-	OrderInfoDTO ordInfo(Integer dlvyCd);
+	Integer ordInfo(OrderInfoDTO orderInfoDTO);
 
 	Integer seachCount();
 
-	List<OrderDoneDTO> orderDone(CartOrdDTO cartOrdDTO);
+	CartOrdDTO orderDone(CartOrdDTO cartOrdDTO);
+
+	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
+
+
+	CartOrdJoinDTO cartOrdSet(Integer cartCd);
+
+
 
 }

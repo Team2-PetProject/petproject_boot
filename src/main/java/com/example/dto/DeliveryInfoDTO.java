@@ -6,13 +6,13 @@ import org.apache.ibatis.type.Alias;
 public class DeliveryInfoDTO {
 	private Integer dlvyCd;
 	private String com;
-	private String inv;
+	private Integer inv;
 	private String dlvyStart;
 	private String dlvyEnd;
 	public Integer getDlvyCd() {
 		return dlvyCd;
 	}
-	public void setDlvyCd(Integer dwlvyCd) {
+	public void setDlvyCd(Integer dlvyCd) {
 		this.dlvyCd = dlvyCd;
 	}
 	public String getCom() {
@@ -21,10 +21,11 @@ public class DeliveryInfoDTO {
 	public void setCom(String com) {
 		this.com = com;
 	}
-	public String getInv() {
+
+	public Integer getInv() {
 		return inv;
 	}
-	public void setInv(String inv) {
+	public void setInv(Integer inv) {
 		this.inv = inv;
 	}
 	public String getDlvyStart() {
@@ -55,7 +56,7 @@ public class DeliveryInfoDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
+
+
 }

@@ -75,9 +75,10 @@ public class OrderController {
 	@ApiOperation(value = "orderDone")
 	@ResponseBody
 	@PostMapping("/check/orderDone")
-	public ResponseEntity<List<OrderDoneDTO>> orderDone
+	public ResponseEntity<List<CartOrdDTO>> orderDone
 	(@RequestParam("cartCd") List<Integer> cartCd, @RequestBody OrderInfoDTO orderInfoDTO) {
-		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
+		List<CartOrdDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
+		System.err.println(cartOrdDTO);
 	    return ResponseEntity.ok(cartOrdDTO);
 	}
 

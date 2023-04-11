@@ -9,7 +9,7 @@ public class ItemDTO {
 	private String itNm;
 	private Integer price;
 	private String cat;
-	private Integer tyCd;
+	private Integer optCd;
 	
 	public Integer getItCd() {
 		return itCd;
@@ -41,11 +41,11 @@ public class ItemDTO {
 	public void setCat(String cat) {
 		this.cat = cat;
 	}
-	public Integer getTyCd() {
-		return tyCd;
+	public Integer getOptCd() {
+		return optCd;
 	}
-	public void setTyCd(Integer tyCd) {
-		this.tyCd = tyCd;
+	public void setOptCd(Integer tyCd) {
+		this.optCd = tyCd;
 	}
 	@Override
 	public String toString() {
@@ -61,7 +61,7 @@ public class ItemDTO {
 		builder.append(", cat=");
 		builder.append(cat);
 		builder.append(", tyCd=");
-		builder.append(tyCd);
+		builder.append(optCd);
 		builder.append("]");
 		return builder.toString();
 	}

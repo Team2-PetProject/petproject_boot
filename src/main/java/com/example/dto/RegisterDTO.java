@@ -2,26 +2,26 @@ package com.example.dto;
 
 public class RegisterDTO {
 	private Integer itCd;
-	private Integer tyCd;
+	private Integer optCd;
 	public Integer getItCd() {
 		return itCd;
 	}
 	public void setItCd(Integer itCd) {
 		this.itCd = itCd;
 	}
-	public Integer getTyCd() {
-		return tyCd;
+	public Integer getOptCd() {
+		return optCd;
 	}
-	public void setTyCd(Integer tyCd) {
-		this.tyCd = tyCd;
+	public void setOptCd(Integer optCd) {
+		this.optCd = optCd;
 	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RegisterDTO [itCd=");
 		builder.append(itCd);
-		builder.append(", tyCd=");
-		builder.append(tyCd);
+		builder.append(", optCd=");
+		builder.append(optCd);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -12,4 +12,6 @@ public interface OptionTypeDAO {
 
 	public TypeDTO selectType(Integer itCd);
 
+	public Integer selectTyCd();
+
 }

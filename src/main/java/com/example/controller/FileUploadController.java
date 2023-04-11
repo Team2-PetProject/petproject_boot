@@ -53,23 +53,28 @@ public class FileUploadController {
 		fileUploadDTO.setFl(file.getBytes());
 		fileUploadDTO.setSz(String.valueOf(file.getSize()));
 		
-		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setItNm(name);
-		itemDTO.setCat(category);
-		itemDTO.setPrice(price);
-		
 		if(add!=null) {
-			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
-			optionTypeDTO.setTyNm(optionName);
+			
+			List<ItemDTO> itemList = new ArrayList<ItemDTO>();
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
+			
 			for(int i=0;i<option.size();i++) {
+				ItemDTO itemDTO = new ItemDTO();
+				itemDTO.setItNm(name);
+				itemDTO.setCat(category);
+				itemDTO.setPrice(price);
+				itemList.add(itemDTO);
+				
 				OptionDTO optionDTO = new OptionDTO();
 				optionDTO.setOptNm(option.get(i));
-				optionList.add(optionDTO); 
+				optionList.add(optionDTO);
 			}
-			
-			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
+			fileUploadService.insertImgItemOpt(fileUploadDTO, itemList, optionName, optionList);
 		}else {
+			ItemDTO itemDTO = new ItemDTO();
+			itemDTO.setItNm(name);
+			itemDTO.setCat(category);
+			itemDTO.setPrice(price);
 			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
 		}
 		ComResponseDTO<Void> comResponseDto = new ComResponseDTO<Void>();

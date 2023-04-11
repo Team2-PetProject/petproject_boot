@@ -9,8 +9,8 @@ import com.example.dto.OptionDTO;
 @Mapper
 public interface OptionDAO {
 
-	public void insertOptions(List<OptionDTO> optionList);
-
 	public List<String> selectOption(Integer tyCd);
+
+	public void insertOption(OptionDTO optionDTO);
 
 }

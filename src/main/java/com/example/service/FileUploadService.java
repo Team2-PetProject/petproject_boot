@@ -43,29 +43,28 @@ public class FileUploadService {
 	}
 	
 	@Transactional
-	public void insertImgItemOpt(FileUploadDTO fileUploadDTO, ItemDTO itemDTO, OptionTypeDTO optionTypeDTO,
+	public void insertImgItemOpt(FileUploadDTO fileUploadDTO, List<ItemDTO> itemList, String optionName,
 			List<OptionDTO> optionList) {
 		fileUploadDao.insertFile(fileUploadDTO);
 		int imgCd = fileUploadDTO.getImgCd();
-		
-		itemDTO.setImgCd(imgCd);
-		itemDao.insertItem(itemDTO);
-		
-		Integer itCd = itemDTO.getItCd();
-		optionTypeDTO.setItCd(itCd);
-		
-		optionTypeDao.insertOptionType(optionTypeDTO);
-		Integer tyCd = optionTypeDTO.getTyCd();
-		
-		RegisterDTO registerDto = new RegisterDTO();
-		registerDto.setItCd(itCd);
-		registerDto.setTyCd(tyCd);
-		itemDao.insertTyCd(registerDto);
-		
-		for (int i = 0; i < optionList.size(); i++) {
-			optionList.get(i).setTyCd(tyCd);
+		Integer tyCd = optionTypeDao.selectTyCd();
+		for(int i=0;i<itemList.size();i++) {
+			ItemDTO itemDto = itemList.get(i);
+			itemDto.setImgCd(imgCd);
+			itemDao.insertItem(itemDto);
+			Integer itCd = itemDto.getItCd();
+			Integer optCd = itemDto.getOptCd();
+			OptionTypeDTO optionTypeDto = new OptionTypeDTO();
+			optionTypeDto.setTyNm(optionName);
+			optionTypeDto.setItCd(itCd);
+			optionTypeDto.setTyCd(tyCd);
+			optionTypeDao.insertOptionType(optionTypeDto);
+			OptionDTO optionDto = new OptionDTO();
+			optionDto.setOptNm(optionList.get(i).getOptNm());
+			optionDto.setTyCd(tyCd);
+			optionDto.setOptCd(optCd);
+			optionDao.insertOption(optionDto);
 		}
-		optionDao.insertOptions(optionList);
 	}
 	
 	

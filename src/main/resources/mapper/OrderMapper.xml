@@ -22,6 +22,7 @@
 			,#{optCd}
 			)
 	</insert>
+
 	<select id="cartOrdJoin" parameterType="CartOrdJoinDTO" resultType="CartOrdJoinDTO">
 	SELECT
 			CART_CD
@@ -32,12 +33,12 @@
 			,IMG_CD
 			,TB_CART.OPT_CD "OPT_CD"
 	FROM
-	TB_CART TB_CART
-	INNER JOIN
-	TB_ITEM TB_ITEM ON
-	TB_CART.IT_CD = TB_ITEM.IT_CD
-	WHERE
-	CART_CD = #{cartCd}
+			TB_CART TB_CART
+			INNER JOIN
+			TB_ITEM TB_ITEM ON
+			TB_CART.IT_CD = TB_ITEM.IT_CD
+			WHERE
+			CART_CD = #{cartCd}
 	</select>
 
 
@@ -90,39 +91,42 @@
 			SELECT
 		    *
 		    FROM
-		    (
-		    SELECT
-		    ROWNUM "IDX",
-		    ORD.*
+				    (
+				    SELECT
+				    ROWNUM "IDX",
+				    ORD.*
+				    FROM
+				    (SELECT
+				    CART_CD
+				    ,CART_ORD.ORD_CD "ORD_CD"
+				    ,CART_ORD.MB_ID "MB_ID"
+				    ,CART_ORD.IT_CD "IT_CD"
+				    ,IT_NM
+				    ,AMOUNT
+				    ,CART_ORD.CAT "CAT"
+				    ,CART_ORD.PRICE "PRICE"
+				    ,CART_ORD.IMG_CD "IMG_CD"
+				    ,PAY_TM
+				    ,OPT_NM
 		    FROM
-		    (SELECT
-		    CART_CD
-		    ,CART_ORD.ORD_CD "ORD_CD"
-		    ,CART_ORD.MB_ID "MB_ID"
-		    ,CART_ORD.IT_CD "IT_CD"
-		    ,IT_NM
-		    ,AMOUNT
-		    ,CART_ORD.CAT "CAT"
-		    ,CART_ORD.PRICE "PRICE"
-		    ,CART_ORD.IMG_CD "IMG_CD"
-		    ,PAY_TM
-		    ,OPT_NM
-		    FROM
-		    MP_CART_ORD CART_ORD
-		    INNER JOIN TB_OPTION TB_OPTION ON
-		    CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-		    INNER JOIN TB_ITEM ITEM ON
-		    CART_ORD.IT_CD=ITEM.IT_CD
-		    INNER JOIN TB_ORDER_INFO INFO ON
-		    CART_ORD.ORD_CD=INFO.ORD_CD
+				    MP_CART_ORD CART_ORD
+				    INNER JOIN TB_OPTION TB_OPTION ON
+				    CART_ORD.OPT_CD=TB_OPTION.OPT_CD
+				    INNER JOIN TB_ITEM ITEM ON
+				    CART_ORD.IT_CD=ITEM.IT_CD
+				    INNER JOIN TB_ORDER_INFO INFO ON
+				    CART_ORD.ORD_CD=INFO.ORD_CD
 		    WHERE
-		    MB_ID=#{mbId}
-		    AND
-		    PAY_TM BETWEEN
-		    TO_DATE(#{startDay}, 'YYYYMMDD') AND TO_DATE(#{endDay}, 'YYYYMMDD')
-		    ORDER BY CART_ORD.CART_CD DESC) "ORD"
+				    MB_ID=#{mbId}
+			AND
+				    PAY_TM BETWEEN
+				    TO_DATE(#{startDay}, 'YYYYMMDD')
+			AND
+				    TO_DATE(#{endDay}, 'YYYYMMDD')
+				    ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		    )
-		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
+		    WHERE
+		    		IDX BETWEEN #{startIdx} AND #{endIdx}
 	</select>
 
 	<select id="itemSearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
@@ -162,4 +166,96 @@
 		    )
 		    WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
 			</select>
+
+			<insert id="dlvyInfo" parameterType="OrderInfoDTO">
+			<selectKey keyProperty="dlvyCd" resultType="OrderInfoDTO" order="BEFORE">
+        	SELECT
+        			TB_DELIVERY_INFO_SEQ.NEXTVAL
+        	FROM
+        			DUAL
+   			</selectKey>
+			INSERT INTO
+					TB_DELIVERY_INFO
+					(
+					DLVY_CD
+					,COM
+					,INV
+					)
+			VALUES
+					(
+					TB_DELIVERY_INFO_SEQ.NEXTVAL
+					,'CJ'
+					,#{inv}
+					)
+			</insert>
+
+			<insert id="ordInfo" parameterType="OrderInfoDTO">
+			<selectKey keyProperty="ordCd" resultType="Integer" order="BEFORE">
+        	SELECT
+        			TB_ORDER_INFO_SEQ.NEXTVAL
+        	FROM
+        			DUAL
+			</selectKey>
+			INSERT INTO
+					TB_ORDER_INFO
+					(
+					ORD_CD
+					,DLVY_CD
+					,ORD_NM
+					,ORD_POST
+					,ORD_ADDR1
+					,ORD_ADDR2
+					,ORD_TEL
+					,PAY_METH
+
+					)
+			VALUES
+					(
+					TB_ORDER_INFO_SEQ.NEXTVAL
+					,#{dlvyCd}
+					,#{ordNm}
+					,#{ordPost}
+					,#{ordAddr1}
+					,#{ordAddr2}
+					,#{ordTel}
+					,#{payMeth}
+					)
+
+			</insert>
+
+			<select id="seachCount" resultType="Integer">
+    		SELECT
+    			MAX(T_IT_CD)
+    		FROM
+    			MP_CART_ORD
+			</select>
+
+			<insert id="orderDone" parameterType="CartOrdDTO">
+			INSERT INTO
+					MP_CART_ORD
+					(
+					T_IT_CD
+					,CART_CD
+					,ORD_CD
+					,MB_ID
+					,IT_CD
+					,AMOUNT
+					,PRICE
+					,IMG_CD
+					,OPT_CD
+					)
+			VALUES
+					(
+					#{tItCd}
+					,#{cartCd}
+					,#{ordCd}
+					,#{mbId}
+					,#{itCd}
+					,#{amount}
+					,#{price}
+					,#{imgCd}
+					,#{optCd}
+					)
+
+			</insert>
 </mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.dto.CartDTO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderHistoryPageDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
@@ -39,6 +40,7 @@ public class OrderController {
 	//상품자세히-주문결제 화면
 	//아이템 조인해서 넘겨줘야함.
 	@ApiOperation(value = "fastOrderConfirm")
+	@ResponseBody
 	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
 	public ResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
 //		String mbId=SessionAttributeManager.getMemberId();
@@ -52,16 +54,16 @@ public class OrderController {
 
 
 	@ApiOperation(value = "orderConfirm")
+	@ResponseBody
 	@GetMapping("/check/orderConfirm/")
-	public ResponseEntity<List<CartOrdJoinDTO>> orderConfirm
-	(@RequestBody List<CartDTO> carts) {
+	public ResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
 //		String mbId=SessionAttributeManager.getMemberId();
 		String mbId="1";
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
 
-		for (CartDTO cartDTO : carts) {
-		cartOrdJoinDTO.setCartCd(cartDTO.getCartCd());
+		for (Integer cartCd : cartCds) {
+		cartOrdJoinDTO.setCartCd(cartCd);
 		List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		itemJoinLists.addAll(itemJoinList);
 		}
@@ -70,23 +72,15 @@ public class OrderController {
 
 
 //	//주문완료
-	@PostMapping("/check/orderDone")
 	@ApiOperation(value = "orderDone")
-	public ModelAndView orderDone(@RequestBody List<CartDTO> carts, @RequestBody OrderInfoDTO info, HttpSession session) {
-//		String mbId=SessionAttributeManager.getMemberId();
-		String mbId="1";
-	    orderService.orderDone(carts, info, mbId);
-	    ModelAndView mav = new ModelAndView();
-	    mav.addObject("carts", carts);
-	    mav.addObject("info", info);
-		mav.addObject("mbId", mbId);
-		mav.setViewName("orderDone");
-	    return mav;
+	@ResponseBody
+	@PostMapping("/check/orderDone")
+	public ResponseEntity<List<OrderDoneDTO>> orderDone
+	(@RequestParam("cartCd") List<Integer> cartCd, @RequestBody OrderInfoDTO orderInfoDTO) {
+		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
+	    return ResponseEntity.ok(cartOrdDTO);
 	}
 
-	//  이 함수는 중복 코드 부분을 빼서 만들었습니다.
-	//  이 때 필요한 것들이 있습니다.
-	//  경고 창을 보고 밑에 변수들을 잘 보고 처리해주면 쉽게 해결됩니다.
 
 	private OrderSearchDTO searchPaging(@PathVariable("curPage")Integer curPage) {
 		orderSearchPage = new OrderHistoryPageDTO();

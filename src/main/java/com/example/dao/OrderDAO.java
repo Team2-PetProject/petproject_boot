@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.CartDTO;
+import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.DeliveryInfoDTO;
+import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderInfoDTO;
 import com.example.dto.OrderSearchDTO;
 
@@ -14,8 +16,6 @@ import com.example.dto.OrderSearchDTO;
 public interface OrderDAO {
 
 	void ordItem(String memberCd, List<CartDTO> carts);
-
-	void ordInfo(String memberCd, OrderInfoDTO orderInfoDTO);
 
 	int totalCount(String mbId);
 
@@ -25,12 +25,16 @@ public interface OrderDAO {
 
 	List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO);
 
-	DeliveryInfoDTO delevery(int dlvyCd);
-
-
 	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 
 	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
 
+	DeliveryInfoDTO dlvyInfo(Integer inv);
+
+	OrderInfoDTO ordInfo(Integer dlvyCd);
+
+	Integer seachCount();
+
+	List<OrderDoneDTO> orderDone(CartOrdDTO cartOrdDTO);
 
 }

@@ -11,7 +11,7 @@ public class OrderInfoDTO {
 	private String ordAddr1;
 	private String ordAddr2;
 	private String ordTel;
-	private String payMethod;
+	private String payMeth;
 	private String payTm;
 	public Integer getOrdCd() {
 		return ordCd;
@@ -55,11 +55,11 @@ public class OrderInfoDTO {
 	public void setOrdTel(String ordTel) {
 		this.ordTel = ordTel;
 	}
-	public String getPayMethod() {
-		return payMethod;
+	public String getPayMeth() {
+		return payMeth;
 	}
-	public void setPayMethod(String payMethod) {
-		this.payMethod = payMethod;
+	public void setPayMeth(String payMeth) {
+		this.payMeth = payMeth;
 	}
 	public String getPayTm() {
 		return payTm;
@@ -67,30 +67,7 @@ public class OrderInfoDTO {
 	public void setPayTm(String payTm) {
 		this.payTm = payTm;
 	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderInfoDTO [ordCd=");
-		builder.append(ordCd);
-		builder.append(", dlvyCd=");
-		builder.append(dlvyCd);
-		builder.append(", ordNm=");
-		builder.append(ordNm);
-		builder.append(", ordPost=");
-		builder.append(ordPost);
-		builder.append(", ordAddr1=");
-		builder.append(ordAddr1);
-		builder.append(", ordAddr2=");
-		builder.append(ordAddr2);
-		builder.append(", ordTel=");
-		builder.append(ordTel);
-		builder.append(", payMethod=");
-		builder.append(payMethod);
-		builder.append(", payTm=");
-		builder.append(payTm);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
+
+
+
 }

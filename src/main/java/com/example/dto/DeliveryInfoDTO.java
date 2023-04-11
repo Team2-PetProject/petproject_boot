@@ -12,7 +12,7 @@ public class DeliveryInfoDTO {
 	public Integer getDlvyCd() {
 		return dlvyCd;
 	}
-	public void setDlvyCd(Integer dlvyCd) {
+	public void setDlvyCd(Integer dwlvyCd) {
 		this.dlvyCd = dlvyCd;
 	}
 	public String getCom() {

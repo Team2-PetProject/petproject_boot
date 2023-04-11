@@ -35,3 +35,4 @@ logging:
 #타임리프
 prefix: /templates/
 suffix: .html
+

@@ -10,6 +10,7 @@ public class ItemDTO {
 	private Integer price;
 	private String cat;
 	private Integer tyCd;
+	
 	public Integer getItCd() {
 		return itCd;
 	}
@@ -64,7 +65,5 @@ public class ItemDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 	
 }//end class

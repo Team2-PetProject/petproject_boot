@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.ItemDTO;
@@ -18,5 +20,12 @@ public interface ItemDAO {
 	public ItemDTO selectItem(Integer itCd);
 
 	public void insertTyCd(RegisterDTO registerDto);
+
+	public int totalCount();
 	
+	public List<ItemDTO> itemList(String cat);
 }
+
+	
+
+

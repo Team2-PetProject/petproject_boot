@@ -38,7 +38,7 @@ public class FileUploadController {
 	@Autowired 
 	FileUploadService fileUploadService; 
 	 
-	@PostMapping("/upload")
+	@PostMapping(value = "/upload", consumes = "multipart/form-data")
 	@ApiOperation(value = "이미지 업로드")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
 			@RequestParam("name") String name,@RequestParam("price") int price, 

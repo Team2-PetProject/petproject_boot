@@ -11,6 +11,7 @@ import com.example.dao.ItemDAO;
 import com.example.dao.OptionDAO;
 import com.example.dao.OptionTypeDAO;
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
@@ -25,9 +26,17 @@ public class ItemService {
 	@Autowired
 	OptionDAO optionDao;
 	
-	public List<OptionDTO> itemList(String item_cat) {
-		// TODO Auto-generated method stub
-		return null;
+	//public ItemDTO itemList(String cat) {
+	public ItemListDTO itemList(String cat) {
+		//ItemDTO itemDTO = new ItemDTO();
+		ItemListDTO itemListDTO = new ItemListDTO();
+		System.out.println(cat);
+		List<ItemDTO> list = itemDao.itemList(cat);
+		itemListDTO.getList();
+		//itemListDTO.setList(list);
+		
+		//return itemDTO;
+		return itemListDTO;
 	}
 	
 	@Transactional
@@ -52,4 +61,9 @@ public class ItemService {
 		return itemDao.favoriteDelete(memberItemDTO);
 	}
 	
+	//페이징 처리를 위한 토탈카운트
+	@Transactional
+	public int totalCount() {
+		return itemDao.totalCount();
+	}
 }//end class

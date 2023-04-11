@@ -20,7 +20,7 @@ mybatis:
 
 #server 설정
 server:
-  port: 8090
+  port: 8093
   servlet:
     context-path: /app
     
@@ -33,4 +33,7 @@ logging:
 #타임리프
 prefix: /templates/
 suffix: .html
+
+
+
 

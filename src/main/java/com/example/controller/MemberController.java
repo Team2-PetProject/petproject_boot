@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.common.SessionAttributeManager;
+import com.example.common.dto.ComResponseDTO;
+import com.example.common.dto.ComResponseEntity;
 import com.example.dto.LoginDTO;
 import com.example.dto.MemberDTO;
 import com.example.service.MemberService;
@@ -51,12 +53,15 @@ public class MemberController {
 
 	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
-	public ResponseEntity<Object> memberAdd(@RequestBody MemberDTO memberDTO){
+	public ComResponseEntity<Void> memberAdd(@RequestBody MemberDTO memberDTO){
 		System.out.println("/member/memberAdd : " + memberDTO);
 		Integer n = service.memberAdd(memberDTO);
 		logger.info("insert 갯수 : "+n);
 		
-		return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
+		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
+		comResponseDTO.setMessage("회원가입 성공");
+		return new ComResponseEntity<Void>(comResponseDTO);
+//		return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
 	}
 	
 	
@@ -65,7 +70,7 @@ public class MemberController {
 
 	@PostMapping("/idCheck/{mbId}")
 	@ApiOperation(value = "아이디 중복체크")
-	public ResponseEntity<String> idCheck(@PathVariable("mbId") String mbId) {
+	public ComResponseEntity<Void> idCheck(@PathVariable("mbId") String mbId) {
 		logger.info("/idCheck 주소 : " + mbId);
 		
 		Integer count = service.idCheck(mbId);
@@ -73,12 +78,17 @@ public class MemberController {
 		String mesg = "아이디 사용가능";
 //		HttpHeaders header = new HttpHeaders();
 //		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
+		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
 		if(count == 1) {
 			mesg ="아이디 중복";
-			return new ResponseEntity<String>(mesg, HttpStatus.OK);  
+			comResponseDTO.setMessage(mesg);
+			return new ComResponseEntity<Void>(comResponseDTO);
+//			return new ResponseEntity<String>(mesg, HttpStatus.OK);  
 			
 		}else {
-			return new ResponseEntity<String>(mesg,HttpStatus.OK);
+			comResponseDTO.setMessage(mesg);
+			return new ComResponseEntity<Void>(comResponseDTO);
+//			return new ResponseEntity<String>(mesg,HttpStatus.OK);
 		}
 		
 		
@@ -95,22 +105,23 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session){
+	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO, HttpSession session){
 
 //		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
 		logger.info("db에서 가져온  memberDTO "+memberDTO);
 		
-		HttpHeaders header = new HttpHeaders();
-		header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
 
+		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
-			return new ResponseEntity<>("로그인 성공",header,HttpStatus.OK);
+			comResponseDTO.setMessage("로그인 성공");
+			return new ComResponseEntity<Void>(comResponseDTO);
 //			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
 					
 		}else {
-			return new ResponseEntity<>("존재하지 않는 회원",header,HttpStatus.NOT_FOUND);
+			comResponseDTO.setMessage("존재하지 않는 회원");
+			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
 //			return ResponseEntity.notFound().build();
 		}
 		
@@ -119,19 +130,25 @@ public class MemberController {
 	
 	@DeleteMapping("check/logout")
 	@ApiOperation(value = "로그아웃")
-	public ResponseEntity<Object> logout(HttpSession session){
+	public ComResponseEntity<Void> logout(HttpSession session){
 		
 		SessionAttributeManager.getSession().invalidate();
-		return new ResponseEntity<>("로그아웃 성공", HttpStatus.OK);
+		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
+		comResponseDTO.setMessage("로그아웃 성공");
+		return new ComResponseEntity<Void>(comResponseDTO);
 	}
 	
 	
 	@GetMapping("check/mypage/{mbId}")
 	@ApiOperation(value = "회원정보보기")
-	public ResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
+	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
 		
 		MemberDTO memberDTO = service.mypage(mbId);
-		return new ResponseEntity<MemberDTO>(memberDTO, HttpStatus.OK);
+		ComResponseDTO<MemberDTO> comResponseDTO = new ComResponseDTO<MemberDTO>();
+		comResponseDTO.setMessage("회원정보보기");
+		comResponseDTO.setBody(memberDTO);
+		return new ComResponseEntity<MemberDTO>(comResponseDTO);
+//		return new ResponseEntity<MemberDTO>(memberDTO, HttpStatus.OK);
 	}
 	
 	
@@ -139,13 +156,15 @@ public class MemberController {
 	
 	@PutMapping("check/update")
 	@ApiOperation(value = "회원정보수정")
-	public ResponseEntity<Object> update(@RequestBody MemberDTO memberDTO){
+	public ComResponseEntity<Void> update(@RequestBody MemberDTO memberDTO){
 		
 		Integer n = service.memberUpdate(memberDTO);
 		
 		logger.info("업데이트갯수>>>>>>"+n);
 		
-		return new ResponseEntity<>("회원정보수정 성공", HttpStatus.OK);
+		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
+		comResponseDTO.setMessage("회원정보수정 성공");
+		return new ComResponseEntity<Void>(comResponseDTO);
 				
 	}
 	

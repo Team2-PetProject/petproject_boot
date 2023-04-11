@@ -100,28 +100,4 @@
 		)
 		WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
 	</select>
-	<insert id="favoriteAdd" parameterType="MemberItemDTO">
-			 INSERT INTO 
-			 MP_MEMBER_ITEM
-			 (
-			 	MB_ID
-			 	,IT_CD
-			 )
-			 VALUES
-			 (
-			 #{mbId}
-			 ,#{itCd}
-			 )
-	</insert>
-	
-	<delete id="favoriteDelete" parameterType="MemberItemDTO">
-			DELETE
-			FROM
-			MP_MEMBER_ITEM
-			WHERE 
-			MB_ID=#{mbId}
-			AND
-			IT_CD=#{itCd}
-	</delete>
-	
 </mapper>

@@ -1,4 +1,4 @@
-package com.example.common;
+package com.example.common.Interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.common.SessionAttributeManager;
 
 public class LoginCheckInterceptor implements HandlerInterceptor{
 	

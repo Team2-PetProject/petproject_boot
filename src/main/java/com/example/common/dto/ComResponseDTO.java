@@ -1,6 +1,9 @@
 package com.example.common.dto;
 
-public class ResponseDTO<T> {
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ComResponseDTO<T> {
 	private String message;
 	private T body;
 	

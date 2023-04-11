@@ -51,8 +51,7 @@ public class MemberController {
 
 	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
-	@ResponseBody
-	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO){
+	public ResponseEntity<Object> memberAdd(@RequestBody MemberDTO memberDTO){
 		System.out.println("/member/memberAdd : " + memberDTO);
 		Integer n = service.memberAdd(memberDTO);
 		logger.info("insert 갯수 : "+n);

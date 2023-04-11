@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- headerFragment 선언 -->
+<th:block th:fragment="headerFragment">
+<!-- th:fragment="fragment명" 이게 해당 부분을 fragment로 선언한단 의미 -->
+	
+	<p>Header Section</p>
+
+	<div class="inner">
+		<div class="hearder-container">
+	
+			<a href="#"><img><b class="title">Kkosunnae</b></a>
+
+			<div class="right-box">
+				<button>채팅</button>
+				&nbsp;
+				<button>알림</button>
+				&nbsp;
+				
+				<th:block class="dropdown">
+					<button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1"
+						data-bs-toggle="dropdown" aria-expanded="false">dkssud</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" th:href="@{loginForm}">로그인</a></li>
+						<li><a class="dropdown-item" href="#">회원가입</a></li>
+					</ul>
+				</th:block>
+
+			</div>
+
+		</div> 
+		
+	</div>
+	
+</th:block>
+</html>

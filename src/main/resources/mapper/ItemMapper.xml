@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.ItemDAO">
+	<select id="totalCount" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_ITEM
+	</select>
 	<insert id="insertItem" parameterType="ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
@@ -10,32 +16,89 @@
 			, IT_NM
 			, PRICE
 			, CAT
-			, OPT_ADD
 		) VALUES (
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-			, #{optAdd}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT 
-				TB_ITEM_SEQ.CURRVAL 
+			SELECT
+				TB_ITEM_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
 	</insert>
 	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
-		SELECT 
+		SELECT
+			IT_CD as itCd
+			, IMG_CD as imgCd
+			, IT_NM as itNm
+			, PRICE as price
+			, CAT as cat
+			, TY_CD as tyCd
+		FROM TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</select>
+	<insert id="favoriteAdd" parameterType="MemberItemDTO">
+			 INSERT INTO
+			 MP_MEMBER_ITEM
+			 (
+			 	MB_ID
+			 	,IT_CD
+			 )
+			 VALUES
+			 (
+			 #{mbId}
+			 ,#{itCd}
+			 )
+	</insert>
+
+	<delete id="favoriteDelete" parameterType="MemberItemDTO">
+			DELETE
+			FROM
+			MP_MEMBER_ITEM
+			WHERE
+			MB_ID=#{mbId}
+			AND
+			IT_CD=#{itCd}
+	</delete>
+
+	<insert id="insertTyCd" parameterType="RegisterDTO">
+		UPDATE
+			TB_ITEM
+		SET
+			TY_CD = #{tyCd}
+		WHERE
+			IT_CD = #{itCd}
+	</insert>
+
+	<select id="itemList" parameterType="String" resultType="ItemDTO">
+	SELECT
+	*
+	FROM
+	(
+		SELECT
+		ROWNUM "IDX"
+		,ORD
+		. *
+		FROM
+		(
 			IT_CD as itCd
 			, IMG_CD as imgCd
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
 			, OPT_ADD as optAdd
-		FROM TB_ITEM
-		WHERE 
-			IT_CD = #{itCd}
+		FROM
+			FROM TB_ITEM
+		WHERE
+			CAT = #{cat}
+		ORDER BY IT_CD DESC
+		) "ORD"
+		)
+		WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
 	</select>
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO 

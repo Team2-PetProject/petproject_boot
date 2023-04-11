@@ -1,41 +1,46 @@
 package com.example.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.CartDAO;
+import com.example.dto.AmountUpdateDTO;
 import com.example.dto.CartDTO;
+import com.example.dto.SpecUpdateDTO;
 
 @Service
 public class CartService {
 	@Autowired
 	CartDAO dao;
 
-	public int cartAdd(CartDTO cart) {
-		//getopt ==if절 추가로 맵퍼 두개작성은 어떨까?
-		return dao.cartAdd(cart);
+	public int cartAdd(CartDTO cartDTO) {
+		return dao.cartAdd(cartDTO);
+
 	}
-	
-	public int cartDelete(int cart_cd) {
-		return dao.cartDelete(cart_cd);
+
+	public int cartDelete(int cartCd) {
+		return dao.cartDelete(cartCd);
 	}
 
 	public int checkDelete(List<Integer> list) {
-		return dao.checkDelete(list);
+		Integer deleteCount = 0;
+		for (Integer cartCd : list) {
+			deleteCount = deleteCount + dao.checkDelete(cartCd);
+		}
+		return deleteCount;
 	}
 
-	public int specUpdate(HashMap<String, Integer> map) {
+	public int specUpdate(SpecUpdateDTO specUpdateDTO) {
 
-		return dao.specUpdate(map);
-	}
-	
-	public int amountUpdate(HashMap<String, Integer> map) {
-
-		return dao.amountUpdate(map);
+		return dao.specUpdate(specUpdateDTO);
 	}
 
-	
+	public int amountUpdate(AmountUpdateDTO amountUpdateDTO) {
+
+		return dao.amountUpdate(amountUpdateDTO);
+	}
+
+
 }

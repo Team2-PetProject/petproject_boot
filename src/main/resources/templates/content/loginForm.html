@@ -10,7 +10,7 @@
 function login(){
 	var userid = document.getElementById("userid").value;
 	var password = document.getElementById("password").value;
-	console.log(userid, password);
+	//console.log(userid, password);
 	
 	$.ajax({
 		url: 'member/login',
@@ -20,8 +20,8 @@ function login(){
 			"Content-Type":"application/json"
 			},
 		data:JSON.stringify({
-			mbId : userid, 
-			pw : password
+			mbId:userid, 
+			pw:password
 			}),
 		success:function(data, status, xhr){
 			console.log(data);

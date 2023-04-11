@@ -1,5 +1,8 @@
 package com.example.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("OrderSearchDTO")
 public class OrderSearchDTO {
 	private Integer cartCd;
 	private Integer OrdCd;

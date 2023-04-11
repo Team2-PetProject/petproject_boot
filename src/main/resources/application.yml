@@ -5,6 +5,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: PetProject
     password: pet
+
 #image, css, js
   mvc:
     static-path-pattern: /resources/**
@@ -19,7 +20,7 @@ mybatis:
 
 #server 설정
 server:
-  port: 8093
+  port: 8090
   servlet:
     context-path: /app
     

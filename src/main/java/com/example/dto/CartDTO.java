@@ -8,8 +8,8 @@ public class CartDTO {
 	private Integer itCd;
 	private String mbId;
 	private Integer amount;
-	private String optAdd;
-	private String optCd;
+	private Integer optCd;
+
 	public Integer getCartCd() {
 		return cartCd;
 	}
@@ -34,17 +34,10 @@ public class CartDTO {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	public String getOptAdd() {
-		return optAdd;
-	}
-	public void setOptAdd(String optAdd) {
-		this.optAdd = optAdd;
-	}
-	
-	public String getOptCd() {
+	public Integer getOptCd() {
 		return optCd;
 	}
-	public void setOptCd(String optCd) {
+	public void setOptCd(Integer optCd) {
 		this.optCd = optCd;
 	}
 	@Override
@@ -58,13 +51,13 @@ public class CartDTO {
 		builder.append(mbId);
 		builder.append(", amount=");
 		builder.append(amount);
-		builder.append(", optAdd=");
-		builder.append(optAdd);
+		builder.append(", optCd=");
+		builder.append(optCd);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
+
+
+
+
 }

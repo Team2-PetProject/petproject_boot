@@ -10,11 +10,11 @@ import com.example.common.constant.ComConstant;
 import com.example.dto.MemberDTO;
 
 public class SessionAttributeManager {
-	
+	 
 	public static MemberDTO getMemberInfo() {
 		HttpSession session = getSession();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute(ComConstant.MEMBER_ID);
-		return memberDTO;
+		return memberDTO; 
 	}
 
 	public static String getMemberId() {
@@ -23,7 +23,7 @@ public class SessionAttributeManager {
 		return memberId;
 	}
 	
-	private static HttpSession getSession() {
+	public static HttpSession getSession() {
 		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		HttpSession session = req.getSession();
 		return session;

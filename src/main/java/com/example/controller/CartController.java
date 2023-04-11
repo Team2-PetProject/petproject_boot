@@ -4,117 +4,88 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.AmountUpdateDTO;
 import com.example.dto.CartDTO;
-import com.example.dto.MemberDTO;
+import com.example.dto.SpecUpdateDTO;
 import com.example.service.CartService;
 import com.example.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
-@Controller
+@RestController
 public class CartController {
-	//이제 세션 대신에 SessionAttributeManager클래스 함수 사용해서 회원정보 가져와주세요!
-//	@Autowired
-//	MemberService memberService;
-//	@Autowired
-//	CartService cartService;
-//	
-	
-	
-	//5에서 일어나는 이벤트
-	//장바구니 추가 //restful 미적용
-//	@PostMapping("/loginCheck/cartAdd")
-//	public String cartAdd
-//	(@RequestParam CartDTO cart, HttpSession session) {
-//	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
-//	    cart.setMbId(memberDTO.getMbId());
-//	    Integer insertCart = cartService.cartAdd(cart);
-//	    return "redirect:/itemRetrieve?item_code=" + cart.getItCd();
-//		return null;
-//	}
-	
-	
-	@PostMapping("/loginCheck/cartAdd")
-	@ResponseBody
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	CartService cartService;
+
+
+	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")
-	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart, HttpSession session){
-//		 MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
-//		 cart.setMbId(memberDTO.getMbId());
-//		 Integer AddItem = cartService.cartAdd(cart);
-//		 Map<String, Object> cartAdd = new HashMap<String, Object>();
-//		 cartAdd.put("success", AddItem > 0);
-//		 cartAdd.put("item_cd", cart.getCartCd());
-//		 return ResponseEntity.ok(cartAdd);
-		 return null;
+	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
+//		 String mbId=SessionAttributeManager.getMemberId();
+		 String mbId="1";
+		 cart.setMbId(mbId);
+		 Integer AddItem = cartService.cartAdd(cart);
+		 Map<String, Object> cartAdd = new HashMap<String, Object>();
+		 cartAdd.put("success", AddItem > 0);
+		 cartAdd.put("itemCd", cart.getCartCd());
+		 return ResponseEntity.ok(cartAdd);
 	}
-    
-	
-	//9에서 일어나는 이벤트
-	//한개 삭제
-	@DeleteMapping("/loginCheck/cartDelete/{cart_cd}")
-	@ResponseBody
+
+	//한개 삭제 메소드
+	@DeleteMapping("/check/cartDelete/{cartCd}")
 	@ApiOperation(value = "cartDelete")
-	public void cartDelete
-	(@PathVariable int cartCD) {
-		//cart_cd로 바로 삭제
-//		Integer deleteOne = cartService.cartDelete(cartCD);
-//		System.out.println("하나 삭제된 갯수 : "+ deleteOne);
+	public ResponseEntity<Void>cartDelete(@PathVariable("cartCd") int cartCd) {
+		//cartCd로 바로 삭제
+		Integer deleteOne = cartService.cartDelete(cartCd);
+		System.out.println("하나 삭제된 갯수 : "+ deleteOne);
+		return ResponseEntity.ok().build();
 	}
-	
-	//9에서 일어나는 이벤트
+
 	//전체 삭제
-	@DeleteMapping("/loginCheck/checkDelete")
-	@ResponseBody 
+	@DeleteMapping("/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
-	public void checkDelete
-	(@RequestParam("cartCD") List<Integer>list) {
-		//cart_cd 리스트 받아서 한번에 삭제
-//		System.out.println(list);
-//		Integer allDelete = cartService.checkDelete(list);
-//		System.out.println("전체 삭제  : " + allDelete);
-	} 
-	
-	//9에서 일어나는 이벤트
-	//상품 옵션 변경
-	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemCd}")
-	@ResponseBody
-	@ApiOperation(value = "specUpdate")
-	public int specUpdate
-	(@PathVariable("cartCd") int cartCd, @PathVariable("itemCd") int itemCd)
-	{
-		//CartDTO 바로 사용하용하세요.
-		//반환 값은 0 또는 1만 나옵니다.
-//		HashMap<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("cartCd", cartCd);
-//		map.put("itemCd", itemCd);
-//		return cartService.specUpdate(map);
-		return 0;
+	public ResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer>list) {
+		System.out.println(list);
+		Integer allDelete = cartService.checkDelete(list);
+		System.out.println("전체 삭제  : " + allDelete);
+		return ResponseEntity.ok().build();
 	}
-	
-	//9에서 일어나는 이벤트
+
+	//상품 옵션 변경
+	@PutMapping("/check/specUpdate/{cartCd}/option/{optCd}")
+	@ApiOperation(value = "specUpdate")
+	public ResponseEntity<Integer>specUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("optCd") int optCd){
+//		String mbId = SessionAttributeManager.getMemberId();
+		String mbId = "1";
+		SpecUpdateDTO specUpdateDTO = new SpecUpdateDTO();
+		specUpdateDTO.setMbId(mbId);
+		specUpdateDTO.setCartCd(cartCd);
+		specUpdateDTO.setOptCd(optCd);
+		Integer changeSpec=cartService.specUpdate(specUpdateDTO);
+		return ResponseEntity.ok(changeSpec);
+	}
+
 	//수량 변경
-	@PutMapping("/logunCheck/specUpdate/{cartCd}/{itemAmount}")
-	@ResponseBody
+	@PutMapping("/check/specUpdate/{cartCd}/amt/{amount}")
 	@ApiOperation(value = "amountUpdate")
-	public int amountUpdate
-	(@PathVariable("cartCd") int cartCd, @PathVariable("itemAmount") int itemAmount)
-	{
-		//CartDTO 바로 사용하용하세요.
-//		HashMap<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("cartCd",cartCd);
-//		map.put("itemamount",itemAmount);
-//		return cartService.amountUpdate(map);
-		return 0;
+	public ResponseEntity<Integer> amountUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("amount") int amount){
+//		String mbId = SessionAttributeManager.getMemberId();
+		String mbId = "1";
+		AmountUpdateDTO amountUpdateDTO = new AmountUpdateDTO();
+		amountUpdateDTO.setMbId(mbId);
+		amountUpdateDTO.setAmount(amount);
+		amountUpdateDTO.setCartCd(cartCd);
+		int changeAmount = cartService.amountUpdate(amountUpdateDTO);
+		return ResponseEntity.ok(changeAmount);
 	}
 }

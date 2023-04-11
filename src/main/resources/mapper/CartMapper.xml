@@ -3,5 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.CartDAO">
-	
+
+	<insert id="cartAdd" parameterType="CartDTO">
+		INSERT INTO TB_CART
+			(
+			CART_CD
+			,IT_CD
+			,MB_ID
+			,AMOUNT
+			,OPT_CD
+			)
+			VALUES
+			(
+			TB_CART_SEQ.NEXTVAL
+			,#{itCd}
+			,#{mbId}
+			,#{amount}
+			,#{optCd}
+			)
+	</insert>
+
+	<delete id="cartDelete" parameterType="int">
+			DELETE FROM TB_CART
+			WHERE
+			CART_CD = #{CART_CD}
+	</delete>
+
+	<delete id="checkDelete" parameterType="int">
+			DELETE FROM TB_CART
+			WHERE
+			CART_CD = #{CART_CD}
+	</delete>
+
+	<update id="specUpdate" parameterType="SpecUpdateDTO">
+		UPDATE TB_CART
+		SET
+		OPT_CD=#{optCd}
+		WHERE
+		MB_ID=#{mbId}
+		AND
+		CART_CD = #{cartCd}
+	</update>
+
+	<update id="amountUpdate" parameterType="AmountUpdateDTO">
+			UPDATE TB_CART
+			SET
+			AMOUNT = #{amount}
+			WHERE
+			MB_ID = #{mbId}
+			AND
+			CART_CD = #{cartCd}
+	</update>
+
+
 </mapper>

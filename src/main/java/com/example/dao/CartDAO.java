@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.dto.AmountUpdateDTO;
 import com.example.dto.CartDTO;
+import com.example.dto.SpecUpdateDTO;
 
 @Mapper
 public interface CartDAO {
@@ -14,12 +16,12 @@ public interface CartDAO {
 
 	int cartDelete(int cartCd);
 
-	int checkDelete(List<Integer> list);
+	int checkDelete(int cartCd);
 
-	int specUpdate(HashMap<String, Integer> map);
+	int specUpdate(SpecUpdateDTO specUpdateDTO);
 
-	int amountUpdate(HashMap<String, Integer> map);
+	int amountUpdate(AmountUpdateDTO amountUpdateDTO);
 
-	
- 
+
+
 }

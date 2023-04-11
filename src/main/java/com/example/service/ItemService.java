@@ -11,6 +11,7 @@ import com.example.dao.ItemDAO;
 import com.example.dao.OptionDAO;
 import com.example.dao.OptionTypeDAO;
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
 import com.example.dto.ItemRetrieveDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.dto.OptionDTO;
@@ -25,9 +26,17 @@ public class ItemService {
 	@Autowired
 	OptionDAO optionDao;
 	
-	public List<OptionDTO> itemList(String item_cat) {
-		// TODO Auto-generated method stub
-		return null;
+	//public ItemDTO itemList(String cat) {
+	public ItemListDTO itemList(String cat) {
+		//ItemDTO itemDTO = new ItemDTO();
+		ItemListDTO itemListDTO = new ItemListDTO();
+		System.out.println(cat);
+		List<ItemDTO> list = itemDao.itemList(cat);
+		itemListDTO.getList();
+		//itemListDTO.setList(list);
+		
+		//return itemDTO;
+		return itemListDTO;
 	}
 	
 	@Transactional
@@ -35,7 +44,7 @@ public class ItemService {
 		ItemRetrieveDTO itemRetrieveDTO = new ItemRetrieveDTO();
 		ItemDTO itemDTO = itemDao.selectItem(itCd);
 		itemRetrieveDTO.setItemDTO(itemDTO);
-		if("T".equals(itemDTO.getOptAdd())) {
+		if(itemDTO.getTyCd()!=null) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
 			List<String> option = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
@@ -44,16 +53,17 @@ public class ItemService {
 		return itemRetrieveDTO;
 	}
 
-//	public int favoriteAdd(MemberItemDTO i_dto) {
-//		return itemDao.favoriteAdd(i_dto);
-//	}
-//
-//	public int favoriteDelete(String member_cd, int item_cd) {
-//		return itemDao.favoriteDelete(member_cd,item_cd);
-//	}
+	public int favoriteAdd(MemberItemDTO memberItemDTO) {
+		return itemDao.favoriteAdd(memberItemDTO);
+	}
 
-
-
-
+	public int favoriteDelete(MemberItemDTO memberItemDTO) {
+		return itemDao.favoriteDelete(memberItemDTO);
+	}
 	
+	//페이징 처리를 위한 토탈카운트
+	@Transactional
+	public int totalCount() {
+		return itemDao.totalCount();
+	}
 }//end class

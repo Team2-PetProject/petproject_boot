@@ -36,7 +36,7 @@ public class FileUploadController {
 	@Autowired 
 	FileUploadService fileUploadService; 
 	 
-	@PostMapping("/upload")
+	@PostMapping(value = "/upload", consumes = "multipart/form-data")
 	@ApiOperation(value = "이미지 업로드")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
 			@RequestParam("name") String name,@RequestParam("price") int price, 
@@ -55,7 +55,6 @@ public class FileUploadController {
 		itemDTO.setPrice(price);
 		
 		if(add!=null) {
-			itemDTO.setOptAdd("T");
 			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
 			optionTypeDTO.setTyNm(optionName);
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
@@ -67,7 +66,6 @@ public class FileUploadController {
 			
 			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
 		}else {
-			itemDTO.setOptAdd("F");
 			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
 		}
 		

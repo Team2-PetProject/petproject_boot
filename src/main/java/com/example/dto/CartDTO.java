@@ -9,6 +9,7 @@ public class CartDTO {
 	private String mbId;
 	private Integer amount;
 	private Integer optCd;
+
 	public Integer getCartCd() {
 		return cartCd;
 	}
@@ -55,8 +56,8 @@ public class CartDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
+
+
+
+
 }

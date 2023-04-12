@@ -13,6 +13,7 @@ public class OrderInfoDTO {
 	private String ordTel;
 	private String payMeth;
 	private String payTm;
+
 	public Integer getOrdCd() {
 		return ordCd;
 	}
@@ -66,6 +67,30 @@ public class OrderInfoDTO {
 	}
 	public void setPayTm(String payTm) {
 		this.payTm = payTm;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderInfoDTO [ordCd=");
+		builder.append(ordCd);
+		builder.append(", dlvyCd=");
+		builder.append(dlvyCd);
+		builder.append(", ordNm=");
+		builder.append(ordNm);
+		builder.append(", ordPost=");
+		builder.append(ordPost);
+		builder.append(", ordAddr1=");
+		builder.append(ordAddr1);
+		builder.append(", ordAddr2=");
+		builder.append(ordAddr2);
+		builder.append(", ordTel=");
+		builder.append(ordTel);
+		builder.append(", payMeth=");
+		builder.append(payMeth);
+		builder.append(", payTm=");
+		builder.append(payTm);
+		builder.append("]");
+		return builder.toString();
 	}
 
 

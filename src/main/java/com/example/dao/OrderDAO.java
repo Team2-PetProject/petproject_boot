@@ -32,14 +32,19 @@ public interface OrderDAO {
 
 	Integer ordInfo(OrderInfoDTO orderInfoDTO);
 
-	Integer seachCount();
 
-	CartOrdDTO orderDone(CartOrdDTO cartOrdDTO);
+
 
 	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
 
 
 	CartOrdJoinDTO cartOrdSet(Integer cartCd);
+
+	List<OrderDoneDTO> orderDoneValueList(Integer itCd);
+
+	Integer searchCount();
+
+	void orderDone(CartOrdDTO cartOrdDTO);
 
 
 

@@ -4,6 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("DeliveryInfoDTO")
 public class DeliveryInfoDTO {
+
 	private Integer dlvyCd;
 	private String com;
 	private Integer inv;

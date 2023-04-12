@@ -3,15 +3,12 @@ package com.example.dto;
 import java.util.List;
 
 public class ItemListDTO {
+
 	private List<ItemDTO> list;
 	private int curPage; //현재 볼 페이지 번호
 	private int perPage = 8; //한 페이지에 보여질 목록 수
 	private int totalCount; //전체 레코드 갯수
-	
-	public ItemListDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public List<ItemDTO> getList() {
 		return list;
@@ -60,4 +57,4 @@ public class ItemListDTO {
 		return builder.toString();
 	}
 }
-	
+

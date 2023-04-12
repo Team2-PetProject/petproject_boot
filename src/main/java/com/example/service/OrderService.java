@@ -20,10 +20,12 @@ import com.example.dto.OrderSearchDTO;
 
 @Service
 public class OrderService {
+
 	@Autowired
 	OrderDAO orderDao;
 
 	private static final Logger logger = LogManager.getLogger(OrderService.class);
+
 
 	@Transactional
 	public Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO) {
@@ -32,89 +34,85 @@ public class OrderService {
 
 
 
-	//페이징 처리를 위한 토탈카운트
-	@Transactional
-	public int totalCount(String mbId) {
-		return orderDao.totalCount(mbId);
-	}
-
-
-	//주문 내역 기본화면
-	@Transactional
-	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.orderSearch(orderSearchDTO);
-	}
-
-	//기간 주문 내역 조회
-	@Transactional
-	public List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.daySearch(orderSearchDTO);
-	}
-
-	//특정 아이템 내역 조회
-	@Transactional
-	public List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.itemSearch(orderSearchDTO);
-	}
-
-	//배송조회
-
-	//주문결제화면 정보넘기기위한 join문
+	// 주문결제화면 정보넘기기위한 join문
 	@Transactional
 	public List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO) {
 		return orderDao.cartOrdJoin(cartOrdJoinDTO);
 	}
 
 	@Transactional
-	public List<CartOrdDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
+	public List<OrderDoneDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
 //		String mbId=SessionAttributeManager.getMemberId();
-		String mbId = "PET";
+		String mbId = "1";
 		Integer inv = invRandom();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		dlvyInfo.setInv(inv);
-		Integer dlvyCd =orderDao.dlvyInfo(dlvyInfo);
+		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
-//		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
-		Integer ordCd = 2;
-
+		System.err.println("dlvyCd" + dlvyCd);
+		System.err.println("orderInfoDTO" + orderInfoDTO);
+		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
+		System.err.println(ordCd);
 		logger.info(dlvyCd);
-
-		Integer seachCountTItCd = orderDao.seachCount();
-		if (seachCountTItCd==0) {
-			seachCountTItCd = 1;
+		Integer searchCountTItCd = orderDao.searchCount();
+		System.err.println(searchCountTItCd);
+		if (searchCountTItCd == null) {
+			searchCountTItCd = 0;
 		}
-		Integer tItCd = seachCountTItCd+1;
+		System.err.println("if문 후" + searchCountTItCd);
+		Integer tItCd = searchCountTItCd + 1;
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
 		cartOrdDTO.setOrdCd(ordCd);
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
-		for ( Integer cartCd : cartCds ) {
+		for (Integer cartCd : cartCds) {
+			System.out.println("cartCd" + cartCds);
 			cartOrdSet = orderDao.cartOrdSet(cartCd);
 			cartOrdDTO.setCartCd(cartCd);
+			System.err.println("cart" + cartOrdSet);
 			cartOrdDTO.setItCd(cartOrdSet.getItCd());
 			cartOrdDTO.setAmount(cartOrdSet.getAmount());
 			cartOrdDTO.setPrice(cartOrdSet.getPrice());
 			cartOrdDTO.setImgCd(cartOrdSet.getImgCd());
 			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
+			System.err.println("cartOrdDTO" + cartOrdDTO);
 			orderDao.orderDone(cartOrdDTO);
 		}
-		
-//		orderDao.cartOrdSet();
-		List<OrderDoneDTO> orderDoneLists = new ArrayList<OrderDoneDTO>();
-
-
-		return null;
+		// 정보가공처리
+		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
+		return valueList;
 	}
 
+	// 주문 내역 기본화면
+	@Transactional
+	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.orderSearch(orderSearchDTO);
+	}
 
+	// 기간 주문 내역 조회
+	@Transactional
+	public List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.daySearch(orderSearchDTO);
+	}
 
-	//배송장번호 생성
+	// 특정 아이템 내역 조회
+	@Transactional
+	public List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO) {
+		return orderDao.itemSearch(orderSearchDTO);
+	}
+
+	// 배송장번호 생성
 	public Integer invRandom() {
 		Integer minNum = 10000000; // 8자리 최소값
 		Integer maxNum = 99999999; // 8자리 최대값
-	    return ThreadLocalRandom.current().nextInt(minNum, maxNum + 1);
+		return ThreadLocalRandom.current().nextInt(minNum, maxNum + 1);
 	}
+	// 페이징 처리를 위한 토탈카운트
+		@Transactional
+		public int totalCount(String mbId) {
+			return orderDao.totalCount(mbId);
+		}
 
 
 }

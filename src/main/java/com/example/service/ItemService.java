@@ -1,6 +1,5 @@
 package com.example.service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ import com.example.dto.TypeDTO;
 
 @Service
 public class ItemService {
+
 	@Autowired
 	ItemDAO itemDao;
 	@Autowired
@@ -28,16 +28,16 @@ public class ItemService {
 	@Autowired
 	OptionDAO optionDao;
 
-	//public ItemDTO itemList(String cat) {
+	// public ItemDTO itemList(String cat) {
 	public ItemListDTO itemList(String cat) {
-		//ItemDTO itemDTO = new ItemDTO();
+		// ItemDTO itemDTO = new ItemDTO();
 		ItemListDTO itemListDTO = new ItemListDTO();
 		System.out.println(cat);
 		List<ItemDTO> list = itemDao.itemList(cat);
 		itemListDTO.getList();
-		//itemListDTO.setList(list);
+		// itemListDTO.setList(list);
 
-		//return itemDTO;
+		// return itemDTO;
 		return itemListDTO;
 	}
 
@@ -46,7 +46,7 @@ public class ItemService {
 		ItemRetrieveDTO itemRetrieveDTO = new ItemRetrieveDTO();
 		ItemDTO itemDTO = itemDao.selectItem(itCd);
 		itemRetrieveDTO.setItemDTO(itemDTO);
-		if(itemDTO.getTyCd()!=null) {
+		if (itemDTO.getTyCd() != null) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
 			List<String> option = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
@@ -63,7 +63,7 @@ public class ItemService {
 		return itemDao.favoriteDelete(memberItemDTO);
 	}
 
-	//페이징 처리를 위한 토탈카운트
+	// 페이징 처리를 위한 토탈카운트
 	@Transactional
 	public int totalCount() {
 		return itemDao.totalCount();
@@ -82,4 +82,4 @@ public class ItemService {
 		}
 		return favoriteLists;
 	}
-}//end class
+}// end class

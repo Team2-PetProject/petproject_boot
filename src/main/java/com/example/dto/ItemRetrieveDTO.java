@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("ItemRetrieveDTO")
 public class ItemRetrieveDTO {
+
 	private ItemDTO itemDTO;
 	private String optionName;
 	private List<String> option;
@@ -39,6 +40,6 @@ public class ItemRetrieveDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
+
 }

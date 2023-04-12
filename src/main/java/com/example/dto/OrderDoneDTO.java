@@ -6,19 +6,16 @@ import org.apache.ibatis.type.Alias;
 public class OrderDoneDTO {
 	private Integer tItCd;
 	private Integer cartCd;
-	private Integer OrdCd;
+	private Integer ordCd;
 	private String mbId;
 	private Integer itCd;
 	private Integer amount;
 	private Integer price;
 	private Integer imgCd;
 	private Integer optCd;
-	private String ORD_NM;
-	private String ORD_TEL;
-	private String PAY_METH;
-
-
-
+	private String ordNm;
+	private String ordTel;
+	private String payMeth;
 	public Integer gettItCd() {
 		return tItCd;
 	}
@@ -31,12 +28,7 @@ public class OrderDoneDTO {
 	public void setCartCd(Integer cartCd) {
 		this.cartCd = cartCd;
 	}
-	public Integer getOrdCd() {
-		return OrdCd;
-	}
-	public void setOrdCd(Integer ordCd) {
-		OrdCd = ordCd;
-	}
+
 	public String getMbId() {
 		return mbId;
 	}
@@ -73,23 +65,29 @@ public class OrderDoneDTO {
 	public void setOptCd(Integer optCd) {
 		this.optCd = optCd;
 	}
-	public String getORD_NM() {
-		return ORD_NM;
+	public String getOrdNm() {
+		return ordNm;
 	}
-	public void setORD_NM(String oRD_NM) {
-		ORD_NM = oRD_NM;
+	public void setOrdNm(String ordNm) {
+		this.ordNm = ordNm;
 	}
-	public String getORD_TEL() {
-		return ORD_TEL;
+	public String getOrdTel() {
+		return ordTel;
 	}
-	public void setORD_TEL(String oRD_TEL) {
-		ORD_TEL = oRD_TEL;
+	public void setOrdTel(String ordTel) {
+		this.ordTel = ordTel;
 	}
-	public String getPAY_METH() {
-		return PAY_METH;
+	public String getPayMeth() {
+		return payMeth;
 	}
-	public void setPAY_METH(String pAY_METH) {
-		PAY_METH = pAY_METH;
+	public void setPayMeth(String payMeth) {
+		this.payMeth = payMeth;
+	}
+	public Integer getOrdCd() {
+		return ordCd;
+	}
+	public void setOrdCd(Integer ordCd) {
+		this.ordCd = ordCd;
 	}
 	@Override
 	public String toString() {
@@ -98,8 +96,8 @@ public class OrderDoneDTO {
 		builder.append(tItCd);
 		builder.append(", cartCd=");
 		builder.append(cartCd);
-		builder.append(", OrdCd=");
-		builder.append(OrdCd);
+		builder.append(", ordCd=");
+		builder.append(ordCd);
 		builder.append(", mbId=");
 		builder.append(mbId);
 		builder.append(", itCd=");
@@ -112,15 +110,17 @@ public class OrderDoneDTO {
 		builder.append(imgCd);
 		builder.append(", optCd=");
 		builder.append(optCd);
-		builder.append(", ORD_NM=");
-		builder.append(ORD_NM);
-		builder.append(", ORD_TEL=");
-		builder.append(ORD_TEL);
-		builder.append(", PAY_METH=");
-		builder.append(PAY_METH);
+		builder.append(", ordNm=");
+		builder.append(ordNm);
+		builder.append(", ordTel=");
+		builder.append(ordTel);
+		builder.append(", payMeth=");
+		builder.append(payMeth);
 		builder.append("]");
 		return builder.toString();
 	}
+
+
 
 
 

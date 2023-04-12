@@ -11,8 +11,8 @@ public class OrderHistoryDTO {
 	private int item_price;
 	private int cart_amount;
 	private String orderinfo_orderday;
-	private String orderinfo_delivery; 
-	
+	private String orderinfo_delivery;
+
 public String getMember_code() {
 		return member_code;
 	}

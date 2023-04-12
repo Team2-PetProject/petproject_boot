@@ -1,14 +1,19 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.common.SessionAttributeManager;
+import com.example.dto.ItemDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.service.ItemService;
 import com.example.service.MemberService;
@@ -21,6 +26,14 @@ public class FavoriteController {
 	@Autowired
 	ItemService itemService;
 
+	@GetMapping("/check/favorite/{itemCd}")
+	@ResponseBody
+	@ApiOperation(value = "favoriteList")
+	public ResponseEntity<List<ItemDTO>> favoriteList
+	(@RequestParam("itemCd") List<Integer> itemCd){
+		List<ItemDTO> favoriteLists = itemService.favoriteList(itemCd);
+		return ResponseEntity.ok(favoriteLists);
+	}
 
 	@PostMapping("/check/favorite/{itemCd}")
 	@ResponseBody

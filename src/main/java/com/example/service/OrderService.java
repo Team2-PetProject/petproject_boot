@@ -70,14 +70,13 @@ public class OrderService {
 //		String mbId=SessionAttributeManager.getMemberId();
 		String mbId = "PET";
 		Integer inv = invRandom();
-		System.err.println(inv);
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		dlvyInfo.setInv(inv);
 		Integer dlvyCd =orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
 //		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
 		Integer ordCd = 2;
-		System.err.println("ordCd"+ordCd);
+
 		logger.info(dlvyCd);
 
 		Integer seachCountTItCd = orderDao.seachCount();
@@ -100,6 +99,7 @@ public class OrderService {
 			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
 			orderDao.orderDone(cartOrdDTO);
 		}
+		
 //		orderDao.cartOrdSet();
 		List<OrderDoneDTO> orderDoneLists = new ArrayList<OrderDoneDTO>();
 

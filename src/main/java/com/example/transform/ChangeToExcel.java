@@ -27,8 +27,8 @@ public class ChangeToExcel {
 		int day = today.getDayOfMonth();
 		String dayVal = String.format("%02d", day);
 
-		String txtPath = String.format("C:\\log\\logFile.2023-%s-%s.log", monthVal, dayVal);
-//		String txtPath = String.format("C:\\log\\order_done.2023-%s-%s.log", monthVal, dayVal);
+//		String txtPath = String.format("C:\\log\\logFile.2023-%s-%s.log", monthVal, dayVal);
+		String txtPath = String.format("C:\\log\\order_done.2023-%s-%s.log", monthVal, dayVal);
 		System.out.println(txtPath);
 		String excelPath = String.format("C:\\output\\delivery.2023-%s-%s.xlsx", monthVal, dayVal);
 		try {
@@ -37,11 +37,11 @@ public class ChangeToExcel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
+
 	} // main end
 
 	public static void createExcel(String outputFilePath) throws IOException {
-		
+
 		try (Workbook workbook = new XSSFWorkbook();
 				FileOutputStream fileOutputStream = new FileOutputStream(outputFilePath)) {
 			Sheet sheet = workbook.createSheet("New Sheet");
@@ -57,7 +57,7 @@ public class ChangeToExcel {
 	public static void convert(String inputFilePath, String outputFilePath) throws IOException {
 		Path inputPath = Paths.get(inputFilePath);
 		Path outputPath = Paths.get(outputFilePath);
-		
+
 
 		try (BufferedReader reader = Files.newBufferedReader(inputPath);
 				Workbook workbook = new XSSFWorkbook(new FileInputStream(outputFilePath));

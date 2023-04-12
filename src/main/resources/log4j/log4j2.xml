@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="30">
 	<Properties>
-		<Property name="BASE_DIR">./logs</Property>
+		<Property name="BASE_DIR">C:\log</Property>
 		<Property name="LOG_PATTERN"
 			value="[%date{yyyy-MM-dd HH:mm:ss}] %level %logger{36}(%file:%line) - %msg%n"></Property>
 	</Properties>
@@ -27,7 +27,7 @@
 			</DefaultRolloverStrategy>
 		</RollingFile>
 		<!--2차 작업 -->
-		<RollingFile 
+		<RollingFile
 			name="OrderDoneFile"
 			fileName="${BASE_DIR}/order_done.log"
 			filePattern="${BASE_DIR}/order_done_log.%d{yyyy-MM-dd}.txt">
@@ -35,7 +35,7 @@
 				pattern="%msg %d{yyyy-MM-dd-hh-mm}%n" />
 				<!--순서도 매우 중요  -->
 			<Policies>
-				<TimeBasedTriggeringPolicy /> 
+				<TimeBasedTriggeringPolicy />
 				<!--새로운 파일 생성 시간  -->
 			</Policies>
 			<DefaultRolloverStrategy>

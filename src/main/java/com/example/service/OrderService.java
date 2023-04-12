@@ -1,6 +1,5 @@
 package com.example.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -49,17 +48,12 @@ public class OrderService {
 		dlvyInfo.setInv(inv);
 		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
-		System.err.println("dlvyCd" + dlvyCd);
-		System.err.println("orderInfoDTO" + orderInfoDTO);
 		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
-		System.err.println(ordCd);
 		logger.info(dlvyCd);
 		Integer searchCountTItCd = orderDao.searchCount();
-		System.err.println(searchCountTItCd);
 		if (searchCountTItCd == null) {
 			searchCountTItCd = 0;
 		}
-		System.err.println("if문 후" + searchCountTItCd);
 		Integer tItCd = searchCountTItCd + 1;
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
@@ -67,16 +61,13 @@ public class OrderService {
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
 		for (Integer cartCd : cartCds) {
-			System.out.println("cartCd" + cartCds);
 			cartOrdSet = orderDao.cartOrdSet(cartCd);
 			cartOrdDTO.setCartCd(cartCd);
-			System.err.println("cart" + cartOrdSet);
 			cartOrdDTO.setItCd(cartOrdSet.getItCd());
 			cartOrdDTO.setAmount(cartOrdSet.getAmount());
 			cartOrdDTO.setPrice(cartOrdSet.getPrice());
 			cartOrdDTO.setImgCd(cartOrdSet.getImgCd());
 			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
-			System.err.println("cartOrdDTO" + cartOrdDTO);
 			orderDao.orderDone(cartOrdDTO);
 		}
 		// 정보가공처리

@@ -36,7 +36,7 @@
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, TY_CD as tyCd
+			, OPT_CD as optCd
 		FROM TB_ITEM
 		WHERE 
 			IT_CD = #{itCd}

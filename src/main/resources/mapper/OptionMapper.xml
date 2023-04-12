@@ -21,7 +21,7 @@
 		</selectKey>
 	</insert>
 	
-	<select id="selectOption" parameterType="int" resultType="String">
+	<select id="selectOption" parameterType="int" resultType="string">
 		SELECT 
 			OPT_NM as optNm
 		FROM TB_OPTION

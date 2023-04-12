@@ -26,6 +26,7 @@ public class FavoriteController {
 	@Autowired
 	ItemService itemService;
 
+	//수정완
 	@GetMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteList")

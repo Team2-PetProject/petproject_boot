@@ -30,12 +30,12 @@ public class FavoriteController {
 	@ResponseBody
 	@ApiOperation(value = "favoriteList")
 	public ResponseEntity<List<ItemDTO>> favoriteList
-	(@RequestParam("itemCd") List<Integer> itemCd){
-		List<ItemDTO> favoriteLists = itemService.favoriteList(itemCd);
+	(@RequestParam("itCd") List<Integer> itCd){
+		List<ItemDTO> favoriteLists = itemService.favoriteList(itCd);
 		return ResponseEntity.ok(favoriteLists);
 	}
 
-	@PostMapping("/check/favorite/{itemCd}")
+	@PostMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
 	public ResponseEntity<Void> favoriteAdd
@@ -49,7 +49,7 @@ public class FavoriteController {
 		return ResponseEntity.ok().build();
 	}
 
-	@DeleteMapping("/check/favorite/{itemCd}")
+	@DeleteMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteDelete")
 	public ResponseEntity<Void> favoriteDelete

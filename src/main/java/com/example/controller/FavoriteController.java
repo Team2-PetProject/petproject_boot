@@ -26,7 +26,7 @@ public class FavoriteController {
 	@Autowired
 	ItemService itemService;
 
-	@GetMapping("/check/favorite/{itemCd}")
+	@GetMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteList")
 	public ResponseEntity<List<ItemDTO>> favoriteList

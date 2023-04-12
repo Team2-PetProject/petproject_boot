@@ -16,19 +16,16 @@
 			, IT_NM
 			, PRICE
 			, CAT
-			, OPT_CD
 		) VALUES (
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-			, TB_OPTION_SEQ.NEXTVAL
 		)
-		<selectKey keyProperty="itCd,optCd" resultType="RegisterDTO">
+		<selectKey keyProperty="itCd" resultType="int">
 			SELECT 
 				TB_ITEM_SEQ.CURRVAL as itCd
-				, TB_OPTION_SEQ.CURRVAL as optCd
 			FROM DUAL
 		</selectKey>
 	</insert>
@@ -72,7 +69,7 @@
 		UPDATE 
 			TB_ITEM 
 		SET 
-			TY_CD = #{tyCd}
+			OPT_CD = #{optCd}
 		WHERE 
 			IT_CD = #{itCd}
 	</insert>

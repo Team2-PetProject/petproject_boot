@@ -10,10 +10,15 @@
 			, TY_CD
 			, OPT_NM
 		) VALUES (
-			#{optCd}
+			TB_OPTION_SEQ.NEXTVAL
 			, #{tyCd}
 			, #{optNm}
 		) 	
+		<selectKey keyProperty="optCd" resultType="int" order="AFTER">
+			SELECT
+				TB_OPTION_SEQ.CURRVAL as optCd
+			FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<select id="selectOption" parameterType="int" resultType="String">

@@ -2,16 +2,28 @@ package com.example.dto;
 
 import org.apache.ibatis.type.Alias;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Alias("CartOrdDTO")
+@Schema(description = "주문상품 정보")
 public class CartOrdDTO {
+	@Schema(description = "장바구니 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer cartCd;
+	@Schema(description = "고객 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer OrdCd;
+	@Schema(description = "멤버 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private String mbId;
+	@Schema(description = "상품 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer itCd;
+	@Schema(description = "수량", example="1", required = true, minLength = 1, maxLength = 50)
 	private Integer amount;
+	@Schema(description = "카테고리", example="카테고리", required = true, minLength = 1, maxLength = 50)
 	private String cat;
+	@Schema(description = "가격", example="0", required = true, minLength = 1, maxLength = 50)
 	private Integer price;
+	@Schema(description = "이미지 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer imgCd;
+	@Schema(description = "옵션 번호", example="번호", required = false, minLength = 1, maxLength = 50)
 	private Integer optCd;
 	public Integer getCartCd() {
 		return cartCd;

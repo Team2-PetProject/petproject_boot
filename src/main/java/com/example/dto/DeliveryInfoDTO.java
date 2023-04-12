@@ -2,12 +2,20 @@ package com.example.dto;
 
 import org.apache.ibatis.type.Alias;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Alias("DeliveryInfoDTO")
+@Schema(description = "배송정보")
 public class DeliveryInfoDTO {
+	@Schema(description = "배송 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer dlvyCd;
+	@Schema(description = "회사명", example="", required = true, minLength = 1, maxLength = 50)
 	private String com;
+	@Schema(description = "배송장", example="123456", required = true, minLength = 1, maxLength = 50)
 	private String inv;
+	@Schema(description = "배송시작일", example="2023-03-01", required = true, minLength = 1, maxLength = 50)
 	private String dlvyStart;
+	@Schema(description = "배송종료일", example="2023-03-01", required = true, minLength = 1, maxLength = 50)
 	private String dlvyEnd;
 	public Integer getDlvyCd() {
 		return dlvyCd;

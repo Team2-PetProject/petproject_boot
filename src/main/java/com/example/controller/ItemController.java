@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.common.dto.ComResponseDTO;
+import com.example.common.dto.ComResponseEntity;
 import com.example.common.dto.PagingDTO;
 import com.example.dto.ItemListDTO;
 import com.example.dto.ItemPageDTO;
@@ -66,13 +68,10 @@ public class ItemController {
 	
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")
-	public ResponseEntity<ItemRetrieveDTO> itemRetrieve (@PathVariable("itCd") Integer itCd) {
+	public ComResponseEntity<ItemRetrieveDTO> itemRetrieve (@PathVariable("itCd") Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = itemService.selectItemRetrieve(itCd);
 	    
-	    HttpHeaders header = new HttpHeaders();
-		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));	
-	    
-	    return new ResponseEntity<ItemRetrieveDTO>(itemRetrieveDTO, header, HttpStatus.OK);
+		return new ComResponseEntity<ItemRetrieveDTO>(new ComResponseDTO<ItemRetrieveDTO>(itCd + "상품정보", itemRetrieveDTO));
 	}
 	
 	@PostMapping("/itemPage/{curPage}")

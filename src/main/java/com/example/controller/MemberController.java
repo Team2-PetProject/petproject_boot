@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,8 +50,8 @@ public class MemberController {
 
 	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
-	@ResponseBody
-	public ResponseEntity<Object> memberAdd(MemberDTO memberDTO){
+	@CrossOrigin
+	public ResponseEntity<Object> memberAdd(@RequestBody MemberDTO memberDTO){
 		System.out.println("/member/memberAdd : " + memberDTO);
 		Integer n = service.memberAdd(memberDTO);
 		logger.info("insert 갯수 : "+n);
@@ -64,6 +65,7 @@ public class MemberController {
 
 	@PostMapping("/idCheck/{mbId}")
 	@ApiOperation(value = "아이디 중복체크")
+	@CrossOrigin
 	public ResponseEntity<String> idCheck(@PathVariable("mbId") String mbId) {
 		logger.info("/idCheck 주소 : " + mbId);
 		

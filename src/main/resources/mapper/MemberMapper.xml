@@ -31,6 +31,13 @@
      )
    </insert>
    
+   <select id="idCheck" parameterType="string" resultType="Integer">
+   	  SELECT 
+   	  		COUNT(*)
+   	  FROM TB_MEMBER
+   	  WHERE MB_ID = #{mbId}
+   </select>
+   
    <select id="mypage" parameterType="string" resultType="MemberDTO">
 	  SELECT 
 		  	MB_ID as mbId

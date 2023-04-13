@@ -47,7 +47,6 @@ public class CartController {
 	public ResponseEntity<Void>cartDelete(@PathVariable("cartCd") int cartCd) {
 		//cartCd로 바로 삭제
 		Integer deleteOne = cartService.cartDelete(cartCd);
-		System.out.println("하나 삭제된 갯수 : "+ deleteOne);
 		return ResponseEntity.ok().build();
 	}
 
@@ -55,9 +54,7 @@ public class CartController {
 	@DeleteMapping("/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
 	public ResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer>list) {
-		System.out.println(list);
 		Integer allDelete = cartService.checkDelete(list);
-		System.out.println("전체 삭제  : " + allDelete);
 		return ResponseEntity.ok().build();
 	}
 

@@ -134,9 +134,9 @@ public class OrderController {
 		@ApiOperation(value = "itemSearch")
 		public ResponseEntity<List<OrderSearchDTO>> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
-		int curPage, @PathVariable("itemNm") String itemNm) {
+		int curPage, @PathVariable("itNm") String itNm) {
 			OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-			orderSearchDTO.setItNm(itemNm);
+			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.itemSearch(orderSearchDTO);
 		   return ResponseEntity.ok(itemSearchList);
 		}

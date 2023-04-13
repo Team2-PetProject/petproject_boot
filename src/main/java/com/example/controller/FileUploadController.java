@@ -83,7 +83,7 @@ public class FileUploadController {
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
 //		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
-	}
+	} 
 	
 	
 }

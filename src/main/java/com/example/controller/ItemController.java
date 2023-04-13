@@ -36,35 +36,35 @@ public class ItemController {
 	@Autowired
 	MemberService memberService;
 	//10시10.
-	
+
 	//4
 	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
-	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat") 
-	//public ResponseEntity<ItemDTO> itemList(@PathVariable("cat") 
-//	(@RequestParam(value = "cat", defaultValue = "food") 
+	//public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat")
+	public ResponseEntity<ItemDTO> itemList(@PathVariable("cat")
+//	(@RequestParam(value = "cat", defaultValue = "food")
 	String cat) {
-	   ItemListDTO itemListDTO = itemService.itemList(cat);
-	   //ItemDTO itemDTO = itemService.itemList(cat);
+	   //ItemListDTO itemListDTO = itemService.itemList(cat);
+	   ItemDTO itemDTO = itemService.itemList(cat);
 	   HttpHeaders header = new HttpHeaders();
 	   header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-	   
-	    //return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
-	    return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
-	} 
+
+	    return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
+	    //return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
+	}
 
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")
 	public ResponseEntity<ItemRetrieveDTO> itemRetrieve (@PathVariable("itCd") Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = itemService.selectItemRetrieve(itCd);
-	    
+
 	    HttpHeaders header = new HttpHeaders();
-		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));	
-	    
+		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
 	    return new ResponseEntity<ItemRetrieveDTO>(itemRetrieveDTO, header, HttpStatus.OK);
 	}
-	
-	
-	
+
+
+
 
 
 }

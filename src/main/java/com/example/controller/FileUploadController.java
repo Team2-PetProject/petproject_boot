@@ -30,16 +30,16 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/file")
 public class FileUploadController {
-	
+
 	@Autowired
 	ItemService itemService;
-	@Autowired 
-	FileUploadService fileUploadService; 
-	 
+	@Autowired
+	FileUploadService fileUploadService;
+
 	@PostMapping("/upload")
 	@ApiOperation(value = "이미지 업로드")
-	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, 
-			@RequestParam("name") String name,@RequestParam("price") int price, 
+	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
+			@RequestParam("name") String name,@RequestParam("price") int price,
 			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
@@ -48,35 +48,35 @@ public class FileUploadController {
 		fileUploadDTO.setImgNm(file.getOriginalFilename());
 		fileUploadDTO.setFl(file.getBytes());
 		fileUploadDTO.setSz(String.valueOf(file.getSize()));
-		
+
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setItNm(name);
 		itemDTO.setCat(category);
 		itemDTO.setPrice(price);
-		
+
 		if(add!=null) {
-			itemDTO.setOptAdd("T");
+			itemDTO.setOptCd("T");
 			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
 			optionTypeDTO.setTyNm(optionName);
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
 			for(int i=0;i<option.size();i++) {
 				OptionDTO optionDTO = new OptionDTO();
 				optionDTO.setOptNm(option.get(i));
-				optionList.add(optionDTO); 
+				optionList.add(optionDTO);
 			}
-			
+
 			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
 		}else {
-			itemDTO.setOptAdd("F");
+			itemDTO.setOptCd("F");
 			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
 		}
-		
+
 		HttpHeaders header = new HttpHeaders();
-		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));		
-		 
+		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
 		return new ResponseEntity<String>("등록 성공", header, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/view/{imgCd}")
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
@@ -87,6 +87,6 @@ public class FileUploadController {
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
 	}
-	
-	
+
+
 }

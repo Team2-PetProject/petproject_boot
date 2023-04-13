@@ -20,13 +20,13 @@
 			, #{optAdd}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT 
-				TB_ITEM_SEQ.CURRVAL 
+			SELECT
+				TB_ITEM_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
 	</insert>
 	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
-		SELECT 
+		SELECT
 			IT_CD as itCd
 			, IMG_CD as imgCd
 			, IT_NM as itNm
@@ -34,33 +34,21 @@
 			, CAT as cat
 			, OPT_ADD as optAdd
 		FROM TB_ITEM
-		WHERE 
+		WHERE
 			IT_CD = #{itCd}
 	</select>
 	<select id="itemList" parameterType="String" resultType="ItemDTO">
 	SELECT
-	*
+
+		IT_CD as itCd
+		, IMG_CD as imgCd
+		, IT_NM as itNm
+		, PRICE as price
+		, CAT as cat
+		, OPT_CD as optCd
 	FROM
-	(
-		SELECT
-		ROWNUM "IDX"
-		,ORD
-		. *
-		FROM
-		(
-			IT_CD as itCd
-			, IMG_CD as imgCd
-			, IT_NM as itNm
-			, PRICE as price
-			, CAT as cat
-			, OPT_ADD as optAdd
-		FROM
-			FROM TB_ITEM
-		WHERE
-			CAT = #{cat}
-		ORDER BY IT_CD DESC
-		) "ORD"
-		)
-		WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+		FROM TB_ITEM
+	WHERE
+		CAT = #{cat}
 	</select>
 </mapper>

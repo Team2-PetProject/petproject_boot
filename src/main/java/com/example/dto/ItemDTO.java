@@ -9,7 +9,8 @@ public class ItemDTO {
 	private String itNm;
 	private Integer price;
 	private String cat;
-	private String optAdd;
+	private String optCd;
+
 	public Integer getItCd() {
 		return itCd;
 	}
@@ -40,12 +41,13 @@ public class ItemDTO {
 	public void setCat(String cat) {
 		this.cat = cat;
 	}
-	public String getOptAdd() {
-		return optAdd;
+	public String getOptCd() {
+		return optCd;
 	}
-	public void setOptAdd(String optAdd) {
-		this.optAdd = optAdd;
+	public void setOptCd(String optCd) {
+		this.optCd = optCd;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -59,12 +61,11 @@ public class ItemDTO {
 		builder.append(price);
 		builder.append(", cat=");
 		builder.append(cat);
-		builder.append(", optAdd=");
-		builder.append(optAdd);
+		builder.append(", optCd=");
+		builder.append(optCd);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
+
 }//end class

@@ -8,8 +8,13 @@
 	$(function(){
 		var optName = false;
 		$("#myfile").change(function(){
+			this.select();
+			let path = this.text.toString();
+			console.log(path);
+			$("#di").val(path);
 			readURL(this);
-		});
+			
+		}); 
 		$("#AddOpt").click(function(){
 			var add = "<tr><th>옵션값</th><td><input type='text' name='option'/></td></tr>";
 			$("#tableForm").append(add);
@@ -58,6 +63,7 @@
 <body>
 <h1>상품등록</h1><hr>
 <form method="post" action="api/file/upload" enctype="multipart/form-data">
+	<input type="hidden" name="di" id="di"/>
   <input type="file" accept="image/*,.txt" multiple required capture='user' name="file" id="myfile"/><br>
   <img id="view" src="#" alt = "이미지 미리보기" width = "100" height = "100"/><br>
 

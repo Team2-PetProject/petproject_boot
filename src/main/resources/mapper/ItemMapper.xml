@@ -24,8 +24,8 @@
 			, #{cat}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT
-				TB_ITEM_SEQ.CURRVAL
+			SELECT 
+				TB_ITEM_SEQ.CURRVAL as itCd
 			FROM DUAL
 		</selectKey>
 	</insert>
@@ -36,7 +36,7 @@
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, TY_CD as tyCd
+			, OPT_CD as optCd
 		FROM TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
@@ -96,14 +96,13 @@
 	</delete>
 
 	<insert id="insertTyCd" parameterType="RegisterDTO">
-		UPDATE
-			TB_ITEM
-		SET
-			TY_CD = #{tyCd}
-		WHERE
+		UPDATE 
+			TB_ITEM 
+		SET 
+			OPT_CD = #{optCd}
+		WHERE 
 			IT_CD = #{itCd}
 	</insert>
-
 	<select id="itemList" parameterType="String" resultType="ItemDTO">
 	SELECT
 	*

@@ -5,6 +5,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.common.dto.ComResponseDTO;
+import com.example.common.dto.ComResponseEntity;
 import com.example.dto.FileUploadDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.OptionDTO;
@@ -30,16 +34,16 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/file")
 public class FileUploadController {
-
+	private static final Logger logger = LogManager.getLogger(FileUploadController.class);
 	@Autowired
-	ItemService itemService;
+	ItemService itemService; 
 	@Autowired 
 	FileUploadService fileUploadService; 
 	 
 	@PostMapping(value = "/upload", consumes = "multipart/form-data")
 	@ApiOperation(value = "이미지 업로드")
-	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
-			@RequestParam("name") String name,@RequestParam("price") int price,
+	public ComResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file, 
+			@RequestParam("name") String name,@RequestParam("price") int price, 
 			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
@@ -48,43 +52,35 @@ public class FileUploadController {
 		fileUploadDTO.setImgNm(file.getOriginalFilename());
 		fileUploadDTO.setFl(file.getBytes());
 		fileUploadDTO.setSz(String.valueOf(file.getSize()));
-
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setItNm(name);
 		itemDTO.setCat(category);
 		itemDTO.setPrice(price);
-
 		if(add!=null) {
-			OptionTypeDTO optionTypeDTO = new OptionTypeDTO();
-			optionTypeDTO.setTyNm(optionName);
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
-			for(int i=0;i<option.size();i++) {
+			for(int i=0;i<option.size();i++) {				
 				OptionDTO optionDTO = new OptionDTO();
 				optionDTO.setOptNm(option.get(i));
 				optionList.add(optionDTO);
 			}
-
-			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionTypeDTO, optionList);
+			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionName, optionList);
 		}else {
 			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
 		}
-
-		HttpHeaders header = new HttpHeaders();
-		header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-		return new ResponseEntity<String>("등록 성공", header, HttpStatus.OK);
+		ComResponseDTO<Void> comResponseDto = new ComResponseDTO<Void>();
+		comResponseDto.setMessage("파일등록 성공");
+		return new ComResponseEntity<Void>(comResponseDto);
 	}
-
+	
 	@GetMapping("/view/{imgCd}")
 	@ApiOperation(value = "이미지 보기")
-	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
+	public ComResponseEntity<byte[]> findOne(@PathVariable int imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
-		System.out.println(dto);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
-		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
+		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
 	}
-
-
+	
+	
 }

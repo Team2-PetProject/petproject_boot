@@ -5,6 +5,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,12 +76,13 @@ public class FileUploadController {
 	
 	@GetMapping("/view/{imgCd}")
 	@ApiOperation(value = "이미지 보기")
-	public ComResponseEntity<byte[]> findOne(@PathVariable int imgCd){
+	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
-		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
+		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
+//		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
 	}
 	
 	

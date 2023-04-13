@@ -76,8 +76,10 @@ public class ItemController {
 		   //PagingDTO pagingDto = new PagingDTO();
 		   ItemListDTO itemListDto = new ItemListDTO();
 		   Integer perPage = itemListDto.getPerPage();
+		   List<ItemDTO> list = ??;
 		   itemListDto.setCurPage(curPage);
-
+		   itemListDto.setList(list);
+		   itemListDto.setTotalCount(totalCount);
 		   return itemListDto;
 		}
 

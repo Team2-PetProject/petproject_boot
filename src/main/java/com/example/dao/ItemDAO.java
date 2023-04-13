@@ -16,7 +16,9 @@ public interface ItemDAO {
 
 	public void insertItem(ItemDTO itemDTO);
 
-	public ItemDTO selectItem(Integer itCd); 
-	
-	public List<ItemDTO> itemList(String cat);
+	public ItemDTO selectItem(Integer itCd);
+
+	public ItemDTO itemList(String cat);
+
+	public int totalC();
 }

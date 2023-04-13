@@ -4,13 +4,14 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("ItemDTO")
 public class ItemDTO {
+
 	private Integer itCd;
 	private Integer imgCd;
 	private String itNm;
 	private Integer price;
 	private String cat;
 	private Integer tyCd;
-	
+
 	public Integer getItCd() {
 		return itCd;
 	}
@@ -65,5 +66,4 @@ public class ItemDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-}//end class
+}

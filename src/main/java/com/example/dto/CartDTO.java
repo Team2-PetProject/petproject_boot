@@ -4,6 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("CartDTO")
 public class CartDTO {
+
 	private Integer cartCd;
 	private Integer itCd;
 	private String mbId;
@@ -56,8 +57,4 @@ public class CartDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-
-
-
-
 }

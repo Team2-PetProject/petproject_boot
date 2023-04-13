@@ -4,27 +4,35 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("OptionTypeDTO")
 public class OptionTypeDTO {
+
 	private Integer tyCd;
 	private Integer itCd;
 	private String tyNm;
+
 	public Integer getTyCd() {
 		return tyCd;
 	}
+
 	public void setTyCd(Integer tyCd) {
 		this.tyCd = tyCd;
 	}
+
 	public Integer getItCd() {
 		return itCd;
 	}
+
 	public void setItCd(Integer idCd) {
 		this.itCd = idCd;
 	}
+
 	public String getTyNm() {
 		return tyNm;
 	}
+
 	public void setTyNm(String tyNm) {
 		this.tyNm = tyNm;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -37,5 +45,5 @@ public class OptionTypeDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

@@ -12,6 +12,7 @@ import com.example.dto.SpecUpdateDTO;
 
 @Service
 public class CartService {
+
 	@Autowired
 	CartDAO dao;
 
@@ -41,6 +42,4 @@ public class CartService {
 
 		return dao.amountUpdate(amountUpdateDTO);
 	}
-
-
 }

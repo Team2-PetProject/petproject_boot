@@ -40,7 +40,6 @@ public class CartController {
 		 Map<String, Object> cartAdd = new HashMap<String, Object>();
 		 cartAdd.put("success", AddItem > 0);
 		 cartAdd.put("itemCd", cart.getCartCd());
-//		 return ResponseEntity.ok(cartAdd);
 		 return new ComResponseEntity<>(new ComResponseDTO<>("카트 저장", cartAdd));
 	}
 

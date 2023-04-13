@@ -24,8 +24,8 @@
 			, #{cat}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT
-				TB_ITEM_SEQ.CURRVAL
+			SELECT 
+				TB_ITEM_SEQ.CURRVAL as itCd
 			FROM DUAL
 		</selectKey>
 	</insert>
@@ -36,11 +36,41 @@
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, TY_CD as tyCd
+			, OPT_CD as optCd
 		FROM TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+
+	<select id="favoriteList" parameterType="MemberItemDTO" resultType="ItemDTO">
+	SELECT
+			TB_ITEM.IT_CD "IT_CD"
+			,IMG_CD
+			,IT_NM
+			,PRICE
+			,CAT
+			,OPT_CD
+			FROM
+			TB_ITEM TB_ITEM
+	INNER JOIN
+			(
+	SELECT
+			MB_ID
+			,IT_CD
+	FROM
+			MP_MEMBER_ITEM
+	WHERE
+			MB_ID = #{mbId}
+	AND
+			IT_CD = #{itCd}
+			)
+			MP_ITEM ON
+			TB_ITEM.IT_CD = MP_ITEM.IT_CD
+
+
+
+	</select>
+
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO
 			 MP_MEMBER_ITEM
@@ -66,14 +96,13 @@
 	</delete>
 
 	<insert id="insertTyCd" parameterType="RegisterDTO">
-		UPDATE
-			TB_ITEM
-		SET
-			TY_CD = #{tyCd}
-		WHERE
+		UPDATE 
+			TB_ITEM 
+		SET 
+			OPT_CD = #{optCd}
+		WHERE 
 			IT_CD = #{itCd}
 	</insert>
-
 	<select id="itemList" parameterType="String" resultType="ItemDTO">
 	SELECT
 	*

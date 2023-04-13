@@ -4,6 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("ItemPageDTO")
 public class ItemPageDTO {
+
 	private Integer itCd;
 	private Integer imgCd;
 	private String itNm;
@@ -49,7 +50,7 @@ public class ItemPageDTO {
 	public void setTyCd(Integer tyCd) {
 		this.tyCd = tyCd;
 	}
-	
+
 	public String getPerPage() {
 		return perPage;
 	}
@@ -92,8 +93,8 @@ public class ItemPageDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
+
+
+
+
 }//end class

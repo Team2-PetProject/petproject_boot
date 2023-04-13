@@ -4,18 +4,22 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("MemberItemDTO")
 public class MemberItemDTO {
+
 	private String mbId;
 	private Integer itCd;
 
 	public String getMbId() {
 		return mbId;
 	}
+
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
+
 	public Integer getItCd() {
 		return itCd;
 	}
+
 	public void setItCd(Integer itCd) {
 		this.itCd = itCd;
 	}

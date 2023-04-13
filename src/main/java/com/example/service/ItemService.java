@@ -1,12 +1,13 @@
 package com.example.service;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.common.SessionAttributeManager;
 import com.example.dao.ItemDAO;
 import com.example.dao.OptionDAO;
 import com.example.dao.OptionTypeDAO;
@@ -19,32 +20,33 @@ import com.example.dto.TypeDTO;
 
 @Service
 public class ItemService {
+
 	@Autowired
 	ItemDAO itemDao;
 	@Autowired
 	OptionTypeDAO optionTypeDao;
 	@Autowired
 	OptionDAO optionDao;
-	
-	//public ItemDTO itemList(String cat) {
+
+	// public ItemDTO itemList(String cat) {
 	public ItemListDTO itemList(String cat) {
-		//ItemDTO itemDTO = new ItemDTO();
+		// ItemDTO itemDTO = new ItemDTO();
 		ItemListDTO itemListDTO = new ItemListDTO();
 		System.out.println(cat);
 		List<ItemDTO> list = itemDao.itemList(cat);
 		itemListDTO.getList();
-		//itemListDTO.setList(list);
-		
-		//return itemDTO;
+		// itemListDTO.setList(list);
+
+		// return itemDTO;
 		return itemListDTO;
 	}
-	
+
 	@Transactional
 	public ItemRetrieveDTO selectItemRetrieve(Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = new ItemRetrieveDTO();
 		ItemDTO itemDTO = itemDao.selectItem(itCd);
 		itemRetrieveDTO.setItemDTO(itemDTO);
-		if(itemDTO.getTyCd()!=null) {
+		if(itemDTO.getOptCd()!=null) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
 			List<String> option = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
@@ -60,10 +62,24 @@ public class ItemService {
 	public int favoriteDelete(MemberItemDTO memberItemDTO) {
 		return itemDao.favoriteDelete(memberItemDTO);
 	}
-	
-	//페이징 처리를 위한 토탈카운트
+
+	// 페이징 처리를 위한 토탈카운트
 	@Transactional
 	public int totalCount() {
 		return itemDao.totalCount();
 	}
-}//end class
+
+	public List<ItemDTO> favoriteList(List<Integer> itemCd) {
+		MemberItemDTO memberItemDTO = new MemberItemDTO();
+//		String mbId = SessionAttributeManager.getMemberId();
+		String mbId = "1";
+		memberItemDTO.setMbId(mbId);
+		List<ItemDTO> favoriteLists = new ArrayList<ItemDTO>();
+		for (Integer itCd : itemCd) {
+			memberItemDTO.setItCd(itCd);
+			List<ItemDTO> favoriteList = itemDao.favoriteList(memberItemDTO);
+			favoriteLists.addAll(favoriteList);
+		}
+		return favoriteLists;
+	}
+}// end class

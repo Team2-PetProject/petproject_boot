@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.common.dto.ComResponseDTO;
+import com.example.common.dto.ComResponseEntity;
 import com.example.dto.AmountUpdateDTO;
 import com.example.dto.CartDTO;
 import com.example.dto.SpecUpdateDTO;
@@ -30,7 +32,7 @@ public class CartController {
 
 	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")
-	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
+	public ComResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
 //		 String mbId=SessionAttributeManager.getMemberId();
 		 String mbId="1";
 		 cart.setMbId(mbId);
@@ -38,7 +40,7 @@ public class CartController {
 		 Map<String, Object> cartAdd = new HashMap<String, Object>();
 		 cartAdd.put("success", AddItem > 0);
 		 cartAdd.put("itemCd", cart.getCartCd());
-		 return ResponseEntity.ok(cartAdd);
+		 return new ComResponseEntity<>(new ComResponseDTO<>("카트 저장", cartAdd));
 	}
 
 	//한개 삭제 메소드

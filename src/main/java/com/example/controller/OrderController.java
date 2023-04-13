@@ -78,6 +78,7 @@ public class OrderController {
 	public ResponseEntity<List<OrderDoneDTO>> orderDone
 	(@RequestParam("cartCd") List<Integer> cartCd, @RequestBody OrderInfoDTO orderInfoDTO) {
 		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
+		System.err.println(cartOrdDTO);
 	    return ResponseEntity.ok(cartOrdDTO);
 	}
 

@@ -22,10 +22,12 @@ public interface ItemDAO {
 	public void insertTyCd(RegisterDTO registerDto);
 
 	public int totalCount();
-	
+
 	public List<ItemDTO> itemList(String cat);
+
+	public List<ItemDTO> favoriteList(MemberItemDTO memberItemDTO);
 }
 
-	
+
 
 

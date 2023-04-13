@@ -41,6 +41,36 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+
+	<select id="favoriteList" parameterType="MemberItemDTO" resultType="ItemDTO">
+	SELECT
+			TB_ITEM.IT_CD "IT_CD"
+			,IMG_CD
+			,IT_NM
+			,PRICE
+			,CAT
+			,OPT_CD
+			FROM
+			TB_ITEM TB_ITEM
+	INNER JOIN
+			(
+	SELECT
+			MB_ID
+			,IT_CD
+	FROM
+			MP_MEMBER_ITEM
+	WHERE
+			MB_ID = #{mbId}
+	AND
+			IT_CD = #{itCd}
+			)
+			MP_ITEM ON
+			TB_ITEM.IT_CD = MP_ITEM.IT_CD
+
+
+
+	</select>
+
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
 			 INSERT INTO
 			 MP_MEMBER_ITEM

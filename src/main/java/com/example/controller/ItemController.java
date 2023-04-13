@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +64,22 @@ public class ItemController {
 	    return new ResponseEntity<ItemRetrieveDTO>(itemRetrieveDTO, header, HttpStatus.OK);
 	}
 
+	@PostMapping("/itemPage/{curPage}")
+	@ApiOperation(value = "에윽")
+	//private ItemPageDTO searchPaging(@PathVariable("curPage")Integer curPage) {
+	private ItemListDTO searchPaging(@PathVariable("curPage")Integer curPage) {
+		  System.out.println(curPage);
+		   Integer totalCount = itemService.totalCount();
 
+//		   System.out.println(perPage);
+//		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		   //PagingDTO pagingDto = new PagingDTO();
+		   ItemListDTO itemListDto = new ItemListDTO();
+		   Integer perPage = itemListDto.getPerPage();
+		   itemListDto.setCurPage(curPage);
+
+		   return itemListDto;
+		}
 
 
 

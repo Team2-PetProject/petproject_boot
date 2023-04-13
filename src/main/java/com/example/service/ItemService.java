@@ -61,7 +61,11 @@ public class ItemService {
 //		return itemDao.favoriteDelete(member_cd,item_cd);
 //	}
 
-
+	//페이징 처리를 위한 토탈카운트
+		@Transactional
+		public int totalCount() {
+			return itemDao.totalC();
+		}
 
 
 

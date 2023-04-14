@@ -82,4 +82,9 @@ public class ItemService {
 		}
 		return favoriteLists;
 	}
+
+	public List<ItemDTO> mbFavoriteList(String mbId) {
+		
+		return itemDao.mbFavoriteList(mbId);
+	}
 }// end class

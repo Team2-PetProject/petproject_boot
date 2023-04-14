@@ -26,6 +26,8 @@ public interface ItemDAO {
 	public List<ItemDTO> itemList(String cat);
 
 	public List<ItemDTO> favoriteList(MemberItemDTO memberItemDTO);
+
+	public List<ItemDTO> mbFavoriteList(String mbId);
 }
 
 

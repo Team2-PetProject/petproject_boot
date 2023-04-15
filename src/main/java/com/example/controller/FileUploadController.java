@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.dto.FileUploadDTO;
@@ -34,8 +36,8 @@ import com.example.service.ItemService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api/file")
-public class FileUploadController {
+@RequestMapping("/admin/api/file")
+public class FileUploadController { 
 	private static final Logger logger = LogManager.getLogger(FileUploadController.class);
 	@Autowired
 	ItemService itemService; 
@@ -43,10 +45,11 @@ public class FileUploadController {
 	FileUploadService fileUploadService; 
 	 
 	@PostMapping(value = "/upload", consumes = "multipart/form-data")
+	@CrossOrigin
 	@ApiOperation(value = "이미지 업로드")
 	public ComResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file, 
 			@RequestParam("name") String name,@RequestParam("price") int price, 
-			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
+			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
@@ -58,7 +61,7 @@ public class FileUploadController {
 		itemDTO.setItNm(name);
 		itemDTO.setCat(category);
 		itemDTO.setPrice(price);
-		if(add!=null) {
+		if(add==true) {
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
 			for(int i=0;i<option.size();i++) {				
 				OptionDTO optionDTO = new OptionDTO();

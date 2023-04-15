@@ -1,12 +1,14 @@
 #DataSource 설정
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver 
-    url: jdbc:oracle:thin:@localhost:1521:xe
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe?oracle.jdbc.defaultNChar=true&oracle.jdbc.defaultLobPrefetchSize=4000&useUnicode=true&characterEncoding=AL32UTF8
     username: PetProject
     password: pet
+    tomcat:
+      connection-properties: useUnicode=true;characterEncoding=UTF-8;
 
-
+  
 #image, css, js
   mvc:
     static-path-pattern: /resources/**

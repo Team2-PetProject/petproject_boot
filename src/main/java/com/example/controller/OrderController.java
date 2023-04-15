@@ -32,8 +32,6 @@ public class OrderController {
 	MemberService memberService;
 
 	OrderHistoryPageDTO orderSearchPage;
-	//상품자세히-주문결제 화면
-	//아이템 조인해서 넘겨줘야함.
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")

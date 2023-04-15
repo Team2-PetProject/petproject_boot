@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,19 +15,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.AmountUpdateDTO;
+import com.example.dto.CartConfirmDTO;
 import com.example.dto.CartDTO;
 import com.example.dto.SpecUpdateDTO;
 import com.example.service.CartService;
-import com.example.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
 @RestController
 public class CartController {
 	@Autowired
-	MemberService memberService;
-	@Autowired
 	CartService cartService;
 
+	@GetMapping("/check/cartList")
+	@ApiOperation(value = "cartList")
+	public ResponseEntity<List<CartConfirmDTO>> cartList(){
+		List<CartConfirmDTO> cartLists = cartService.cartList();
+		return ResponseEntity.ok(cartLists);
+	}
 
 	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")

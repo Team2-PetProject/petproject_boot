@@ -55,6 +55,16 @@
 					MB_ID=#{mbId}
 	</select>
 
+	<update id="cartSearchUnable">
+		UPDATE TB_CART
+		SET
+			AMOUNT = #{amount}
+		WHERE
+			MB_ID = #{mbId}
+		AND
+			CART_CD = #{cartCd}
+	</update>
+
 	<select id="orderSearch" parameterType="OrderSearchDTO"
 		resultType="SearchResultDTO">
 		SELECT

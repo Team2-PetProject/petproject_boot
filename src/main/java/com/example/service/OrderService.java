@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.dao.OrderDAO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.CartSearchUnableDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderInfoDTO;
@@ -70,7 +71,13 @@ public class OrderService {
 			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
 			orderDao.orderDone(cartOrdDTO);
 		}
-		// 정보가공처리
+		CartSearchUnableDTO cartSearchUnableDTO = new CartSearchUnableDTO();
+		cartSearchUnableDTO.setMbId(mbId);
+		for (Integer cartCd : cartCds) {
+			cartSearchUnableDTO.setCartCd(cartCd);
+			orderDao.cartSearchUnable(cartSearchUnableDTO);
+
+		}
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}

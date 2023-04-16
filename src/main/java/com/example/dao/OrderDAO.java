@@ -49,6 +49,8 @@ public interface OrderDAO {
 
 	void cartSearchUnable(CartSearchUnableDTO cartSearchUnableDTO);
 
+	void updateTM(Integer dlvyCd);
+
 
 
 }

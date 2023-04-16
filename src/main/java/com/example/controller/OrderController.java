@@ -76,26 +76,6 @@ public class OrderController {
 	}
 
 
-	private OrderSearchDTO searchPaging(@PathVariable("curPage")Integer curPage) {
-		orderSearchPage = new OrderHistoryPageDTO();
-//	   String mbId = SessionAttributeManager.getMemberId();
-//	   Integer totalCount = orderService.totalCount(mbId);
-	   String mbId = "1";
-	   Integer totalCount = 100;
-	   Integer perPage = orderSearchPage.getPerPage();
-	   Integer totalPage = (int)Math.ceil(totalCount / perPage);
-//	   if (curPage==0) {curPage=1;}
-
-	   curPage=1;
-	   Integer startIdx = (curPage-1) * perPage+1;
-	   Integer endIdx = perPage*startIdx;
-	   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
-	   orderSearchDTO.setMbId(mbId);
-	   orderSearchDTO.setPerPage(Integer.toString(perPage));
-	   orderSearchDTO.setStartIdx(Integer.toString(startIdx));
-	   orderSearchDTO.setEndIdx(Integer.toString(startIdx));
-	   return orderSearchDTO;
-	}
 
 	@GetMapping("/check/orderSearch/")
 	@ResponseBody
@@ -115,23 +95,51 @@ public class OrderController {
 		public ResponseEntity<List<OrderSearchDTO>> daySearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
 		int curPage, @PathVariable("startDay") String startDay, @PathVariable("endDay")String endDay) {
-			OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-			orderSearchDTO.setStartDay(startDay);
-			orderSearchDTO.setEndDay(endDay);
+			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			List<OrderSearchDTO> daySearchList = orderService.daySearch(orderSearchDTO);
 		   return ResponseEntity.ok(daySearchList);
 		}
 
-		@GetMapping("/check/orderSearch/{itemNm}")
+		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itemNm}")
 		@ResponseBody
 		@ApiOperation(value = "itemSearch")
 		public ResponseEntity<List<OrderSearchDTO>> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
-		int curPage, @PathVariable("itNm") String itNm) {
-			OrderSearchDTO orderSearchDTO = searchPaging(curPage);
+		int curPage, @PathVariable("itNm") String itNm,
+		@PathVariable("startDay") String startDay,
+		@PathVariable("endDay")String endDay) {
+			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.itemSearch(orderSearchDTO);
 		   return ResponseEntity.ok(itemSearchList);
+		}
+
+		private OrderSearchDTO extracted(int curPage, String startDay, String endDay) {
+			OrderSearchDTO orderSearchDTO = searchPaging(curPage);
+			orderSearchDTO.setStartDay(startDay);
+			orderSearchDTO.setEndDay(endDay);
+			return orderSearchDTO;
+		}
+
+		private OrderSearchDTO searchPaging(@PathVariable("curPage")Integer curPage) {
+			orderSearchPage = new OrderHistoryPageDTO();
+//		   String mbId = SessionAttributeManager.getMemberId();
+//		   Integer totalCount = orderService.totalCount(mbId);
+		   String mbId = "1";
+		   Integer totalCount = 100;
+		   Integer perPage = orderSearchPage.getPerPage();
+		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
+//		   if (curPage==0) {curPage=1;}
+
+		   curPage=1;
+		   Integer startIdx = (curPage-1) * perPage+1;
+		   Integer endIdx = perPage*startIdx;
+		   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
+		   orderSearchDTO.setMbId(mbId);
+		   orderSearchDTO.setPerPage(Integer.toString(perPage));
+		   orderSearchDTO.setStartIdx(Integer.toString(startIdx));
+		   orderSearchDTO.setEndIdx(Integer.toString(startIdx));
+		   return orderSearchDTO;
 		}
 
 }

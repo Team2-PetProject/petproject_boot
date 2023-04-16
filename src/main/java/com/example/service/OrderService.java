@@ -50,7 +50,7 @@ public class OrderService {
 		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
 		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
-		logger.info(dlvyCd);
+		logger.info(dlvyCd+" ||");
 		Integer searchCountTItCd = orderDao.searchCount();
 		if (searchCountTItCd == null) {
 			searchCountTItCd = 0;
@@ -78,6 +78,10 @@ public class OrderService {
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
 
 		}
+		if (dlvyCd>1) {
+			dlvyCd=dlvyCd-1;
+		}
+		orderDao.updateTM(dlvyCd);
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}

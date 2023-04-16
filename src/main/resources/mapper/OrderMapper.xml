@@ -188,6 +188,11 @@
 		MB_ID=#{mbId}
 		AND
 		IT_NM=#{itNm}
+		AND
+		PAY_TM BETWEEN
+		TO_DATE(#{startDay}, 'YYYYMMDD')
+		AND
+		TO_DATE(#{endDay}, 'YYYYMMDD')
 		ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		)
 		WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
@@ -344,4 +349,26 @@
 				TB_ORDER_INFO.ORD_CD = MP_CART_ORD.ORD_CD
 
 	</select>
+
+	<update id="updateTM" parameterType="Integer">
+
+		UPDATE
+				TB_DELIVERY_INFO
+		SET
+				TB_DELIVERY_INFO.DLVY_END =
+
+		(SELECT
+				 DLVY_END
+		FROM 	(
+		SELECT
+		   		 TB_UP_TM.DLVY_END
+		FROM
+		   		 TB_UP_TM
+		WHERE TB_UP_TM.DLVY_CD=#{dlvyCd}
+		)
+
+		WHERE
+		TB_DELIVERY_INFO.DLVY_CD=#{dlvyCd};
+
+	</update>
 </mapper>

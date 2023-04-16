@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.dto.CartDTO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.CartSearchUnableDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderInfoDTO;
@@ -45,6 +46,8 @@ public interface OrderDAO {
 	Integer searchCount();
 
 	void orderDone(CartOrdDTO cartOrdDTO);
+
+	void cartSearchUnable(CartSearchUnableDTO cartSearchUnableDTO);
 
 
 

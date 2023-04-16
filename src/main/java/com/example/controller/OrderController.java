@@ -3,8 +3,6 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.example.dto.CartDTO;
-import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderHistoryPageDTO;
@@ -37,8 +32,6 @@ public class OrderController {
 	MemberService memberService;
 
 	OrderHistoryPageDTO orderSearchPage;
-	//상품자세히-주문결제 화면
-	//아이템 조인해서 넘겨줘야함.
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
@@ -134,9 +127,9 @@ public class OrderController {
 		@ApiOperation(value = "itemSearch")
 		public ResponseEntity<List<OrderSearchDTO>> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
-		int curPage, @PathVariable("itemNm") String itemNm) {
+		int curPage, @PathVariable("itNm") String itNm) {
 			OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-			orderSearchDTO.setItNm(itemNm);
+			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.itemSearch(orderSearchDTO);
 		   return ResponseEntity.ok(itemSearchList);
 		}

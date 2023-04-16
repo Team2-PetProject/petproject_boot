@@ -24,8 +24,6 @@ public interface OrderDAO {
 
 	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO);
-
 	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 
 	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);

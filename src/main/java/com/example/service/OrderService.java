@@ -98,11 +98,6 @@ public class OrderService {
 		return orderDao.daySearch(orderSearchDTO);
 	}
 
-	// 특정 아이템 내역 조회
-	@Transactional
-	public List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.itemSearch(orderSearchDTO);
-	}
 
 	// 배송장번호 생성
 	public Integer invRandom() {

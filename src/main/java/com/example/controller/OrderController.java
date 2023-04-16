@@ -88,29 +88,17 @@ public class OrderController {
 	}
 
 
-
-		@GetMapping("/check/orderSearch/{startDay}/{endDay}")
+		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itemNm}")
 		@ResponseBody
 		@ApiOperation(value = "daySearch")
 		public ResponseEntity<List<OrderSearchDTO>> daySearch
-		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
-		int curPage, @PathVariable("startDay") String startDay, @PathVariable("endDay")String endDay) {
-			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
-			List<OrderSearchDTO> daySearchList = orderService.daySearch(orderSearchDTO);
-		   return ResponseEntity.ok(daySearchList);
-		}
-
-		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itemNm}")
-		@ResponseBody
-		@ApiOperation(value = "itemSearch")
-		public ResponseEntity<List<OrderSearchDTO>> itemSearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
 		int curPage, @PathVariable("itNm") String itNm,
 		@PathVariable("startDay") String startDay,
 		@PathVariable("endDay")String endDay) {
 			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			orderSearchDTO.setItNm(itNm);
-		   List<OrderSearchDTO> itemSearchList = orderService.itemSearch(orderSearchDTO);
+		   List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
 		   return ResponseEntity.ok(itemSearchList);
 		}
 

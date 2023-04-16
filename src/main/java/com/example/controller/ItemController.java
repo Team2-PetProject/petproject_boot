@@ -40,17 +40,17 @@ public class ItemController {
 
 	//4
 	@GetMapping("/itemList/{cat}")//("/itemList") //단순 조회는 get
-	//public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat")
-	public ResponseEntity<ItemDTO> itemList(@PathVariable("cat")
+	public ResponseEntity<ItemListDTO> itemList(@PathVariable("cat")
+	//public ResponseEntity<ItemDTO> itemList(@PathVariable("cat")
 //	(@RequestParam(value = "cat", defaultValue = "food")
 	String cat) {
-	   //ItemListDTO itemListDTO = itemService.itemList(cat);
-	   ItemDTO itemDTO = itemService.itemList(cat);
+	  ItemListDTO itemListDTO = itemService.itemList(cat);
+	  // ItemDTO itemDTO = itemService.itemList(cat);
 	   HttpHeaders header = new HttpHeaders();
 	   header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
 
-	    return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
-	    //return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
+	    //return new ResponseEntity<ItemDTO>(itemDTO, header, HttpStatus.OK);
+	   return new ResponseEntity<ItemListDTO>(itemListDTO, header, HttpStatus.OK);
 	}
 
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
@@ -70,15 +70,17 @@ public class ItemController {
 	private ItemListDTO searchPaging(@PathVariable("curPage")Integer curPage) {
 		  System.out.println(curPage);
 		   Integer totalCount = itemService.totalCount();
-
-//		   System.out.println(perPage);
-//		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		   
+		   
+		   
 		   //PagingDTO pagingDto = new PagingDTO();
 		   ItemListDTO itemListDto = new ItemListDTO();
 		   Integer perPage = itemListDto.getPerPage();
-		   List<ItemDTO> list = ??;
-		   itemListDto.setCurPage(curPage);
-		   itemListDto.setList(list);
+		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		   System.out.println(totalPage);
+//		   List<ItemDTO> list = ??;
+		   System.out.println(perPage);
+		   itemListDto.setCurPage(curPage); 
 		   itemListDto.setTotalCount(totalCount);
 		   return itemListDto;
 		}

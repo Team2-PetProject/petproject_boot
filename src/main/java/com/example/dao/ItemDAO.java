@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
 import com.example.dto.MemberItemDTO;
 
 @Mapper
@@ -18,7 +19,7 @@ public interface ItemDAO {
 
 	public ItemDTO selectItem(Integer itCd);
 
-	public ItemDTO itemList(String cat);
+	public List<ItemDTO> itemList(String cat);
 
 	public int totalC();
 }

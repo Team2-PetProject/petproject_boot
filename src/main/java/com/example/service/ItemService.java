@@ -25,18 +25,19 @@ public class ItemService {
 	OptionTypeDAO optionTypeDao;
 	@Autowired
 	OptionDAO optionDao;
-
-	public ItemDTO itemList(String cat) {
-//	public ItemListDTO itemList(String cat) {
-		ItemDTO itemDTO = new ItemDTO();
-		//ItemListDTO itemListDTO = new ItemListDTO();
+	
+	@Transactional
+	//public ItemDTO itemList(String cat) {
+	public ItemListDTO itemList(String cat) {
+		//ItemDTO itemDTO = new ItemDTO();
+		ItemListDTO itemListDTO = new ItemListDTO();
 		System.out.println(cat);
-//		List<ItemDTO> list = itemDao.itemList(cat);
-//		itemListDTO.getList();
-		//itemListDTO.setList(list);
-
-		return itemDTO;
-		//return itemListDTO;
+		List<ItemDTO> list = itemDao.itemList(cat);
+		//itemDTO.setCat(cat);
+		itemListDTO.setList(list);
+		System.out.println(list);
+		//return itemDTO;
+		return itemListDTO;
 	}
 
 	@Transactional

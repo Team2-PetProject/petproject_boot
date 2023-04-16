@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.ItemDAO">
+	<select id="totalC" parameterType="ItemDTO">
+		SELECT 
+			COUNT (*)
+     	FROM 
+      		TB_ITEM
+	</select>
+	
 	<insert id="insertItem" parameterType="ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
@@ -10,14 +17,14 @@
 			, IT_NM
 			, PRICE
 			, CAT
-			, OPT_ADD
+			, OPT_CD 
 		) VALUES (
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-			, #{optAdd}
+			, #{optCd}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
 			SELECT
@@ -32,12 +39,12 @@
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, OPT_ADD as optAdd
+			, OPT_CD as optCd
 		FROM TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<select id="itemList" parameterType="String" resultType="ItemDTO">
+	<select id="itemList" parameterType="String" resultType="ItemListDTO">
 	SELECT
 
 		IT_CD as itCd

@@ -1,0 +1,356 @@
+[2023-04-07 00:07:01] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:07:02] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:02] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:07:02] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:02] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:02] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:07:02] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:07:02] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:07:02] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:02] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:07:02] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:07:02] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:07:02] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 593 ms
+[2023-04-07 00:07:03] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:07:03] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:03] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:07:03] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.894 seconds (JVM running for 6049.305)
+[2023-04-07 00:07:03] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:07:24] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:07:24] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:24] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:07:24] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:24] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:24] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:07:24] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:07:25] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:07:25] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:25] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:07:25] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:07:25] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:07:25] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 535 ms
+[2023-04-07 00:07:25] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:07:25] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:25] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:07:25] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.844 seconds (JVM running for 6071.524)
+[2023-04-07 00:07:25] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:07:30] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:07:30] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:30] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:07:30] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:30] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:31] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:07:31] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:07:31] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:07:31] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:31] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:07:31] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:07:31] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:07:31] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 509 ms
+[2023-04-07 00:07:31] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:07:31] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:07:31] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:07:31] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.813 seconds (JVM running for 6077.984)
+[2023-04-07 00:07:31] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:08:00] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-04-07 00:08:00] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[2023-04-07 00:08:00] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:547) - Completed initialization in 0 ms
+[2023-04-07 00:08:00] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:110) - HikariPool-4 - Starting...
+[2023-04-07 00:08:00] WARN com.zaxxer.hikari.util.DriverDataSource(DriverDataSource.java:70) - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-04-07 00:08:00] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:123) - HikariPool-4 - Start completed.
+[2023-04-07 00:12:56] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:12:56] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:12:56] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:12:56] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-07 00:12:56] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:12:56] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:12:56] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:12:56] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:350) - HikariPool-4 - Shutdown initiated...
+[2023-04-07 00:12:56] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:352) - HikariPool-4 - Shutdown completed.
+[2023-04-07 00:12:56] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:12:56] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:12:57] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:12:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:12:57] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:12:57] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:12:57] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:12:57] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 601 ms
+[2023-04-07 00:12:57] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:12:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:12:57] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:12:57] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.921 seconds (JVM running for 6403.681)
+[2023-04-07 00:12:57] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:13:23] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-04-07 00:13:23] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[2023-04-07 00:13:23] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:547) - Completed initialization in 1 ms
+[2023-04-07 00:13:23] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:110) - HikariPool-5 - Starting...
+[2023-04-07 00:13:23] WARN com.zaxxer.hikari.util.DriverDataSource(DriverDataSource.java:70) - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-04-07 00:13:23] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:123) - HikariPool-5 - Start completed.
+[2023-04-07 00:13:43] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:13:44] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:13:44] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:13:44] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-07 00:13:44] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [OJDBC-WORKER-THREAD-5] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.transfer(Unknown Source)
+ java.util.concurrent.SynchronousQueue.poll(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:13:44] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [HikariPool-5 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:13:44] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:13:44] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:13:44] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:350) - HikariPool-5 - Shutdown initiated...
+[2023-04-07 00:13:44] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:352) - HikariPool-5 - Shutdown completed.
+[2023-04-07 00:13:44] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:13:44] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:13:44] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:13:44] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:13:44] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:13:44] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:13:44] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:13:44] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 598 ms
+[2023-04-07 00:13:44] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:13:44] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:13:44] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:13:45] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.915 seconds (JVM running for 6451.156)
+[2023-04-07 00:13:45] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:15:04] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:15:04] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:04] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:15:04] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:04] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:04] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:15:04] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:15:05] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:15:05] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:05] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:15:05] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:15:05] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:15:05] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 609 ms
+[2023-04-07 00:15:05] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:15:05] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:05] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:15:05] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.918 seconds (JVM running for 6531.799)
+[2023-04-07 00:15:05] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:15:07] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-04-07 00:15:07] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[2023-04-07 00:15:07] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:547) - Completed initialization in 1 ms
+[2023-04-07 00:15:07] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:110) - HikariPool-6 - Starting...
+[2023-04-07 00:15:07] WARN com.zaxxer.hikari.util.DriverDataSource(DriverDataSource.java:70) - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-04-07 00:15:07] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:123) - HikariPool-6 - Start completed.
+[2023-04-07 00:15:07] ERROR org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app].[dispatcherServlet](DirectJDKLog.java:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [/app] threw exception [Handler dispatch failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	list cannot be resolved or is not a field
+] with root cause
+java.lang.Error: Unresolved compilation problem: 
+	list cannot be resolved or is not a field
+
+	at com.example.dto.ItemListDTO.setList(ItemListDTO.java:35) ~[classes/:?]
+	at com.example.service.ItemService.itemList(ItemService.java:35) ~[classes/:?]
+	at com.example.service.ItemService$$FastClassBySpringCGLIB$$2808ccd8.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.CglibAopProxy.invokeMethod(CglibAopProxy.java:386) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.CglibAopProxy.access$000(CglibAopProxy.java:85) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704) ~[spring-aop-5.3.25.jar:5.3.25]
+	at com.example.service.ItemService$$EnhancerBySpringCGLIB$$488c3941.itemList(<generated>) ~[classes/:?]
+	at com.example.controller.ItemController.itemList(ItemController.java:47) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_333]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_333]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_333]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_333]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at java.lang.Thread.run(Unknown Source) ~[?:1.8.0_333]
+[2023-04-07 00:15:57] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+[2023-04-07 00:15:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:57] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:15:57] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-07 00:15:57] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [OJDBC-WORKER-THREAD-6] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.transfer(Unknown Source)
+ java.util.concurrent.SynchronousQueue.poll(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:15:57] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [HikariPool-6 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:15:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:57] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:350) - HikariPool-6 - Shutdown initiated...
+[2023-04-07 00:15:57] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:352) - HikariPool-6 - Shutdown completed.
+[2023-04-07 00:15:57] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:15:57] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:15:57] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:15:57] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:57] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:15:57] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:15:57] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:15:57] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 593 ms
+[2023-04-07 00:15:58] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:15:58] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:15:58] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:15:58] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.908 seconds (JVM running for 6584.328)
+[2023-04-07 00:15:58] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:16:13] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:16:13] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:13] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:16:13] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:13] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:13] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:16:13] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:16:14] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:16:14] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:14] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:16:14] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:16:14] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:16:14] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 616 ms
+[2023-04-07 00:16:14] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:16:14] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:14] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:16:14] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.979 seconds (JVM running for 6600.507)
+[2023-04-07 00:16:14] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:16:42] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:16:43] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:43] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:16:43] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:43] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:43] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:16:43] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:16:43] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:16:43] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:43] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:16:43] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:16:43] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:16:43] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 602 ms
+[2023-04-07 00:16:43] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:16:43] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:16:43] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:16:43] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.901 seconds (JVM running for 6630.086)
+[2023-04-07 00:16:43] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:16:47] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-04-07 00:16:47] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[2023-04-07 00:16:47] INFO org.springframework.web.servlet.DispatcherServlet(FrameworkServlet.java:547) - Completed initialization in 1 ms
+[2023-04-07 00:16:47] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:110) - HikariPool-7 - Starting...
+[2023-04-07 00:16:47] WARN com.zaxxer.hikari.util.DriverDataSource(DriverDataSource.java:70) - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-04-07 00:16:47] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:123) - HikariPool-7 - Start completed.
+[2023-04-07 00:17:12] INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener(LocalDevToolsAutoConfiguration.java:211) - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-04-07 00:17:12] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:12] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:17:12] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-04-07 00:17:12] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [OJDBC-WORKER-THREAD-7] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(Unknown Source)
+ java.util.concurrent.SynchronousQueue$TransferStack.transfer(Unknown Source)
+ java.util.concurrent.SynchronousQueue.poll(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:17:12] WARN org.apache.catalina.loader.WebappClassLoaderBase(DirectJDKLog.java:173) - The web application [app] appears to have started a thread named [HikariPool-7 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.lang.Thread.run(Unknown Source)
+[2023-04-07 00:17:12] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:12] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:12] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:350) - HikariPool-7 - Shutdown initiated...
+[2023-04-07 00:17:12] INFO com.zaxxer.hikari.HikariDataSource(HikariDataSource.java:352) - HikariPool-7 - Shutdown completed.
+[2023-04-07 00:17:12] INFO com.example.PetprojectApplication(StartupInfoLogger.java:55) - Starting PetprojectApplication using Java 1.8.0_333 on DESKTOP-2BVAFLS with PID 10384 (C:\Users\USER\git\petproject_boot\target\classes started by USER in C:\Users\USER\git\petproject_boot)
+[2023-04-07 00:17:12] INFO com.example.PetprojectApplication(SpringApplication.java:631) - No active profile set, falling back to 1 default profile: "default"
+[2023-04-07 00:17:13] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:108) - Tomcat initialized with port(s): 8093 (http)
+[2023-04-07 00:17:13] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:13] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Starting service [Tomcat]
+[2023-04-07 00:17:13] INFO org.apache.catalina.core.StandardEngine(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-04-07 00:17:13] INFO org.apache.catalina.core.ContainerBase.[Tomcat-2].[localhost].[/app](DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[2023-04-07 00:17:13] INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(ServletWebServerApplicationContext.java:292) - Root WebApplicationContext: initialization completed in 520 ms
+[2023-04-07 00:17:13] INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(OptionalLiveReloadServer.java:59) - LiveReload server is running on port 35729
+[2023-04-07 00:17:13] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:13] INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer(TomcatWebServer.java:220) - Tomcat started on port(s): 8093 (http) with context path '/app'
+[2023-04-07 00:17:13] INFO com.example.PetprojectApplication(StartupInfoLogger.java:61) - Started PetprojectApplication in 0.828 seconds (JVM running for 6659.49)
+[2023-04-07 00:17:13] INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener(ConditionEvaluationDeltaLoggingListener.java:63) - Condition evaluation unchanged
+[2023-04-07 00:17:16] INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin(SpringApplicationAdminMXBeanRegistrar.java:159) - Application shutdown requested.
+[2023-04-07 00:17:17] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Pausing ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:17] INFO org.apache.catalina.core.StandardService(DirectJDKLog.java:173) - Stopping service [Tomcat]
+[2023-04-07 00:17:17] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Stopping ProtocolHandler ["http-nio-8093"]
+[2023-04-07 00:17:17] INFO org.apache.coyote.http11.Http11NioProtocol(DirectJDKLog.java:173) - Destroying ProtocolHandler ["http-nio-8093"]

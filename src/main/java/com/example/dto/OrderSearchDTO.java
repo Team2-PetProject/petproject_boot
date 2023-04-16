@@ -1,11 +1,16 @@
 package com.example.dto;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("OrderSearchDTO")
 public class OrderSearchDTO {
+
 	private Integer tItCd;
 	private Integer cartCd;
+	private String mbId;
+	private Date payTm;
 	private Integer itCd;
 	private String itNm;
 	private Integer amount;
@@ -17,7 +22,6 @@ public class OrderSearchDTO {
 	private String endIdx;
 	private String startDay;
 	private String endDay;
-	private String mbId;
 
 	public Integer gettItCd() {
 		return tItCd;
@@ -103,39 +107,11 @@ public class OrderSearchDTO {
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderSearchDTO [tItCd=");
-		builder.append(tItCd);
-		builder.append(", cartCd=");
-		builder.append(cartCd);
-		builder.append(", itCd=");
-		builder.append(itCd);
-		builder.append(", itNm=");
-		builder.append(itNm);
-		builder.append(", amount=");
-		builder.append(amount);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", imgCd=");
-		builder.append(imgCd);
-		builder.append(", optNm=");
-		builder.append(optNm);
-		builder.append(", perPage=");
-		builder.append(perPage);
-		builder.append(", startIdx=");
-		builder.append(startIdx);
-		builder.append(", endIdx=");
-		builder.append(endIdx);
-		builder.append(", startDay=");
-		builder.append(startDay);
-		builder.append(", endDay=");
-		builder.append(endDay);
-		builder.append(", mbId=");
-		builder.append(mbId);
-		builder.append("]");
-		return builder.toString();
+	public Date getPayTm() {
+		return payTm;
+	}
+	public void setPayTm(Date payTm) {
+		this.payTm = payTm;
 	}
 
 

@@ -98,7 +98,7 @@ public class OrderController {
 		@PathVariable("startDay") String startDay,
 		@PathVariable("endDay")String endDay) {
 			if (itNm==null || itNm=="") {
-
+				itNm ="Default";
 			}
 			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			orderSearchDTO.setItNm(itNm);
@@ -124,8 +124,8 @@ public class OrderController {
 //		   if (curPage==0) {curPage=1;}
 
 		   curPage=1;
-		   Integer startIdx = (curPage-1) * perPage+1;
-		   Integer endIdx = perPage*startIdx;
+		   Integer startIdx = (curPage-1) * perPage;
+		   Integer endIdx = perPage*startIdx-1;
 		   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
 		   orderSearchDTO.setMbId(mbId);
 		   orderSearchDTO.setPerPage(Integer.toString(perPage));

@@ -46,7 +46,7 @@
 
 
 
-	<select id="totalCount" parameterType="String">
+	<select id="totalCount" parameterType="String" resultType="Integer">
 		SELECT
 					COUNT(*)
 		FROM
@@ -145,15 +145,13 @@
 		OR
 					IT_NM='default'
 					)
+		AND
 
-		AND
-					IT_NM=#{itNm}
-		AND
 					PAY_TM BETWEEN
 					TO_DATE(#{startDay}, 'YYYYMMDD')
 		AND
 					TO_DATE(#{endDay}, 'YYYYMMDD')
-					ORDER BY CART_ORD.CART_CD DESC) "ORD"
+			ORDER BY CART_ORD.CART_CD DESC) "ORD"
 		)
 		WHERE
 					IDX

@@ -84,6 +84,7 @@ public class OrderController {
 	(@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage) {
 		OrderSearchDTO orderSearchDTO = searchPaging(curPage);
 		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
+		System.err.println(orderSearchList);
 	   return ResponseEntity.ok(orderSearchList);
 	}
 
@@ -116,21 +117,19 @@ public class OrderController {
 		private OrderSearchDTO searchPaging(@PathVariable("curPage")Integer curPage) {
 			orderSearchPage = new OrderHistoryPageDTO();
 //		   String mbId = SessionAttributeManager.getMemberId();
-//		   Integer totalCount = orderService.totalCount(mbId);
 		   String mbId = "1";
-		   Integer totalCount = 100;
+		   Integer totalCount = orderService.totalCount(mbId);
 		   Integer perPage = orderSearchPage.getPerPage();
 		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
-//		   if (curPage==0) {curPage=1;}
-
-		   curPage=1;
 		   Integer startIdx = (curPage-1) * perPage;
-		   Integer endIdx = perPage*startIdx-1;
+		   Integer endIdx = perPage*curPage-1;
 		   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
 		   orderSearchDTO.setMbId(mbId);
-		   orderSearchDTO.setPerPage(Integer.toString(perPage));
-		   orderSearchDTO.setStartIdx(Integer.toString(startIdx));
-		   orderSearchDTO.setEndIdx(Integer.toString(startIdx));
+		   orderSearchDTO.setPerPage(perPage);
+		   orderSearchDTO.setStartIdx(startIdx);
+		   orderSearchDTO.setEndIdx(startIdx);
+		   orderSearchDTO.setEndIdx(endIdx);
+		   System.err.println(orderSearchDTO);
 		   return orderSearchDTO;
 		}
 

@@ -32,8 +32,6 @@ public interface OrderDAO {
 	Integer ordInfo(OrderInfoDTO orderInfoDTO);
 
 
-
-
 	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
 
 

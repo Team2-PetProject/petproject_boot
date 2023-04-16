@@ -89,6 +89,7 @@ public class OrderService {
 	// 주문 내역 기본화면
 	@Transactional
 	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
+		System.err.println(orderSearchDTO);
 		return orderDao.orderSearch(orderSearchDTO);
 	}
 

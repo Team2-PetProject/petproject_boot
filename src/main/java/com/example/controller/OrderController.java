@@ -88,14 +88,18 @@ public class OrderController {
 	}
 
 
-		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itemNm}")
+		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
 		@ResponseBody
 		@ApiOperation(value = "daySearch")
 		public ResponseEntity<List<OrderSearchDTO>> daySearch
 		(@RequestParam(value = "curPage", required = false, defaultValue = "1")
-		int curPage, @PathVariable("itNm") String itNm,
+		int curPage,
+		@PathVariable(name = "itNm", required = false) String itNm,
 		@PathVariable("startDay") String startDay,
 		@PathVariable("endDay")String endDay) {
+			if (itNm==null || itNm=="") {
+
+			}
 			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);

@@ -76,15 +76,13 @@
 					ORD.*
 		FROM
 		(SELECT
-					CART_CD
-					,CART_ORD.ORD_CD "ORD_CD"
-					,CART_ORD.MB_ID "MB_ID"
+					T_IT_CD
+					,CART_CD
 					,CART_ORD.IT_CD "IT_CD"
 					,IT_NM
-					,AMOUNT
-					,CART_ORD.CAT "CAT"
-					,CART_ORD.PRICE "PRICE"
 					,CART_ORD.IMG_CD "IMG_CD"
+					,CART_ORD.PRICE "PRICE"
+					,AMOUNT
 					,PAY_TM
 					,OPT_NM
 		FROM
@@ -118,15 +116,13 @@
 					ORD.*
 		FROM
 		(SELECT
-					CART_CD
-					,CART_ORD.ORD_CD "ORD_CD"
-					,CART_ORD.MB_ID "MB_ID"
+					T_IT_CD
+					,CART_CD
 					,CART_ORD.IT_CD "IT_CD"
 					,IT_NM
-					,AMOUNT
-					,CART_ORD.CAT "CAT"
-					,CART_ORD.PRICE "PRICE"
 					,CART_ORD.IMG_CD "IMG_CD"
+					,CART_ORD.PRICE "PRICE"
+					,AMOUNT
 					,PAY_TM
 					,OPT_NM
 		FROM
@@ -139,6 +135,19 @@
 					CART_ORD.ORD_CD=INFO.ORD_CD
 		WHERE
 					MB_ID=#{mbId}
+		AND
+					(
+					IT_NM=#{itNm}
+		OR
+					#{itNm} IS NULL
+	    OR
+	    			#{itNm}=''
+		OR
+					IT_NM='default'
+					)
+
+		AND
+					IT_NM=#{itNm}
 		AND
 					PAY_TM BETWEEN
 					TO_DATE(#{startDay}, 'YYYYMMDD')

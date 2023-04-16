@@ -56,7 +56,7 @@ public class CartService {
 	@Transactional
 	public List<CartConfirmDTO> cartList() {
 //		String mbId = SessionAttributeManager.getMemberId();
-		String mbId = "1";
+		String mbId = "123";
 		List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
 		List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
 		for (CartConfirmDTO cartConfirmDTO : cartLists) {

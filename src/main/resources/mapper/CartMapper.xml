@@ -7,9 +7,9 @@
 
 	<select id="typeSearch" parameterType="Integer" resultType="ArrayOptCdDTO">
 			SELECT
-				    TB_OPTION_TYPE.TY_CD "TY_CD"
-				    ,TB_OPTION.OPT_CD "OPT_CD"
-				    ,TB_OPTION.OPT_NM "OPT_NM"
+				    TB_OPTION_TYPE.TY_CD "tyCd"
+				    ,TB_OPTION.OPT_CD "optCd"
+				    ,TB_OPTION.OPT_NM "optNm"
 			FROM
    					TB_OPTION_TYPE
 			INNER JOIN
@@ -25,15 +25,15 @@
 	<!-- 수정안해도 됨 완벽해 -->
 	<select id="cartList" parameterType="String" resultType="CartConfirmDTO">
 		SELECT
-				TB_CART.CART_CD "CART_CD"
-				,TB_ITEM.IT_CD "IT_CD"
-				,TB_ITEM.IT_NM "IT_NM"
-				,TB_ITEM.IMG_CD "IMG_CD"
-				,TB_ITEM.PRICE "PRICE"
-				,TB_CART.AMOUNT "AMOUNT"
-				,TB_CART.MB_ID "MB_ID"
-                ,TB_OPTION.OPT_CD "OPT_CD"
-                ,TB_OPTION.OPT_NM "OPT_NM"
+				TB_CART.CART_CD "cartCd"
+				,TB_ITEM.IT_CD "itCd"
+				,TB_ITEM.IT_NM "itNm"
+				,TB_ITEM.IMG_CD "imgCd"
+				,TB_ITEM.PRICE "price"
+				,TB_CART.AMOUNT "amount"
+				,TB_CART.MB_ID "mbId"
+                ,TB_OPTION.OPT_CD "optCd"
+                ,TB_OPTION.OPT_NM "optNm"
 		FROM
 				TB_CART TB_CART
 		INNER JOIN

@@ -97,6 +97,7 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
+	@CrossOrigin
 	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO, HttpSession session){
 
 //		logger.info("/login ======"+ loginDTO);

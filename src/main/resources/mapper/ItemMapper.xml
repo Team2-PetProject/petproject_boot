@@ -8,6 +8,8 @@
 		COUNT(*)
 		FROM
 		TB_ITEM
+		WHERE
+		CAT = #{cat}
 	</select>
 	<insert id="insertItem" parameterType="ItemDTO">
 		INSERT INTO TB_ITEM(
@@ -24,25 +26,64 @@
 			, #{cat}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT 
-				TB_ITEM_SEQ.CURRVAL 
+			SELECT
+				TB_ITEM_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
 	</insert>
 	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
-		SELECT 
+		SELECT
 			IT_CD as itCd
 			, IMG_CD as imgCd
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, TY_CD as tyCd
+			, OPT_CD as optCd
 		FROM TB_ITEM
-		WHERE 
+		WHERE
 			IT_CD = #{itCd}
 	</select>
+	<update id="updateItem" parameterType="ItemDTO">
+		UPDATE
+			TB_ITEM
+		SET
+			IT_NM = #{itNm}
+			, PRICE = #{price}
+			, CAT = #{cat}
+		WHERE
+			IT_CD = #{itCd}
+	</update>
+	<select id="favoriteList" parameterType="MemberItemDTO" resultType="ItemDTO">
+	SELECT
+			TB_ITEM.IT_CD "IT_CD"
+			,IMG_CD
+			,IT_NM
+			,PRICE
+			,CAT
+			,OPT_CD
+			FROM
+			TB_ITEM TB_ITEM
+	INNER JOIN
+			(
+	SELECT
+			MB_ID
+			,IT_CD
+	FROM
+			MP_MEMBER_ITEM
+	WHERE
+			MB_ID = #{mbId}
+	AND
+			IT_CD = #{itCd}
+			)
+			MP_ITEM ON
+			TB_ITEM.IT_CD = MP_ITEM.IT_CD
+
+
+
+	</select>
+
 	<insert id="favoriteAdd" parameterType="MemberItemDTO">
-			 INSERT INTO 
+			 INSERT INTO
 			 MP_MEMBER_ITEM
 			 (
 			 	MB_ID
@@ -54,50 +95,70 @@
 			 ,#{itCd}
 			 )
 	</insert>
-	
+
 	<delete id="favoriteDelete" parameterType="MemberItemDTO">
 			DELETE
 			FROM
 			MP_MEMBER_ITEM
-			WHERE 
+			WHERE
 			MB_ID=#{mbId}
 			AND
 			IT_CD=#{itCd}
 	</delete>
-	
+
 	<insert id="insertTyCd" parameterType="RegisterDTO">
-		UPDATE 
-			TB_ITEM 
-		SET 
+		UPDATE
+			TB_ITEM
+		SET
 			TY_CD = #{tyCd}
-		WHERE 
+		WHERE
 			IT_CD = #{itCd}
 	</insert>
-	
-	<select id="itemList" parameterType="String" resultType="ItemDTO">
-	SELECT
-	*
-	FROM
-	(
+
+	<select id="itemList" parameterType="ItemListDTO" resultType="ItemDTO">
 		SELECT
+		*
+		FROM
+		(SELECT
 		ROWNUM "IDX"
-		,ORD
-		. *
+		,ITEM.*
 		FROM
-		(
-			IT_CD as itCd
-			, IMG_CD as imgCd
-			, IT_NM as itNm
-			, PRICE as price
-			, CAT as cat
-			, OPT_ADD as optAdd
+		(SELECT
+				IT_CD
+				,IMG_CD
+				,IT_NM
+				,PRICE
+				,CAT
+				,OPT_CD
 		FROM
-			FROM TB_ITEM
+				TB_ITEM
+				ORDER BY IT_CD DESC) "ITEM")
 		WHERE
-			CAT = #{cat}
-		ORDER BY IT_CD DESC
-		) "ORD"
-		)
-		WHERE IDX BETWEEN #{startIdx} AND #{endIdx};
+				IDX BETWEEN #{startIdx}
+		AND 	#{endIdx}
+	</select>
+	<update id="deleteOptCd" parameterType="int">
+		UPDATE 
+			TB_ITEM
+		SET
+			OPT_CD = null
+		WHERE
+			IT_CD = #{itCd}
+	</update>
+	<delete id="deleteItem" parameterType="int">
+		DELETE
+		FROM
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</delete>
+	
+	<select id="selectOptCd" parameterType="int" resultType="int">
+		SELECT
+			OPT_CD
+		FROM 
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
 	</select>
 </mapper>

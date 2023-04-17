@@ -1,63 +1,40 @@
 package com.example.dto;
 
-import java.util.List;
-
 public class ItemListDTO {
-	private List<ItemDTO> list;
-	private int curPage; //현재 볼 페이지 번호
-	private int perPage = 8; //한 페이지에 보여질 목록 수
-	private int totalCount; //전체 레코드 갯수
-	
-	public ItemListDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public List<ItemDTO> getList() {
-		return list;
+	private String cat;
+	private Integer startIdx;
+	private Integer endIdx;
+	public String getCat() {
+		return cat;
 	}
-
-	public void setList(List<ItemDTO> list) {
-		this.list = list;
+	public void setCat(String cat) {
+		this.cat = cat;
 	}
-
-	public int getCurPage() {
-		return curPage;
+	public Integer getStartIdx() {
+		return startIdx;
 	}
-
-	public void setCurPage(int curPage) {
-		this.curPage = curPage;
+	public void setStartIdx(Integer startIdx) {
+		this.startIdx = startIdx;
 	}
-
-	public int getPerPage() {
-		return perPage;
+	public Integer getEndIdx() {
+		return endIdx;
 	}
-
-	public void setPerPage(int perPage) {
-		this.perPage = perPage;
+	public void setEndIdx(Integer endIdx) {
+		this.endIdx = endIdx;
 	}
-
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ItemList [list=");
-		builder.append(list);
-		builder.append(", curPage=");
-		builder.append(curPage);
-		builder.append(", perPage=");
-		builder.append(perPage);
-		builder.append(", totalCount=");
-		builder.append(totalCount);
+		builder.append("ItemListDTO [cat=");
+		builder.append(cat);
+		builder.append(", startIdx=");
+		builder.append(startIdx);
+		builder.append(", endIdx=");
+		builder.append(endIdx);
 		builder.append("]");
 		return builder.toString();
 	}
+
+
 }
-	

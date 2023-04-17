@@ -5,13 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemListDTO;
 import com.example.dto.MemberItemDTO;
 import com.example.dto.RegisterDTO;
 
 @Mapper
 public interface ItemDAO {
 
-	public int favoriteAdd(MemberItemDTO memberItemDTO);
+	public Integer totalCount(String cat);
 
 	public int favoriteDelete(MemberItemDTO memberItemDTO);
 
@@ -21,11 +22,24 @@ public interface ItemDAO {
 
 	public void insertTyCd(RegisterDTO registerDto);
 
-	public int totalCount();
-	
-	public List<ItemDTO> itemList(String cat);
+	public void updateItem(ItemDTO itemDto);
+
+	public void deleteOptCd(Integer itCd);
+
+	public List<ItemDTO> favoriteList(MemberItemDTO memberItemDTO);
+
+	public Integer favoriteAdd(MemberItemDTO memberItemDTO);
+
+	public List<ItemDTO> itemList(ItemListDTO itemList);
+
+	public void deleteItem(Integer itCd);
+
+	public Integer selectOptCd(Integer itCd);
+
+
+
+
 }
 
-	
 
 

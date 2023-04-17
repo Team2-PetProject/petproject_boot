@@ -6,8 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.example.common.constant.ComConstant;
-import com.example.dto.MemberDTO;
+import com.example.member.dto.MemberDTO;
 
 public class SessionAttributeManager {
 	 

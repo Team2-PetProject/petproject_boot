@@ -49,4 +49,10 @@ suffix: .html
 
 login : 
   list :
-    /check,/member/check/**
+    /check/** ,/member/check/**
+admin :
+  list :
+    /admin/**
+port :
+  list : 
+    http://localhost:8081,http://localhost:8080

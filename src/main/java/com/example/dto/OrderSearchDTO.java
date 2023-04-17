@@ -11,6 +11,7 @@ public class OrderSearchDTO {
 	private Integer cartCd;
 	private Integer itCd;
 	private String itNm;
+	private Integer dlvyCd;
 	private Integer imgCd;
 	private String mbId;
 	private Integer price;
@@ -46,6 +47,12 @@ public class OrderSearchDTO {
 	}
 	public void setItNm(String itNm) {
 		this.itNm = itNm;
+	}
+	public Integer getDlvyCd() {
+		return dlvyCd;
+	}
+	public void setDlvyCd(Integer dlvyCd) {
+		this.dlvyCd = dlvyCd;
 	}
 	public Integer getImgCd() {
 		return imgCd;
@@ -89,6 +96,12 @@ public class OrderSearchDTO {
 	public void setPerPage(Integer perPage) {
 		this.perPage = perPage;
 	}
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
 	public Integer getStartIdx() {
 		return startIdx;
 	}
@@ -113,12 +126,6 @@ public class OrderSearchDTO {
 	public void setEndDay(String endDay) {
 		this.endDay = endDay;
 	}
-	public Integer getTotalPage() {
-		return totalPage;
-	}
-	public void setTotalPage(Integer totalPage) {
-		this.totalPage = totalPage;
-	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -130,6 +137,8 @@ public class OrderSearchDTO {
 		builder.append(itCd);
 		builder.append(", itNm=");
 		builder.append(itNm);
+		builder.append(", dlvyCd=");
+		builder.append(dlvyCd);
 		builder.append(", imgCd=");
 		builder.append(imgCd);
 		builder.append(", mbId=");
@@ -157,6 +166,7 @@ public class OrderSearchDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 
 

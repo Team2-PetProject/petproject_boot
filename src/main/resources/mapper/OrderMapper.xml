@@ -79,6 +79,7 @@
 					T_IT_CD
 					,CART_CD
 					,CART_ORD.IT_CD "IT_CD"
+					,INFO.DLVY_CD "DLVY_CD"
 					,IT_NM
 					,CART_ORD.IMG_CD "IMG_CD"
 					,CART_ORD.PRICE "PRICE"
@@ -119,6 +120,7 @@
 					T_IT_CD
 					,CART_CD
 					,CART_ORD.IT_CD "IT_CD"
+					,INFO.DLVY_CD "DLVY_CD"
 					,IT_NM
 					,CART_ORD.IMG_CD "IMG_CD"
 					,CART_ORD.PRICE "PRICE"
@@ -336,6 +338,29 @@
 		TB_DELIVERY_INFO.DLVY_CD=#{dlvyCd};
 
 	</update>
+	<select id="dlvyState" parameterType="Integer" resultType="">
+		SELECT
+			DLVY_CD
+			,COM
+			,INV
+			,DLVY_START
+			,DLVY_END
+		FROM
+			TB_DELIVERY_INFO
+		INNER JOIN
+			TB_ORDER_INFO TB_ORDER_INFO
+		ON
+			TB_DELIVERY_INFO.DLVY_CD=TB_ORDER_INFO.TB_ORDER_INFO
+		INNER JOIN
+			MP_CART_ORD MP_CART_ORD
+		ON
+			TB_ORDER_INFO.ORD_CD=MP_CART_ORD.MP_CART_ORD
+		INNSER JOIN
+			TB_ITEM TB_ITEM
+
+		WHERE
+			DLVY_CD = #{dlvyCd}
+	</select>
 
 		<!-- <select id="itemSearch" parameterType="OrderSearchDTO"
 		resultType="SearchResultDTO">

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderHistoryPageDTO;
 import com.example.dto.OrderInfoDTO;
@@ -98,13 +99,19 @@ public class OrderController {
 		@PathVariable(name = "itNm", required = false) String itNm,
 		@PathVariable("startDay") String startDay,
 		@PathVariable("endDay")String endDay) {
-			if (itNm==null || itNm=="") {
-				itNm ="Default";
-			}
+
 			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
 		   return ResponseEntity.ok(itemSearchList);
+		}
+
+		@GetMapping
+		@ResponseBody
+		@ApiOperation(value = "dlvyState")
+		private ResponseEntity<List<DeliveryInfoDTO>> dlvyState (@PathVariable("dlvyCd") Integer dlvyCd) {
+			List<DeliveryInfoDTO> deliveryInfoList =orderService.dlvyState(dlvyCd);
+			return ResponseEntity.ok(deliveryInfoList);
 		}
 
 		private OrderSearchDTO extracted(int curPage, String startDay, String endDay) {

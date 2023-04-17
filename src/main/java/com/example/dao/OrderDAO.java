@@ -47,6 +47,8 @@ public interface OrderDAO {
 
 	void updateTM(Integer dlvyCd);
 
+	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
+
 
 
 }

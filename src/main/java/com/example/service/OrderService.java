@@ -113,4 +113,10 @@ public class OrderService {
 		}
 
 
+
+		public List<DeliveryInfoDTO> dlvyState(Integer dlvyCd) {
+			return orderDao.dlvyState(dlvyCd);
+		}
+
+
 }

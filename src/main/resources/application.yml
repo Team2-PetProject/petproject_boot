@@ -33,7 +33,7 @@ mybatis:
 
 #server 설정
 server:
-  port: 8090
+  port: 8093
   servlet:
     context-path: /app
     

@@ -11,4 +11,6 @@ public interface FileUploadDAO {
 
 	public FileUploadDTO selectFile(Integer imgCd);
 
+	public void updateFile(FileUploadDTO fileUploadDTO);
+
 }

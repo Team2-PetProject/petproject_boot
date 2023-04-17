@@ -28,6 +28,10 @@ public interface ItemDAO {
 	public List<ItemDTO> favoriteList(MemberItemDTO memberItemDTO);
 
 	public List<ItemDTO> mbFavoriteList(String mbId);
+
+	public void updateItem(ItemDTO itemDto);
+
+	public void deleteOptCd(Integer itCd);
 }
 
 

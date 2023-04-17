@@ -28,5 +28,13 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	
+	<delete id="deleteType" parameterType="int">
+		DELETE
+		FROM 
+			TB_OPTION_TYPE
+		WHERE
+			TY_CD = #{tyCd}
+	</delete>
 
 </mapper>

@@ -23,6 +23,17 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
+	<update id="updateFile" parameterType="FileUploadDTO">
+		UPDATE
+			TB_FILE_UPLOAD
+		SET
+			IMG_NM = #{imgNm}
+			, SZ = #{sz}
+			, DI = #{di}
+			, FL = #{fl}
+		WHERE
+			IMG_CD = #{imgCd}		
+	</update>
 	<select id="selectFile" resultType="FileUploadDTO" parameterType="int">
 		SELECT 
 			IMG_CD

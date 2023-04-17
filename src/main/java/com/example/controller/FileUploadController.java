@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ import com.example.service.ItemService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api/file")
+@RequestMapping("/admin/api/file")
 public class FileUploadController {
 	private static final Logger logger = LogManager.getLogger(FileUploadController.class);
 	@Autowired
@@ -43,10 +44,11 @@ public class FileUploadController {
 	FileUploadService fileUploadService; 
 	 
 	@PostMapping(value = "/upload", consumes = "multipart/form-data")
+	@CrossOrigin
 	@ApiOperation(value = "이미지 업로드")
 	public ComResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file, 
 			@RequestParam("name") String name,@RequestParam("price") int price, 
-			@RequestParam("category") String category, @RequestParam(value = "add", required = false) String add,
+			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
@@ -58,7 +60,7 @@ public class FileUploadController {
 		itemDTO.setItNm(name);
 		itemDTO.setCat(category);
 		itemDTO.setPrice(price);
-		if(add!=null) {
+		if(add==true) {
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
 			for(int i=0;i<option.size();i++) {				
 				OptionDTO optionDTO = new OptionDTO();
@@ -75,6 +77,7 @@ public class FileUploadController {
 	}
 	
 	@GetMapping("/view/{imgCd}")
+	@CrossOrigin
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
@@ -82,7 +85,7 @@ public class FileUploadController {
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
-//		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
+//		return new ComResponseEntity<>(new ComResponseDTO<>("이미지 보기", dto));
 	}
 	
 	

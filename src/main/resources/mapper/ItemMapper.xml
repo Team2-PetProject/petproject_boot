@@ -41,6 +41,17 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	
+	<update id="updateItem" parameterType="ItemDTO">
+		UPDATE
+			TB_ITEM
+		SET
+			IT_NM = #{itNm}
+			, PRICE = #{price}
+			, CAT = #{cat}
+		WHERE
+			IT_CD = #{itCd}
+	</update>
 
 	<select id="favoriteList" parameterType="MemberItemDTO" resultType="ItemDTO">
 	SELECT
@@ -144,4 +155,13 @@
 	WHERE MB_ID = #{mbId}
 	
 	</select>
+	
+	<update id="deleteOptCd" parameterType="int">
+		UPDATE 
+			TB_ITEM
+		SET
+			OPT_CD = null
+		WHERE
+			IT_CD = #{itCd}
+	</update>
 </mapper>

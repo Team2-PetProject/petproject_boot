@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -106,6 +107,7 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
+	@CrossOrigin
 	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO, HttpSession session){
 
 //		logger.info("/login ======"+ loginDTO);
@@ -117,6 +119,7 @@ public class MemberController {
 		if(memberDTO!=null) {
 			session.setAttribute("memberInfo", memberDTO);
 			comResponseDTO.setMessage("로그인 성공");
+			System.out.println(SessionAttributeManager.getMemberId());
 			return new ComResponseEntity<Void>(comResponseDTO);
 //			return ResponseEntity.ok().build();  //상태코드만 반환해 줄 때 
 					
@@ -141,6 +144,7 @@ public class MemberController {
 	
 	
 	@GetMapping("check/mypage/{mbId}")
+	@CrossOrigin
 	@ApiOperation(value = "회원정보보기")
 	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
 		
@@ -156,6 +160,7 @@ public class MemberController {
 	
 	
 	@PutMapping("check/update")
+	@CrossOrigin
 	@ApiOperation(value = "회원정보수정")
 	public ComResponseEntity<Void> update(@RequestBody MemberDTO memberDTO){
 		

@@ -28,5 +28,22 @@
 		WHERE 
 			TY_CD = #{tyCd}
 	</select>
+	
+	<select id="selectTyCd" parameterType="int" resultType="int">
+		SELECT
+			TY_CD as tyCd
+		FROM 
+			TB_OPTION
+		WHERE
+			OPT_CD = #{optCd}
+	</select>
+	
+	<delete id="deleteOption" parameterType="int">
+		DELETE 
+		FROM 
+			TB_OPTION
+		WHERE
+			TY_CD = #{tyCd}
+	</delete>
 
 </mapper>

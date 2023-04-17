@@ -1,18 +1,14 @@
 package com.example.controller;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.net.ssl.SSLEngineResult.Status;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.dto.FileUploadDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.OptionDTO;
-import com.example.dto.OptionTypeDTO;
 import com.example.service.FileUploadService;
 import com.example.service.ItemService;
 
@@ -37,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/admin/api/file")
-public class FileUploadController { 
+public class FileUploadController {
 	private static final Logger logger = LogManager.getLogger(FileUploadController.class);
 	@Autowired
 	ItemService itemService; 
@@ -78,6 +72,7 @@ public class FileUploadController {
 	}
 	
 	@GetMapping("/view/{imgCd}")
+	@CrossOrigin
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
@@ -85,8 +80,8 @@ public class FileUploadController {
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
-//		return new ComResponseEntity<byte[]>(new ComResponseDTO<byte[]>("이미지 보기", dto.getFl()));
-	} 
+//		return new ComResponseEntity<>(new ComResponseDTO<>("이미지 보기", dto));
+	}
 	
 	
 }

@@ -14,10 +14,15 @@
 			, IT_CD
 			, TY_NM
 		) VALUES (
-			#{tyCd}
+			TB_OPTION_TYPE_SEQ.NEXTVAL
 			, #{itCd}
 			, #{tyNm}
 		)
+		<selectKey keyProperty="tyCd" resultType="int">
+			SELECT 
+				TB_OPTION_TYPE_SEQ.CURRVAL
+			FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<select id="selectType" parameterType="int" resultType="TypeDTO">
@@ -28,5 +33,12 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	<delete id="deleteType" parameterType="int">
+		DELETE
+		FROM 
+			TB_OPTION_TYPE
+		WHERE
+			TY_CD = #{tyCd}
+	</delete>
 
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.dao.OrderDAO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.CartSearchUnableDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderInfoDTO;
@@ -49,7 +50,7 @@ public class OrderService {
 		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
 		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
-		logger.info(dlvyCd);
+		logger.info(dlvyCd+" ||");
 		Integer searchCountTItCd = orderDao.searchCount();
 		if (searchCountTItCd == null) {
 			searchCountTItCd = 0;
@@ -70,7 +71,17 @@ public class OrderService {
 			cartOrdDTO.setOptCd(cartOrdSet.getOptCd());
 			orderDao.orderDone(cartOrdDTO);
 		}
-		// 정보가공처리
+		CartSearchUnableDTO cartSearchUnableDTO = new CartSearchUnableDTO();
+		cartSearchUnableDTO.setMbId(mbId);
+		for (Integer cartCd : cartCds) {
+			cartSearchUnableDTO.setCartCd(cartCd);
+			orderDao.cartSearchUnable(cartSearchUnableDTO);
+
+		}
+		if (dlvyCd>1) {
+			dlvyCd=dlvyCd-1;
+		}
+		orderDao.updateTM(dlvyCd);
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}
@@ -78,6 +89,7 @@ public class OrderService {
 	// 주문 내역 기본화면
 	@Transactional
 	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
+		System.err.println(orderSearchDTO);
 		return orderDao.orderSearch(orderSearchDTO);
 	}
 
@@ -87,11 +99,6 @@ public class OrderService {
 		return orderDao.daySearch(orderSearchDTO);
 	}
 
-	// 특정 아이템 내역 조회
-	@Transactional
-	public List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.itemSearch(orderSearchDTO);
-	}
 
 	// 배송장번호 생성
 	public Integer invRandom() {
@@ -103,6 +110,12 @@ public class OrderService {
 		@Transactional
 		public int totalCount(String mbId) {
 			return orderDao.totalCount(mbId);
+		}
+
+
+
+		public List<DeliveryInfoDTO> dlvyState(Integer dlvyCd) {
+			return orderDao.dlvyState(dlvyCd);
 		}
 
 

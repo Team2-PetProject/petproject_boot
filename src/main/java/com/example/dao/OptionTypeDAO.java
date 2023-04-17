@@ -14,4 +14,6 @@ public interface OptionTypeDAO {
 
 	public Integer selectTyCd();
 
+	public void deleteType(Integer tyCd);
+
 }

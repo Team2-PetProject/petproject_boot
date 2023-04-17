@@ -4,56 +4,100 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.CartDAO">
 
-	<insert id="cartAdd" parameterType="CartDTO">
-		INSERT INTO TB_CART
-			(
-			CART_CD
-			,IT_CD
-			,MB_ID
-			,AMOUNT
-			,OPT_CD
-			)
-			VALUES
-			(
-			TB_CART_SEQ.NEXTVAL
-			,#{itCd}
-			,#{mbId}
-			,#{amount}
-			,#{optCd}
-			)
-	</insert>
 
-	<delete id="cartDelete" parameterType="int">
-			DELETE FROM TB_CART
+	<select id="typeSearch" parameterType="Integer" resultType="ArrayOptCdDTO">
+			SELECT
+				    TB_OPTION_TYPE.TY_CD "TY_CD"
+				    ,TB_OPTION.OPT_CD "OPT_CD"
+				    ,TB_OPTION.OPT_NM "OPT_NM"
+			FROM
+   					TB_OPTION_TYPE
+			INNER JOIN
+    				TB_OPTION ON TB_OPTION_TYPE.TY_CD = TB_OPTION.TY_CD
+			INNER JOIN
+    				TB_ITEM ON TB_OPTION_TYPE.IT_CD = TB_ITEM.IT_CD
+			INNER JOIN
+    				TB_CART ON TB_ITEM.IT_CD = TB_CART.IT_CD
 			WHERE
-			CART_CD = #{CART_CD}
-	</delete>
+   					TB_CART.CART_CD = #{cartCd}
+	</select>
 
-	<delete id="checkDelete" parameterType="int">
-			DELETE FROM TB_CART
-			WHERE
-			CART_CD = #{CART_CD}
-	</delete>
+	<!-- 수정안해도 됨 완벽해 -->
+	<select id="cartList" parameterType="String" resultType="CartConfirmDTO">
+		SELECT
+				TB_CART.CART_CD "CART_CD"
+				,TB_ITEM.IT_CD "IT_CD"
+				,TB_ITEM.IT_NM "IT_NM"
+				,TB_ITEM.IMG_CD "IMG_CD"
+				,TB_ITEM.PRICE "PRICE"
+				,TB_CART.AMOUNT "AMOUNT"
+				,TB_CART.MB_ID "MB_ID"
+                ,TB_OPTION.OPT_CD "OPT_CD"
+                ,TB_OPTION.OPT_NM "OPT_NM"
+		FROM
+				TB_CART TB_CART
+		INNER JOIN
+				TB_ITEM TB_ITEM ON
+				TB_CART.IT_CD = TB_ITEM.IT_CD
+		INNER JOIN
+				TB_OPTION TB_OPTION ON
+				TB_CART.OPT_CD = TB_OPTION.OPT_CD
+       WHERE
+       			MB_ID = #{mbId}
+	</select>
+	<!--여기서부터는 완료  -->
+			<insert id="cartAdd" parameterType="CartDTO">
+				INSERT INTO TB_CART
+					(
+					CART_CD
+					,IT_CD
+					,MB_ID
+					,AMOUNT
+					,OPT_CD
+					)
+					VALUES
+					(
+					TB_CART_SEQ.NEXTVAL
+					,#{itCd}
+					,#{mbId}
+					,#{amount}
+					,#{optCd}
+					)
+			</insert>
 
-	<update id="specUpdate" parameterType="SpecUpdateDTO">
-		UPDATE TB_CART
-		SET
-		OPT_CD=#{optCd}
-		WHERE
-		MB_ID=#{mbId}
-		AND
-		CART_CD = #{cartCd}
-	</update>
+			<delete id="cartDelete" parameterType="int">
+					DELETE FROM TB_CART
+					WHERE
+					CART_CD = #{CART_CD}
+			</delete>
 
-	<update id="amountUpdate" parameterType="AmountUpdateDTO">
-			UPDATE TB_CART
-			SET
-			AMOUNT = #{amount}
-			WHERE
-			MB_ID = #{mbId}
-			AND
-			CART_CD = #{cartCd}
-	</update>
+			<delete id="checkDelete" parameterType="int">
+					DELETE FROM TB_CART
+					WHERE
+					CART_CD = #{CART_CD}
+			</delete>
+
+			<update id="amountUpdate" parameterType="AmountUpdateDTO">
+					UPDATE TB_CART
+					SET
+					AMOUNT = #{amount}
+					WHERE
+					MB_ID = #{mbId}
+					AND
+					CART_CD = #{cartCd}
+			</update>
+
+			<update id="specUpdate" parameterType="SpecUpdateDTO">
+				UPDATE TB_CART
+				SET
+				OPT_CD=#{optCd}
+				WHERE
+				MB_ID=#{mbId}
+				AND
+				CART_CD = #{cartCd}
+			</update>
+
+
 
 
 </mapper>

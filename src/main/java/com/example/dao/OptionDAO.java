@@ -13,4 +13,8 @@ public interface OptionDAO {
 
 	public void insertOption(OptionDTO optionDTO);
 
+	public Integer selectTyCd(Integer optCd);
+
+	public void deleteOption(Integer tyCd);
+
 }

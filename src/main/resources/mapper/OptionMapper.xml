@@ -4,29 +4,48 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.OptionDAO">
 	
-	<insert id="insertOption" parameterType="OptionDTO">
+	<insert id="insertOptions" parameterType="list">
 		INSERT INTO TB_OPTION (
 			OPT_CD
 			, TY_CD
 			, OPT_NM
-		) VALUES (
-			TB_OPTION_SEQ.NEXTVAL
-			, #{tyCd}
-			, #{optNm}
-		) 	
-		<selectKey keyProperty="optCd" resultType="int" order="AFTER">
-			SELECT
-				TB_OPTION_SEQ.CURRVAL as optCd
-			FROM DUAL
-		</selectKey>
+		) 
+		SELECT 
+			TB_OPTION_SEQ.NEXTVAL 
+			, T.*
+		FROM (
+			<foreach collection="list" item="item" index="index" separator="UNION ALL">
+				SELECT 
+					#{item.tyCd}
+					, #{item.optNm}
+				FROM DUAL
+			</foreach>
+		) T
 	</insert>
 	
-	<select id="selectOption" parameterType="int" resultType="string">
+	<select id="selectOption" parameterType="int" resultType="String">
 		SELECT 
 			OPT_NM as optNm
 		FROM TB_OPTION
 		WHERE 
 			TY_CD = #{tyCd}
 	</select>
+	<select id="selectTyCd" parameterType="int" resultType="int">
+		SELECT
+			TY_CD as tyCd
+		FROM 
+			TB_OPTION
+		WHERE
+			OPT_CD = #{optCd}
+	</select>
+	
+	<delete id="deleteOption" parameterType="int">
+		DELETE 
+		FROM 
+			TB_OPTION
+		WHERE
+			TY_CD = #{tyCd}
+	</delete>
+	
 
 </mapper>

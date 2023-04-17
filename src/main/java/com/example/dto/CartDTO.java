@@ -2,21 +2,13 @@ package com.example.dto;
 
 import org.apache.ibatis.type.Alias;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
 @Alias("CartDTO")
-@Schema(description = "장바구니")
 public class CartDTO {
 
-	@Schema(description = "장바구니 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer cartCd;
-	@Schema(description = "상품 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer itCd;
-	@Schema(description = "멤버 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private String mbId;
-	@Schema(description = "수량", example="수량", required = true, minLength = 1, maxLength = 50)
 	private Integer amount;
-	@Schema(description = "옵션 번호", example="번호", required = true, minLength = 1, maxLength = 50)
 	private Integer optCd;
 
 	public Integer getCartCd() {
@@ -65,4 +57,8 @@ public class CartDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+
+
+
+
 }

@@ -71,6 +71,54 @@ public class FileUploadService {
 		registerDto.setOptCd(optCd);
 		itemDao.insertTyCd(registerDto);
 	}
+
+	@Transactional
+	public void updateImgItemOpt(FileUploadDTO fileUploadDTO, ItemDTO itemDto, String optionName,
+			List<OptionDTO> optionList) {
+		if(fileUploadDTO.getImgCd() != null) {
+			fileUploadDao.updateFile(fileUploadDTO);
+		}
+		if(itemDto.getOptCd()!=null) {
+			Integer tyCd = optionDao.selectTyCd(itemDto.getOptCd());
+			optionDao.deleteOption(tyCd);
+			optionTypeDao.deleteType(tyCd);
+			itemDao.deleteOptCd(itemDto.getItCd());
+		}
+		Integer tyCd = optionTypeDao.selectTyCd();
+		itemDao.updateItem(itemDto);
+		
+		OptionTypeDTO optionTypeDto = new OptionTypeDTO();
+		optionTypeDto.setTyNm(optionName);
+		optionTypeDto.setItCd(itemDto.getItCd());
+		optionTypeDto.setTyCd(tyCd);
+		optionTypeDao.insertOptionType(optionTypeDto);
+		Integer optCd = null;
+		for(int i=0;i<optionList.size();i++) {
+			OptionDTO optionDto = new OptionDTO();
+			optionDto.setOptNm(optionList.get(i).getOptNm());
+			optionDto.setTyCd(tyCd);
+			optionDao.insertOption(optionDto);
+			optCd = optionDto.getOptCd();
+		}
+		RegisterDTO registerDto = new RegisterDTO();
+		registerDto.setItCd(itemDto.getItCd());
+		registerDto.setOptCd(optCd);
+		itemDao.insertTyCd(registerDto);
+	}
+
+	@Transactional
+	public void updateImgItem(FileUploadDTO fileUploadDTO, ItemDTO itemDTO) {
+		if(fileUploadDTO.getImgCd() != null) {
+			fileUploadDao.updateFile(fileUploadDTO);
+		}
+		if(itemDTO.getOptCd() !=null) {
+			Integer tyCd = optionDao.selectTyCd(itemDTO.getOptCd());
+			optionDao.deleteOption(tyCd);
+			optionTypeDao.deleteType(tyCd);
+			itemDao.deleteOptCd(itemDTO.getItCd());
+		}
+		itemDao.updateItem(itemDTO);
+	}
 	
 	
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.dto.CartDTO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
+import com.example.dto.CartSearchUnableDTO;
 import com.example.dto.DeliveryInfoDTO;
 import com.example.dto.OrderDoneDTO;
 import com.example.dto.OrderInfoDTO;
@@ -23,16 +24,12 @@ public interface OrderDAO {
 
 	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderSearchDTO> itemSearch(OrderSearchDTO orderSearchDTO);
-
 	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 
 	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
 
 
 	Integer ordInfo(OrderInfoDTO orderInfoDTO);
-
-
 
 
 	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
@@ -45,6 +42,12 @@ public interface OrderDAO {
 	Integer searchCount();
 
 	void orderDone(CartOrdDTO cartOrdDTO);
+
+	void cartSearchUnable(CartSearchUnableDTO cartSearchUnableDTO);
+
+	void updateTM(Integer dlvyCd);
+
+	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
 
 
 

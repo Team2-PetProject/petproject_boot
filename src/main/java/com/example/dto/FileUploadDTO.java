@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 import org.apache.ibatis.type.Alias;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
 @Alias("FileUploadDTO")
 public class FileUploadDTO {
 	private Integer imgCd;
@@ -13,7 +11,6 @@ public class FileUploadDTO {
 	private String sz;
 	private String upTm;
 	private String di;
-	
 	private byte[] fl;
 	public Integer getImgCd() {
 		return imgCd;

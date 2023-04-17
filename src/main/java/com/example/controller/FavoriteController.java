@@ -40,17 +40,17 @@ public class FavoriteController {
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
 	public ResponseEntity<Void> favoriteAdd
-	(@PathVariable("itemCd") int itemCd) {
-		String mbId=SessionAttributeManager.getMemberId();
-//		String mbId="1";
+	(@PathVariable("itCd") Integer itCd) {
+//		String mbId=SessionAttributeManager.getMemberId();
+		String mbId="1";
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setMbId(mbId);
-		memberItemDTO.setItCd(itemCd);
-		Integer favoriteAdd = itemService.favoriteAdd(memberItemDTO);
+		memberItemDTO.setItCd(itCd);
+		Integer inputFavorit = itemService.favoriteAdd(memberItemDTO);
 		return ResponseEntity.ok().build();
 	}
 
-	@DeleteMapping("/check/favorite/{itCd}")
+	@DeleteMapping("/check/favorite/itCd/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteDelete")
 	public ResponseEntity<Void> favoriteDelete

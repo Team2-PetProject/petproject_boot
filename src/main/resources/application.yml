@@ -9,10 +9,10 @@ spring:
 
 #image, css, js
   mvc:
-    static-path-pattern: /resources/**
+#    static-path-pattern: /resources/**
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-      
+#      
 
 
 #myBatis 설정 : *로 설정하면 해당 위치에 있는 모든 mapper 등록

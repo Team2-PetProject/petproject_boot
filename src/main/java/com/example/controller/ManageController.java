@@ -125,7 +125,7 @@ public class ManageController {
 	public ComResponseEntity<Void> deleteItem(@PathVariable("itCd") Integer itCd){
 		itemService.deleteItem(itCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("상품 삭제 성공"));
-	}
+	} 
 
 	
 }

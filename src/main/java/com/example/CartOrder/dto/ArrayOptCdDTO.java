@@ -6,7 +6,7 @@ import org.apache.ibatis.type.Alias;
 public class ArrayOptCdDTO {
 private Integer optCd;
 private Integer tyCd;
-private Integer optNm;
+private String optNm;
 public Integer getOptCd() {
 	return optCd;
 }
@@ -19,10 +19,10 @@ public Integer getTyCd() {
 public void setTyCd(Integer tyCd) {
 	this.tyCd = tyCd;
 }
-public Integer getOptNm() {
+public String getOptNm() {
 	return optNm;
 }
-public void setOptNm(Integer optNm) {
+public void setOptNm(String optNm) {
 	this.optNm = optNm;
 }
 @Override

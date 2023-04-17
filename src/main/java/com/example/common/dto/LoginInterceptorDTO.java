@@ -1,7 +1,6 @@
 package com.example.common.dto;
 
-
-public class PortDTO {
+public class LoginInterceptorDTO {
 	private String[] list;
 
 	public String[] getList() {

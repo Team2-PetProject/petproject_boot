@@ -10,15 +10,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.common.Interceptor.AdminCheckInterceptor;
 import com.example.common.Interceptor.LoginCheckInterceptor;
 import com.example.common.dto.AdminDTO;
-import com.example.common.dto.LoginDTO;
-import com.example.common.dto.PortDTO;
+import com.example.common.dto.LoginInterceptorDTO;
+import com.example.common.dto.PortInterceptorDTO;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		LoginDTO loginList = getLogin();
+		LoginInterceptorDTO loginList = getLogin();
 		AdminDTO adminList = getAdmin();
 		registry.addInterceptor(new LoginCheckInterceptor())
 		.addPathPatterns(loginList.getList());
@@ -28,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer{
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		PortDTO portList = getPort();
+		PortInterceptorDTO portList = getPort();
 		   registry.addMapping("/**")
 		   .allowedOrigins(portList.getList())
            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
@@ -39,8 +39,8 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	@Bean
 	@ConfigurationProperties(prefix="login")
-	public LoginDTO getLogin() {
-		return new LoginDTO();
+	public LoginInterceptorDTO getLogin() {
+		return new LoginInterceptorDTO();
 	}
 
 	@Bean
@@ -51,7 +51,7 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	@Bean
 	@ConfigurationProperties(prefix="port")
-	public PortDTO getPort() {
-		return new PortDTO();
+	public PortInterceptorDTO getPort() {
+		return new PortInterceptorDTO();
 	}
 }

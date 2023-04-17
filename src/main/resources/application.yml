@@ -27,7 +27,7 @@ spring:
 #myBatis 설정 : *로 설정하면 해당 위치에 있는 모든 mapper 등록
 mybatis:
   mapper-locations: mapper/*.xml
-  type-aliases-package: com.example.dto
+  type-aliases-package: com.example
   configuration:
     map-underscore-to-camel-case: true
 

@@ -66,7 +66,7 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .select()
                 //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/app/"))
                 .build()
                 .apiInfo(commonInfo());
@@ -92,8 +92,7 @@ public class SwaggerConfig {
                 .groupName("member")
                 .useDefaultResponseMessages(false)
                 .select()
-                //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/app/member/**"))
                 .build()
                 .apiInfo(commonInfo());
@@ -106,8 +105,7 @@ public class SwaggerConfig {
                 .groupName("check")
                 .useDefaultResponseMessages(false)
                 .select()
-                //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/app/check/**"))
                 .build()
                 .apiInfo(commonInfo());
@@ -120,8 +118,7 @@ public class SwaggerConfig {
                 .groupName("admin")
                 .useDefaultResponseMessages(false)
                 .select()
-                //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/app/admin/**"))
                 .build()
                 .apiInfo(commonInfo());

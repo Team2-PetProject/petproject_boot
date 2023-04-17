@@ -90,6 +90,17 @@ public class ItemService {
 		return itemDao.favoriteAdd(memberItemDTO);
 	}
 
+	@Transactional
+	public void deleteItem(Integer itCd) {
+		Integer optCd = itemDao.selectOptCd(itCd);
+		if(optCd !=null) {
+			Integer tyCd = optionDao.selectTyCd(optCd);
+			optionDao.deleteOption(tyCd);
+			optionTypeDao.deleteType(tyCd);
+		}
+		itemDao.deleteItem(itCd);
+	}
+
 
 
 

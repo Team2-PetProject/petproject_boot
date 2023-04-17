@@ -32,6 +32,10 @@ public interface ItemDAO {
 
 	public List<ItemDTO> itemList(ItemListDTO itemList);
 
+	public void deleteItem(Integer itCd);
+
+	public Integer selectOptCd(Integer itCd);
+
 
 
 

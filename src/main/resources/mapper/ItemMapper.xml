@@ -145,4 +145,20 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
+	<delete id="deleteItem" parameterType="int">
+		DELETE
+		FROM
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</delete>
+	
+	<select id="selectOptCd" parameterType="int" resultType="int">
+		SELECT
+			OPT_CD
+		FROM 
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</select>
 </mapper>

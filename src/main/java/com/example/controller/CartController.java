@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.dto.AmountUpdateDTO;
@@ -34,7 +35,7 @@ public class CartController {
 	@ApiOperation(value = "cartAdd")
 	public ComResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
 //		 String mbId=SessionAttributeManager.getMemberId();
-		 String mbId="1";
+		 String mbId="2";
 		 cart.setMbId(mbId);
 		 Integer AddItem = cartService.cartAdd(cart);
 		 Map<String, Object> cartAdd = new HashMap<String, Object>();

@@ -11,6 +11,7 @@ public class CartOrdJoinDTO {
 	private Integer amount;
 	private Integer price;
 	private Integer imgCd;
+	private String itNm;
 	private Integer optCd;
 
 	public String getMbId() {
@@ -68,6 +69,15 @@ public class CartOrdJoinDTO {
 	public void setCartCd(Integer cartCd) {
 		this.cartCd = cartCd;
 	}
+	
+
+	public String getItNm() {
+		return itNm;
+	}
+
+	public void setItNm(String itNm) {
+		this.itNm = itNm;
+	}
 
 	@Override
 	public String toString() {
@@ -84,6 +94,8 @@ public class CartOrdJoinDTO {
 		builder.append(price);
 		builder.append(", imgCd=");
 		builder.append(imgCd);
+		builder.append(", itNm=");
+		builder.append(itNm);
 		builder.append(", optCd=");
 		builder.append(optCd);
 		builder.append("]");

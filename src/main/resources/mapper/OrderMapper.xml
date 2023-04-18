@@ -34,6 +34,7 @@
 					,AMOUNT
 					,PRICE
 					,IMG_CD
+					,IT_NM
 					,TB_CART.OPT_CD "OPT_CD"
 		FROM
 					TB_CART TB_CART

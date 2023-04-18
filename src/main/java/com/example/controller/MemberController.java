@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -141,14 +142,18 @@ public class MemberController {
 	
 	
 	@GetMapping("check/mypage/{mbId}")
+	@CrossOrigin
 	@ApiOperation(value = "회원정보보기")
 	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
+//	public ResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
 		
 		MemberDTO memberDTO = service.mypage(mbId);
 		ComResponseDTO<MemberDTO> comResponseDTO = new ComResponseDTO<MemberDTO>();
 		comResponseDTO.setMessage("회원정보보기");
 		comResponseDTO.setBody(memberDTO);
+		logger.info("memberDTO>>>>" + memberDTO);
 		return new ComResponseEntity<MemberDTO>(comResponseDTO);
+		
 //		return new ResponseEntity<MemberDTO>(memberDTO, HttpStatus.OK);
 	}
 	

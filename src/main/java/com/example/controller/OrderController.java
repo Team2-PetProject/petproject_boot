@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.common.SessionAttributeManager;
 import com.example.dto.CartDTO;
 import com.example.dto.CartOrdDTO;
 import com.example.dto.CartOrdJoinDTO;
@@ -43,8 +45,8 @@ public class OrderController {
 	@ResponseBody
 	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
 	public ResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
-//		String mbId=SessionAttributeManager.getMemberId();
-		String mbId="1";
+		String mbId=SessionAttributeManager.getMemberId();
+//		String mbId="1";
 		cartOrdJoinDTO.setMbId(mbId);
 		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
 		List<CartOrdJoinDTO>itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
@@ -55,10 +57,11 @@ public class OrderController {
 
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
+	@CrossOrigin
 	@GetMapping("/check/orderConfirm/")
 	public ResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
 //		String mbId=SessionAttributeManager.getMemberId();
-		String mbId="1";
+		String mbId="2";
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
 
@@ -67,6 +70,7 @@ public class OrderController {
 		List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		itemJoinLists.addAll(itemJoinList);
 		}
+		System.out.println(itemJoinLists);
 		return ResponseEntity.ok(itemJoinLists);
 	}
 

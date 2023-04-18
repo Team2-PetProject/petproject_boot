@@ -11,6 +11,12 @@
 		WHERE
 		CAT = #{cat}
 	</select>
+	<select id="totalItem" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM 
+			TB_ITEM
+	</select>
 	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
@@ -137,6 +143,21 @@
 				IDX BETWEEN #{startIdx}
 		AND 	#{endIdx}
 	</select>
+	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
+		SELECT
+			IT_CD as itCd
+			, IT_NM as itNm
+			, CAT as cat
+		FROM
+			(
+				SELECT 
+					ROWNUM AS NUM
+					, TB_ITEM.*
+				FROM TB_ITEM
+			)
+		WHERE 
+			NUM BETWEEN #{startIdx} AND #{endIdx}
+	</select>
 	<update id="deleteOptCd" parameterType="int">
 		UPDATE 
 			TB_ITEM
@@ -159,6 +180,14 @@
 		FROM 
 			TB_ITEM
 		WHERE
+			IT_CD = #{itCd}
+	</select>
+	<select id="selectitInfoCd" parameterType="int" resultType="int">
+		SELECT
+			IT_INFO_CD
+		FROM 
+			TB_IT_INFO
+		WHERE	
 			IT_CD = #{itCd}
 	</select>
 </mapper>

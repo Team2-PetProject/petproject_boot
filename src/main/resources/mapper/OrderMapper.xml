@@ -338,8 +338,7 @@
 		TB_DELIVERY_INFO.DLVY_CD=#{dlvyCd};
 
 	</update>
-	<select id="dlvyState" parameterType="Integer" resultType="com.example.CartOrder.dto.DeliveryInfoDTO">
-		SELECT
+	<!--  SELECT
 			DLVY_CD
 			,COM
 			,INV
@@ -355,11 +354,34 @@
 			MP_CART_ORD MP_CART_ORD
 		ON
 			TB_ORDER_INFO.ORD_CD=MP_CART_ORD.MP_CART_ORD
-		INNSER JOIN
+		INNER JOIN
 			TB_ITEM TB_ITEM
 
 		WHERE
-			DLVY_CD = #{dlvyCd}
+			DLVY_CD = #{dlvyCd}-->
+	<select id="dlvyState" parameterType="Integer" resultType="com.example.CartOrder.dto.DeliveryInfoDTO">
+		SELECT 
+			D.DLVY_CD as dlvyCd
+			, D.COM as com
+			, D.INV as inv
+			, D.DLVY_START as dlvyStart
+			, D.DLVY_END as dlvyEnd
+		FROM 
+			TB_DELIVERY_INFO D 
+		INNER JOIN 
+			TB_ORDER_INFO O
+		ON 
+			D.DLVY_CD = O.DLVY_CD
+		INNER JOIN 
+			MP_CART_ORD M
+		ON 
+			O.ORD_CD = M.ORD_CD 
+		INNER JOIN 
+			TB_ITEM I 
+		ON
+			I.IT_CD = M.IT_CD
+		WHERE 
+			D.DLVY_CD = #{dlvyCd}
 	</select>
 
 		<!-- <select id="itemSearch" parameterType="OrderSearchDTO"

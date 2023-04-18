@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.admin.dto.FileUploadDTO;
+import com.example.admin.dto.ItemInfoDTO;
 import com.example.admin.service.FileUploadService;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,16 @@ public class FileController {
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
 //		return new ComResponseEntity<>(new ComResponseDTO<>("이미지 보기", dto));
+	}
+	
+	@GetMapping("/detailView/{imgCd}")
+	@ApiOperation(value = "상세이미지 보기")
+	public ResponseEntity<byte[]> findDetail(@PathVariable int imgCd){
+		ItemInfoDTO dto = fileUploadService.findDetail(imgCd);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", dto.getDi());
+		headers.add("Content-Length", String.valueOf(dto.getFl().length));
+		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
 	}
 	
 	

@@ -14,7 +14,10 @@ import com.example.Item.dto.ItemDTO;
 import com.example.Item.dto.ItemListDTO;
 import com.example.Item.dto.ItemRetrieveDTO;
 import com.example.Item.dto.JoinItemDTO;
+import com.example.Item.dto.OptionCdNmDTO;
 import com.example.Item.dto.TypeDTO;
+import com.example.admin.dto.AdminItemDTO;
+import com.example.admin.dto.ItemCdNmDTO;
 import com.example.common.SessionAttributeManager;
 import com.example.favorite.dto.MemberItemDTO;
 
@@ -56,14 +59,15 @@ public class ItemService {
 	public ItemRetrieveDTO selectItemRetrieve(Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = new ItemRetrieveDTO();
 		ItemDTO itemDTO = itemDao.selectItem(itCd);
-		System.out.println(itemDTO);
+		Integer itInfoCd = itemDao.selectitInfoCd(itCd);
 		itemRetrieveDTO.setItemDTO(itemDTO);
 		if(itemDTO.getOptCd()!=null) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
-			List<String> option = optionDao.selectOption(typeDto.getTyCd());
+			List<OptionCdNmDTO> optionList = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
-			itemRetrieveDTO.setOption(option);
+			itemRetrieveDTO.setOptionCdList(optionList);
 		}
+		itemRetrieveDTO.setItInfoCd(itInfoCd); 
 		return itemRetrieveDTO;
 	}
 
@@ -98,6 +102,27 @@ public class ItemService {
 			optionTypeDao.deleteType(tyCd);
 		}
 		itemDao.deleteItem(itCd);
+	}
+
+
+	public AdminItemDTO adminList(Integer curPage) {
+		Integer perPage = 10;
+		Integer totalCount = itemDao.totalItem();
+		Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		if(totalPage==0) {totalPage=1;}
+		Integer startIdx = ((curPage-1)*perPage);
+		Integer endIdx = curPage*perPage;
+		System.err.println(startIdx);
+		System.err.println(endIdx);
+		ItemListDTO itemList = new ItemListDTO();
+		itemList.setStartIdx(startIdx);
+		itemList.setEndIdx(endIdx);
+		List<ItemCdNmDTO> itemLists = itemDao.adminList(itemList);
+		AdminItemDTO adminItemDTO = new AdminItemDTO();
+		adminItemDTO.setCurPage(curPage);
+		adminItemDTO.setList(itemLists);
+		adminItemDTO.setTotalPage(totalPage);
+		return adminItemDTO;
 	}
 
 

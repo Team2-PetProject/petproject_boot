@@ -82,6 +82,7 @@
 		UPDATE TB_MEMBER
 		SET
 			PW = #{pw}
+			, NM = #{nm}
 			, POST = #{post}
 			, ADDR1 = #{addr1}
 			, ADDR2 = #{addr2}

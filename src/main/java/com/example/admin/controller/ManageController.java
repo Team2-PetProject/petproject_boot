@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.Item.dto.ItemDTO;
 import com.example.Item.dto.OptionDTO;
 import com.example.Item.service.ItemService;
+import com.example.admin.dto.AdminItemDTO;
 import com.example.admin.dto.FileUploadDTO;
+import com.example.admin.dto.ItemInfoDTO;
 import com.example.admin.service.FileUploadService;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
@@ -41,6 +43,7 @@ public class ManageController {
 	@CrossOrigin
 	@ApiOperation(value = "이미지 업로드")
 	public ComResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file, 
+			@RequestParam("file") MultipartFile detailFile,
 			@RequestParam("name") String name,@RequestParam("price") int price, 
 			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
@@ -50,6 +53,13 @@ public class ManageController {
 		fileUploadDTO.setImgNm(file.getOriginalFilename());
 		fileUploadDTO.setFl(file.getBytes());
 		fileUploadDTO.setSz(String.valueOf(file.getSize()));
+		
+		ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
+		itemInfoDTO.setDi(file.getContentType());
+		itemInfoDTO.setImgNm(file.getOriginalFilename());
+		itemInfoDTO.setFl(file.getBytes());
+		itemInfoDTO.setSz(file.getSize());
+		
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setItNm(name);
 		itemDTO.setCat(category);
@@ -61,9 +71,9 @@ public class ManageController {
 				optionDTO.setOptNm(option.get(i));
 				optionList.add(optionDTO);
 			}
-			fileUploadService.insertImgItemOpt(fileUploadDTO, itemDTO, optionName, optionList);
+			fileUploadService.insertImgItemOpt(fileUploadDTO,itemInfoDTO, itemDTO, optionName, optionList);
 		}else {
-			fileUploadService.insertImgItem(fileUploadDTO, itemDTO);
+			fileUploadService.insertImgItem(fileUploadDTO,itemInfoDTO, itemDTO);
 		}
 		ComResponseDTO<Void> comResponseDto = new ComResponseDTO<Void>();
 		comResponseDto.setMessage("파일등록 성공");
@@ -126,6 +136,13 @@ public class ManageController {
 		itemService.deleteItem(itCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("상품 삭제 성공"));
 	} 
+	
+	@GetMapping("/itemList/{curPage}")
+	@ApiOperation(value = "관리자 상품조회")
+	public ComResponseEntity<AdminItemDTO> adminList(@PathVariable("curPage") Integer curPage){
+		AdminItemDTO itemList = itemService.adminList(curPage);
+		return new ComResponseEntity<>(new ComResponseDTO<>(curPage + "페이지 상품", itemList));
+	}
 
 	
 }

@@ -10,6 +10,7 @@ import com.example.Item.dto.ItemListDTO;
 import com.example.Item.dto.ItemRetrieveDTO;
 import com.example.Item.dto.JoinItemDTO;
 import com.example.Item.service.ItemService;
+import com.example.admin.dto.AdminItemDTO;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 
@@ -36,8 +37,6 @@ public class ItemController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("카테고리별 상품 정보", itemLists));
 	}
 	
-	
-
 	@GetMapping("/itemRetrieve/{itCd}") //단순 조회 부분
 	@ApiOperation(value = "상품 상세히 보기")
 	public ComResponseEntity<ItemRetrieveDTO> itemRetrieve (@PathVariable("itCd") Integer itCd) {

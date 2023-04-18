@@ -23,10 +23,12 @@
 		) T
 	</insert>
 	
-	<select id="selectOption" parameterType="int" resultType="String">
+	<select id="selectOption" parameterType="int" resultType="com.example.Item.dto.OptionCdNmDTO">
 		SELECT 
 			OPT_NM as optNm
-		FROM TB_OPTION
+			, OPT_CD as optCd
+		FROM 
+			TB_OPTION
 		WHERE 
 			TY_CD = #{tyCd}
 	</select>

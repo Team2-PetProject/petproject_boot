@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.Item.dto.OptionCdNmDTO;
 import com.example.Item.dto.OptionDTO;
 
 @Mapper
 public interface OptionDAO {
 
-	public List<String> selectOption(Integer tyCd);
+	public List<OptionCdNmDTO> selectOption(Integer tyCd);
 
 	public void insertOption(OptionDTO optionDTO);
 

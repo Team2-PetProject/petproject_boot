@@ -9,7 +9,8 @@ public class ItemRetrieveDTO {
 
 	private ItemDTO itemDTO;
 	private String optionName;
-	private List<String> option;
+	private List<OptionCdNmDTO> optionCdList;
+	private Integer itInfoCd;
 	public ItemDTO getItemDTO() {
 		return itemDTO;
 	}
@@ -22,11 +23,17 @@ public class ItemRetrieveDTO {
 	public void setOptionName(String optionName) {
 		this.optionName = optionName;
 	}
-	public List<String> getOption() {
-		return option;
+	public List<OptionCdNmDTO> getOptionCdList() {
+		return optionCdList;
 	}
-	public void setOption(List<String> option) {
-		this.option = option;
+	public void setOptionCdList(List<OptionCdNmDTO> optionCdList) {
+		this.optionCdList = optionCdList;
+	}
+	public Integer getItInfoCd() {
+		return itInfoCd;
+	}
+	public void setItInfoCd(Integer itInfoCd) {
+		this.itInfoCd = itInfoCd;
 	}
 	@Override
 	public String toString() {
@@ -35,11 +42,14 @@ public class ItemRetrieveDTO {
 		builder.append(itemDTO);
 		builder.append(", optionName=");
 		builder.append(optionName);
-		builder.append(", option=");
-		builder.append(option);
+		builder.append(", optionCdList=");
+		builder.append(optionCdList);
+		builder.append(", itInfoCd=");
+		builder.append(itInfoCd);
 		builder.append("]");
 		return builder.toString();
 	}
-
+	
+	
 
 }

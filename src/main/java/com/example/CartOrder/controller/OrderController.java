@@ -104,10 +104,11 @@ public class OrderController {
 		   return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
 		}
 
-		@GetMapping
+		@GetMapping("/check/dlvyState/{dlvyCd}")
 		@ResponseBody
 		@ApiOperation(value = "dlvyState")
 		private ComResponseEntity<List<DeliveryInfoDTO>> dlvyState (@PathVariable("dlvyCd") Integer dlvyCd) {
+			System.out.println("ddd");
 			List<DeliveryInfoDTO> deliveryInfoList =orderService.dlvyState(dlvyCd);
 			return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 		}

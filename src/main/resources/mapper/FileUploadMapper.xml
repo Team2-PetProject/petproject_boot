@@ -23,6 +23,23 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
+	<insert id="insertInfoFile" parameterType="com.example.admin.dto.ItemInfoDTO">
+		INSERT INTO TB_IT_INFO(
+			IT_INFO_CD
+			, IMG_NM
+			, SZ
+			, DI
+			, FL
+			, IT_CD
+		) VALUES (
+			TB_IT_INFO_SEQ.NEXTVAL
+			, #{imgNm}
+			, #{sz}
+			, #{di}
+			, #{fl}
+			, #{itCd}
+		)
+	</insert>
 	<update id="updateFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		UPDATE
 			TB_FILE_UPLOAD
@@ -45,5 +62,20 @@
 		FROM TB_FILE_UPLOAD
 		WHERE 
 			IMG_CD = #{imgCd}
+	</select>
+	
+	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="int">
+		SELECT
+			IT_INFO_CD as itInfoCd
+			, IT_CD as itCd
+			, IMG_NM as imgNm
+			, SZ as sz
+			, UP_TM as upTm
+			, DI as di
+			, FL as fl
+		FROM 
+			TB_IT_INFO
+		WHERE
+			IT_INFO_CD = #{imgCd}
 	</select>
 </mapper>

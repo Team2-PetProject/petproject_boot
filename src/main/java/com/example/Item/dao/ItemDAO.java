@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.Item.dto.ItemDTO;
 import com.example.Item.dto.ItemListDTO;
+import com.example.admin.dto.ItemCdNmDTO;
 import com.example.admin.dto.RegisterDTO;
 import com.example.favorite.dto.MemberItemDTO;
 
@@ -35,6 +36,12 @@ public interface ItemDAO {
 	public void deleteItem(Integer itCd);
 
 	public Integer selectOptCd(Integer itCd);
+
+	public Integer totalItem();
+
+	public List<ItemCdNmDTO> adminList(ItemListDTO itemList);
+
+	public Integer selectitInfoCd(Integer itCd);
 
 
 

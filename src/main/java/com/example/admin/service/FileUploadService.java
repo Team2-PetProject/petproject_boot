@@ -14,6 +14,7 @@ import com.example.Item.dto.OptionDTO;
 import com.example.Item.dto.OptionTypeDTO;
 import com.example.admin.dao.FileUploadDAO;
 import com.example.admin.dto.FileUploadDTO;
+import com.example.admin.dto.ItemInfoDTO;
 import com.example.admin.dto.RegisterDTO;
 
 @Service
@@ -28,12 +29,14 @@ public class FileUploadService {
 	OptionDAO optionDao;
 
 	@Transactional
-	public void insertImgItem(FileUploadDTO fileUploadDTO, ItemDTO itemDTO) {
+	public void insertImgItem(FileUploadDTO fileUploadDTO, ItemInfoDTO itemInfoDTO, ItemDTO itemDTO) {
 		fileUploadDao.insertFile(fileUploadDTO);
 		int imgCd = fileUploadDTO.getImgCd();
-		
 		itemDTO.setImgCd(imgCd);
 		itemDao.insertItem(itemDTO);
+		Integer itCd = itemDTO.getItCd();
+		itemInfoDTO.setItCd(itCd);
+		fileUploadDao.insertInfoFile(itemInfoDTO);
 	}
 	
 	@Transactional
@@ -43,7 +46,7 @@ public class FileUploadService {
 	}
 	
 	@Transactional
-	public void insertImgItemOpt(FileUploadDTO fileUploadDTO, ItemDTO itemDto, String optionName,
+	public void insertImgItemOpt(FileUploadDTO fileUploadDTO, ItemInfoDTO itemInfoDTO, ItemDTO itemDto, String optionName,
 			List<OptionDTO> optionList) {
 		fileUploadDao.insertFile(fileUploadDTO);
 		int imgCd = fileUploadDTO.getImgCd();
@@ -51,6 +54,9 @@ public class FileUploadService {
 		itemDto.setImgCd(imgCd);
 		itemDao.insertItem(itemDto);
 		Integer itCd = itemDto.getItCd();
+		itemInfoDTO.setItCd(itCd);
+		System.out.println(itCd + "-------------");
+		fileUploadDao.insertInfoFile(itemInfoDTO);
 		
 		OptionTypeDTO optionTypeDto = new OptionTypeDTO();
 		optionTypeDto.setTyNm(optionName);
@@ -118,6 +124,11 @@ public class FileUploadService {
 			itemDao.deleteOptCd(itemDTO.getItCd());
 		}
 		itemDao.updateItem(itemDTO);
+	}
+
+	public ItemInfoDTO findDetail(int imgCd) {
+		ItemInfoDTO itemInfoDto = fileUploadDao.selectDetailFile(imgCd);
+		return itemInfoDto;
 	}
 	
 	

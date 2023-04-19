@@ -21,17 +21,17 @@
    					TB_CART.CART_CD = #{cartCd}
 	</select>
 	
-	<select id="cartList" parameterType="String" resultType="CartConfirmDTO">
+	<select id="cartList" parameterType="String" resultType="com.example.CartOrder.dto.CartConfirmDTO">
       SELECT
-            TB_CART.CART_CD "CART_CD"
-            ,TB_ITEM.IT_CD "IT_CD"
-            ,TB_ITEM.IT_NM "IT_NM"
-            ,TB_ITEM.IMG_CD "IMG_CD"
-            ,TB_ITEM.PRICE "PRICE"
-            ,TB_CART.AMOUNT "AMOUNT"
-            ,TB_CART.MB_ID "MB_ID"
-                ,TB_OPTION.OPT_CD "OPT_CD"
-                ,TB_OPTION.OPT_NM "OPT_NM"
+            TB_CART.CART_CD AS CART_CD
+            ,TB_ITEM.IT_CD AS IT_CD
+            ,TB_ITEM.IT_NM AS IT_NM
+            ,TB_ITEM.IMG_CD AS IMG_CD
+            ,TB_ITEM.PRICE AS PRICE
+            ,TB_CART.AMOUNT AS AMOUNT
+            ,TB_CART.MB_ID AS MB_ID
+            ,TB_OPTION.OPT_CD AS OPT_CD
+            ,TB_OPTION.OPT_NM AS OPT_NM
       FROM
             TB_CART TB_CART
       INNER JOIN
@@ -40,10 +40,11 @@
       LEFT JOIN
             TB_OPTION TB_OPTION ON
             TB_CART.OPT_CD = TB_OPTION.OPT_CD
-      WHERE
+       WHERE
                 MB_ID = #{mbId}
-      OR
-                TB_CART.OPT_CD IS NULL
+       OR
+                TB_OPTION.OPT_CD IS NULL
+                ORDER BY TB_CART.CART_CD
    </select>
 
 			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">

@@ -44,7 +44,7 @@ public class OrderController {
 	}
 
 
-
+	//주문하기
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
 	@GetMapping("/check/orderConfirm/")

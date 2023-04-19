@@ -2,43 +2,94 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.ItemDAO">
-	<insert id="insertItem" parameterType="ItemDTO">
+<mapper namespace="com.example.Item.dao.ItemDAO">
+	<select id="totalCount" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_ITEM
+		WHERE
+		CAT = #{cat}
+	</select>
+	<select id="totalItem" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM 
+			TB_ITEM
+	</select>
+	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
 			, IMG_CD
 			, IT_NM
 			, PRICE
 			, CAT
-			, OPT_ADD
 		) VALUES (
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-			, #{optAdd}
 		)
 		<selectKey keyProperty="itCd" resultType="int">
-			SELECT 
-				TB_ITEM_SEQ.CURRVAL 
+			SELECT
+				TB_ITEM_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
 	</insert>
-	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
-		SELECT 
+	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
+		SELECT
 			IT_CD as itCd
 			, IMG_CD as imgCd
 			, IT_NM as itNm
 			, PRICE as price
 			, CAT as cat
-			, OPT_ADD as optAdd
+			, OPT_CD as optCd
 		FROM TB_ITEM
-		WHERE 
+		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<insert id="favoriteAdd" parameterType="MemberItemDTO">
-			 INSERT INTO 
+	<update id="updateItem" parameterType="com.example.Item.dto.ItemDTO">
+		UPDATE
+			TB_ITEM
+		SET
+			IT_NM = #{itNm}
+			, PRICE = #{price}
+			, CAT = #{cat}
+		WHERE
+			IT_CD = #{itCd}
+	</update>
+	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO" resultType="com.example.Item.dto.ItemDTO">
+	SELECT
+			TB_ITEM.IT_CD "IT_CD"
+			,IMG_CD
+			,IT_NM
+			,PRICE
+			,CAT
+			,OPT_CD
+			FROM
+			TB_ITEM TB_ITEM
+	INNER JOIN
+			(
+	SELECT
+			MB_ID
+			,IT_CD
+	FROM
+			MP_MEMBER_ITEM
+	WHERE
+			MB_ID = #{mbId}
+	AND
+			IT_CD = #{itCd}
+			)
+			MP_ITEM ON
+			TB_ITEM.IT_CD = MP_ITEM.IT_CD
+
+
+
+	</select>
+
+	<insert id="favoriteAdd" parameterType="com.example.favorite.dto.MemberItemDTO">
+			 INSERT INTO
 			 MP_MEMBER_ITEM
 			 (
 			 	MB_ID
@@ -50,15 +101,93 @@
 			 ,#{itCd}
 			 )
 	</insert>
-	
-	<delete id="favoriteDelete" parameterType="MemberItemDTO">
+
+	<delete id="favoriteDelete" parameterType="com.example.favorite.dto.MemberItemDTO">
 			DELETE
 			FROM
 			MP_MEMBER_ITEM
-			WHERE 
+			WHERE
 			MB_ID=#{mbId}
 			AND
 			IT_CD=#{itCd}
 	</delete>
+
+	<insert id="insertTyCd" parameterType="com.example.admin.dto.RegisterDTO">
+		UPDATE
+			TB_ITEM
+		SET
+			TY_CD = #{tyCd}
+		WHERE
+			IT_CD = #{itCd}
+	</insert>
+
+	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.Item.dto.ItemDTO">
+		SELECT
+		*
+		FROM
+		(SELECT
+		ROWNUM "IDX"
+		,ITEM.*
+		FROM
+		(SELECT
+				IT_CD
+				,IMG_CD
+				,IT_NM
+				,PRICE
+				,CAT
+				,OPT_CD
+		FROM
+				TB_ITEM
+				ORDER BY IT_CD DESC) "ITEM")
+		WHERE
+				IDX BETWEEN #{startIdx}
+		AND 	#{endIdx}
+	</select>
+	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
+		SELECT
+			IT_CD as itCd
+			, IT_NM as itNm
+			, CAT as cat
+		FROM
+			(
+				SELECT 
+					ROWNUM AS NUM
+					, TB_ITEM.*
+				FROM TB_ITEM
+			)
+		WHERE 
+			NUM BETWEEN #{startIdx} AND #{endIdx}
+	</select>
+	<update id="deleteOptCd" parameterType="int">
+		UPDATE 
+			TB_ITEM
+		SET
+			OPT_CD = null
+		WHERE
+			IT_CD = #{itCd}
+	</update>
+	<delete id="deleteItem" parameterType="int">
+		DELETE
+		FROM
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</delete>
 	
+	<select id="selectOptCd" parameterType="int" resultType="int">
+		SELECT
+			OPT_CD
+		FROM 
+			TB_ITEM
+		WHERE
+			IT_CD = #{itCd}
+	</select>
+	<select id="selectitInfoCd" parameterType="int" resultType="int">
+		SELECT
+			IT_INFO_CD
+		FROM 
+			TB_IT_INFO
+		WHERE	
+			IT_CD = #{itCd}
+	</select>
 </mapper>

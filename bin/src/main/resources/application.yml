@@ -1,24 +1,35 @@
 #DataSource 설정
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver 
-    url: jdbc:oracle:thin:@localhost:1521:xe
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe?oracle.jdbc.defaultNChar=true&oracle.jdbc.defaultLobPrefetchSize=4000&useUnicode=true&characterEncoding=AL32UTF8
     username: PetProject
     password: pet
+    tomcat:
+      connection-properties: useUnicode=true;characterEncoding=UTF-8;
 
+  
 #image, css, js
   mvc:
-    static-path-pattern: /resources/**
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+#    cors:
+#      mappings:
+#        "[/**]":
+#          allowed-origins: "*"
+#          allowed-methods: "GET, POST, PUT, DELETE, OPTIONS"
+#          allowed-headers: "*"
+#          allow-credentials: true
+#          max-age: 3600
       
 
 
 #myBatis 설정 : *로 설정하면 해당 위치에 있는 모든 mapper 등록
 mybatis:
   mapper-locations: mapper/*.xml
-  type-aliases-package: com.example.dto
-  
+  type-aliases-package: com.example
+  configuration:
+    map-underscore-to-camel-case: true
 
 #server 설정
 server:
@@ -35,3 +46,13 @@ logging:
 #타임리프
 prefix: /templates/
 suffix: .html
+
+login : 
+  list :
+    /check/** ,/member/check/**
+admin :
+  list :
+    /admin/**
+port :
+  list : 
+    http://localhost:8081,http://localhost:8080, http://localhost:8082

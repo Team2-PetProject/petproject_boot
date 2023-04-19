@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,64 +23,80 @@ import com.example.dto.SpecUpdateDTO;
 import com.example.service.CartService;
 
 import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class CartController {
 	@Autowired
 	CartService cartService;
 
+//	@GetMapping("/check/cartList")
+//	@ApiOperation(value = "cartList")
+//	@CrossOrigin
+//	public ResponseEntity<List<CartConfirmDTO>> cartList(){
+//		List<CartConfirmDTO> cartLists = cartService.cartList();
+//		return ResponseEntity.ok(cartLists);
+//	}
+
 	@GetMapping("/check/cartList")
 	@ApiOperation(value = "cartList")
-	public ResponseEntity<List<CartConfirmDTO>> cartList(){
+	@CrossOrigin
+	public ResponseEntity<List<CartConfirmDTO>> cartList() {
 		List<CartConfirmDTO> cartLists = cartService.cartList();
 		return ResponseEntity.ok(cartLists);
 	}
 
 	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")
-	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart){
-		 String mbId=SessionAttributeManager.getMemberId();
-		 cart.setMbId(mbId);
-		 Integer AddItem = cartService.cartAdd(cart);
-		 Map<String, Object> cartAdd = new HashMap<String, Object>();
-		 cartAdd.put("success", AddItem > 0);
-		 cartAdd.put("itemCd", cart.getCartCd());
-		 return ResponseEntity.ok(cartAdd);
+	@CrossOrigin
+	public ResponseEntity<Map<String, Object>> CartAdd(CartDTO cart) {
+		String mbId = SessionAttributeManager.getMemberId();
+		cart.setMbId(mbId);
+		Integer AddItem = cartService.cartAdd(cart);
+		Map<String, Object> cartAdd = new HashMap<String, Object>();
+		cartAdd.put("success", AddItem > 0);
+		cartAdd.put("itemCd", cart.getCartCd());
+		return ResponseEntity.ok(cartAdd);
 	}
 
-	//한개 삭제 메소드
+	// 한개 삭제 메소드
 	@DeleteMapping("/check/cartDelete/{cartCd}")
 	@ApiOperation(value = "cartDelete")
-	public ResponseEntity<Void>cartDelete(@PathVariable("cartCd") int cartCd) {
-		//cartCd로 바로 삭제
+	@CrossOrigin
+	public ResponseEntity<Void> cartDelete(@PathVariable("cartCd") int cartCd) {
+		// cartCd로 바로 삭제
 		Integer deleteOne = cartService.cartDelete(cartCd);
 		return ResponseEntity.ok().build();
 	}
 
-	//전체 삭제
+	// 전체 삭제
 	@DeleteMapping("/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
-	public ResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer>list) {
+	@CrossOrigin
+	public ResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer> list) {
 		Integer allDelete = cartService.checkDelete(list);
 		return ResponseEntity.ok().build();
 	}
 
-	//상품 옵션 변경
+	// 상품 옵션 변경
 	@PutMapping("/check/specUpdate/{cartCd}/option/{optCd}")
 	@ApiOperation(value = "specUpdate")
-	public ResponseEntity<Integer>specUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("optCd") int optCd){
+	@CrossOrigin
+	public ResponseEntity<Integer> specUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("optCd") int optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		SpecUpdateDTO specUpdateDTO = new SpecUpdateDTO();
 		specUpdateDTO.setMbId(mbId);
 		specUpdateDTO.setCartCd(cartCd);
 		specUpdateDTO.setOptCd(optCd);
-		Integer changeSpec=cartService.specUpdate(specUpdateDTO);
+		Integer changeSpec = cartService.specUpdate(specUpdateDTO);
 		return ResponseEntity.ok(changeSpec);
 	}
 
-	//수량 변경
+	// 수량 변경
 	@PutMapping("/check/specUpdate/{cartCd}/amt/{amount}")
 	@ApiOperation(value = "amountUpdate")
-	public ResponseEntity<Integer> amountUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("amount") int amount){
+	@CrossOrigin
+	public ResponseEntity<Integer> amountUpdate(@PathVariable("cartCd") int cartCd,
+			@PathVariable("amount") int amount) {
 		String mbId = SessionAttributeManager.getMemberId();
 		AmountUpdateDTO amountUpdateDTO = new AmountUpdateDTO();
 		amountUpdateDTO.setMbId(mbId);

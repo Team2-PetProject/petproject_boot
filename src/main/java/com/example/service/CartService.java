@@ -53,20 +53,38 @@ public class CartService {
 		return cartDao.amountUpdate(amountUpdateDTO);
 	}
 
+//	@Transactional
+//	public List<CartConfirmDTO> cartList() {
+//		String mbId = SessionAttributeManager.getMemberId();
+//		List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
+//		List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
+//		for (CartConfirmDTO cartConfirmDTO : cartLists) {
+//			Integer cartCd = cartConfirmDTO.getCartCd();
+//			List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);
+//			cartConfirmDTO.setOptCds(optList);
+//			reCartList.add(cartConfirmDTO);
+//		}
+//		System.err.println(reCartList);
+//		return reCartList;
+//	}
+	
 	@Transactional
-	public List<CartConfirmDTO> cartList() {
-		String mbId = SessionAttributeManager.getMemberId();
-		List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
-		List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
-		for (CartConfirmDTO cartConfirmDTO : cartLists) {
-			Integer cartCd = cartConfirmDTO.getCartCd();
-			List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);
-			cartConfirmDTO.setOptCds(optList);
-			reCartList.add(cartConfirmDTO);
-		}
-		System.err.println(reCartList);
-		return reCartList;
-	}
+	   public List<CartConfirmDTO> cartList() {
+	      String mbId = SessionAttributeManager.getMemberId();
+//	      String mbId = "1";
+	      List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
+	      System.err.println(cartLists);
+	      List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
+	      for (CartConfirmDTO cartConfirmDTO : cartLists) {
+	         Integer itCd = cartConfirmDTO.getItCd();
+	         System.err.println(itCd);
+	         List<ArrayOptCdDTO> optList = cartDao.typeSearch(itCd);
+	         cartConfirmDTO.setOptCds(optList);
+	         reCartList.add(cartConfirmDTO);
+	      }
+	      System.err.println(reCartList);
+	      return reCartList;
+	   }
 
 
-}
+}//end class

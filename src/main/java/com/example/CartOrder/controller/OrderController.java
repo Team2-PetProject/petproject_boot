@@ -46,8 +46,8 @@ public class OrderController {
 
 	//주문하기
 	@ApiOperation(value = "orderConfirm")
-	@ResponseBody
-	@GetMapping("/check/orderConfirm/")
+	//@ResponseBody
+	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
 		String mbId=SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();

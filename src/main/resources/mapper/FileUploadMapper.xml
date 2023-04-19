@@ -17,8 +17,8 @@
 			, #{di}
 			, #{fl}
 		)
-		<selectKey keyProperty="imgCd" resultType="int" order="AFTER">
-			SELECT 
+		<selectKey keyProperty="imgCd" resultType="Integer" order="AFTER">
+			SELECT
 				TB_FILE_UPLOAD_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
@@ -49,10 +49,10 @@
 			, DI = #{di}
 			, FL = #{fl}
 		WHERE
-			IMG_CD = #{imgCd}		
+			IMG_CD = #{imgCd}
 	</update>
-	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="int">
-		SELECT 
+	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="Integer">
+		SELECT
 			IMG_CD
 			, IMG_NM
 			, SZ
@@ -60,11 +60,11 @@
 			, DI
 			, FL
 		FROM TB_FILE_UPLOAD
-		WHERE 
+		WHERE
 			IMG_CD = #{imgCd}
 	</select>
-	
-	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="int">
+
+	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="Integer">
 		SELECT
 			IT_INFO_CD as itInfoCd
 			, IT_CD as itCd
@@ -73,7 +73,7 @@
 			, UP_TM as upTm
 			, DI as di
 			, FL as fl
-		FROM 
+		FROM
 			TB_IT_INFO
 		WHERE
 			IT_INFO_CD = #{imgCd}

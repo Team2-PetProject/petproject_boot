@@ -14,7 +14,7 @@
 	<select id="totalItem" resultType="Integer">
 		SELECT
 			COUNT(*)
-		FROM 
+		FROM
 			TB_ITEM
 	</select>
 	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
@@ -31,7 +31,7 @@
 			, #{price}
 			, #{cat}
 		)
-		<selectKey keyProperty="itCd" resultType="int">
+		<selectKey keyProperty="itCd" resultType="Integer">
 			SELECT
 				TB_ITEM_SEQ.CURRVAL
 			FROM DUAL
@@ -39,12 +39,12 @@
 	</insert>
 	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
-			IT_CD as itCd
-			, IMG_CD as imgCd
-			, IT_NM as itNm
-			, PRICE as price
-			, CAT as cat
-			, OPT_CD as optCd
+			IT_CD AS IT_CD
+			, IMG_CD AS IMG_CD
+			, IT_NM AS IT_NM
+			, PRICE AS PRICE
+			, CAT AS CAT
+			, OPT_CD AS OPT_CD
 		FROM TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
@@ -61,7 +61,7 @@
 	</update>
 	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO" resultType="com.example.Item.dto.ItemDTO">
 	SELECT
-			TB_ITEM.IT_CD "IT_CD"
+			TB_ITEM.IT_CD AS IT_CD
 			,IMG_CD
 			,IT_NM
 			,PRICE
@@ -126,7 +126,7 @@
 		*
 		FROM
 		(SELECT
-		ROWNUM "IDX"
+		ROWNUM AS IDX
 		,ITEM.*
 		FROM
 		(SELECT
@@ -138,56 +138,56 @@
 				,OPT_CD
 		FROM
 				TB_ITEM
-				ORDER BY IT_CD DESC) "ITEM")
+				ORDER BY IT_CD DESC) AS ITEM)
 		WHERE
 				IDX BETWEEN #{startIdx}
 		AND 	#{endIdx}
 	</select>
 	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
 		SELECT
-			IT_CD as itCd
-			, IT_NM as itNm
-			, CAT as cat
+			IT_CD AS IT_CD
+			, IT_NM AS IT_NM
+			, CAT AS CAT
 		FROM
 			(
-				SELECT 
+				SELECT
 					ROWNUM AS NUM
 					, TB_ITEM.*
 				FROM TB_ITEM
 			)
-		WHERE 
+		WHERE
 			NUM BETWEEN #{startIdx} AND #{endIdx}
 	</select>
-	<update id="deleteOptCd" parameterType="int">
-		UPDATE 
+	<update id="deleteOptCd" parameterType="Integer">
+		UPDATE
 			TB_ITEM
 		SET
 			OPT_CD = null
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	<delete id="deleteItem" parameterType="int">
+	<delete id="deleteItem" parameterType="Integer">
 		DELETE
 		FROM
 			TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</delete>
-	
-	<select id="selectOptCd" parameterType="int" resultType="int">
+
+	<select id="selectOptCd" parameterType="Integer" resultType="Integer">
 		SELECT
 			OPT_CD
-		FROM 
+		FROM
 			TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<select id="selectitInfoCd" parameterType="int" resultType="int">
+	<select id="selectitInfoCd" parameterType="Integer" resultType="Integer">
 		SELECT
 			IT_INFO_CD
-		FROM 
+		FROM
 			TB_IT_INFO
-		WHERE	
+		WHERE
 			IT_CD = #{itCd}
 	</select>
 </mapper>

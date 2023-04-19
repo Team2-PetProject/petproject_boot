@@ -16,7 +16,7 @@
      	, TEL3
      	, EMAIL1
      	, EMAIL2
-     ) VALUES ( 
+     ) VALUES (
      	#{mbId}
      	, #{pw}
      	, #{nm}
@@ -30,21 +30,23 @@
      	, #{email2}
      )
    </insert>
-   
-   
-   <select id="idCheck" parameterType="string" resultType="Integer">
-   	  SELECT 
+
+
+   <select id="idCheck" parameterType="String" resultType="Integer">
+   	  SELECT
    	  		COUNT(*)
-   	  FROM TB_MEMBER
-   	  WHERE MB_ID = #{mbId}
+   	  FROM
+   	  		TB_MEMBER
+   	  WHERE
+   	  		MB_ID = #{mbId}
    </select>
-   
-   
-   
-   
-   
-   <select id="mypage" parameterType="string" resultType="com.example.member.dto.MemberDTO">
-	  SELECT 
+
+
+
+
+
+   <select id="mypage" parameterType="String" resultType="com.example.member.dto.MemberDTO">
+	  SELECT
 		  	MB_ID as mbId
 		  	, PW
 		  	, NM
@@ -56,12 +58,14 @@
 		  	, TEL3
 		  	, EMAIL1
 		  	, EMAIL2
-      FROM TB_MEMBER
-      WHERE MB_ID = #{mbId}
+      FROM
+      		TB_MEMBER
+      WHERE
+      		MB_ID = #{mbId}
 	</select>
-	
+
 	<select id="login" parameterType="LoginDTO" resultType="com.example.member.dto.MemberDTO">
-	  SELECT 
+	  SELECT
 	  		MB_ID as mbId
 	  		, PW as pw
 	  		, NM
@@ -73,13 +77,18 @@
 	  		, TEL3
 	  		, EMAIL1
 	  		, EMAIL2
-      FROM TB_MEMBER
-      WHERE MB_ID = #{mbId} AND PW = #{pw}
-		
+      FROM
+      		TB_MEMBER
+      WHERE
+      		MB_ID = #{mbId}
+      AND
+      		PW = #{pw}
+
 	</select>
-	
+
 	<update id="memberUpdate" parameterType="com.example.member.dto.MemberDTO">
-		UPDATE TB_MEMBER
+		UPDATE
+				TB_MEMBER
 		SET
 			PW = #{pw}
 			, NM = #{nm}
@@ -91,8 +100,9 @@
 			, TEL3 = #{tel3}
 			, EMAIL1 = #{email1}
 			, EMAIL2 = #{email2}
-		WHERE MB_ID = #{mbId}
+		WHERE
+			MB_ID = #{mbId}
 
 	</update>
-	
+
 </mapper>

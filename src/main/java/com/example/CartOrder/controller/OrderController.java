@@ -125,8 +125,10 @@ public class OrderController {
 		   Integer totalCount = orderService.totalCount(mbId);
 		   Integer perPage = orderSearchPage.getPerPage();
 		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
-		   Integer startIdx = (curPage-1) * perPage;
-		   Integer endIdx = perPage*curPage-1;
+		   Integer startIdx = (curPage-1) * perPage + 1;
+		   System.err.println("startIdx>>>>"+startIdx);
+		   Integer endIdx = perPage*curPage;
+		   System.err.println("endIdx>>>>"+endIdx);
 		   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
 		   orderSearchDTO.setMbId(mbId);
 		   orderSearchDTO.setPerPage(perPage);

@@ -9,7 +9,7 @@ public class OrderHistoryPageDTO {
 
 	private List<OrderHistoryDTO> list; //현재페이지에 들어갈 레코드를 perPage만큼만 저장할 것입니다.
 	private int curPage; //현재 볼 페이지 번호
-	private int perPage = 10; //한 페이지에 보여질 목록 수
+	private int perPage = 16; //한 페이지에 보여질 목록 수
 	private int totalCount; //전체 레코드 갯수
 
 	public OrderHistoryPageDTO() {

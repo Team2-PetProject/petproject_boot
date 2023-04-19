@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.CartOrder.dao.CartDAO">
 
-
 	<select id="typeSearch" parameterType="Integer" resultType="com.example.CartOrder.dto.ArrayOptCdDTO">
 			SELECT
 				    TB_OPTION_TYPE.TY_CD "tyCd"
@@ -21,31 +20,33 @@
 			WHERE
    					TB_CART.CART_CD = #{cartCd}
 	</select>
-
-	<!-- 수정안해도 됨 완벽해 -->
+	
 	<select id="cartList" parameterType="String" resultType="com.example.CartOrder.dto.CartConfirmDTO">
-		SELECT
-				TB_CART.CART_CD "cartCd"
-				,TB_ITEM.IT_CD "itCd"
-				,TB_ITEM.IT_NM "itNm"
-				,TB_ITEM.IMG_CD "imgCd"
-				,TB_ITEM.PRICE "price"
-				,TB_CART.AMOUNT "amount"
-				,TB_CART.MB_ID "mbId"
-                ,TB_OPTION.OPT_CD "optCd"
-                ,TB_OPTION.OPT_NM "optNm"
-		FROM
-				TB_CART TB_CART
-		INNER JOIN
-				TB_ITEM TB_ITEM ON
-				TB_CART.IT_CD = TB_ITEM.IT_CD
-		INNER JOIN
-				TB_OPTION TB_OPTION ON
-				TB_CART.OPT_CD = TB_OPTION.OPT_CD
+      SELECT
+            TB_CART.CART_CD AS CART_CD
+            ,TB_ITEM.IT_CD AS IT_CD
+            ,TB_ITEM.IT_NM AS IT_NM
+            ,TB_ITEM.IMG_CD AS IMG_CD
+            ,TB_ITEM.PRICE AS PRICE
+            ,TB_CART.AMOUNT AS AMOUNT
+            ,TB_CART.MB_ID AS MB_ID
+            ,TB_OPTION.OPT_CD AS OPT_CD
+            ,TB_OPTION.OPT_NM AS OPT_NM
+      FROM
+            TB_CART TB_CART
+      INNER JOIN
+            TB_ITEM TB_ITEM ON
+            TB_CART.IT_CD = TB_ITEM.IT_CD
+      LEFT JOIN
+            TB_OPTION TB_OPTION ON
+            TB_CART.OPT_CD = TB_OPTION.OPT_CD
        WHERE
-       			MB_ID = #{mbId}
-	</select>
-	<!--여기서부터는 완료  -->
+                MB_ID = #{mbId}
+       OR
+                TB_OPTION.OPT_CD IS NULL
+                ORDER BY TB_CART.CART_CD
+   </select>
+
 			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">
 				INSERT INTO TB_CART
 					(

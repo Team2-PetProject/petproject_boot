@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.DeliveryInfoDAO">
-	<insert id="insertEndTm" parameterType="UpTmDTO">
+<mapper namespace="com.example.CartOrder.dao.DeliveryInfoDAO">
+	<insert id="insertEndTm" parameterType="com.example.CartOrder.dto.UpTmDTO">
 				INSERT INTO
 					TB_UP_TM
 					(

@@ -2,14 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.CartDAO">
+<mapper namespace="com.example.CartOrder.dao.CartDAO">
 
-
-	<!-- <select id="typeSearch" parameterType="Integer" resultType="ArrayOptCdDTO">
+	<select id="typeSearch" parameterType="Integer" resultType="com.example.CartOrder.dto.ArrayOptCdDTO">
 			SELECT
-				    TB_OPTION_TYPE.TY_CD "TY_CD"
-				    ,TB_OPTION.OPT_CD "OPT_CD"
-				    ,TB_OPTION.OPT_NM "OPT_NM"
+				    TB_OPTION_TYPE.TY_CD "tyCd"
+				    ,TB_OPTION.OPT_CD "optCd"
+				    ,TB_OPTION.OPT_NM "optNm"
 			FROM
    					TB_OPTION_TYPE
 			INNER JOIN
@@ -20,7 +19,7 @@
     				TB_CART ON TB_ITEM.IT_CD = TB_CART.IT_CD
 			WHERE
    					TB_CART.CART_CD = #{cartCd}
-	</select> -->
+	</select> 
 	
 	<select id="typeSearch" parameterType="Integer" resultType="ArrayOptCdDTO">
          SELECT
@@ -43,17 +42,17 @@
    </select>
 
 	<!-- 수정안해도 됨 완벽해 -->
-	<!-- <select id="cartList" parameterType="String" resultType="CartConfirmDTO">
+	<select id="cartList" parameterType="String" resultType="com.example.CartOrder.dto.CartConfirmDTO">
 		SELECT
-				TB_CART.CART_CD "CART_CD"
-				,TB_ITEM.IT_CD "IT_CD"
-				,TB_ITEM.IT_NM "IT_NM"
-				,TB_ITEM.IMG_CD "IMG_CD"
-				,TB_ITEM.PRICE "PRICE"
-				,TB_CART.AMOUNT "AMOUNT"
-				,TB_CART.MB_ID "MB_ID"
-                ,TB_OPTION.OPT_CD "OPT_CD"
-                ,TB_OPTION.OPT_NM "OPT_NM"
+				TB_CART.CART_CD "cartCd"
+				,TB_ITEM.IT_CD "itCd"
+				,TB_ITEM.IT_NM "itNm"
+				,TB_ITEM.IMG_CD "imgCd"
+				,TB_ITEM.PRICE "price"
+				,TB_CART.AMOUNT "amount"
+				,TB_CART.MB_ID "mbId"
+                ,TB_OPTION.OPT_CD "optCd"
+                ,TB_OPTION.OPT_NM "optNm"
 		FROM
 				TB_CART TB_CART
 		INNER JOIN
@@ -64,7 +63,7 @@
 				TB_CART.OPT_CD = TB_OPTION.OPT_CD
        WHERE
        			MB_ID = #{mbId}
-	</select> -->
+	</select>
 	
 	<select id="cartList" parameterType="String" resultType="CartConfirmDTO">
       SELECT
@@ -91,7 +90,7 @@
                 TB_CART.OPT_CD IS NULL
    </select>
 	<!--여기서부터는 완료  -->
-			<insert id="cartAdd" parameterType="CartDTO">
+			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">
 				INSERT INTO TB_CART
 					(
 					CART_CD
@@ -122,7 +121,7 @@
 					CART_CD = #{CART_CD}
 			</delete>
 
-			<update id="amountUpdate" parameterType="AmountUpdateDTO">
+			<update id="amountUpdate" parameterType="com.example.CartOrder.dto.AmountUpdateDTO">
 					UPDATE TB_CART
 					SET
 					AMOUNT = #{amount}
@@ -132,7 +131,7 @@
 					CART_CD = #{cartCd}
 			</update>
 
-			<update id="specUpdate" parameterType="SpecUpdateDTO">
+			<update id="specUpdate" parameterType="com.example.CartOrder.dto.SpecUpdateDTO">
 				UPDATE TB_CART
 				SET
 				OPT_CD=#{optCd}

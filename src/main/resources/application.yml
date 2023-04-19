@@ -27,7 +27,7 @@ spring:
 #myBatis 설정 : *로 설정하면 해당 위치에 있는 모든 mapper 등록
 mybatis:
   mapper-locations: mapper/*.xml
-  type-aliases-package: com.example.dto
+  type-aliases-package: com.example
   configuration:
     map-underscore-to-camel-case: true
 
@@ -49,4 +49,10 @@ suffix: .html
 
 login : 
   list :
-    /check,/member/check/**
+    /check/** ,/member/check/**
+admin :
+  list :
+    /admin/**
+port :
+  list : 
+    http://localhost:8081,http://localhost:8080, http://localhost:8082

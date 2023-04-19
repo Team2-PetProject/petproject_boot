@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.MemberDAO">
-	<insert id="memberAdd" parameterType="MemberDTO">
+<mapper namespace="com.example.member.dao.MemberDAO">
+	<insert id="memberAdd" parameterType="com.example.member.dto.MemberDTO">
      INSERT INTO TB_MEMBER(
      	MB_ID
      	, PW
@@ -43,7 +43,7 @@
    
    
    
-   <select id="mypage" parameterType="string" resultType="MemberDTO">
+   <select id="mypage" parameterType="string" resultType="com.example.member.dto.MemberDTO">
 	  SELECT 
 		  	MB_ID as mbId
 		  	, PW
@@ -60,7 +60,7 @@
       WHERE MB_ID = #{mbId}
 	</select>
 	
-	<select id="login" parameterType="LoginDTO" resultType="MemberDTO">
+	<select id="login" parameterType="LoginDTO" resultType="com.example.member.dto.MemberDTO">
 	  SELECT 
 	  		MB_ID as mbId
 	  		, PW as pw
@@ -78,10 +78,11 @@
 		
 	</select>
 	
-	<update id="memberUpdate" parameterType="MemberDTO">
+	<update id="memberUpdate" parameterType="com.example.member.dto.MemberDTO">
 		UPDATE TB_MEMBER
 		SET
 			PW = #{pw}
+			, NM = #{nm}
 			, POST = #{post}
 			, ADDR1 = #{addr1}
 			, ADDR2 = #{addr2}

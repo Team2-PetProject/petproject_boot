@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.FileUploadDAO">
-	<insert id="insertFile" parameterType="FileUploadDTO">
+<mapper namespace="com.example.admin.dao.FileUploadDAO">
+	<insert id="insertFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		INSERT INTO TB_FILE_UPLOAD(
 			IMG_CD
 			, IMG_NM
@@ -23,7 +23,24 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
-	<update id="updateFile" parameterType="FileUploadDTO">
+	<insert id="insertInfoFile" parameterType="com.example.admin.dto.ItemInfoDTO">
+		INSERT INTO TB_IT_INFO(
+			IT_INFO_CD
+			, IMG_NM
+			, SZ
+			, DI
+			, FL
+			, IT_CD
+		) VALUES (
+			TB_IT_INFO_SEQ.NEXTVAL
+			, #{imgNm}
+			, #{sz}
+			, #{di}
+			, #{fl}
+			, #{itCd}
+		)
+	</insert>
+	<update id="updateFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		UPDATE
 			TB_FILE_UPLOAD
 		SET
@@ -34,7 +51,7 @@
 		WHERE
 			IMG_CD = #{imgCd}		
 	</update>
-	<select id="selectFile" resultType="FileUploadDTO" parameterType="int">
+	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="int">
 		SELECT 
 			IMG_CD
 			, IMG_NM
@@ -45,5 +62,20 @@
 		FROM TB_FILE_UPLOAD
 		WHERE 
 			IMG_CD = #{imgCd}
+	</select>
+	
+	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="int">
+		SELECT
+			IT_INFO_CD as itInfoCd
+			, IT_CD as itCd
+			, IMG_NM as imgNm
+			, SZ as sz
+			, UP_TM as upTm
+			, DI as di
+			, FL as fl
+		FROM 
+			TB_IT_INFO
+		WHERE
+			IT_INFO_CD = #{imgCd}
 	</select>
 </mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.ItemDAO">
+<mapper namespace="com.example.Item.dao.ItemDAO">
 	<select id="totalCount" resultType="Integer">
 		SELECT
 		COUNT(*)
@@ -11,7 +11,13 @@
 		WHERE
 		CAT = #{cat}
 	</select>
-	<insert id="insertItem" parameterType="ItemDTO">
+	<select id="totalItem" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM 
+			TB_ITEM
+	</select>
+	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
 		INSERT INTO TB_ITEM(
 			IT_CD
 			, IMG_CD
@@ -31,7 +37,7 @@
 			FROM DUAL
 		</selectKey>
 	</insert>
-	<select id="selectItem" parameterType="Integer" resultType="ItemDTO">
+	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 			IT_CD as itCd
 			, IMG_CD as imgCd
@@ -43,7 +49,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<update id="updateItem" parameterType="ItemDTO">
+	<update id="updateItem" parameterType="com.example.Item.dto.ItemDTO">
 		UPDATE
 			TB_ITEM
 		SET
@@ -53,7 +59,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	<select id="favoriteList" parameterType="MemberItemDTO" resultType="ItemDTO">
+	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO" resultType="com.example.Item.dto.ItemDTO">
 	SELECT
 			TB_ITEM.IT_CD "IT_CD"
 			,IMG_CD
@@ -82,7 +88,7 @@
 
 	</select>
 
-	<insert id="favoriteAdd" parameterType="MemberItemDTO">
+	<insert id="favoriteAdd" parameterType="com.example.favorite.dto.MemberItemDTO">
 			 INSERT INTO
 			 MP_MEMBER_ITEM
 			 (
@@ -96,7 +102,7 @@
 			 )
 	</insert>
 
-	<delete id="favoriteDelete" parameterType="MemberItemDTO">
+	<delete id="favoriteDelete" parameterType="com.example.favorite.dto.MemberItemDTO">
 			DELETE
 			FROM
 			MP_MEMBER_ITEM
@@ -106,7 +112,7 @@
 			IT_CD=#{itCd}
 	</delete>
 
-	<insert id="insertTyCd" parameterType="RegisterDTO">
+	<insert id="insertTyCd" parameterType="com.example.admin.dto.RegisterDTO">
 		UPDATE
 			TB_ITEM
 		SET
@@ -115,7 +121,7 @@
 			IT_CD = #{itCd}
 	</insert>
 
-	<select id="itemList" parameterType="ItemListDTO" resultType="ItemDTO">
+	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 		*
 		FROM
@@ -136,6 +142,21 @@
 		WHERE
 				IDX BETWEEN #{startIdx}
 		AND 	#{endIdx}
+	</select>
+	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
+		SELECT
+			IT_CD as itCd
+			, IT_NM as itNm
+			, CAT as cat
+		FROM
+			(
+				SELECT 
+					ROWNUM AS NUM
+					, TB_ITEM.*
+				FROM TB_ITEM
+			)
+		WHERE 
+			NUM BETWEEN #{startIdx} AND #{endIdx}
 	</select>
 	<update id="deleteOptCd" parameterType="int">
 		UPDATE 
@@ -159,6 +180,14 @@
 		FROM 
 			TB_ITEM
 		WHERE
+			IT_CD = #{itCd}
+	</select>
+	<select id="selectitInfoCd" parameterType="int" resultType="int">
+		SELECT
+			IT_INFO_CD
+		FROM 
+			TB_IT_INFO
+		WHERE	
 			IT_CD = #{itCd}
 	</select>
 </mapper>

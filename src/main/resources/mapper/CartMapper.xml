@@ -37,13 +37,13 @@
       INNER JOIN
             TB_ITEM TB_ITEM ON
             TB_CART.IT_CD = TB_ITEM.IT_CD
-      INNER JOIN
+      LEFT JOIN
             TB_OPTION TB_OPTION ON
             TB_CART.OPT_CD = TB_OPTION.OPT_CD
-       WHERE
+      WHERE
                 MB_ID = #{mbId}
-       OR
-                TB_OPTION.OPT_CD IS NULL
+      OR
+                TB_CART.OPT_CD IS NULL
    </select>
 
 			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">

@@ -18,7 +18,7 @@
 			, #{itCd}
 			, #{tyNm}
 		)
-		<selectKey keyProperty="tyCd" resultType="int">
+		<selectKey keyProperty="tyCd" resultType="int" order="AFTER">
 			SELECT 
 				TB_OPTION_TYPE_SEQ.CURRVAL
 			FROM DUAL

@@ -55,7 +55,6 @@ public class FileUploadService {
 		itemDao.insertItem(itemDto);
 		Integer itCd = itemDto.getItCd();
 		itemInfoDTO.setItCd(itCd);
-		System.out.println(itCd + "-------------");
 		fileUploadDao.insertInfoFile(itemInfoDTO);
 		
 		OptionTypeDTO optionTypeDto = new OptionTypeDTO();
@@ -63,12 +62,13 @@ public class FileUploadService {
 		optionTypeDto.setItCd(itCd);
 		optionTypeDto.setTyCd(tyCd);
 		optionTypeDao.insertOptionType(optionTypeDto);
+		System.out.println(optionTypeDto.getTyCd());
 		
 		Integer optCd = null;
 		for(int i=0;i<optionList.size();i++) {
 			OptionDTO optionDto = new OptionDTO();
 			optionDto.setOptNm(optionList.get(i).getOptNm());
-			optionDto.setTyCd(tyCd);
+			optionDto.setTyCd(optionTypeDto.getTyCd());
 			optionDao.insertOption(optionDto);
 			optCd = optionDto.getOptCd();
 		}

@@ -62,7 +62,7 @@ public class CartController {
 	@DeleteMapping("/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
 	public ComResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer>list) {
-		Integer allDelete = cartService.checkDelete(list);
+		Integer allDelete = cartService.checkDelete(list); 
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 상품 전체 삭제 성공"));
 	}
 

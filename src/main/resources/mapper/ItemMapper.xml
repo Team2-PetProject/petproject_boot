@@ -116,7 +116,7 @@
 		UPDATE
 			TB_ITEM
 		SET
-			TY_CD = #{tyCd}
+			OPT_CD = #{optCd}
 		WHERE
 			IT_CD = #{itCd}
 	</insert>

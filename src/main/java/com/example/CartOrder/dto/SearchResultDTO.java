@@ -14,7 +14,9 @@ public class SearchResultDTO {
 	private String cat;
 	private Integer price;
 	private Integer imgCd;
-	private Integer optNm;
+	private String optNm;
+	private Integer dlvyCd;
+	
 
 	public Integer getCartCd() {
 		return cartCd;
@@ -80,11 +82,11 @@ public class SearchResultDTO {
 		this.imgCd = imgCd;
 	}
 
-	public Integer getOptNm() {
+	public String getOptNm() {
 		return optNm;
 	}
 
-	public void setOptNm(Integer optNm) {
+	public void setOptNm(String optNm) {
 		this.optNm = optNm;
 	}
 
@@ -121,6 +123,14 @@ public class SearchResultDTO {
 		builder.append(optNm);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public Integer getDlvyCd() {
+		return dlvyCd;
+	}
+
+	public void setDlvyCd(Integer dlvyCd) {
+		this.dlvyCd = dlvyCd;
 	}
 
 }

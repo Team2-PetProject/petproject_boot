@@ -163,4 +163,19 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	
+	
+	<select id="mbFavoriteList" parameterType="string" resultType="ItemDTO">
+	SELECT
+		  CAT
+		  , IMG_CD as imgCd
+		  , IT_CD as itCd
+		  , IT_NM as itNm
+		  , OPT_CD as optCd
+		  , PRICE
+	FROM TB_ITEM JOIN MP_MEMBER_ITEM
+	USING(IT_CD) 
+	WHERE MB_ID = #{mbId}
+	
+	</select>
 </mapper>

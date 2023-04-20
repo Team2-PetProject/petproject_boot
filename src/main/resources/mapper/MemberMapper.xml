@@ -43,6 +43,7 @@
    
    
    
+
    <select id="mypage" parameterType="string" resultType="com.example.member.dto.MemberDTO">
 	  SELECT 
 		  	MB_ID as mbId
@@ -78,6 +79,7 @@
 		
 	</select>
 	
+
 	<update id="memberUpdate" parameterType="com.example.member.dto.MemberDTO">
 		UPDATE TB_MEMBER
 		SET

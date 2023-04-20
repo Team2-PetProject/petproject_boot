@@ -95,10 +95,11 @@ public class ManageController {
 	@PutMapping(value = "/itemUpdate", consumes = "multipart/form-data")
 	@ApiOperation(value="상품 정보 수정")
 	public ComResponseEntity<Void> itemUpdate(@RequestParam(value="file",required = false) MultipartFile file, 
+			@RequestParam(value = "detailFile",required = false) MultipartFile detailFile,
 			@RequestParam("name") String name,@RequestParam("price") int price, 
 			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
-			@RequestParam(value = "option", required =false) List<String> option,@RequestParam("imgCd") int imgCd,
+			@RequestParam(value = "option", required =false) List<String> option,@RequestParam("imgCd") int imgCd, @RequestParam("itInfoCd") Integer itInfoCd,
 			@RequestParam("itCd") int itCd, @RequestParam(value = "optCd", required = false) Integer optCd) throws IOException {
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
 		if(file!=null) {
@@ -108,6 +109,16 @@ public class ManageController {
 			fileUploadDTO.setSz(String.valueOf(file.getSize()));
 			fileUploadDTO.setImgCd(imgCd);
 		}
+		ItemInfoDTO itemInfoDTO = new ItemInfoDTO();
+		if(detailFile!=null) {
+			itemInfoDTO.setDi(detailFile.getContentType());
+			itemInfoDTO.setImgNm(detailFile.getOriginalFilename());
+			itemInfoDTO.setFl(detailFile.getBytes());
+			itemInfoDTO.setSz(detailFile.getSize());
+			itemInfoDTO.setItCd(itCd);
+			itemInfoDTO.setItInfoCd(itInfoCd);
+		}
+		
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setItCd(itCd);
 		itemDTO.setItNm(name);
@@ -121,19 +132,20 @@ public class ManageController {
 				optionDTO.setOptNm(option.get(i));
 				optionList.add(optionDTO);
 			}
-			fileUploadService.updateImgItemOpt(fileUploadDTO, itemDTO, optionName, optionList);
+			fileUploadService.updateImgItemOpt(fileUploadDTO,itemInfoDTO, itemDTO, optionName, optionList);
 		}else {
-			fileUploadService.updateImgItem(fileUploadDTO, itemDTO);
+			fileUploadService.updateImgItem(fileUploadDTO,itemInfoDTO, itemDTO);
 		}
 		ComResponseDTO<Void> comResponseDto = new ComResponseDTO<Void>();
 		comResponseDto.setMessage("상품수정 성공");
 		return new ComResponseEntity<Void>(comResponseDto);
 	}
 	
-	@DeleteMapping("/itemRetrieve/{itCd}")
+	@DeleteMapping("/itemRetrieve/del/{itCd}/{imgCd}")
 	@ApiOperation(value = "상품 삭제하기")
-	public ComResponseEntity<Void> deleteItem(@PathVariable("itCd") Integer itCd){
+	public ComResponseEntity<Void> deleteItem(@PathVariable("itCd") Integer itCd, @PathVariable("imgCd") Integer imgCd){
 		itemService.deleteItem(itCd);
+		fileUploadService.deleteFile(imgCd, itCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("상품 삭제 성공"));
 	} 
 	

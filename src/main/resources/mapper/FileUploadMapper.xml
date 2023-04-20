@@ -51,6 +51,16 @@
 		WHERE
 			IMG_CD = #{imgCd}		
 	</update>
+	<update id="updateDetailFile" parameterType="com.example.admin.dto.ItemInfoDTO">
+		UPDATE
+			TB_IT_INFO
+		SET
+			IMG_NM = #{imgNm}
+			, SZ = #{sz}
+			, DI = #{di}
+			, FL = #{fl}
+		WHERE IT_INFO_CD = #{itInfoCd}
+	</update>
 	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="int">
 		SELECT 
 			IMG_CD
@@ -78,4 +88,20 @@
 		WHERE
 			IT_INFO_CD = #{imgCd}
 	</select>
+	
+	<delete id="deleteFile" parameterType="int">
+		DELETE
+		FROM 
+			TB_FILE_UPLOAD
+		WHERE
+			IMG_CD = #{imgCd}
+	</delete>
+	
+	<delete id="deleteDetailFile" parameterType="int">
+		DELETE
+		FROM	
+			TB_IT_INFO
+		WHERE
+			IT_CD = #{itCd}
+	</delete>
 </mapper>

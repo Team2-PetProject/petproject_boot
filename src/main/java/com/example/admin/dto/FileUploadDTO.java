@@ -66,5 +66,9 @@ public class FileUploadDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+	public void updateDetailFile(ItemInfoDTO itemInfoDTO) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

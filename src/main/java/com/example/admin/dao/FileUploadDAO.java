@@ -18,4 +18,10 @@ public interface FileUploadDAO {
 
 	public ItemInfoDTO selectDetailFile(int imgCd);
 
+	public void updateDetailFile(ItemInfoDTO itemInfoDTO);
+
+	public void deleteFile(Integer imgCd);
+
+	public void deleteDetailFile(Integer itCd);
+
 }

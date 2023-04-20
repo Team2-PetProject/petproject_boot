@@ -79,10 +79,13 @@ public class FileUploadService {
 	}
 
 	@Transactional
-	public void updateImgItemOpt(FileUploadDTO fileUploadDTO, ItemDTO itemDto, String optionName,
+	public void updateImgItemOpt(FileUploadDTO fileUploadDTO, ItemInfoDTO itemInfoDTO, ItemDTO itemDto, String optionName,
 			List<OptionDTO> optionList) {
 		if(fileUploadDTO.getImgCd() != null) {
 			fileUploadDao.updateFile(fileUploadDTO);
+		}
+		if(itemInfoDTO.getItInfoCd()!=null) {
+			fileUploadDao.updateDetailFile(itemInfoDTO);
 		}
 		if(itemDto.getOptCd()!=null) {
 			Integer tyCd = optionDao.selectTyCd(itemDto.getOptCd());
@@ -102,7 +105,7 @@ public class FileUploadService {
 		for(int i=0;i<optionList.size();i++) {
 			OptionDTO optionDto = new OptionDTO();
 			optionDto.setOptNm(optionList.get(i).getOptNm());
-			optionDto.setTyCd(tyCd);
+			optionDto.setTyCd(optionTypeDto.getTyCd());
 			optionDao.insertOption(optionDto);
 			optCd = optionDto.getOptCd();
 		}
@@ -113,9 +116,12 @@ public class FileUploadService {
 	}
 
 	@Transactional
-	public void updateImgItem(FileUploadDTO fileUploadDTO, ItemDTO itemDTO) {
+	public void updateImgItem(FileUploadDTO fileUploadDTO, ItemInfoDTO itemInfoDTO, ItemDTO itemDTO) {
 		if(fileUploadDTO.getImgCd() != null) {
 			fileUploadDao.updateFile(fileUploadDTO);
+		}
+		if(itemInfoDTO.getItInfoCd()!=null) {
+			fileUploadDao.updateDetailFile(itemInfoDTO);
 		}
 		if(itemDTO.getOptCd() !=null) {
 			Integer tyCd = optionDao.selectTyCd(itemDTO.getOptCd());
@@ -129,6 +135,11 @@ public class FileUploadService {
 	public ItemInfoDTO findDetail(int imgCd) {
 		ItemInfoDTO itemInfoDto = fileUploadDao.selectDetailFile(imgCd);
 		return itemInfoDto;
+	}
+
+	public void deleteFile(Integer imgCd, Integer itCd) {
+		fileUploadDao.deleteFile(imgCd);
+		fileUploadDao.deleteDetailFile(itCd);
 	}
 	
 	

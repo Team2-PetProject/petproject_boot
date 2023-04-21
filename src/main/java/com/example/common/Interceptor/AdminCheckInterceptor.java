@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.admin.exception.AdminException;
 import com.example.common.SessionAttributeManager;
 
 public class AdminCheckInterceptor implements HandlerInterceptor{
@@ -20,11 +21,8 @@ public class AdminCheckInterceptor implements HandlerInterceptor{
 			throws Exception {
 		logger.info("Pre Interceptor");
 		if("admin".equals(SessionAttributeManager.getMemberId())) {//로그인 안된 경우
-			//로그인 화면으로
-			//response.sendRedirect("loginForm");
-			return false;
+			throw new AdminException("관리자 권한이 필요합니다.");
 		}else { //로그인 시
-			System.out.println("check");
 			return true;
 		}
 		

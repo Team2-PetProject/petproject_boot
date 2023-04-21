@@ -1,12 +1,11 @@
 package com.example.common.exception;
 
-import org.mybatis.logging.Logger;
-import org.mybatis.logging.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.admin.exception.AdminException;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.common.dto.ExceptionResponseDTO;
@@ -32,5 +31,14 @@ public class ResponseException {
 		exceptionResponseDto.setStatus(HttpStatus.NOT_FOUND);
 		exceptionResponseDto.setCode(HttpStatus.NOT_FOUND.toString());
 		return new ComResponseEntity<>(new ComResponseDTO<>("일치하는 회원이 없습니다.", exceptionResponseDto), HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(AdminException.class)
+	public ComResponseEntity<ExceptionResponseDTO> adminException(Exception e){
+		ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO();
+		exceptionResponseDTO.setMessage(e.getMessage());
+		exceptionResponseDTO.setStatus(HttpStatus.UNAUTHORIZED);
+		exceptionResponseDTO.setCode(HttpStatus.UNAUTHORIZED.toString());
+		return new ComResponseEntity<>(new ComResponseDTO<>("관리자권한이 필요합니다.", exceptionResponseDTO), HttpStatus.UNAUTHORIZED);
 	}
 }

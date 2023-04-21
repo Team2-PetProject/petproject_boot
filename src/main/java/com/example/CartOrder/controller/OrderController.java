@@ -133,7 +133,7 @@ public class OrderController {
          String mbId = SessionAttributeManager.getMemberId();
          Integer totalCount = orderService.totalCount(mbId);
          Integer perPage = orderSearchPage.getPerPage();
-         Integer totalPage = (int)Math.ceil(totalCount / perPage);
+         Integer totalPage = (totalCount / perPage)+1; 
          Integer startIdx = ((curPage-1)*perPage)+1;
          Integer endIdx = curPage*perPage;
          OrderSearchDTO orderSearchDTO= new OrderSearchDTO();

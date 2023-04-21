@@ -81,7 +81,7 @@ public class OrderService {
 		if (dlvyCd>1) {
 			dlvyCd=dlvyCd-1;
 		}
-		orderDao.updateTM(dlvyCd);
+		if(dlvyCd>1) {orderDao.updateTM(dlvyCd);}
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}

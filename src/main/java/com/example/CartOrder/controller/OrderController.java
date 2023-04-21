@@ -74,8 +74,6 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 
-
-
 	@GetMapping("/check/orderSearch/")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")

@@ -33,11 +33,11 @@ public class ItemService {
 
 	@Transactional
 	public JoinItemDTO itemList(String cat, Integer curPage) {
-		Integer perPage = 12;
+		Integer perPage = 16;
 		Integer totalCount = itemDao.totalCount(cat);
 		Integer totalPage = (int)Math.ceil(totalCount / perPage);
 		if(totalPage==0) {totalPage=1;}
-		Integer startIdx = ((curPage-1)*perPage);
+		Integer startIdx = ((curPage-1)*perPage)+1;
 		Integer endIdx = curPage*perPage;
 		System.err.println(cat);
 		System.err.println(startIdx);
@@ -106,7 +106,7 @@ public class ItemService {
 
 
 	public AdminItemDTO adminList(Integer curPage) {
-		Integer perPage = 10;
+		Integer perPage = 8;
 		Integer totalCount = itemDao.totalItem();
 		Integer totalPage = (int)Math.ceil(totalCount / perPage);
 		if(totalPage==0) {totalPage=1;}

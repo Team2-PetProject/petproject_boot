@@ -15,7 +15,7 @@ public interface ItemDAO {
 
 	public Integer totalCount(String cat);
 
-	public int favoriteDelete(MemberItemDTO memberItemDTO);
+	public Integer favoriteDelete(MemberItemDTO memberItemDTO);
 
 	public void insertItem(ItemDTO itemDTO);
 

@@ -56,7 +56,7 @@ public class OrderController {
 
    @ApiOperation(value = "orderConfirm")
    @ResponseBody
-   @GetMapping("/check/orderConfirm/")
+   @GetMapping("/check/orderConfirm")
    public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
       String mbId=SessionAttributeManager.getMemberId();
       CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
@@ -85,7 +85,7 @@ public class OrderController {
 
 
 
-   @GetMapping("/check/orderSearch/")
+   @GetMapping("/check/orderSearch")
    @ResponseBody
    @ApiOperation(value = "orderSearch")
    public ComResponseEntity<List<OrderSearchDTO>> orderSearch
@@ -134,17 +134,15 @@ public class OrderController {
          Integer totalCount = orderService.totalCount(mbId);
          Integer perPage = orderSearchPage.getPerPage();
          Integer totalPage = (int)Math.ceil(totalCount / perPage);
-         Integer startIdx = (curPage-1) * perPage + 1;
-         System.err.println("startIdx>>>>"+startIdx);
-         Integer endIdx = perPage*curPage;
-         System.err.println("endIdx>>>>"+endIdx);
+         Integer startIdx = ((curPage-1)*perPage)+1;
+         Integer endIdx = curPage*perPage;
          OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
          orderSearchDTO.setMbId(mbId);
          orderSearchDTO.setPerPage(perPage);
          orderSearchDTO.setStartIdx(startIdx);
          orderSearchDTO.setEndIdx(startIdx);
          orderSearchDTO.setEndIdx(endIdx);
-         System.err.println(orderSearchDTO);
+         orderSearchDTO.setTotalPage(totalPage);
          return orderSearchDTO;
       }
 

@@ -94,8 +94,8 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO, HttpSession session){
-
+	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO){
+		HttpSession session = SessionAttributeManager.getSession();
 //		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
 		logger.info("db에서 가져온  memberDTO "+memberDTO);
@@ -109,7 +109,8 @@ public class MemberController {
 					
 		}else {
 			comResponseDTO.setMessage("존재하지 않는 회원");
-			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
+//			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
+			return new ComResponseEntity<Void>(comResponseDTO);
 		}
 		
 	}

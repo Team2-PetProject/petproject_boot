@@ -31,7 +31,7 @@ public class ItemController {
 	@GetMapping("/itemList/{cat}/{curPage}")
 	@ApiOperation(value = "itemList")
 	public ComResponseEntity<JoinItemDTO> itemList(@PathVariable("cat") String cat, @PathVariable("curPage") Integer curPage){
-		if (cat==null) {cat="FOOD";}
+		if (cat==null) {cat="food";}
 		if (curPage==null) {curPage =1;}
 		JoinItemDTO itemLists = itemService.itemList(cat,curPage);
 		return new ComResponseEntity<>(new ComResponseDTO<>("카테고리별 상품 정보", itemLists));

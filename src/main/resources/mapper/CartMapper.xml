@@ -6,9 +6,9 @@
 
 	<select id="typeSearch" parameterType="Integer" resultType="com.example.CartOrder.dto.ArrayOptCdDTO">
 			SELECT
-				    TB_OPTION_TYPE.TY_CD "tyCd"
-				    ,TB_OPTION.OPT_CD "optCd"
-				    ,TB_OPTION.OPT_NM "optNm"
+				    TB_OPTION_TYPE.TY_CD AS TY_CD
+				    ,TB_OPTION.OPT_CD AS OPT_CD
+				    ,TB_OPTION.OPT_NM AS OPT_NM
 			FROM
    					TB_OPTION_TYPE
 			INNER JOIN
@@ -40,11 +40,9 @@
       LEFT JOIN
             TB_OPTION TB_OPTION ON
             TB_CART.OPT_CD = TB_OPTION.OPT_CD
-       WHERE
+      WHERE
                 MB_ID = #{mbId}
-       OR
-                TB_OPTION.OPT_CD IS NULL
-                ORDER BY TB_CART.CART_CD
+	  ORDER BY TB_CART.CART_CD
    </select>
 
 			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">

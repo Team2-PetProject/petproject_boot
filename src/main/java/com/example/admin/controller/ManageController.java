@@ -44,7 +44,7 @@ public class ManageController {
 	@ApiOperation(value = "이미지 업로드")
 	public ComResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file, 
 			@RequestParam("file") MultipartFile detailFile,
-			@RequestParam("name") String name,@RequestParam("price") int price, 
+			@RequestParam("name") String name,@RequestParam("price") Integer price, 
 			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
 			@RequestParam(value = "option", required =false) List<String> option) throws IOException {
@@ -83,7 +83,7 @@ public class ManageController {
 	@GetMapping("/view/{imgCd}")
 	@CrossOrigin
 	@ApiOperation(value = "이미지 보기")
-	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
+	public ResponseEntity<byte[]> findOne(@PathVariable Integer imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());
@@ -96,11 +96,11 @@ public class ManageController {
 	@ApiOperation(value="상품 정보 수정")
 	public ComResponseEntity<Void> itemUpdate(@RequestParam(value="file",required = false) MultipartFile file, 
 			@RequestParam(value = "detailFile",required = false) MultipartFile detailFile,
-			@RequestParam("name") String name,@RequestParam("price") int price, 
+			@RequestParam("name") String name,@RequestParam("price") Integer price, 
 			@RequestParam("category") String category, @RequestParam(value = "isOption", required = false) Boolean add,
 			@RequestParam(value = "optionName") String optionName,
-			@RequestParam(value = "option", required =false) List<String> option,@RequestParam("imgCd") int imgCd, @RequestParam("itInfoCd") Integer itInfoCd,
-			@RequestParam("itCd") int itCd, @RequestParam(value = "optCd", required = false) Integer optCd) throws IOException {
+			@RequestParam(value = "option", required =false) List<String> option,@RequestParam("imgCd") Integer imgCd, @RequestParam("itInfoCd") Integer itInfoCd,
+			@RequestParam("itCd") Integer itCd, @RequestParam(value = "optCd", required = false) Integer optCd) throws IOException {
 		FileUploadDTO fileUploadDTO = new FileUploadDTO();
 		if(file!=null) {
 			fileUploadDTO.setDi(file.getContentType());
@@ -127,7 +127,7 @@ public class ManageController {
 		itemDTO.setOptCd(optCd);
 		if(add==true) {
 			List<OptionDTO> optionList = new ArrayList<OptionDTO>();
-			for(int i=0;i<option.size();i++) {				
+			for(Integer i=0;i<option.size();i++) {				
 				OptionDTO optionDTO = new OptionDTO();
 				optionDTO.setOptNm(option.get(i));
 				optionList.add(optionDTO);

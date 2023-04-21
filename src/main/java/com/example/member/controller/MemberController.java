@@ -39,7 +39,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/memberForm",method = RequestMethod.GET)
 	public String memberForm() {
-		System.out.println("/member/memberForm 주소요청 ");
 		return "memberForm";
 	}
 	
@@ -48,7 +47,6 @@ public class MemberController {
 	@PostMapping("/memberAdd")
 	@ApiOperation(value = "회원가입")
 	public ComResponseEntity<Void> memberAdd(@RequestBody MemberDTO memberDTO){
-		System.out.println("/member/memberAdd : " + memberDTO);
 		Integer n = service.memberAdd(memberDTO);
 		logger.info("insert 갯수 : "+n);
 		
@@ -86,7 +84,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm() {
-		System.out.println("/member/loginForm 주소 요청");
 		return "loginForm";
 	}
 	
@@ -96,7 +93,6 @@ public class MemberController {
 	@ApiOperation(value = "로그인")
 	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO){
 		HttpSession session = SessionAttributeManager.getSession();
-//		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
 		logger.info("db에서 가져온  memberDTO "+memberDTO);
 		

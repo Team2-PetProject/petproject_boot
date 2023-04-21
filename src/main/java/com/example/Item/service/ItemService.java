@@ -39,9 +39,6 @@ public class ItemService {
 		if(totalPage==0) {totalPage=1;}
 		Integer startIdx = ((curPage-1)*perPage)+1;
 		Integer endIdx = curPage*perPage;
-		System.err.println(cat);
-		System.err.println(startIdx);
-		System.err.println(endIdx);
 		ItemListDTO itemList = new ItemListDTO();
 		itemList.setCat(cat);
 		itemList.setStartIdx(startIdx);
@@ -112,8 +109,6 @@ public class ItemService {
 		if(totalPage==0) {totalPage=1;}
 		Integer startIdx = ((curPage-1)*perPage);
 		Integer endIdx = curPage*perPage;
-		System.err.println(startIdx);
-		System.err.println(endIdx);
 		ItemListDTO itemList = new ItemListDTO();
 		itemList.setStartIdx(startIdx);
 		itemList.setEndIdx(endIdx);

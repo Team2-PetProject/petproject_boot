@@ -27,7 +27,6 @@ public class MemberService {
 			messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
 			password = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return password;
@@ -53,7 +52,6 @@ public class MemberService {
 	}
 
 	public MemberDTO login(LoginDTO loginDTO) {
-//		System.out.println("비밀번호 "+ loginDTO.getPw());
 		String pw = loginDTO.getPw();
 		pw = encryptSHA512(pw);
 		loginDTO.setPw(pw);

@@ -26,7 +26,7 @@ public class FileController {
 	 
 	@GetMapping("/view/{imgCd}")
 	@ApiOperation(value = "이미지 보기")
-	public ResponseEntity<byte[]> findOne(@PathVariable int imgCd){
+	public ResponseEntity<byte[]> findOne(@PathVariable Integer imgCd){
 		FileUploadDTO dto = fileUploadService.findOne(imgCd);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());
@@ -37,7 +37,7 @@ public class FileController {
 	
 	@GetMapping("/detailView/{imgCd}")
 	@ApiOperation(value = "상세이미지 보기")
-	public ResponseEntity<byte[]> findDetail(@PathVariable int imgCd){
+	public ResponseEntity<byte[]> findDetail(@PathVariable Integer imgCd){
 		ItemInfoDTO dto = fileUploadService.findDetail(imgCd);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", dto.getDi());

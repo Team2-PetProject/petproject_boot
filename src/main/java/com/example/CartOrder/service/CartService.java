@@ -56,18 +56,14 @@ public class CartService {
 	@Transactional
 	   public List<CartConfirmDTO> cartList() {
 	      String mbId = SessionAttributeManager.getMemberId();
-//	      String mbId = "1";
 	      List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
-	      System.err.println(cartLists);
 	      List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
 	      for (CartConfirmDTO cartConfirmDTO : cartLists) {
 	         Integer itCd = cartConfirmDTO.getItCd();
-	         System.err.println(itCd);
 	         List<ArrayOptCdDTO> optList = cartDao.typeSearch(itCd);
 	         cartConfirmDTO.setOptCds(optList);
 	         reCartList.add(cartConfirmDTO);
 	      }
-	      System.err.println(reCartList);
 	      return reCartList;
 	   }
 

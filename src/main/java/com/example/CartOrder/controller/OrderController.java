@@ -35,8 +35,6 @@ public class OrderController {
    @ApiOperation(value = "fastOrderConfirm")
    @ResponseBody
    @PostMapping(value= {"/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}", "/check/orderConfirm/{itCd}/{amount}/optCd"})
-//   @RequestMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
-//   public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
    public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
          @PathVariable("amount") Integer amount,
          @PathVariable(name="optCd" , required = false) Integer optCd){
@@ -79,7 +77,6 @@ public class OrderController {
    public ComResponseEntity<List<OrderDoneDTO>> orderDone
    (@RequestParam("cartCd") List<Integer> cartCd, @RequestBody OrderInfoDTO orderInfoDTO) {
       List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
-      System.err.println(cartOrdDTO);
       return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
    }
 
@@ -92,7 +89,6 @@ public class OrderController {
    (@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage) {
       OrderSearchDTO orderSearchDTO = searchPaging(curPage);
       List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
-      System.err.println(orderSearchList);
       return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
    }
 
@@ -102,7 +98,7 @@ public class OrderController {
       @ApiOperation(value = "daySearch")
       public ComResponseEntity<List<OrderSearchDTO>> daySearch
       (@RequestParam(value = "curPage", required = false, defaultValue = "1")
-      int curPage,
+      Integer curPage,
       @PathVariable(name = "itNm", required = false) String itNm,
       @PathVariable("startDay") String startDay,
       @PathVariable("endDay")String endDay) {

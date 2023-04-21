@@ -17,6 +17,7 @@ import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.common.SessionAttributeManager;
 
 @Service
 public class OrderService {
@@ -42,8 +43,7 @@ public class OrderService {
 
 	@Transactional
 	public List<OrderDoneDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
-//		String mbId=SessionAttributeManager.getMemberId();
-		String mbId = "1";
+		String mbId=SessionAttributeManager.getMemberId();
 		Integer inv = invRandom();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		dlvyInfo.setInv(inv);
@@ -89,7 +89,6 @@ public class OrderService {
 	// 주문 내역 기본화면
 	@Transactional
 	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
-		System.err.println(orderSearchDTO);
 		return orderDao.orderSearch(orderSearchDTO);
 	}
 

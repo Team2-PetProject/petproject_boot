@@ -51,7 +51,7 @@ public class FavoriteController {
 	@DeleteMapping("/check/favorite/itCd/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteDelete")
-	public ComResponseEntity<Void> favoriteDelete(@PathVariable("itemCd") int itCd) {
+	public ComResponseEntity<Void> favoriteDelete(@PathVariable("itemCd") Integer itCd) {
 		String mbId=SessionAttributeManager.getMemberId();
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setItCd(itCd);

@@ -8,7 +8,7 @@ import com.example.admin.dto.ItemInfoDTO;
 @Mapper
 public interface FileUploadDAO {
 
-	public int insertFile(FileUploadDTO fileUploadDTO);
+	public Integer insertFile(FileUploadDTO fileUploadDTO);
 
 	public FileUploadDTO selectFile(Integer imgCd);
 

@@ -43,7 +43,6 @@ public class CartController {
 	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")
 	public ComResponseEntity<Map<String, Object>> CartAdd(@RequestBody CartDTO cart) {
-		System.out.println("cart >>>>>" + cart);
 		String mbId = SessionAttributeManager.getMemberId();
 		cart.setMbId(mbId);
 		Integer AddItem = cartService.cartAdd(cart);

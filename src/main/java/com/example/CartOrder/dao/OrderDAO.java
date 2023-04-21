@@ -18,7 +18,7 @@ public interface OrderDAO {
 
 	void ordItem(String memberCd, List<CartDTO> carts);
 
-	int totalCount(String mbId);
+	Integer totalCount(String mbId);
 
 	List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
 

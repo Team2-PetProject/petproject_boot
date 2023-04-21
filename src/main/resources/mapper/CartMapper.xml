@@ -64,13 +64,13 @@
 					)
 			</insert>
 
-			<delete id="cartDelete" parameterType="int">
+			<delete id="cartDelete" parameterType="Integer">
 					DELETE FROM TB_CART
 					WHERE
 					CART_CD = #{CART_CD}
 			</delete>
 
-			<delete id="checkDelete" parameterType="int">
+			<delete id="checkDelete" parameterType=""Integer"">
 					DELETE FROM TB_CART
 					WHERE
 					CART_CD = #{CART_CD}

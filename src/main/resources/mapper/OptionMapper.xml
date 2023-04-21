@@ -13,9 +13,9 @@
 			, #{tyCd}
 			, #{optNm}
 		) 	
-		<selectKey keyProperty="optCd" resultType="int" order="AFTER">
+		<selectKey keyProperty="optCd" resultType="Integer" order="AFTER">
 			SELECT
-				TB_OPTION_SEQ.CURRVAL as optCd
+				TB_OPTION_SEQ.CURRVAL AS optCd
 			FROM DUAL
 		</selectKey>
 	</insert>
@@ -38,25 +38,25 @@
 		) T
 	</insert>
 	
-	<select id="selectOption" parameterType="int" resultType="com.example.Item.dto.OptionCdNmDTO">
+	<select id="selectOption" parameterType="Integer" resultType="com.example.Item.dto.OptionCdNmDTO">
 		SELECT 
 			OPT_NM as optNm
-			, OPT_CD as optCd
+			, OPT_CD AS OPT_CD
 		FROM 
 			TB_OPTION
 		WHERE 
 			TY_CD = #{tyCd}
 	</select>
-	<select id="selectTyCd" parameterType="int" resultType="int">
+	<select id="selectTyCd" parameterType="Integer" resultType="Integer">
 		SELECT
-			TY_CD as tyCd
+			TY_CD AS TY_CD
 		FROM 
 			TB_OPTION
 		WHERE
 			OPT_CD = #{optCd}
 	</select>
 	
-	<delete id="deleteOption" parameterType="int">
+	<delete id="deleteOption" parameterType="Integer">
 		DELETE 
 		FROM 
 			TB_OPTION

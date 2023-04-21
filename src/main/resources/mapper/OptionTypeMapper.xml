@@ -18,22 +18,22 @@
 			, #{itCd}
 			, #{tyNm}
 		)
-		<selectKey keyProperty="tyCd" resultType="int" order="AFTER">
+		<selectKey keyProperty="tyCd" resultType="Integer" order="AFTER">
 			SELECT 
 				TB_OPTION_TYPE_SEQ.CURRVAL
 			FROM DUAL
 		</selectKey>
 	</insert>
 	
-	<select id="selectType" parameterType="int" resultType="com.example.Item.dto.TypeDTO">
+	<select id="selectType" parameterType="Integer" resultType="com.example.Item.dto.TypeDTO">
 		SELECT 
-			TY_CD as tyCd
-			, TY_NM as tyNm
+			TY_CD AS TY_CD
+			, TY_NM AS TY_NM
 		FROM TB_OPTION_TYPE
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<delete id="deleteType" parameterType="int">
+	<delete id="deleteType" parameterType="Integer">
 		DELETE
 		FROM 
 			TB_OPTION_TYPE

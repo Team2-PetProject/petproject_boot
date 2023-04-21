@@ -13,15 +13,15 @@ import com.example.CartOrder.dto.SpecUpdateDTO;
 @Mapper
 public interface CartDAO {
 
-	int cartAdd(CartDTO cart);
+	Integer cartAdd(CartDTO cart);
 
-	int cartDelete(int cartCd);
+	Integer cartDelete(Integer cartCd);
 
-	int checkDelete(int cartCd);
+	Integer checkDelete(Integer cartCd);
 
-	int specUpdate(SpecUpdateDTO specUpdateDTO);
+	Integer specUpdate(SpecUpdateDTO specUpdateDTO);
 
-	int amountUpdate(AmountUpdateDTO amountUpdateDTO);
+	Integer amountUpdate(AmountUpdateDTO amountUpdateDTO);
 
 
 

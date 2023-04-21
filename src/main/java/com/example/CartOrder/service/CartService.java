@@ -22,18 +22,18 @@ public class CartService {
 	CartDAO cartDao;
 
 	@Transactional
-	public int cartAdd(CartDTO cartDTO) {
+	public Integer cartAdd(CartDTO cartDTO) {
 		return cartDao.cartAdd(cartDTO);
 
 	}
 
 	@Transactional
-	public int cartDelete(int cartCd) {
+	public Integer cartDelete(int cartCd) {
 		return cartDao.cartDelete(cartCd);
 	}
 
 	@Transactional
-	public int checkDelete(List<Integer> list) {
+	public Integer checkDelete(List<Integer> list) {
 		Integer deleteCount = 0;
 		for (Integer cartCd : list) {
 			deleteCount = deleteCount + cartDao.checkDelete(cartCd);
@@ -42,13 +42,13 @@ public class CartService {
 	}
 
 	@Transactional
-	public int specUpdate(SpecUpdateDTO specUpdateDTO) {
+	public Integer specUpdate(SpecUpdateDTO specUpdateDTO) {
 
 		return cartDao.specUpdate(specUpdateDTO);
 	}
 
 	@Transactional
-	public int amountUpdate(AmountUpdateDTO amountUpdateDTO) {
+	public Integer amountUpdate(AmountUpdateDTO amountUpdateDTO) {
 
 		return cartDao.amountUpdate(amountUpdateDTO);
 	}

@@ -56,7 +56,7 @@ public class CartController {
 	// 한개 삭제 메소드
 	@DeleteMapping("/check/cartDelete/{cartCd}")
 	@ApiOperation(value = "cartDelete")
-	public ComResponseEntity<Void> cartDelete(@PathVariable("cartCd") int cartCd) {
+	public ComResponseEntity<Void> cartDelete(@PathVariable("cartCd") Integer cartCd) {
 		// cartCd로 바로 삭제
 		Integer deleteOne = cartService.cartDelete(cartCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 상품 삭제 성공"));
@@ -73,7 +73,7 @@ public class CartController {
 	// 상품 옵션 변경
 	@PutMapping("/check/specUpdate/{cartCd}/option/{optCd}")
 	@ApiOperation(value = "specUpdate")
-	public ComResponseEntity<Integer> specUpdate(@PathVariable("cartCd") int cartCd, @PathVariable("optCd") int optCd) {
+	public ComResponseEntity<Integer> specUpdate(@PathVariable("cartCd") Integer cartCd, @PathVariable("optCd") int optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		SpecUpdateDTO specUpdateDTO = new SpecUpdateDTO();
 		specUpdateDTO.setMbId(mbId);
@@ -86,14 +86,14 @@ public class CartController {
 	// 수량 변경
 	@PutMapping("/check/specUpdate/{cartCd}/amt/{amount}")
 	@ApiOperation(value = "amountUpdate")
-	public ComResponseEntity<Integer> amountUpdate(@PathVariable("cartCd") int cartCd,
-			@PathVariable("amount") int amount) {
+	public ComResponseEntity<Integer> amountUpdate(@PathVariable("cartCd") Integer cartCd,
+			@PathVariable("amount") Integer amount) {
 		String mbId = SessionAttributeManager.getMemberId();
 		AmountUpdateDTO amountUpdateDTO = new AmountUpdateDTO();
 		amountUpdateDTO.setMbId(mbId);
 		amountUpdateDTO.setAmount(amount);
 		amountUpdateDTO.setCartCd(cartCd);
-		int changeAmount = cartService.amountUpdate(amountUpdateDTO);
+		Integer changeAmount = cartService.amountUpdate(amountUpdateDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("수량 변경 성공", changeAmount));
 	}
 }

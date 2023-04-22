@@ -2,13 +2,17 @@ package com.example.CartOrder.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,14 +38,23 @@ public class OrderController {
 	OrderHistoryPageDTO orderSearchPage;
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
-	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
-	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
+	@PostMapping(value= {"/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}", "/check/orderConfirm/{itCd}/{amount}/optCd"})
+//	@RequestMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
+//	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
+	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
+			@PathVariable("amount") Integer amount,
+			@PathVariable(name="optCd" , required = false) Integer optCd){
 		String mbId=SessionAttributeManager.getMemberId();
+		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
+		cartOrdJoinDTO.setItCd(itCd);
+		cartOrdJoinDTO.setAmount(amount);
+		cartOrdJoinDTO.setOptCd(optCd);
 		cartOrdJoinDTO.setMbId(mbId);
 		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
 		List<CartOrdJoinDTO>itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문상품 정보", itemJoinList));
 	}
+
 
 
 

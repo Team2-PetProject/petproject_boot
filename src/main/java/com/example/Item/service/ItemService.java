@@ -32,7 +32,7 @@ public class ItemService {
 	public JoinItemDTO itemList(String cat, Integer curPage) {
 		Integer perPage = 16;
 		Integer totalCount = itemDao.totalCount(cat);
-		Integer totalPage = (int)Math.ceil(totalCount / perPage);
+		Integer totalPage = (int)Math.ceil((int)totalCount /(double)perPage);
 		if(totalPage==0) {totalPage=1;}
 		Integer startIdx = ((curPage-1)*perPage)+1;
 		Integer endIdx = curPage*perPage;

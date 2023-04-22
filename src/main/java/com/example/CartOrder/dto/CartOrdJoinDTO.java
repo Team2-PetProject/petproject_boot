@@ -1,6 +1,7 @@
 package com.example.CartOrder.dto;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.lang.Nullable;
 
 @Alias("CartOrdJoinDTO")
 public class CartOrdJoinDTO {

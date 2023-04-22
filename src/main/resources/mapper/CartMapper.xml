@@ -42,8 +42,8 @@
             TB_CART.OPT_CD = TB_OPTION.OPT_CD
        WHERE
                 MB_ID = #{mbId}
-       OR
-                TB_OPTION.OPT_CD IS NULL
+       
+                
                 ORDER BY TB_CART.CART_CD
    </select>
 

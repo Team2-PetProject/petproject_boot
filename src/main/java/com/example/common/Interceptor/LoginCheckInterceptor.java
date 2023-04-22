@@ -10,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.common.SessionAttributeManager;
+import com.example.member.exception.NoLoginException;
 
 public class LoginCheckInterceptor implements HandlerInterceptor{
 	
@@ -20,9 +21,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 			throws Exception {
 		logger.info("Pre Interceptor");
 		if(SessionAttributeManager.getMemberInfo()==null) {//로그인 안된 경우
-			//로그인 화면으로
-			//response.sendRedirect("loginForm");
-			return false;
+			throw new NoLoginException("로그인이 필요합니다.");
 		}else { //로그인 시
 			logger.info("로그인 성공");
 			return true;

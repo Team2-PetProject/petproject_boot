@@ -123,25 +123,27 @@
 
 	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
-		*
-		FROM
-		(SELECT
-		ROWNUM "IDX"
-		,ITEM.*
-		FROM
-		(SELECT
-				IT_CD
-				,IMG_CD
-				,IT_NM
-				,PRICE
-				,CAT
-				,OPT_CD
-		FROM
-				TB_ITEM
-				ORDER BY IT_CD DESC) "ITEM")
-		WHERE
-				IDX BETWEEN #{startIdx}
-		AND 	#{endIdx}
+      *
+      FROM
+      (SELECT
+      ROWNUM "IDX"
+      ,ITEM.*
+      FROM
+      (SELECT
+            IT_CD
+            ,IMG_CD
+            ,IT_NM
+            ,PRICE
+            ,CAT
+            ,OPT_CD
+      FROM
+            TB_ITEM
+      WHERE
+            CAT = #{cat}
+            ORDER BY IT_CD DESC) "ITEM")
+      WHERE
+            IDX BETWEEN #{startIdx}
+      AND    #{endIdx}
 	</select>
 	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
 		SELECT

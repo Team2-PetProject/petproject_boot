@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +21,7 @@ import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.member.dto.LoginDTO;
 import com.example.member.dto.MemberDTO;
+import com.example.member.exception.NoLoginException;
 import com.example.member.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
@@ -94,8 +94,8 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인")
-	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO, HttpSession session){
-
+	public ComResponseEntity<Void> login(@RequestBody LoginDTO loginDTO){
+		HttpSession session = SessionAttributeManager.getSession();
 //		logger.info("/login ======"+ loginDTO);
 		MemberDTO memberDTO = service.login(loginDTO); 
 		logger.info("db에서 가져온  memberDTO "+memberDTO);
@@ -108,8 +108,11 @@ public class MemberController {
 			return new ComResponseEntity<Void>(comResponseDTO);
 					
 		}else {
-			comResponseDTO.setMessage("존재하지 않는 회원");
-			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
+//			comResponseDTO.setMessage("존재하지 않는 회원");
+//			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
+//			return new ComResponseEntity<Void>(comResponseDTO);
+			System.out.println("ddddddddd");
+			throw new NoLoginException("존재하지 않는 회원입니다.");
 		}
 		
 	}

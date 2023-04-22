@@ -46,7 +46,7 @@ public class OrderController {
 
 	//주문하기
 	@ApiOperation(value = "orderConfirm")
-	//@ResponseBody
+	@ResponseBody
 	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
 		String mbId=SessionAttributeManager.getMemberId();
@@ -73,8 +73,6 @@ public class OrderController {
 		System.err.println(cartOrdDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
-
-
 
 	@GetMapping("/check/orderSearch/")
 	@ResponseBody

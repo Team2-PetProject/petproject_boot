@@ -62,7 +62,6 @@ public class CartService {
 	      List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
 	      for (CartConfirmDTO cartConfirmDTO : cartLists) {
 	         Integer cartCd = cartConfirmDTO.getCartCd();
-	         System.err.println(cartCd);
 	         List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);
 	         cartConfirmDTO.setOptCds(optList);
 	         reCartList.add(cartConfirmDTO);

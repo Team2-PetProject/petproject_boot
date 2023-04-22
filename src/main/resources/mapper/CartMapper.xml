@@ -70,7 +70,7 @@
 					CART_CD = #{CART_CD}
 			</delete>
 
-			<delete id="checkDelete" parameterType=""Integer"">
+			<delete id="checkDelete" parameterType="Integer">
 					DELETE FROM TB_CART
 					WHERE
 					CART_CD = #{CART_CD}

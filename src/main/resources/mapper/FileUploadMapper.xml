@@ -17,7 +17,7 @@
 			, #{di}
 			, #{fl}
 		)
-		<selectKey keyProperty="imgCd" resultType=""Integer"" order="AFTER">
+		<selectKey keyProperty="imgCd" resultType="Integer" order="AFTER">
 			SELECT 
 				TB_FILE_UPLOAD_SEQ.CURRVAL
 			FROM DUAL
@@ -61,7 +61,7 @@
 			, FL = #{fl}
 		WHERE IT_INFO_CD = #{itInfoCd}
 	</update>
-	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType=""Integer"">
+	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="Integer">
 		SELECT 
 			IMG_CD
 			, IMG_NM
@@ -74,7 +74,7 @@
 			IMG_CD = #{imgCd}
 	</select>
 	
-	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType=""Integer"">
+	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="Integer">
 		SELECT
 			IT_INFO_CD as itInfoCd
 			, IT_CD as itCd
@@ -89,7 +89,7 @@
 			IT_INFO_CD = #{imgCd}
 	</select>
 	
-	<delete id="deleteFile" parameterType=""Integer"">
+	<delete id="deleteFile" parameterType="Integer">
 		DELETE
 		FROM 
 			TB_FILE_UPLOAD
@@ -97,7 +97,7 @@
 			IMG_CD = #{imgCd}
 	</delete>
 	
-	<delete id="deleteDetailFile" parameterType=""Integer"">
+	<delete id="deleteDetailFile" parameterType="Integer">
 		DELETE
 		FROM	
 			TB_IT_INFO

@@ -46,4 +46,6 @@ public interface OrderDAO {
 
 	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
 
+	Integer dlvyCdMaxValue(Integer tItCd);
+
 }

@@ -63,7 +63,14 @@
    
    </select>
 
-
+<select id = "dlvyCdMaxValue" parameterType="Integer">
+    SELECT
+      		MAX(DLVY_CD) "DLVY_CD"
+      FROM
+     		MP_CART_ORD
+     WHERE
+     		T_IT_CD = #{tItCd}
+</select>
 
    <select id="totalCount" parameterType="String">
       SELECT

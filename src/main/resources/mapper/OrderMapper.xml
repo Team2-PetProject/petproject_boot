@@ -63,7 +63,7 @@
    
    </select>
 
-   <select id="totalCount" parameterType="String">
+   <select id="maxValueOrdCd" parameterType="String">
       SELECT
                COUNT(*)
       FROM

@@ -36,7 +36,7 @@ public interface OrderDAO {
 
 	List<OrderDoneDTO> orderDoneValueList(Integer itCd);
 
-	Integer searchCount();
+	Integer searchCount(String mbId);
 
 	void orderDone(CartOrdDTO cartOrdDTO);
 
@@ -47,5 +47,7 @@ public interface OrderDAO {
 	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
 
 	Integer dlvyCdMaxValue(Integer tItCd);
+
+	Integer maxValueOrdCd(String mbId);
 
 }

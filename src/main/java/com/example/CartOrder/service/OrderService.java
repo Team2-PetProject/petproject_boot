@@ -43,24 +43,41 @@ public class OrderService {
 		String mbId = SessionAttributeManager.getMemberId();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		
-		Integer searchCountTItCd = orderDao.searchCount();
-		if (searchCountTItCd == null) {
-			searchCountTItCd = 0;
+		Integer dlvyCd;
+		Integer inv = invRandom();
+		Integer searchCountTItCd = orderDao.searchCount(mbId);
+		Integer maxOrdCd = orderDao.maxValueOrdCd(mbId);
+		
+		if (maxOrdCd!=0) {
+			orderInfoDTO.setOrdCd(maxOrdCd + 1);
+		} else {
+			orderInfoDTO.setOrdCd(maxOrdCd);
 		}
-		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
+		
+		
+		if (searchCountTItCd == null) {
+			searchCountTItCd = 1;
+		}
 		Integer tItCd = searchCountTItCd + 1;
+		
+		
+		for (int i = 0; i < cartCds.size(); i++) {
+			inv = inv + 1;
+			dlvyInfo.setInv(inv);
+			dlvyCd = orderDao.dlvyInfo(dlvyInfo);
+			logger.info(dlvyCd + " ||");
+			orderInfoDTO.setDlvyCd(dlvyCd);
+			orderDao.ordInfo(orderInfoDTO);
+		
+		}
+		
+		Integer ordCd = orderInfoDTO.getOrdCd();
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
 		cartOrdDTO.setOrdCd(ordCd);
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
-		Integer dlvyCd;
 		for (Integer cartCd : cartCds) {
-			Integer inv = invRandom();
-			dlvyInfo.setInv(inv);
-			dlvyCd = orderDao.dlvyInfo(dlvyInfo);
-			orderInfoDTO.setDlvyCd(dlvyCd);
-			logger.info(dlvyCd + " ||");
 			cartOrdSet = orderDao.cartOrdSet(cartCd);
 			cartOrdDTO.setCartCd(cartCd);
 			cartOrdDTO.setItCd(cartOrdSet.getItCd());
@@ -76,11 +93,7 @@ public class OrderService {
 			cartSearchUnableDTO.setCartCd(cartCd);
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
 		}
-		dlvyCd = orderDao.dlvyCdMaxValue(tItCd);
-		if (dlvyCd > 1) {
-			dlvyCd = dlvyCd - 1;
-			orderDao.updateTM(dlvyCd);
-		}
+	
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}

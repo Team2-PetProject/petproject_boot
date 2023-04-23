@@ -10,7 +10,6 @@ import com.example.Item.dto.ItemListDTO;
 import com.example.Item.dto.ItemRetrieveDTO;
 import com.example.Item.dto.JoinItemDTO;
 import com.example.Item.service.ItemService;
-import com.example.admin.dto.AdminItemDTO;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 

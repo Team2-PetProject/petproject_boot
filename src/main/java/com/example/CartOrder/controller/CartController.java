@@ -73,7 +73,7 @@ public class CartController {
 	@PutMapping("/check/specUpdate/{cartCd}/option/{optCd}")
 	@ApiOperation(value = "specUpdate")
 	public ComResponseEntity<Integer> specUpdate(@PathVariable("cartCd") Integer cartCd,
-			@PathVariable("optCd") int optCd) {
+			@PathVariable("optCd") Integer optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		SpecUpdateDTO specUpdateDTO = new SpecUpdateDTO();
 		specUpdateDTO.setMbId(mbId);

@@ -98,11 +98,13 @@
                ,OPT_NM
       FROM
                MP_CART_ORD CART_ORD
-               INNER JOIN TB_OPTION TB_OPTION ON
+	  LEFT JOIN 
+               TB_OPTION TB_OPTION ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-               INNER JOIN TB_ITEM ITEM ON
+      INNER JOIN 
+               TB_ITEM ITEM ON
                CART_ORD.IT_CD=ITEM.IT_CD
-               INNER JOIN TB_ORDER_INFO INFO ON
+      INNER JOIN TB_ORDER_INFO INFO ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
       MB_ID=#{mbId}
@@ -140,11 +142,14 @@
                ,OPT_NM
       FROM
                MP_CART_ORD CART_ORD
-               INNER JOIN TB_OPTION TB_OPTION ON
+	  LEFT JOIN 
+	  		   TB_OPTION TB_OPTION ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-               INNER JOIN TB_ITEM ITEM ON
+	  INNER JOIN 
+	  		   TB_ITEM ITEM ON
                CART_ORD.IT_CD=ITEM.IT_CD
-               INNER JOIN TB_ORDER_INFO INFO ON
+      INNER JOIN 
+      		   TB_ORDER_INFO INFO ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
                MB_ID=#{mbId}

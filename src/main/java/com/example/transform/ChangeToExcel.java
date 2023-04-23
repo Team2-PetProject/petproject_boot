@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import com.example.CartOrder.dao.DeliveryInfoDAO;
 import com.example.CartOrder.dto.UpTmDTO;
 
+
 @Component
 public class ChangeToExcel {
 
@@ -32,7 +33,6 @@ public class ChangeToExcel {
 	private DeliveryInfoDAO deliveryInfoDAO;
 
 	@Scheduled(fixedDelay = 1000 * 60 * 60)
-	// ?왜 fixeddate안되는걸까..
 	public void autoUpdate() {
 		LocalDate today = LocalDate.now();
 
@@ -97,7 +97,7 @@ public class ChangeToExcel {
 				cellA.setCellValue(Integer.parseInt(columns[0]));
 
 				Cell cellB = row.createCell(1);
-				cellB.setCellValue(columns[1]); // 문자열을 그대로 저장
+				cellB.setCellValue(columns[1]); 
 			}
 
 			workbook.write(fileOutputStream);
@@ -122,7 +122,6 @@ public class ChangeToExcel {
 				upTmDTO.setDlvyCd(dlvyCd);
 				upTmDTO.setDlvyEnd(dlvyEnd);
 
-				// TB_DELIVERY_INFO DLVY_END UPDATE
 				deliveryInfoDAO.insertEndTm(upTmDTO);
 			}
 

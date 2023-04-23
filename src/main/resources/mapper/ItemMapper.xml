@@ -5,39 +5,44 @@
 <mapper namespace="com.example.Item.dao.ItemDAO">
 	<select id="totalCount" resultType="Integer">
 		SELECT
-		COUNT(*)
+			COUNT(*)
 		FROM
-		TB_ITEM
+			TB_ITEM
 		WHERE
-		CAT = #{cat}
+			CAT = #{cat}
 	</select>
 	<select id="totalItem" resultType="Integer">
 		SELECT
 			COUNT(*)
-		FROM 
+		FROM
 			TB_ITEM
 	</select>
 	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
-		INSERT INTO TB_ITEM(
+		INSERT INTO TB_ITEM
+			(
 			IT_CD
 			, IMG_CD
 			, IT_NM
 			, PRICE
 			, CAT
-		) VALUES (
+			) 
+		VALUES 
+			(
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
 			, #{itNm}
 			, #{price}
 			, #{cat}
-		)
+			)
 		<selectKey keyProperty="itCd" resultType="Integer">
 			SELECT
 				TB_ITEM_SEQ.CURRVAL
-			FROM DUAL
+			FROM 
+			DUAL
 		</selectKey>
 	</insert>
-	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
+	<select id="selectItem" parameterType="Integer"
+		resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 			IT_CD AS IT_CD
 			, IMG_CD AS IMG_CD
@@ -45,11 +50,13 @@
 			, PRICE AS PRICE
 			, CAT AS CAT
 			, OPT_CD AS OPT_CD
-		FROM TB_ITEM
+		FROM 
+			TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<update id="updateItem" parameterType="com.example.Item.dto.ItemDTO">
+	<update id="updateItem"
+		parameterType="com.example.Item.dto.ItemDTO">
 		UPDATE
 			TB_ITEM
 		SET
@@ -59,56 +66,55 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO" resultType="com.example.Item.dto.ItemDTO">
-	SELECT
+	<select id="favoriteList"
+		parameterType="com.example.favorite.dto.MemberItemDTO"
+		resultType="com.example.Item.dto.ItemDTO">
+		SELECT
 			TB_ITEM.IT_CD AS IT_CD
 			,IMG_CD
 			,IT_NM
 			,PRICE
 			,CAT
 			,OPT_CD
-			FROM
+		FROM
 			TB_ITEM TB_ITEM
-	INNER JOIN
-			(
-	SELECT
+		INNER JOIN
+		(
+		SELECT
 			MB_ID
 			,IT_CD
-	FROM
+		FROM
 			MP_MEMBER_ITEM
-	WHERE
+		WHERE
 			MB_ID = #{mbId}
-	AND
+		AND
 			IT_CD = #{itCd}
-			)
-			MP_ITEM ON
+		) 
+		AS MP_ITEM ON
 			TB_ITEM.IT_CD = MP_ITEM.IT_CD
-
-
-
 	</select>
 
 	<insert id="favoriteAdd" parameterType="com.example.favorite.dto.MemberItemDTO">
-			 INSERT INTO
-			 MP_MEMBER_ITEM
-			 (
-			 	MB_ID
-			 	,IT_CD
-			 )
-			 VALUES
-			 (
-			 #{mbId}
-			 ,#{itCd}
-			 )
+		INSERT INTO
+		MP_MEMBER_ITEM
+			(
+			MB_ID
+			,IT_CD
+			)
+		VALUES
+			(
+			#{mbId}
+			,#{itCd}
+			)
 	</insert>
 
 	<delete id="favoriteDelete" parameterType="com.example.favorite.dto.MemberItemDTO">
-			DELETE
-			FROM
+		DELETE
+		FROM
 			MP_MEMBER_ITEM
-			WHERE
+		WHERE
 			MB_ID=#{mbId}
-			AND
+		AND
 			IT_CD=#{itCd}
 	</delete>
 
@@ -121,47 +127,52 @@
 			IT_CD = #{itCd}
 	</insert>
 
-	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.Item.dto.ItemDTO">
+	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" 
+	resultType="com.example.Item.dto.ItemDTO">
 		SELECT
-      *
-      FROM
-      (SELECT
-      ROWNUM "IDX"
-      ,ITEM.*
-      FROM
-      (SELECT
-            IT_CD
-            ,IMG_CD
-            ,IT_NM
-            ,PRICE
-            ,CAT
-            ,OPT_CD
-      FROM
-            TB_ITEM
-      WHERE
-            CAT = #{cat}
-            ORDER BY IT_CD DESC) "ITEM")
-      WHERE
-            IDX BETWEEN #{startIdx}
-      AND    #{endIdx}
+		*
+		FROM
+		(SELECT
+			ROWNUM "IDX"
+			,ITEM.*
+		FROM
+		(SELECT
+			IT_CD
+			,IMG_CD
+			,IT_NM
+			,PRICE
+			,CAT
+			,OPT_CD
+		FROM
+			TB_ITEM
+		WHERE
+			CAT = #{cat}
+		ORDER BY IT_CD DESC) "ITEM")
+		WHERE
+			IDX
+		BETWEEN
+			 #{startIdx}
+		AND
+			 #{endIdx}
 	</select>
-	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO" resultType="com.example.admin.dto.ItemCdNmDTO">
+	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO"
+		resultType="com.example.admin.dto.ItemCdNmDTO">
 		SELECT
 			IT_CD AS IT_CD
 			, IT_NM AS IT_NM
 			, CAT AS CAT
 		FROM
 			(
-				SELECT 
-					ROWNUM AS NUM
-					, TB_ITEM.*
-				FROM TB_ITEM
+			SELECT
+			ROWNUM AS NUM
+			, TB_ITEM.*
+			FROM TB_ITEM
 			)
-		WHERE 
+		WHERE
 			NUM BETWEEN #{startIdx} AND #{endIdx}
 	</select>
 	<update id="deleteOptCd" parameterType="Integer">
-		UPDATE 
+		UPDATE
 			TB_ITEM
 		SET
 			OPT_CD = null
@@ -175,21 +186,23 @@
 		WHERE
 			IT_CD = #{itCd}
 	</delete>
-	
-	<select id="selectOptCd" parameterType="Integer" resultType="Integer">
+
+	<select id="selectOptCd" parameterType="Integer"
+		resultType="Integer">
 		SELECT
 			OPT_CD
-		FROM 
+		FROM
 			TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<select id="selectitInfoCd" parameterType="Integer" resultType="Integer">
+	<select id="selectitInfoCd" parameterType="Integer"
+		resultType="Integer">
 		SELECT
 			IT_INFO_CD
-		FROM 
+		FROM
 			TB_IT_INFO
-		WHERE	
+		WHERE
 			IT_CD = #{itCd}
 	</select>
 </mapper>

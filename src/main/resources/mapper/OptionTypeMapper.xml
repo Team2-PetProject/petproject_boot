@@ -3,39 +3,48 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.Item.dao.OptionTypeDAO">
-	<select id="selectTyCd" resultType="int">
-		SELECT 
+	<select id="selectTyCd" resultType="Integer">
+		SELECT
 			TB_OPTION_TYPE_SEQ.NEXTVAL
-		FROM DUAL
+		FROM
+			DUAL
 	</select>
-	<insert id="insertOptionType" parameterType="com.example.Item.dto.OptionTypeDTO">
-		INSERT INTO TB_OPTION_TYPE(
-			TY_CD
-			, IT_CD
-			, TY_NM
-		) VALUES (
-			TB_OPTION_TYPE_SEQ.NEXTVAL
-			, #{itCd}
-			, #{tyNm}
-		)
-		<selectKey keyProperty="tyCd" resultType="Integer" order="AFTER">
-			SELECT 
+	<insert id="insertOptionType"
+		parameterType="com.example.Item.dto.OptionTypeDTO">
+		INSERT INTO 
+		TB_OPTION_TYPE
+					(
+					TY_CD
+					, IT_CD
+					, TY_NM
+					)
+		VALUES
+					(
+					TB_OPTION_TYPE_SEQ.NEXTVAL
+					, #{itCd}
+					, #{tyNm}
+					)
+		<selectKey keyProperty="tyCd" resultType="Integer"
+			order="AFTER">
+			SELECT
 				TB_OPTION_TYPE_SEQ.CURRVAL
-			FROM DUAL
+			FROM
+				DUAL
 		</selectKey>
 	</insert>
-	
+
 	<select id="selectType" parameterType="Integer" resultType="com.example.Item.dto.TypeDTO">
-		SELECT 
+		SELECT
 			TY_CD AS TY_CD
 			, TY_NM AS TY_NM
-		FROM TB_OPTION_TYPE
+		FROM
+			TB_OPTION_TYPE
 		WHERE
 			IT_CD = #{itCd}
 	</select>
 	<delete id="deleteType" parameterType="Integer">
 		DELETE
-		FROM 
+		FROM
 			TB_OPTION_TYPE
 		WHERE
 			TY_CD = #{tyCd}

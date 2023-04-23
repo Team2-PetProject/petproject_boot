@@ -24,11 +24,10 @@ public class CartService {
 	@Transactional
 	public Integer cartAdd(CartDTO cartDTO) {
 		return cartDao.cartAdd(cartDTO);
-
 	}
 
 	@Transactional
-	public Integer cartDelete(int cartCd) {
+	public Integer cartDelete(Integer cartCd) {
 		return cartDao.cartDelete(cartCd);
 	}
 
@@ -43,29 +42,27 @@ public class CartService {
 
 	@Transactional
 	public Integer specUpdate(SpecUpdateDTO specUpdateDTO) {
-
 		return cartDao.specUpdate(specUpdateDTO);
 	}
 
 	@Transactional
 	public Integer amountUpdate(AmountUpdateDTO amountUpdateDTO) {
-
 		return cartDao.amountUpdate(amountUpdateDTO);
 	}
 
 	@Transactional
-	   public List<CartConfirmDTO> cartList() {
-	      String mbId = SessionAttributeManager.getMemberId();
-	      List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
-	      List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
-	      for (CartConfirmDTO cartConfirmDTO : cartLists) {
-	         Integer cartCd = cartConfirmDTO.getCartCd();
-	         List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);
-	         cartConfirmDTO.setOptCds(optList);
-	         reCartList.add(cartConfirmDTO);
-	      }
-	      return reCartList;
-	   }
-
+	public List<CartConfirmDTO> cartList() {
+		String mbId = SessionAttributeManager.getMemberId();
+		List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
+		List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
+		
+		for (CartConfirmDTO cartConfirmDTO : cartLists) {
+			Integer cartCd = cartConfirmDTO.getCartCd();
+			List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);
+			cartConfirmDTO.setOptCds(optList);
+			reCartList.add(cartConfirmDTO);
+		}
+		return reCartList;
+	}
 
 }

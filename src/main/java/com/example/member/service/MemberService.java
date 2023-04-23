@@ -55,7 +55,7 @@ public class MemberService {
 		String pw = loginDTO.getPw();
 		pw = encryptSHA512(pw);
 		loginDTO.setPw(pw);
-		
+
 		MemberDTO memberDTO = memberDao.login(loginDTO);
 		return memberDTO;
 	}

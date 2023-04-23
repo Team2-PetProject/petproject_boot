@@ -35,10 +35,12 @@ public class ItemService {
 	public JoinItemDTO itemList(String cat, Integer curPage) {
 		Integer perPage = 16;
 		Integer totalCount = itemDao.totalCount(cat);
-		Integer totalPage = (int)Math.ceil((int)totalCount /(double)perPage);
-		if(totalPage==0) {totalPage=1;}
-		Integer startIdx = ((curPage-1)*perPage)+1;
-		Integer endIdx = curPage*perPage;
+		Integer totalPage = (int) Math.ceil((int) totalCount / (double) perPage);
+		if (totalPage == 0) {
+			totalPage = 1;
+		}
+		Integer startIdx = ((curPage - 1) * perPage) + 1;
+		Integer endIdx = curPage * perPage;
 		ItemListDTO itemList = new ItemListDTO();
 		itemList.setCat(cat);
 		itemList.setStartIdx(startIdx);
@@ -51,27 +53,25 @@ public class ItemService {
 		return joinItemDTO;
 	}
 
-
 	@Transactional
 	public ItemRetrieveDTO selectItemRetrieve(Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = new ItemRetrieveDTO();
 		ItemDTO itemDTO = itemDao.selectItem(itCd);
 		Integer itInfoCd = itemDao.selectitInfoCd(itCd);
 		itemRetrieveDTO.setItemDTO(itemDTO);
-		if(itemDTO.getOptCd()!=null) {
+		if (itemDTO.getOptCd() != null) {
 			TypeDTO typeDto = optionTypeDao.selectType(itCd);
 			List<OptionCdNmDTO> optionList = optionDao.selectOption(typeDto.getTyCd());
 			itemRetrieveDTO.setOptionName(typeDto.getTyNm());
 			itemRetrieveDTO.setOptionCdList(optionList);
 		}
-		itemRetrieveDTO.setItInfoCd(itInfoCd); 
+		itemRetrieveDTO.setItInfoCd(itInfoCd);
 		return itemRetrieveDTO;
 	}
 
-	public int favoriteDelete(MemberItemDTO memberItemDTO) {
+	public Integer favoriteDelete(MemberItemDTO memberItemDTO) {
 		return itemDao.favoriteDelete(memberItemDTO);
 	}
-
 
 	public List<ItemDTO> favoriteList(List<Integer> itemCd) {
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
@@ -93,7 +93,7 @@ public class ItemService {
 	@Transactional
 	public void deleteItem(Integer itCd) {
 		Integer optCd = itemDao.selectOptCd(itCd);
-		if(optCd !=null) {
+		if (optCd != null) {
 			Integer tyCd = optionDao.selectTyCd(optCd);
 			optionDao.deleteOption(tyCd);
 			optionTypeDao.deleteType(tyCd);
@@ -101,14 +101,12 @@ public class ItemService {
 		itemDao.deleteItem(itCd);
 	}
 
-
 	public AdminItemDTO adminList(Integer curPage) {
 		Integer perPage = 8;
 		Integer totalCount = itemDao.totalItem();
-		Integer totalPage = (int)Math.ceil(totalCount / perPage);
-		if(totalPage==0) {totalPage=1;}
-		Integer startIdx = ((curPage-1)*perPage);
-		Integer endIdx = curPage*perPage;
+		Integer totalPage = (int) Math.ceil((int) totalCount / (double) perPage);
+		Integer startIdx = ((curPage - 1) * perPage);
+		Integer endIdx = curPage * perPage;
 		ItemListDTO itemList = new ItemListDTO();
 		itemList.setStartIdx(startIdx);
 		itemList.setEndIdx(endIdx);
@@ -119,8 +117,5 @@ public class ItemService {
 		adminItemDTO.setTotalPage(totalPage);
 		return adminItemDTO;
 	}
-
-
-
 
 }// end class

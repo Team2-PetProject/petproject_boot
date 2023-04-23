@@ -28,12 +28,9 @@ public interface OrderDAO {
 
 	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
 
-
 	Integer ordInfo(OrderInfoDTO orderInfoDTO);
 
-
 	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
-
 
 	CartOrdJoinDTO cartOrdSet(Integer cartCd);
 
@@ -48,7 +45,5 @@ public interface OrderDAO {
 	void updateTM(Integer dlvyCd);
 
 	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
-
-
 
 }

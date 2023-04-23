@@ -57,7 +57,7 @@ public class CartController {
 	@ApiOperation(value = "cartDelete")
 	public ComResponseEntity<Void> cartDelete(@PathVariable("cartCd") Integer cartCd) {
 		// cartCd로 바로 삭제
-		Integer deleteOne = cartService.cartDelete(cartCd);
+		cartService.cartDelete(cartCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 상품 삭제 성공"));
 	}
 
@@ -65,14 +65,15 @@ public class CartController {
 	@DeleteMapping(value = "/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
 	public ComResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer> list) {
-		Integer allDelete = cartService.checkDelete(list);
+		cartService.checkDelete(list);
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 상품 전체 삭제 성공"));
 	}
 
 	// 상품 옵션 변경
 	@PutMapping("/check/specUpdate/{cartCd}/option/{optCd}")
 	@ApiOperation(value = "specUpdate")
-	public ComResponseEntity<Integer> specUpdate(@PathVariable("cartCd") Integer cartCd, @PathVariable("optCd") int optCd) {
+	public ComResponseEntity<Integer> specUpdate(@PathVariable("cartCd") Integer cartCd,
+			@PathVariable("optCd") int optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		SpecUpdateDTO specUpdateDTO = new SpecUpdateDTO();
 		specUpdateDTO.setMbId(mbId);

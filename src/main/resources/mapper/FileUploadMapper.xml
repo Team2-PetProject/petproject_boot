@@ -20,25 +20,29 @@
 		<selectKey keyProperty="imgCd" resultType="Integer" order="AFTER">
 			SELECT 
 				TB_FILE_UPLOAD_SEQ.CURRVAL
-			FROM DUAL
+			FROM
+			DUAL
 		</selectKey>
 	</insert>
 	<insert id="insertInfoFile" parameterType="com.example.admin.dto.ItemInfoDTO">
-		INSERT INTO TB_IT_INFO(
+		INSERT INTO TB_IT_INFO
+			(
 			IT_INFO_CD
 			, IMG_NM
 			, SZ
 			, DI
 			, FL
 			, IT_CD
-		) VALUES (
+			) 
+		VALUES 
+			(
 			TB_IT_INFO_SEQ.NEXTVAL
 			, #{imgNm}
 			, #{sz}
 			, #{di}
 			, #{fl}
 			, #{itCd}
-		)
+			)
 	</insert>
 	<update id="updateFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		UPDATE
@@ -59,7 +63,8 @@
 			, SZ = #{sz}
 			, DI = #{di}
 			, FL = #{fl}
-		WHERE IT_INFO_CD = #{itInfoCd}
+		WHERE 
+			IT_INFO_CD = #{itInfoCd}
 	</update>
 	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="Integer">
 		SELECT 
@@ -69,20 +74,21 @@
 			, UP_TM
 			, DI
 			, FL
-		FROM TB_FILE_UPLOAD
+		FROM 
+			TB_FILE_UPLOAD
 		WHERE 
 			IMG_CD = #{imgCd}
 	</select>
 	
 	<select id="selectDetailFile" resultType="com.example.admin.dto.ItemInfoDTO" parameterType="Integer">
 		SELECT
-			IT_INFO_CD as itInfoCd
-			, IT_CD as itCd
-			, IMG_NM as imgNm
-			, SZ as sz
-			, UP_TM as upTm
-			, DI as di
-			, FL as fl
+			IT_INFO_CD AS IT_INFO_CD
+			, IT_CD AS IT_CD
+			, IMG_NM AS IMG_NM
+			, SZ AS SZ
+			, UP_TM AS UP_TM
+			, DI AS DI
+			, FL AS FL
 		FROM 
 			TB_IT_INFO
 		WHERE

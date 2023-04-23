@@ -20,6 +20,7 @@ import com.example.favorite.dto.MemberItemDTO;
 import com.example.member.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
+
 @Controller
 public class FavoriteController {
 	@Autowired
@@ -27,11 +28,11 @@ public class FavoriteController {
 	@Autowired
 	ItemService itemService;
 
-	//수정완
+	// 수정완
 	@GetMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteList")
-	public ComResponseEntity<List<ItemDTO>> favoriteList(@RequestParam("itCd") List<Integer> itCd){
+	public ComResponseEntity<List<ItemDTO>> favoriteList(@RequestParam("itCd") List<Integer> itCd) {
 		List<ItemDTO> favoriteLists = itemService.favoriteList(itCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("찜 상품 정보", favoriteLists));
 	}
@@ -40,11 +41,11 @@ public class FavoriteController {
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
 	public ComResponseEntity<Void> favoriteAdd(@PathVariable("itCd") Integer itCd) {
-		String mbId=SessionAttributeManager.getMemberId();
+		String mbId = SessionAttributeManager.getMemberId();
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setMbId(mbId);
 		memberItemDTO.setItCd(itCd);
-		Integer inputFavorit = itemService.favoriteAdd(memberItemDTO);
+		itemService.favoriteAdd(memberItemDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("찜 상품 추가"));
 	}
 
@@ -52,11 +53,11 @@ public class FavoriteController {
 	@ResponseBody
 	@ApiOperation(value = "favoriteDelete")
 	public ComResponseEntity<Void> favoriteDelete(@PathVariable("itemCd") Integer itCd) {
-		String mbId=SessionAttributeManager.getMemberId();
+		String mbId = SessionAttributeManager.getMemberId();
 		MemberItemDTO memberItemDTO = new MemberItemDTO();
 		memberItemDTO.setItCd(itCd);
 		memberItemDTO.setMbId(mbId);
-		Integer favoriteDel = itemService.favoriteDelete(memberItemDTO);
+		itemService.favoriteDelete(memberItemDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("찜 상품 삭제"));
 	}
 }

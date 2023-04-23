@@ -27,13 +27,10 @@ public class OrderService {
 
 	private static final Logger logger = LogManager.getLogger(OrderService.class);
 
-
 	@Transactional
 	public Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO) {
 		return orderDao.fastOrderConfirm(cartOrdJoinDTO);
 	}
-
-
 
 	// 주문결제화면 정보넘기기위한 join문
 	@Transactional
@@ -43,14 +40,14 @@ public class OrderService {
 
 	@Transactional
 	public List<OrderDoneDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
-		String mbId=SessionAttributeManager.getMemberId();
+		String mbId = SessionAttributeManager.getMemberId();
 		Integer inv = invRandom();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		dlvyInfo.setInv(inv);
 		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 		orderInfoDTO.setDlvyCd(dlvyCd);
 		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
-		logger.info(dlvyCd+" ||");
+		logger.info(dlvyCd + " ||");
 		Integer searchCountTItCd = orderDao.searchCount();
 		if (searchCountTItCd == null) {
 			searchCountTItCd = 0;
@@ -76,12 +73,11 @@ public class OrderService {
 		for (Integer cartCd : cartCds) {
 			cartSearchUnableDTO.setCartCd(cartCd);
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
-
 		}
-		if (dlvyCd>1) {
-			dlvyCd=dlvyCd-1;
+		if (dlvyCd > 1) {
+			dlvyCd = dlvyCd - 1;
+			orderDao.updateTM(dlvyCd);
 		}
-		if(dlvyCd>1) {orderDao.updateTM(dlvyCd);}
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}
@@ -98,24 +94,22 @@ public class OrderService {
 		return orderDao.daySearch(orderSearchDTO);
 	}
 
-
 	// 배송장번호 생성
 	public Integer invRandom() {
 		Integer minNum = 10000000; // 8자리 최소값
 		Integer maxNum = 99999999; // 8자리 최대값
 		return ThreadLocalRandom.current().nextInt(minNum, maxNum + 1);
 	}
+
 	// 페이징 처리를 위한 토탈카운트
-		@Transactional
-		public int totalCount(String mbId) {
-			return orderDao.totalCount(mbId);
-		}
+	@Transactional
+	public int totalCount(String mbId) {
+		return orderDao.totalCount(mbId);
+	}
 
-
-
-		public List<DeliveryInfoDTO> dlvyState(Integer dlvyCd) {
-			return orderDao.dlvyState(dlvyCd);
-		}
-
+	@Transactional
+	public List<DeliveryInfoDTO> dlvyState(Integer dlvyCd) {
+		return orderDao.dlvyState(dlvyCd);
+	}
 
 }

@@ -58,27 +58,23 @@
                   TB_ITEM.OPT_CD = TB_OPTION.OPT_CD
                   
          WHERE
-                  CART_CD =#{cartCd}
-        
-   
+                  CART_CD = #{cartCd}
    </select>
 
-   <select id="maxValueOrdCd" parameterType="String">
+   <select id="maxValueOrdCd" parameterType="String" resultType="Integer">
       SELECT
                COUNT(*)
       FROM
                TB_ORDER_INFO
-      WHERE
-               MB_ID=#{mbId}
    </select>
 
-   <select id="totalCount" parameterType="String">
+   <select id="totalCount" parameterType="String" resultType="Integer">
       SELECT
                COUNT(*)
       FROM
                MP_CART_ORD
       WHERE
-               MB_ID=#{mbId}
+               MB_ID = #{mbId}
    </select>
 
    <select id="orderSearch" parameterType="OrderSearchDTO"
@@ -98,7 +94,6 @@
                ,CART_ORD.IT_CD AS IT_CD
                ,IT_NM
                ,AMOUNT
-               ,CART_ORD.CAT AS CAT
                ,CART_ORD.PRICE AS PRICE
                ,CART_ORD.IMG_CD AS IMG_CD
                ,PAY_TM
@@ -106,27 +101,31 @@
       FROM
                MP_CART_ORD CART_ORD
 	  LEFT JOIN 
-               TB_OPTION TB_OPTION ON
+               TB_OPTION TB_OPTION 
+      ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
       INNER JOIN 
-               TB_ITEM ITEM ON
+               TB_ITEM ITEM 
+      ON
                CART_ORD.IT_CD=ITEM.IT_CD
-      INNER JOIN TB_ORDER_INFO INFO ON
+      INNER JOIN 
+      		   TB_ORDER_INFO INFO 
+      ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
-      MB_ID=#{mbId}
+      		   MB_ID = #{mbId}
                ORDER BY CART_ORD.CART_CD DESC)
       "ORD"
       )
       WHERE
-      IDX BETWEEN
+     		   IDX 
+      BETWEEN
                #{startIdx}
       AND
                #{endIdx}
    </select>
 
-   <select id="daySearch" parameterType="OrderSearchDTO"
-      resultType="SearchResultDTO">
+   <select id="daySearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
       SELECT
       *
       FROM
@@ -142,7 +141,6 @@
                ,CART_ORD.IT_CD AS IT_CD
                ,IT_NM
                ,AMOUNT
-               ,CART_ORD.CAT AS CAT
                ,CART_ORD.PRICE AS PRICE
                ,CART_ORD.IMG_CD AS IMG_CD
                ,PAY_TM
@@ -150,17 +148,21 @@
       FROM
                MP_CART_ORD CART_ORD
 	  LEFT JOIN 
-               TB_OPTION TB_OPTION ON
+               TB_OPTION TB_OPTION 
+      ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
       INNER JOIN 
-               TB_ITEM ITEM ON
+               TB_ITEM ITEM 
+      ON
                CART_ORD.IT_CD=ITEM.IT_CD
-      INNER JOIN TB_ORDER_INFO INFO ON
+      INNER JOIN 
+      		   TB_ORDER_INFO INFO 
+      ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
-      		   MB_ID=#{mbId}
+      		   MB_ID = #{mbId}
       AND
-      		   IT_NM=#{itNm}
+      		   IT_NM = #{itNm}
       AND
       		   PAY_TM 
       BETWEEN
@@ -172,57 +174,11 @@
       "ORD"
       )
       WHERE
-      IDX BETWEEN
+      		   IDX 
+      BETWEEN
                #{startIdx}
       AND
                #{endIdx}
-   </select>
-
-   <select id="itemSearch" parameterType="OrderSearchDTO"
-      resultType="SearchResultDTO">
-      SELECT
-      *
-      FROM
-      (
-      SELECT
-	    	  ROWNUM "IDX",
-	    	  ORD.*
-      FROM
-      (SELECT
-		      CART_CD
-		      ,CART_ORD.ORD_CD AS ORD_CD
-		      ,CART_ORD.MB_ID AS MB_ID
-		      ,CART_ORD.IT_CD AS IT_CD
-		      ,IT_NM
-		      ,AMOUNT
-		      ,CART_ORD.CAT AS CAT
-		      ,CART_ORD.PRICE AS PRICE
-		      ,CART_ORD.IMG_CD AS IMG_CD
-		      ,PAY_TM
-		      ,OPT_NM
-      FROM
-			  MP_CART_ORD CART_ORD
-	 INNER JOIN 
-			  TB_OPTION TB_OPTION ON
-			  CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-	 INNER JOIN 
-	 	  	  TB_ITEM ITEM ON
-	          CART_ORD.IT_CD=ITEM.IT_CD
-	 INNER JOIN 
-	 	 	  TB_ORDER_INFO INFO ON
-	   	      CART_ORD.ORD_CD=INFO.ORD_CD
-      WHERE
-      		  MB_ID=#{mbId}
-      AND
-     		  IT_NM=#{itNm}
-      ORDER BY CART_ORD.CART_CD DESC) AS ORD
-      )
-      WHERE 
-      		  IDX 
-      BETWEEN 
-      		  #{startIdx} 
-      AND 
-      		  #{endIdx}
    </select>
 
    <insert id="dlvyInfo" parameterType="DeliveryInfoDTO" useGeneratedKeys="true" keyColumn="DLVY_CD" keyProperty="dlvyCd">
@@ -232,7 +188,6 @@
       FROM
          DUAL
    </selectKey>
-
       INSERT INTO
             TB_DELIVERY_INFO
             (
@@ -249,7 +204,6 @@
    </insert>
 
    <insert id="ordInfo" parameterType="OrderInfoDTO" useGeneratedKeys="true" keyProperty="ordCd" keyColumn="ORD_CD">
-
       <selectKey keyProperty="ordCd" resultType="Integer"
          order="BEFORE">
          SELECT
@@ -257,10 +211,9 @@
          FROM
                DUAL
       </selectKey>
-
       INSERT INTO
       TB_ORDER_INFO
-      (
+   		   (
             ORD_CD
             ,DLVY_CD
             ,ORD_NM
@@ -269,9 +222,9 @@
             ,ORD_ADDR2
             ,ORD_TEL
             ,PAY_METH
-      )
+    	    )
       VALUES
-      (
+     		 (
             #{ordCd}
             ,#{dlvyCd}
             ,#{ordNm}
@@ -280,8 +233,8 @@
             ,#{ordAddr2}
             ,#{ordTel}
             ,#{payMeth}
-      )
-
+    		  )
+		
    </insert>
 
    <select id="searchCount" resultType="Integer">
@@ -294,7 +247,7 @@
    <insert id="orderDone" parameterType="CartOrdDTO" useGeneratedKeys="true" keyColumn="T_IT_CD" keyProperty="tItCd">
       INSERT INTO
       MP_CART_ORD
-      (
+   		   (
             T_IT_CD
             ,CART_CD
             ,ORD_CD
@@ -304,9 +257,9 @@
             ,PRICE
             ,IMG_CD
             ,OPT_CD
-      )
+   		   )
       VALUES
-      (
+  	       (
             #{tItCd}
             ,#{cartCd}
             ,#{ordCd}
@@ -316,7 +269,7 @@
             ,#{price}
             ,#{imgCd}
             ,#{optCd}
-      )
+ 	       )
 
    </insert>
 
@@ -330,16 +283,16 @@
             ,IMG_CD
             ,TB_CART.OPT_CD AS OPT_CD
       FROM
-      TB_CART TB_CART
+      		TB_CART TB_CART
       INNER JOIN
-            TB_ITEM TB_ITEM ON
+            TB_ITEM TB_ITEM 
+      ON
             TB_CART.IT_CD = TB_ITEM.IT_CD
       WHERE
             CART_CD = #{cartCd}
    </select>
 
-   <select id="orderDoneValueList" parameterType="Integer"
-      resultType="OrderDoneDTO">
+   <select id="orderDoneValueList" parameterType="Integer" resultType="OrderDoneDTO">
       SELECT
             T_IT_CD
             ,CART_CD
@@ -398,4 +351,30 @@
 		WHERE
 			TB_DELIVERY_INFO.DLVY_CD = #{dlvyCd}
 	</update>
+	
+	 <select id="dlvyState" parameterType="Integer" resultType="DeliveryInfoDTO">
+      SELECT
+	         TB_DELIVERY_INFO.DLVY_CD
+	         ,COM
+	         ,INV
+	         ,DLVY_START
+	         ,TB_DELIVERY_INFO.DLVY_END
+      FROM
+         	 TB_DELIVERY_INFO
+      INNER JOIN
+         	 TB_ORDER_INFO TB_ORDER_INFO
+      ON
+         	 TB_DELIVERY_INFO.DLVY_CD=TB_ORDER_INFO.DLVY_CD
+      INNER JOIN
+         	 MP_CART_ORD MP_CART_ORD
+      ON
+         	 TB_ORDER_INFO.ORD_CD=MP_CART_ORD.ORD_CD
+      INNER JOIN
+         	 TB_ITEM TB_ITEM
+      ON
+         	 TB_ITEM.IT_CD = MP_CART_ORD.IT_CD
+      WHERE
+         	 TB_DELIVERY_INFO.DLVY_CD = #{dlvyCd}
+   </select>
+	
 </mapper>

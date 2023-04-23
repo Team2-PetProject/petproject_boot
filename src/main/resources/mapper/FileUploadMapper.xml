@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.admin.dao.FileUploadDAO">
+	
 	<insert id="insertFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		INSERT INTO TB_FILE_UPLOAD(
 			IMG_CD
@@ -24,6 +25,7 @@
 				DUAL
 		</selectKey>
 	</insert>
+	
 	<insert id="insertInfoFile" parameterType="com.example.admin.dto.ItemInfoDTO">
 		INSERT INTO TB_IT_INFO
 			(
@@ -44,6 +46,7 @@
 			, #{itCd}
 			)
 	</insert>
+	
 	<update id="updateFile" parameterType="com.example.admin.dto.FileUploadDTO">
 		UPDATE
 			TB_FILE_UPLOAD
@@ -55,6 +58,7 @@
 		WHERE
 			IMG_CD = #{imgCd}		
 	</update>
+	
 	<update id="updateDetailFile" parameterType="com.example.admin.dto.ItemInfoDTO">
 		UPDATE
 			TB_IT_INFO
@@ -66,6 +70,7 @@
 		WHERE 
 			IT_INFO_CD = #{itInfoCd}
 	</update>
+	
 	<select id="selectFile" resultType="com.example.admin.dto.FileUploadDTO" parameterType="Integer">
 		SELECT 
 			IMG_CD
@@ -110,4 +115,5 @@
 		WHERE
 			IT_CD = #{itCd}
 	</delete>
+	
 </mapper>

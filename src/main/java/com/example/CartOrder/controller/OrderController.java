@@ -73,6 +73,7 @@ public class OrderController {
 	@PostMapping("/check/orderDone")
 	public ComResponseEntity<List<OrderDoneDTO>> orderDone(@RequestParam("cartCd") List<Integer> cartCd,
 			@RequestBody OrderInfoDTO orderInfoDTO) {
+		System.err.println(orderInfoDTO);
 		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd, orderInfoDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}

@@ -1,5 +1,6 @@
 package com.example.CartOrder.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -46,37 +47,39 @@ public class OrderService {
 		Integer dlvyCd;
 		Integer inv = invRandom();
 		Integer searchCountTItCd = orderDao.searchCount(mbId);
-		Integer maxOrdCd = orderDao.maxValueOrdCd(mbId);
-		
+		Integer maxOrdCd = orderDao.maxValueOrdCd();
 		if (maxOrdCd!=0) {
 			orderInfoDTO.setOrdCd(maxOrdCd + 1);
-		} else {
+		} else if (maxOrdCd==0) {
 			orderInfoDTO.setOrdCd(maxOrdCd);
+		} else {
+			logger.info("maxOrdCd Value" + maxOrdCd + "OrderInfoDTO : " +orderInfoDTO);
 		}
 		
 		
-		if (searchCountTItCd == null) {
+		if (searchCountTItCd == null || searchCountTItCd == 0) {
 			searchCountTItCd = 1;
-		}
+		} 
+		
 		Integer tItCd = searchCountTItCd + 1;
 		
-		
+		List<Integer> dlvyCds = new ArrayList<Integer>();
 		for (int i = 0; i < cartCds.size(); i++) {
-			inv = inv + 1;
+			inv = inv + i;
 			dlvyInfo.setInv(inv);
 			dlvyCd = orderDao.dlvyInfo(dlvyInfo);
 			logger.info(dlvyCd + " ||");
-			orderInfoDTO.setDlvyCd(dlvyCd);
+			orderInfoDTO.setDlvyCd(dlvyInfo.getDlvyCd());
 			orderDao.ordInfo(orderInfoDTO);
-		
+			dlvyCds.add(dlvyCd);
 		}
-		
 		Integer ordCd = orderInfoDTO.getOrdCd();
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
 		cartOrdDTO.setOrdCd(ordCd);
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
+		
 		for (Integer cartCd : cartCds) {
 			cartOrdSet = orderDao.cartOrdSet(cartCd);
 			cartOrdDTO.setCartCd(cartCd);
@@ -93,7 +96,15 @@ public class OrderService {
 			cartSearchUnableDTO.setCartCd(cartCd);
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
 		}
-	
+		if (dlvyCds.size()!=0) {
+			for (Integer upDateDlvyCd : dlvyCds) {
+				if (upDateDlvyCd>0 ) {
+					orderDao.updateTM(upDateDlvyCd);
+				}else {
+					logger.info("upDateDlvyCd Value" + upDateDlvyCd);
+				}
+			}
+		}
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;
 	}

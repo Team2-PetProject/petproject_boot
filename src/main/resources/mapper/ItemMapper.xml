@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.Item.dao.ItemDAO">
+	
 	<select id="totalCount" resultType="Integer">
 		SELECT
 			COUNT(*)
@@ -11,12 +12,14 @@
 		WHERE
 			CAT = #{cat}
 	</select>
+	
 	<select id="totalItem" resultType="Integer">
 		SELECT
 			COUNT(*)
 		FROM
 			TB_ITEM
 	</select>
+	
 	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
 		INSERT INTO TB_ITEM
 			(
@@ -41,8 +44,8 @@
 				DUAL
 		</selectKey>
 	</insert>
-	<select id="selectItem" parameterType="Integer"
-		resultType="com.example.Item.dto.ItemDTO">
+	
+	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 			IT_CD AS IT_CD
 			, IMG_CD AS IMG_CD
@@ -55,8 +58,8 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	<update id="updateItem"
-		parameterType="com.example.Item.dto.ItemDTO">
+	
+	<update id="updateItem" parameterType="com.example.Item.dto.ItemDTO">
 		UPDATE
 			TB_ITEM
 		SET
@@ -66,8 +69,8 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	<select id="favoriteList"
-		parameterType="com.example.favorite.dto.MemberItemDTO"
+	
+	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO"
 		resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 			TB_ITEM.IT_CD AS IT_CD
@@ -90,7 +93,8 @@
 		AND
 			IT_CD = #{itCd}
 		) 
-		AS MP_ITEM ON
+		AS MP_ITEM 
+		ON
 			TB_ITEM.IT_CD = MP_ITEM.IT_CD
 	</select>
 
@@ -113,9 +117,9 @@
 		FROM
 			MP_MEMBER_ITEM
 		WHERE
-			MB_ID=#{mbId}
+			MB_ID = #{mbId}
 		AND
-			IT_CD=#{itCd}
+			IT_CD = #{itCd}
 	</delete>
 
 	<insert id="insertTyCd" parameterType="com.example.admin.dto.RegisterDTO">
@@ -155,6 +159,7 @@
 		AND
 			 #{endIdx}
 	</select>
+	
 	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO"
 		resultType="com.example.admin.dto.ItemCdNmDTO">
 		SELECT
@@ -171,6 +176,7 @@
 		WHERE
 			NUM BETWEEN #{startIdx} AND #{endIdx}
 	</select>
+	
 	<update id="deleteOptCd" parameterType="Integer">
 		UPDATE
 			TB_ITEM
@@ -179,6 +185,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
+	
 	<delete id="deleteItem" parameterType="Integer">
 		DELETE
 		FROM
@@ -196,6 +203,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	
 	<select id="selectitInfoCd" parameterType="Integer"
 		resultType="Integer">
 		SELECT
@@ -205,4 +213,5 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
+	
 </mapper>

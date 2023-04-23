@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.member.dao.MemberDAO">
+	
 	<insert id="memberAdd" parameterType="com.example.member.dto.MemberDTO">
 		INSERT INTO
 				TB_MEMBER
@@ -36,7 +37,7 @@
 	</insert>
 
 
-	<select id="idCheck" parameterType="string" resultType="Integer">
+	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT
 			COUNT(*)
 		FROM 
@@ -45,63 +46,62 @@
 			MB_ID = #{mbId}
 	</select>
 
-
-
-
-
-	<select id="mypage" parameterType="string"
-		resultType="com.example.member.dto.MemberDTO">
+	<select id="mypage" parameterType="String" resultType="com.example.member.dto.MemberDTO">
 		SELECT
-		MB_ID as mbId
-		, PW
-		, NM
-		, POST
-		, ADDR1
-		, ADDR2
-		, TEL1
-		, TEL2
-		, TEL3
-		, EMAIL1
-		, EMAIL2
-		FROM TB_MEMBER
-		WHERE MB_ID = #{mbId}
+			MB_ID AS MB_ID
+			, PW
+			, NM
+			, POST
+			, ADDR1
+			, ADDR2
+			, TEL1
+			, TEL2
+			, TEL3
+			, EMAIL1
+			, EMAIL2
+		FROM 
+			TB_MEMBER
+		WHERE 
+			MB_ID = #{mbId}
 	</select>
 
-	<select id="login" parameterType="LoginDTO"
-		resultType="com.example.member.dto.MemberDTO">
+	<select id="login" parameterType="com.example.member.dto.LoginDTO" resultType="com.example.member.dto.MemberDTO">
 		SELECT
-		MB_ID as mbId
-		, PW as pw
-		, NM
-		, POST
-		, ADDR1
-		, ADDR2
-		, TEL1
-		, TEL2
-		, TEL3
-		, EMAIL1
-		, EMAIL2
-		FROM TB_MEMBER
-		WHERE MB_ID = #{mbId} AND PW = #{pw}
-
+			MB_ID AS MB_ID
+			, PW AS PW
+			, NM
+			, POST
+			, ADDR1
+			, ADDR2
+			, TEL1
+			, TEL2
+			, TEL3
+			, EMAIL1
+			, EMAIL2
+		FROM 
+			TB_MEMBER
+		WHERE 
+			MB_ID = #{mbId} 
+		AND 
+			PW = #{pw}
 	</select>
 
-	<update id="memberUpdate"
-		parameterType="com.example.member.dto.MemberDTO">
-		UPDATE TB_MEMBER
+	<update id="memberUpdate" parameterType="com.example.member.dto.MemberDTO">
+		UPDATE 
+			TB_MEMBER
 		SET
-		PW = #{pw}
-		, NM = #{nm}
-		, POST = #{post}
-		, ADDR1 = #{addr1}
-		, ADDR2 = #{addr2}
-		, TEL1 = #{tel1}
-		, TEL2 = #{tel2}
-		, TEL3 = #{tel3}
-		, EMAIL1 = #{email1}
-		, EMAIL2 = #{email2}
-		WHERE MB_ID = #{mbId}
-
+			PW = #{pw}
+			, NM = #{nm}
+			, POST = #{post}
+			, ADDR1 = #{addr1}
+			, ADDR2 = #{addr2}
+			, TEL1 = #{tel1}
+			, TEL2 = #{tel2}
+			, TEL3 = #{tel3}
+			, EMAIL1 = #{email1}
+			, EMAIL2 = #{email2}
+		WHERE 
+			MB_ID = #{mbId}
 	</update>
 
 </mapper>

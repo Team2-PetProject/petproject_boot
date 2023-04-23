@@ -48,6 +48,6 @@ public interface OrderDAO {
 
 	Integer dlvyCdMaxValue(Integer tItCd);
 
-	Integer maxValueOrdCd(String mbId);
+	Integer maxValueOrdCd();
 
 }

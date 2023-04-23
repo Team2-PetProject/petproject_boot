@@ -41,6 +41,7 @@ public class OrderController {
       String mbId=SessionAttributeManager.getMemberId();
       CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
       cartOrdJoinDTO.setItCd(itCd);
+      
       cartOrdJoinDTO.setAmount(amount);
       cartOrdJoinDTO.setOptCd(optCd);
       cartOrdJoinDTO.setMbId(mbId);

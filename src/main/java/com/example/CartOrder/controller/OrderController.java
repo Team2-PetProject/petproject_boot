@@ -30,13 +30,19 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-
 	OrderHistoryPageDTO orderSearchPage;
+	
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
-	@PostMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
-	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
+	@PostMapping(value= {"/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}", "/check/orderConfirm/{itCd}/{amount}/optCd"})
+	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
+			@PathVariable("amount") Integer amount,
+			@PathVariable(name="optCd" , required = false) Integer optCd){
 		String mbId=SessionAttributeManager.getMemberId();
+		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
+		cartOrdJoinDTO.setItCd(itCd);
+		cartOrdJoinDTO.setAmount(amount);
+		cartOrdJoinDTO.setOptCd(optCd);
 		cartOrdJoinDTO.setMbId(mbId);
 		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
 		List<CartOrdJoinDTO>itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
@@ -73,7 +79,7 @@ public class OrderController {
 		System.err.println(cartOrdDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
-
+	
 	@GetMapping("/check/orderSearch/")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
@@ -83,7 +89,7 @@ public class OrderController {
 		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
 		System.err.println(orderSearchList);
 	   return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
-	}
+	} 
 
 
 		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")

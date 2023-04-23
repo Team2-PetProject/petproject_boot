@@ -22,80 +22,79 @@
 	</select>
 	
 	<select id="cartList" parameterType="String" resultType="com.example.CartOrder.dto.CartConfirmDTO">
-      SELECT
-            TB_CART.CART_CD AS CART_CD
-            ,TB_ITEM.IT_CD AS IT_CD
-            ,TB_ITEM.IT_NM AS IT_NM
-            ,TB_ITEM.IMG_CD AS IMG_CD
-            ,TB_ITEM.PRICE AS PRICE
-            ,TB_CART.AMOUNT AS AMOUNT
-            ,TB_CART.MB_ID AS MB_ID
-            ,TB_OPTION.OPT_CD AS OPT_CD
-            ,TB_OPTION.OPT_NM AS OPT_NM
-      FROM
-            TB_CART TB_CART
-      INNER JOIN
-            TB_ITEM TB_ITEM ON
-            TB_CART.IT_CD = TB_ITEM.IT_CD
-      LEFT JOIN
-            TB_OPTION TB_OPTION ON
-            TB_CART.OPT_CD = TB_OPTION.OPT_CD
-       WHERE
-                MB_ID = #{mbId}
-                ORDER BY TB_CART.CART_CD
-   </select>
+		SELECT
+		      TB_CART.CART_CD AS CART_CD
+		      ,TB_ITEM.IT_CD AS IT_CD
+		      ,TB_ITEM.IT_NM AS IT_NM
+		      ,TB_ITEM.IMG_CD AS IMG_CD
+		      ,TB_ITEM.PRICE AS PRICE
+		      ,TB_CART.AMOUNT AS AMOUNT
+		      ,TB_CART.MB_ID AS MB_ID
+		      ,TB_OPTION.OPT_CD AS OPT_CD
+		      ,TB_OPTION.OPT_NM AS OPT_NM
+		FROM
+		      TB_CART TB_CART
+		INNER JOIN
+		      TB_ITEM TB_ITEM ON
+		      TB_CART.IT_CD = TB_ITEM.IT_CD
+		LEFT JOIN
+		      TB_OPTION TB_OPTION ON
+		      TB_CART.OPT_CD = TB_OPTION.OPT_CD
+		WHERE
+		MB_ID = #{mbId}
+		ORDER BY TB_CART.CART_CD
+	</select>
 
-			<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">
-				INSERT INTO TB_CART
-					(
-					CART_CD
-					,IT_CD
-					,MB_ID
-					,AMOUNT
-					,OPT_CD
-					)
-					VALUES
-					(
-					TB_CART_SEQ.NEXTVAL
-					,#{itCd}
-					,#{mbId}
-					,#{amount}
-					,#{optCd, jdbcType=INTEGER}
-					)
-			</insert>
-
-			<delete id="cartDelete" parameterType="int">
-					DELETE FROM TB_CART
-					WHERE
-					CART_CD = #{CART_CD}
-			</delete>
-
-			<delete id="checkDelete" parameterType="int">
-					DELETE FROM TB_CART
-					WHERE
-					CART_CD = #{CART_CD}
-			</delete>
-
-			<update id="amountUpdate" parameterType="com.example.CartOrder.dto.AmountUpdateDTO">
-					UPDATE TB_CART
-					SET
-					AMOUNT = #{amount}
-					WHERE
-					MB_ID = #{mbId}
-					AND
-					CART_CD = #{cartCd}
-			</update>
-
-			<update id="specUpdate" parameterType="com.example.CartOrder.dto.SpecUpdateDTO">
-				UPDATE TB_CART
-				SET
-				OPT_CD=#{optCd}
-				WHERE
-				MB_ID=#{mbId}
-				AND
-				CART_CD = #{cartCd}
-			</update>
-
+	<insert id="cartAdd" parameterType="com.example.CartOrder.dto.CartDTO">
+		INSERT INTO TB_CART
+			(
+			CART_CD
+			,IT_CD
+			,MB_ID
+			,AMOUNT
+			,OPT_CD
+			)
+			VALUES
+			(
+			TB_CART_SEQ.NEXTVAL
+			,#{itCd}
+			,#{mbId}
+			,#{amount}
+			,#{optCd, jdbcType=INTEGER}
+			)
+	</insert>
+	
+	<delete id="cartDelete" parameterType="int">
+			DELETE FROM TB_CART
+			WHERE
+			CART_CD = #{CART_CD}
+	</delete>
+	
+	<delete id="checkDelete" parameterType="int">
+			DELETE FROM TB_CART
+			WHERE
+			CART_CD = #{CART_CD}
+	</delete>
+	
+	<update id="amountUpdate" parameterType="com.example.CartOrder.dto.AmountUpdateDTO">
+			UPDATE TB_CART
+			SET
+			AMOUNT = #{amount}
+			WHERE
+			MB_ID = #{mbId}
+			AND
+			CART_CD = #{cartCd}
+	</update>
+	
+	<update id="specUpdate" parameterType="com.example.CartOrder.dto.SpecUpdateDTO">
+		UPDATE TB_CART
+		SET
+		OPT_CD=#{optCd}
+		WHERE
+		MB_ID=#{mbId}
+		AND
+		CART_CD = #{cartCd}
+	</update>
 
 
 

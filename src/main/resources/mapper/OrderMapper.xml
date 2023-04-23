@@ -175,36 +175,44 @@
       FROM
       (
       SELECT
-      ROWNUM "IDX",
-      ORD.*
+	    	  ROWNUM "IDX",
+	    	  ORD.*
       FROM
       (SELECT
-      CART_CD
-      ,CART_ORD.ORD_CD AS ORD_CD
-      ,CART_ORD.MB_ID AS MB_ID
-      ,CART_ORD.IT_CD AS IT_CD
-      ,IT_NM
-      ,AMOUNT
-      ,CART_ORD.CAT AS CAT
-      ,CART_ORD.PRICE AS PRICE
-      ,CART_ORD.IMG_CD AS IMG_CD
-      ,PAY_TM
-      ,OPT_NM
+		      CART_CD
+		      ,CART_ORD.ORD_CD AS ORD_CD
+		      ,CART_ORD.MB_ID AS MB_ID
+		      ,CART_ORD.IT_CD AS IT_CD
+		      ,IT_NM
+		      ,AMOUNT
+		      ,CART_ORD.CAT AS CAT
+		      ,CART_ORD.PRICE AS PRICE
+		      ,CART_ORD.IMG_CD AS IMG_CD
+		      ,PAY_TM
+		      ,OPT_NM
       FROM
-      MP_CART_ORD CART_ORD
-      INNER JOIN TB_OPTION TB_OPTION ON
-      CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-      INNER JOIN TB_ITEM ITEM ON
-      CART_ORD.IT_CD=ITEM.IT_CD
-      INNER JOIN TB_ORDER_INFO INFO ON
-      CART_ORD.ORD_CD=INFO.ORD_CD
+			  MP_CART_ORD CART_ORD
+	 INNER JOIN 
+			  TB_OPTION TB_OPTION ON
+			  CART_ORD.OPT_CD=TB_OPTION.OPT_CD
+	 INNER JOIN 
+	 	  	  TB_ITEM ITEM ON
+	          CART_ORD.IT_CD=ITEM.IT_CD
+	 INNER JOIN 
+	 	 	  TB_ORDER_INFO INFO ON
+	   	      CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
-      MB_ID=#{mbId}
+      		  MB_ID=#{mbId}
       AND
-      IT_NM=#{itNm}
+     		  IT_NM=#{itNm}
       ORDER BY CART_ORD.CART_CD DESC) AS ORD
       )
-      WHERE IDX BETWEEN #{startIdx} AND #{endIdx}
+      WHERE 
+      		  IDX 
+      BETWEEN 
+      		  #{startIdx} 
+      AND 
+      		  #{endIdx}
    </select>
 
    <insert id="dlvyInfo" parameterType="DeliveryInfoDTO" useGeneratedKeys="true" keyColumn="DLVY_CD" keyProperty="dlvyCd">
@@ -268,9 +276,9 @@
 
    <select id="searchCount" resultType="Integer">
       SELECT
-      MAX(T_IT_CD) "seachCountTItCd"
+      		MAX(T_IT_CD) "seachCountTItCd"
       FROM
-      MP_CART_ORD
+     		MP_CART_ORD
    </select>
 
    <insert id="orderDone" parameterType="CartOrdDTO" useGeneratedKeys="true" keyColumn="T_IT_CD" keyProperty="tItCd">

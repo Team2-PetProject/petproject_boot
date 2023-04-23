@@ -21,7 +21,7 @@
 			SELECT 
 				TB_FILE_UPLOAD_SEQ.CURRVAL
 			FROM
-			DUAL
+				DUAL
 		</selectKey>
 	</insert>
 	<insert id="insertInfoFile" parameterType="com.example.admin.dto.ItemInfoDTO">

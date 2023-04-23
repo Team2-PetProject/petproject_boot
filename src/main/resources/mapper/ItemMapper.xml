@@ -38,7 +38,7 @@
 			SELECT
 				TB_ITEM_SEQ.CURRVAL
 			FROM 
-			DUAL
+				DUAL
 		</selectKey>
 	</insert>
 	<select id="selectItem" parameterType="Integer"

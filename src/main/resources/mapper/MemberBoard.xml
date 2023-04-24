@@ -96,7 +96,7 @@
 		,#{cn}
 		,#{rplCnt}
 		,#{crtTm}
-		NULL
+		,NULL
 		)
 	</insert>
 
@@ -115,6 +115,8 @@
 		FROM
 		TB_BOARD
 		WHERE
+		MB_ID = #{mbId}
+		AND
 		BOARD_CD = #{boardCd}
 	</delete>
 

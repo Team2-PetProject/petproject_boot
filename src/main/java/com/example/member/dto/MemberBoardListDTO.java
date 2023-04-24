@@ -5,40 +5,40 @@ import org.apache.ibatis.type.Alias;
 @Alias("MemberBoardListDTO")
 public class MemberBoardListDTO {
 
-	private Double boardCd; //게시판번호
-	private String mbId; //작성자
-	private String title; //제목
-	private Double rplCnt; //댓글 갯수
+	private Integer boardCd; // 게시판번호
+	private String mbId; // 작성자
+	private String title; // 제목
+	private Integer rplCnt; // 댓글 갯수
 
-	public Double getBoardCd() {
+	public Integer getBoardCd() {
 		return boardCd;
-	}
-
-	public void setBoardCd(Double boardCd) {
-		this.boardCd = boardCd;
 	}
 
 	public String getMbId() {
 		return mbId;
 	}
 
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
-	}
-
 	public String getTitle() {
 		return title;
+	}
+
+	public Integer getRplCnt() {
+		return rplCnt;
+	}
+
+	public void setBoardCd(Integer boardCd) {
+		this.boardCd = boardCd;
+	}
+
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public Double getRplCnt() {
-		return rplCnt;
-	}
-
-	public void setRplCnt(Double rplCnt) {
+	public void setRplCnt(Integer rplCnt) {
 		this.rplCnt = rplCnt;
 	}
 

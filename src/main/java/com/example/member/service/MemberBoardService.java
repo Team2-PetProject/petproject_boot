@@ -55,6 +55,7 @@ public class MemberBoardService {
 		String mbId = SessionAttributeManager.getMemberId();
 		MemberBoardDTO memberBoardDTO = new MemberBoardDTO();
 		memberBoardDTO.setMbId(mbId);
+		memberBoardDTO.setBoardCd(boardCd);
 		Integer deleteBoard = memberBoardDAO.deleteBoard(memberBoardDTO);
 		return deleteBoard;
 	}

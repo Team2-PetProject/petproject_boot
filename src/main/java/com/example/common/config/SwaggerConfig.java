@@ -20,9 +20,9 @@ import java.util.Set;
 //    public Docket api() {
 //        return new Docket(DocumentationType.SWAGGER_2);
 //    }
-//    
-//    
-//    
+//
+//
+//
 //}
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -129,7 +129,7 @@ public class SwaggerConfig {
     	consumes.add("application/x-www-form-urlencoded");
     	return consumes;
     }
-    
+
     private Set<String> getProduceContentTypes(){
     	Set<String> produces = new HashSet<String>();
     	produces.add("application/json;charset=UTF-8");

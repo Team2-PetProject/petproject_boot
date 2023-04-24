@@ -10,30 +10,28 @@ import com.example.member.dao.MemberBoardDAO;
 import com.example.member.dto.MemberBoardDTO;
 import com.example.member.dto.MemberBoardListDTO;
 import com.example.member.dto.MemberBoardPageDTO;
-import com.example.member.dto.MemberBoardSearchDTO;
 
 @Service
 public class MemberBoardService {
 	@Autowired
 	MemberBoardDAO memberBoardDAO;
 
-	public List<MemberBoardPageDTO> boardList(Integer curPage) {
-		MemberBoardPageDTO memberBoardPageDTO = paging(curPage);
-		List<MemberBoardPageDTO> boardList = memberBoardDAO.boardList(memberBoardPageDTO);
-		return boardList;
+	public MemberBoardPageDTO boardList(Integer curPage) {
+		Integer totalCount = memberBoardDAO.totalCountBoard();
+		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
+		List<MemberBoardListDTO> boardList = memberBoardDAO.boardList(memberBoardPageDTO);
+		memberBoardPageDTO.setList(boardList);
+		return memberBoardPageDTO;
 	}
 
-	public List<MemberBoardSearchDTO> boardSearch(Integer curPage, String title) {
-		MemberBoardPageDTO memberBoardPageDTO = paging(curPage);
-		MemberBoardSearchDTO memberBoardSearchDTO = new MemberBoardSearchDTO();
-		memberBoardSearchDTO.setTitle(title);
-		memberBoardSearchDTO.setCurPage(memberBoardPageDTO.getPerPage());
-		memberBoardSearchDTO.setStartIdx(memberBoardPageDTO.getStartIdx());
-		memberBoardSearchDTO.setEndIdx(memberBoardPageDTO.getEndIdx());
-		memberBoardSearchDTO.setPerPage(memberBoardPageDTO.getPerPage());
-		memberBoardSearchDTO.setTotalPage(memberBoardPageDTO.getTotalPage());
-		List<MemberBoardSearchDTO>boardList = memberBoardDAO.boardSearch(memberBoardSearchDTO);
-		return boardList;
+	public MemberBoardPageDTO boardSearch(Integer curPage, String title) {
+		Integer totalCount = memberBoardDAO.totalSearchCount(title);
+		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
+		memberBoardPageDTO.setTitle(title);
+		System.err.println(memberBoardPageDTO);
+		List<MemberBoardListDTO> boardList = memberBoardDAO.boardSearch(memberBoardPageDTO);
+		memberBoardPageDTO.setList(boardList);
+		return memberBoardPageDTO;
 	}
 
 	public Integer addBoard(MemberBoardDTO memberBoardDTO) {
@@ -60,15 +58,14 @@ public class MemberBoardService {
 		return deleteBoard;
 	}
 
-	private MemberBoardPageDTO paging(Integer curPage) {
+	private MemberBoardPageDTO paging(Integer curPage, Integer totalCount) {
 		MemberBoardPageDTO memberBoardPageDTO = new MemberBoardPageDTO();
-		String mbId = SessionAttributeManager.getMemberId();
-		Integer totalCount = memberBoardDAO.totalCount();
 		Integer perPage = memberBoardPageDTO.getPerPage();
 		Integer totalPage = (int) Math.ceil((int) totalCount / (double) perPage);
 		Integer startIdx = ((curPage - 1) * perPage) + 1;
 		Integer endIdx = curPage * perPage;
 		memberBoardPageDTO.setPerPage(perPage);
+		memberBoardPageDTO.setCurPage(curPage);
 		memberBoardPageDTO.setStartIdx(startIdx);
 		memberBoardPageDTO.setEndIdx(startIdx);
 		memberBoardPageDTO.setEndIdx(endIdx);

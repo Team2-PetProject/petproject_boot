@@ -4,15 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.member.dao.MemberBoardDAO">
 
-	<select id="totalCount" parameterType="Integer">
+	<select id="totalCountBoard" resultType="Integer">
 		SELECT
 		COUNT(*)
 		FROM
 		TB_BOARD
 	</select>
 
+	<select id = "totalSearchCount" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_BOARD
+		WHERE
+		TITLE = #{title}
+
+	</select>
+
 	<select id="boardList" parameterType="MemberBoardPageDTO"
-		resultType="MemberBoardPageDTO">
+		resultType="MemberBoardListDTO">
 		SELECT
 		*
 		FROM
@@ -20,6 +30,7 @@
 		SELECT
 		ROWNUM AS IDX
 		,BOARD.*
+		FROM
 		(
 		SELECT
 		BOARD_CD
@@ -33,7 +44,7 @@
 		TB_BOARD
 		ORDER BY CRT_TM DESC
 		)
-		AS BOARD
+		"BOARD"
 		)
 		WHERE
 		IDX
@@ -43,8 +54,8 @@
 		#{endIdx}
 	</select>
 
-	<select id="boardSearch" parameterType="MemberBoardSearchDTO"
-		resultType="MemberBoardSearchDTO">
+	<select id="boardSearch" parameterType="MemberBoardPageDTO"
+		resultType="MemberBoardListDTO">
 		SELECT
 		*
 		FROM
@@ -52,6 +63,7 @@
 		SELECT
 		ROWNUM AS IDX
 		,BOARD.*
+		FROM
 		(
 		SELECT
 		BOARD_CD
@@ -66,7 +78,8 @@
 		WHERE
 		TITLE = #{title}
 		ORDER BY CRT_TM DESC
-		) AS BOARD
+		)
+		"BOARD"
 		)
 		WHERE
 		IDX
@@ -104,7 +117,8 @@
 		UPDATE
 		TB_BOARD
 		SET
-		CN = #{cn}
+		CN =
+		#{cn}
 		WHERE
 		BOARD_CD = #{boardCd}
 

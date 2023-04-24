@@ -24,7 +24,7 @@
                ,#{optCd, jdbcType=INTEGER}
                )
    </insert>
-   
+
    <update id="cartSearchUnable">
 		UPDATE TB_CART
 		SET
@@ -56,7 +56,7 @@
                   LEFT JOIN
                   TB_OPTION TB_OPTION ON
                   TB_ITEM.OPT_CD = TB_OPTION.OPT_CD
-                  
+
          WHERE
                   CART_CD = #{cartCd}
    </select>
@@ -75,6 +75,17 @@
                MP_CART_ORD
       WHERE
                MB_ID = #{mbId}
+   </select>
+
+   <select id="totalSearchCount" parameterType="String" resultType="Integer">
+      SELECT
+               COUNT(*)
+      FROM
+               MP_CART_ORD
+      WHERE
+               MB_ID = #{mbId}
+      AND
+      		   IT_NM = #{itNm}
    </select>
 
    <select id="orderSearch" parameterType="OrderSearchDTO"
@@ -100,16 +111,16 @@
                ,OPT_NM
       FROM
                MP_CART_ORD CART_ORD
-	  LEFT JOIN 
-               TB_OPTION TB_OPTION 
+	  LEFT JOIN
+               TB_OPTION TB_OPTION
       ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-      INNER JOIN 
-               TB_ITEM ITEM 
+      INNER JOIN
+               TB_ITEM ITEM
       ON
                CART_ORD.IT_CD=ITEM.IT_CD
-      INNER JOIN 
-      		   TB_ORDER_INFO INFO 
+      INNER JOIN
+      		   TB_ORDER_INFO INFO
       ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
@@ -118,7 +129,7 @@
       "ORD"
       )
       WHERE
-     		   IDX 
+     		   IDX
       BETWEEN
                #{startIdx}
       AND
@@ -147,16 +158,16 @@
                ,OPT_NM
       FROM
                MP_CART_ORD CART_ORD
-	  LEFT JOIN 
-               TB_OPTION TB_OPTION 
+	  LEFT JOIN
+               TB_OPTION TB_OPTION
       ON
                CART_ORD.OPT_CD=TB_OPTION.OPT_CD
-      INNER JOIN 
-               TB_ITEM ITEM 
+      INNER JOIN
+               TB_ITEM ITEM
       ON
                CART_ORD.IT_CD=ITEM.IT_CD
-      INNER JOIN 
-      		   TB_ORDER_INFO INFO 
+      INNER JOIN
+      		   TB_ORDER_INFO INFO
       ON
                CART_ORD.ORD_CD=INFO.ORD_CD
       WHERE
@@ -164,17 +175,17 @@
       AND
       		   IT_NM = #{itNm}
       AND
-      		   PAY_TM 
+      		   PAY_TM
       BETWEEN
       		   TO_DATE(#{startDay}, 'YYYYMMDD')
       AND
       		   TO_DATE(#{endDay}, 'YYYYMMDD')
-      
+
                ORDER BY CART_ORD.CART_CD DESC)
       "ORD"
       )
       WHERE
-      		   IDX 
+      		   IDX
       BETWEEN
                #{startIdx}
       AND
@@ -234,7 +245,7 @@
             ,#{ordTel}
             ,#{payMeth}
     		  )
-		
+
    </insert>
 
    <select id="searchCount" resultType="Integer">
@@ -285,7 +296,7 @@
       FROM
       		TB_CART TB_CART
       INNER JOIN
-            TB_ITEM TB_ITEM 
+            TB_ITEM TB_ITEM
       ON
             TB_CART.IT_CD = TB_ITEM.IT_CD
       WHERE
@@ -329,7 +340,7 @@
             TB_ORDER_INFO.ORD_CD = MP_CART_ORD.ORD_CD
 
    </select>
-   
+
    	<update id="updateTM" parameterType="Integer">
 		UPDATE
 			TB_DELIVERY_INFO
@@ -351,7 +362,7 @@
 		WHERE
 			TB_DELIVERY_INFO.DLVY_CD = #{dlvyCd}
 	</update>
-	
+
 	 <select id="dlvyState" parameterType="Integer" resultType="DeliveryInfoDTO">
       SELECT
 	         TB_DELIVERY_INFO.DLVY_CD
@@ -376,5 +387,5 @@
       WHERE
          	 TB_DELIVERY_INFO.DLVY_CD = #{dlvyCd}
    </select>
-	
+
 </mapper>

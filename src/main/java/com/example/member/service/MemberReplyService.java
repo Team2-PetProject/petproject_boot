@@ -1,15 +1,11 @@
 package com.example.member.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.common.SessionAttributeManager;
 import com.example.member.dao.MemberReplyDAO;
 import com.example.member.dto.BoardReplyLPageDTO;
-import com.example.member.dto.MemberBoardDTO;
-import com.example.member.dto.MemberBoardListDTO;
 import com.example.member.dto.MemberReplyDTO;
 
 @Service
@@ -17,10 +13,10 @@ public class MemberReplyService {
 	@Autowired
 	MemberReplyDAO memberReplyDAO;
 
-	public List<MemberBoardListDTO> boardReplyList(Integer boardCd, Integer curPage) {
+	public BoardReplyLPageDTO boardReplyList(Integer boardCd, Integer curPage) {
 		BoardReplyLPageDTO boardReplyListDTO = new BoardReplyLPageDTO();
 		boardReplyListDTO = paging(curPage, boardCd);
-		List<MemberBoardListDTO> boardReplyList = memberReplyDAO.boardReplyList(boardReplyListDTO);
+		BoardReplyLPageDTO boardReplyList = memberReplyDAO.boardReplyList(boardReplyListDTO);
 		return null;
 	}
 
@@ -31,21 +27,21 @@ public class MemberReplyService {
 		return addReply;
 	}
 
-	public MemberBoardDTO createSubReply(Integer boardCd, Integer rplCd) {
+	public MemberReplyDTO createSubReply(Integer boardCd, Integer rplCd) {
 		return null;
 	}
 
-	public MemberBoardDTO updateReply(Integer boardCd, Integer rplCd) {
+	public MemberReplyDTO updateReply(Integer boardCd, Integer rplCd) {
 		return null;
 	}
 
-	public MemberBoardDTO deleteReply(Integer boardCd, Integer rplCd) {
+	public MemberReplyDTO deleteReply(Integer boardCd, Integer rplCd) {
 		return null;
 	}
 
 	private BoardReplyLPageDTO paging(Integer curPage, Integer boardCd) {
 		BoardReplyLPageDTO boardReplyListDTO = new BoardReplyLPageDTO();
-		Integer totalCount = memberReplyDAO.totalCount(boardCd);
+		Integer totalCount = memberReplyDAO.totalCountReply(boardCd);
 		Integer perPage = boardReplyListDTO.getPerPage();
 		Integer totalPage = (int) Math.ceil((int) totalCount / (double) perPage);
 		Integer startIdx = ((curPage - 1) * perPage) + 1;

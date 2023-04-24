@@ -28,7 +28,6 @@ public class MemberBoardService {
 		Integer totalCount = memberBoardDAO.totalSearchCount(title);
 		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
 		memberBoardPageDTO.setTitle(title);
-		System.err.println(memberBoardPageDTO);
 		List<MemberBoardListDTO> boardList = memberBoardDAO.boardSearch(memberBoardPageDTO);
 		memberBoardPageDTO.setList(boardList);
 		return memberBoardPageDTO;

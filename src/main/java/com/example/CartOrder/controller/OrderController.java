@@ -38,7 +38,7 @@ public class OrderController {
 	@PostMapping(value = { "/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}",
 			"/check/orderConfirm/{itCd}/{amount}/optCd" })
 	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
-			@PathVariable("amount") Integer amount, 
+			@PathVariable("amount") Integer amount,
 			@PathVariable(name = "optCd", required = false) Integer optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
@@ -84,7 +84,10 @@ public class OrderController {
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
 	public ComResponseEntity<List<OrderSearchDTO>> orderSearch(
-			@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage) {
+			@PathVariable(name = "curPage", required = false) Integer curPage) {
+		if (curPage==null || curPage==0) {
+			curPage=1;
+		}
 		OrderSearchDTO orderSearchDTO = searchPaging(curPage);
 		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
@@ -95,10 +98,13 @@ public class OrderController {
 	@ResponseBody
 	@ApiOperation(value = "daySearch")
 	public ComResponseEntity<List<OrderSearchDTO>> daySearch(
-			@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage,
-			@PathVariable(name = "itNm", required = false) String itNm, 
+			@PathVariable(name = "curPage", required = false) Integer curPage,
+			@PathVariable(name = "itNm", required = false) String itNm,
 			@PathVariable("startDay") String startDay,
 			@PathVariable("endDay") String endDay) {
+		if (curPage==null || curPage==0) {
+			curPage=1;
+		}
 		OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 		orderSearchDTO.setItNm(itNm);
 		List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
@@ -132,8 +138,8 @@ public class OrderController {
 		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
 		orderSearchDTO.setMbId(mbId);
 		orderSearchDTO.setPerPage(perPage);
+		orderSearchDTO.setCurPage(curPage);
 		orderSearchDTO.setStartIdx(startIdx);
-		orderSearchDTO.setEndIdx(startIdx);
 		orderSearchDTO.setEndIdx(endIdx);
 		orderSearchDTO.setTotalPage(totalPage);
 		return orderSearchDTO;

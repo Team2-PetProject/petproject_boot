@@ -17,7 +17,7 @@ public class MemberReplyService {
 		BoardReplyLPageDTO boardReplyListDTO = new BoardReplyLPageDTO();
 		boardReplyListDTO = paging(curPage, boardCd);
 		BoardReplyLPageDTO boardReplyList = memberReplyDAO.boardReplyList(boardReplyListDTO);
-		return null;
+		return boardReplyList;
 	}
 
 	public Integer addReply(MemberReplyDTO memberReplyDTO) {
@@ -27,7 +27,11 @@ public class MemberReplyService {
 		return addReply;
 	}
 
-	public MemberReplyDTO createSubReply(Integer boardCd, Integer rplCd) {
+	public MemberReplyDTO addSubReply(Integer boardCd, Integer rplCd, MemberReplyDTO memberReplyDTO) {
+		String mbId = SessionAttributeManager.getMemberId();
+		memberReplyDTO.setMbId(mbId);
+		memberReplyDTO.setBoardCd(boardCd);
+		memberReplyDTO.setRplCd(rplCd);
 		return null;
 	}
 

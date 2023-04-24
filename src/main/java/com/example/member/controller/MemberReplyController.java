@@ -25,16 +25,16 @@ public class MemberReplyController {
 	MemberReplyService memberReplyService;
 
 	// 게시판에 달린 댓글 리스트 조회 //페이징처리
-//	@ApiOperation(value = "boardReplyList")
-//	@GetMapping("check/board/{boardCd}/{curPage}")
-//	public ComResponseEntity<BoardReplyLPageDTO> boardReplyList(@PathVariable(name = "boardCd") Integer boardCd,
-//			@PathVariable(name = "curPage", required = false) Integer curPage) {
-//		if (curPage == 0) {
-//			curPage = 1;
-//		}
-//		BoardReplyLPageDTO boardReplyList = memberReplyService.boardReplyList(boardCd, curPage);
-//		return new ComResponseEntity<>(new ComResponseDTO<>("댓글목록", boardReplyList));
-//	}
+	@ApiOperation(value = "boardReplyList")
+	@GetMapping("check/board/{boardCd}/{curPage}")
+	public ComResponseEntity<BoardReplyLPageDTO> boardReplyList(@PathVariable(name = "boardCd") Integer boardCd,
+			@PathVariable(name = "curPage", required = false) Integer curPage) {
+		if (curPage == 0) {
+			curPage = 1;
+		}
+		BoardReplyLPageDTO boardReplyList = memberReplyService.boardReplyList(boardCd, curPage);
+		return new ComResponseEntity<>(new ComResponseDTO<>("댓글목록", boardReplyList));
+	}
 
 	// 댓글 만들기
 	@ApiOperation(value = "addReply")
@@ -42,7 +42,6 @@ public class MemberReplyController {
 	public ComResponseEntity<Integer> addReply(@PathVariable(name = "boardCd")Integer boardCd,
 			@RequestBody MemberReplyDTO memberReplyDTO) {
 		memberReplyDTO.setBoardCd(boardCd);
-
 		Integer addReply = memberReplyService.addReply(memberReplyDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}
@@ -51,9 +50,10 @@ public class MemberReplyController {
 	@ApiOperation(value = "addSubReply")
 	@PostMapping("check/board/addReply/{boardCd}/{rplCd}")
 	public ComResponseEntity<MemberReplyDTO> createSubReply(@PathVariable(name = "boardCd")Integer boardCd,
-			@PathVariable(name = "rplCd") Integer rplCd) {
-		MemberReplyDTO createSubReply = memberReplyService.createSubReply(boardCd, rplCd);
-		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판", createSubReply));
+			@PathVariable(name = "rplCd") Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
+
+		memberReplyDTO = memberReplyService.addSubReply(boardCd, rplCd,memberReplyDTO);
+		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판", memberReplyDTO));
 	}
 
 	// 댓글 수정

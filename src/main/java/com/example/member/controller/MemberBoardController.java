@@ -27,6 +27,7 @@ public class MemberBoardController {
 	@Autowired
 	MemberBoardService memberBoardService;
 
+	//2조 화이팅
 	// 게시판 리스트
 	@ApiOperation(value = "boardList")
 	@GetMapping("check/board/{curPage}")

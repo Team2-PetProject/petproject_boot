@@ -18,6 +18,7 @@ import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.CartOrder.dto.OrderSearchListDTO;
 import com.example.CartOrder.dto.SearchResultDTO;
 import com.example.common.SessionAttributeManager;
 
@@ -112,8 +113,12 @@ public class OrderService {
 
 	// 주문 내역 기본화면
 	@Transactional
-	public List<SearchResultDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
-		return orderDao.orderSearch(orderSearchDTO);
+	public OrderSearchDTO orderSearch(OrderSearchDTO orderSearchDTO) {
+		System.err.println("service"+orderSearchDTO);
+		List<OrderSearchListDTO> orderSearchList = orderDao.orderSearch(orderSearchDTO);
+		orderSearchDTO.setList(orderSearchList);
+		System.err.println(orderSearchDTO);
+		return orderSearchDTO;
 	}
 
 	// 기간 주문 내역 조회

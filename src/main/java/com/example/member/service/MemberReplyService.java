@@ -31,13 +31,17 @@ public class MemberReplyService {
 		String mbId = SessionAttributeManager.getMemberId();
 		memberReplyDTO.setMbId(mbId);
 		memberReplyDTO.setBoardCd(boardCd);
-		memberReplyDTO.setRplCd(rplCd);
+		memberReplyDTO.setParentRpl(rplCd); //버튼 누를 때 넘어온 댓글번호를 부모 댓글로 삼는다.
+		Integer parentRpl = memberReplyDTO.getParentRpl();
 
 		Integer depth = memberReplyDTO.getDepth();
 		if (depth == 0) {
 			depth = 1;
 		} else if (depth>1) {
-			Integer depthMaxValue = memberReplyDAO.depthMaxValue(rplCd);
+			depth = memberReplyDAO.depthMaxValue(parentRpl);
+			depth = depth + 1;
+		} else {
+			
 		}
 		return null;
 	}

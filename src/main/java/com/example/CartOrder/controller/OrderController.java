@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.example.CartOrder.dto.CartOrdJoinDTO;
 import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
-import com.example.CartOrder.dto.OrderHistoryPageDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.CartOrder.dto.OrderSearchListDTO;
 import com.example.CartOrder.dto.SearchResultDTO;
 import com.example.CartOrder.service.OrderService;
 import com.example.common.SessionAttributeManager;
@@ -31,16 +30,14 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	OrderHistoryPageDTO orderSearchPage;
 
-	//상품자세히 보기에서 주문
+	// 상품자세히 보기에서 주문
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping(value = { "/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}",
 			"/check/orderConfirm/{itCd}/{amount}/optCd" })
 	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
-			@PathVariable("amount") Integer amount,
-			@PathVariable(name = "optCd", required = false) Integer optCd) {
+			@PathVariable("amount") Integer amount, @PathVariable(name = "optCd", required = false) Integer optCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		cartOrdJoinDTO.setItCd(itCd);
@@ -52,7 +49,7 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문상품 정보", itemJoinList));
 	}
 
-	//장바구니에서 주문
+	// 장바구니에서 주문
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
 	@GetMapping("/check/orderConfirm")
@@ -80,39 +77,40 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 
-	//처음 주문내역 조회
+	// 처음 주문내역 조회
 	@GetMapping("/check/orderSearch")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
-	public ComResponseEntity<List<SearchResultDTO>> orderSearch(
+	public ComResponseEntity<OrderSearchDTO> orderSearch(
 			@PathVariable(name = "curPage", required = false) Integer curPage) {
-		if (curPage==null || curPage==0) {
-			curPage=1;
+		if (curPage == null || curPage == 0) {
+			curPage = 1;
 		}
-		OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-		List<SearchResultDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
-		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
+		String mbId = SessionAttributeManager.getMemberId();
+		Integer totalCount = orderService.totalCount(mbId);
+		OrderSearchDTO orderSearchDTO = searchPaging(curPage, totalCount,mbId);
+		OrderSearchDTO orderSearch = orderService.orderSearch(orderSearchDTO);
+		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearch));
 	}
 
-	//상세 주문내역 조회
+	// 상세 주문내역 조회
 	@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
 	@ResponseBody
 	@ApiOperation(value = "daySearch")
 	public ComResponseEntity<List<SearchResultDTO>> daySearch(
 			@PathVariable(name = "curPage", required = false) Integer curPage,
-			@PathVariable(name = "itNm", required = false) String itNm,
-			@PathVariable("startDay") String startDay,
+			@PathVariable(name = "itNm", required = false) String itNm, @PathVariable("startDay") String startDay,
 			@PathVariable("endDay") String endDay) {
-		if (curPage==null || curPage==0) {
-			curPage=1;
+		if (curPage == null || curPage == 0) {
+			curPage = 1;
 		}
-		OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
-		orderSearchDTO.setItNm(itNm);
-		List<SearchResultDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
-		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
+		String mbId = SessionAttributeManager.getMemberId();
+		Integer totalCount = orderService.totalCount(mbId);
+
+		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회"));
 	}
 
-	//주문 상태 페이지
+	// 주문 상태 페이지
 	@GetMapping
 	@ResponseBody
 	@ApiOperation(value = "dlvyState")
@@ -121,28 +119,17 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 	}
 
-	private OrderSearchDTO extracted(Integer curPage, String startDay, String endDay) {
-		OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-		orderSearchDTO.setStartDay(startDay);
-		orderSearchDTO.setEndDay(endDay);
-		return orderSearchDTO;
-	}
-
-	private OrderSearchDTO searchPaging(@PathVariable("curPage") Integer curPage) {
-		orderSearchPage = new OrderHistoryPageDTO();
-		String mbId = SessionAttributeManager.getMemberId();
-		Integer totalCount = orderService.totalCount(mbId);
-		Integer perPage = orderSearchPage.getPerPage();
-		Integer totalPage = (int) Math.ceil((int) totalCount / (double) perPage);
+	private OrderSearchDTO searchPaging(Integer curPage, Integer totalCount, String mbId) {
+		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
+		Integer perPage = orderSearchDTO.getPerPage();
+		Integer totalPage = (int) Math.ceil((double) totalCount / (double) perPage);
 		Integer startIdx = ((curPage - 1) * perPage) + 1;
 		Integer endIdx = curPage * perPage;
-		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
-		orderSearchDTO.setMbId(mbId);
-		orderSearchDTO.setPerPage(perPage);
 		orderSearchDTO.setCurPage(curPage);
 		orderSearchDTO.setStartIdx(startIdx);
 		orderSearchDTO.setEndIdx(endIdx);
-		orderSearchDTO.setTotalPage(totalPage);
+		orderSearchDTO.setTotalPage(1);
+		orderSearchDTO.setMbId(mbId);
 		return orderSearchDTO;
 	}
 

@@ -1,71 +1,25 @@
 package com.example.CartOrder.dto;
 
-import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
 @Alias("OrderSearchDTO")
 public class OrderSearchDTO {
-
-	private Integer tItCd;
-	private Integer cartCd;
-	private Integer itCd;
-	private String itNm;
-	private Integer dlvyCd;
-	private Integer imgCd;
+	private List<OrderSearchListDTO> list;
 	private String mbId;
-	private Integer price;
-	private Integer amount;
-	private Date payTm;
-	private String optNm;
-	private Integer perPage;
-	private Integer curPage;
-	private Integer totalPage;
 	private Integer startIdx;
 	private Integer endIdx;
 	private String startDay;
 	private String endDay;
-	public Integer gettItCd() {
-		return tItCd;
-	}
-	public Integer getCartCd() {
-		return cartCd;
-	}
-	public Integer getItCd() {
-		return itCd;
-	}
-	public String getItNm() {
-		return itNm;
-	}
-	public Integer getDlvyCd() {
-		return dlvyCd;
-	}
-	public Integer getImgCd() {
-		return imgCd;
+	private Integer perPage = 12;
+	private Integer curPage;
+	private Integer totalPage;
+	public List<OrderSearchListDTO> getList() {
+		return list;
 	}
 	public String getMbId() {
 		return mbId;
-	}
-	public Integer getPrice() {
-		return price;
-	}
-	public Integer getAmount() {
-		return amount;
-	}
-	public Date getPayTm() {
-		return payTm;
-	}
-	public String getOptNm() {
-		return optNm;
-	}
-	public Integer getPerPage() {
-		return perPage;
-	}
-	public Integer getCurPage() {
-		return curPage;
-	}
-	public Integer getTotalPage() {
-		return totalPage;
 	}
 	public Integer getStartIdx() {
 		return startIdx;
@@ -79,47 +33,20 @@ public class OrderSearchDTO {
 	public String getEndDay() {
 		return endDay;
 	}
-	public void settItCd(Integer tItCd) {
-		this.tItCd = tItCd;
+	public Integer getPerPage() {
+		return perPage;
 	}
-	public void setCartCd(Integer cartCd) {
-		this.cartCd = cartCd;
+	public Integer getCurPage() {
+		return curPage;
 	}
-	public void setItCd(Integer itCd) {
-		this.itCd = itCd;
+	public Integer getTotalPage() {
+		return totalPage;
 	}
-	public void setItNm(String itNm) {
-		this.itNm = itNm;
-	}
-	public void setDlvyCd(Integer dlvyCd) {
-		this.dlvyCd = dlvyCd;
-	}
-	public void setImgCd(Integer imgCd) {
-		this.imgCd = imgCd;
+	public void setList(List<OrderSearchListDTO> list) {
+		this.list = list;
 	}
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
-	}
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-	public void setAmount(Integer amount) {
-		this.amount = amount;
-	}
-	public void setPayTm(Date payTm) {
-		this.payTm = payTm;
-	}
-	public void setOptNm(String optNm) {
-		this.optNm = optNm;
-	}
-	public void setPerPage(Integer perPage) {
-		this.perPage = perPage;
-	}
-	public void setCurPage(Integer curPage) {
-		this.curPage = curPage;
-	}
-	public void setTotalPage(Integer totalPage) {
-		this.totalPage = totalPage;
 	}
 	public void setStartIdx(Integer startIdx) {
 		this.startIdx = startIdx;
@@ -133,37 +60,22 @@ public class OrderSearchDTO {
 	public void setEndDay(String endDay) {
 		this.endDay = endDay;
 	}
+	public void setPerPage(Integer perPage) {
+		this.perPage = perPage;
+	}
+	public void setCurPage(Integer curPage) {
+		this.curPage = curPage;
+	}
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("OrderSearchDTO [tItCd=");
-		builder.append(tItCd);
-		builder.append(", cartCd=");
-		builder.append(cartCd);
-		builder.append(", itCd=");
-		builder.append(itCd);
-		builder.append(", itNm=");
-		builder.append(itNm);
-		builder.append(", dlvyCd=");
-		builder.append(dlvyCd);
-		builder.append(", imgCd=");
-		builder.append(imgCd);
+		builder.append("OrderSearchDTO [list=");
+		builder.append(list);
 		builder.append(", mbId=");
 		builder.append(mbId);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", amount=");
-		builder.append(amount);
-		builder.append(", payTm=");
-		builder.append(payTm);
-		builder.append(", optNm=");
-		builder.append(optNm);
-		builder.append(", perPage=");
-		builder.append(perPage);
-		builder.append(", curPage=");
-		builder.append(curPage);
-		builder.append(", totalPage=");
-		builder.append(totalPage);
 		builder.append(", startIdx=");
 		builder.append(startIdx);
 		builder.append(", endIdx=");
@@ -172,11 +84,15 @@ public class OrderSearchDTO {
 		builder.append(startDay);
 		builder.append(", endDay=");
 		builder.append(endDay);
+		builder.append(", perPage=");
+		builder.append(perPage);
+		builder.append(", curPage=");
+		builder.append(curPage);
+		builder.append(", totalPage=");
+		builder.append(totalPage);
 		builder.append("]");
 		return builder.toString();
 	}
-
-
 
 
 	}

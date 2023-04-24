@@ -14,7 +14,8 @@ public interface MemberReplyDAO {
 
 	Integer addReply(MemberReplyDTO memberReplyDTO);
 
-	Integer depthMaxValue(Integer rplCd);
+	Integer depthMaxValue(Integer parentRpl);
+
 
 
 }

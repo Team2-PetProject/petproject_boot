@@ -144,7 +144,6 @@ public class MemberController {
 	@PutMapping("check/update")
 	@ApiOperation(value = "회원정보수정")
 	public ComResponseEntity<Void> update(@RequestBody MemberDTO memberDTO){
-		
 		Integer n = service.memberUpdate(memberDTO);
 		
 		logger.info("업데이트갯수>>>>>>"+n);

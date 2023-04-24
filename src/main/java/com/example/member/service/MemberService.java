@@ -63,9 +63,9 @@ public class MemberService {
 	}
 
 	public Integer memberUpdate(MemberDTO memberDTO) {
-		String prePw = SessionAttributeManager.getMemberInfo().getPw();
+		String prePw = SessionAttributeManager.getMemberInfo().getPw();		
 		String newPw = memberDTO.getPw();
-		if (newPw != prePw) {
+		if (!newPw.equals(prePw)) {
 			newPw = encryptSHA512(newPw);
 			memberDTO.setPw(newPw);
 		}

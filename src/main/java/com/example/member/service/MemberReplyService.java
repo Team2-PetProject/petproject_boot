@@ -32,6 +32,13 @@ public class MemberReplyService {
 		memberReplyDTO.setMbId(mbId);
 		memberReplyDTO.setBoardCd(boardCd);
 		memberReplyDTO.setRplCd(rplCd);
+
+		Integer depth = memberReplyDTO.getDepth();
+		if (depth == 0) {
+			depth = 1;
+		} else if (depth>1) {
+			Integer depthMaxValue = memberReplyDAO.depthMaxValue(rplCd);
+		}
 		return null;
 	}
 

@@ -12,6 +12,7 @@ import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.CartOrder.dto.SearchResultDTO;
 
 @Mapper
 public interface OrderDAO {
@@ -20,9 +21,9 @@ public interface OrderDAO {
 
 	Integer totalCount(String mbId);
 
-	List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
+	List<SearchResultDTO> orderSearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
+	List<SearchResultDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
 	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 

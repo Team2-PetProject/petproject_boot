@@ -18,6 +18,7 @@ import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderHistoryPageDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.CartOrder.dto.SearchResultDTO;
 import com.example.CartOrder.service.OrderService;
 import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
@@ -83,13 +84,13 @@ public class OrderController {
 	@GetMapping("/check/orderSearch")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
-	public ComResponseEntity<List<OrderSearchDTO>> orderSearch(
+	public ComResponseEntity<List<SearchResultDTO>> orderSearch(
 			@PathVariable(name = "curPage", required = false) Integer curPage) {
 		if (curPage==null || curPage==0) {
 			curPage=1;
 		}
 		OrderSearchDTO orderSearchDTO = searchPaging(curPage);
-		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
+		List<SearchResultDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
 	}
 
@@ -97,7 +98,7 @@ public class OrderController {
 	@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
 	@ResponseBody
 	@ApiOperation(value = "daySearch")
-	public ComResponseEntity<List<OrderSearchDTO>> daySearch(
+	public ComResponseEntity<List<SearchResultDTO>> daySearch(
 			@PathVariable(name = "curPage", required = false) Integer curPage,
 			@PathVariable(name = "itNm", required = false) String itNm,
 			@PathVariable("startDay") String startDay,
@@ -107,7 +108,7 @@ public class OrderController {
 		}
 		OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
 		orderSearchDTO.setItNm(itNm);
-		List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
+		List<SearchResultDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
 	}
 

@@ -16,39 +16,38 @@ import com.example.CartOrder.dto.OrderSearchDTO;
 @Mapper
 public interface OrderDAO {
 
-	void ordItem(String memberCd, List<CartDTO> carts);
+   void ordItem(String memberCd, List<CartDTO> carts);
 
-	int totalCount(String mbId);
+   Integer totalCount(String mbId);
 
-	List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
+   List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
 
-	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
+   List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
-	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
+   Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 
-	List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
+   List<CartOrdJoinDTO> cartOrdJoin(CartOrdJoinDTO cartOrdJoinDTO);
 
+   Integer ordInfo(OrderInfoDTO orderInfoDTO);
 
-	Integer ordInfo(OrderInfoDTO orderInfoDTO);
+   Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
 
+   CartOrdJoinDTO cartOrdSet(Integer cartCd);
 
-	Integer dlvyInfo(DeliveryInfoDTO dlvyInfo);
+   List<OrderDoneDTO> orderDoneValueList(Integer itCd);
 
+   Integer searchCount(String mbId);
 
-	CartOrdJoinDTO cartOrdSet(Integer cartCd);
+   void orderDone(CartOrdDTO cartOrdDTO);
 
-	List<OrderDoneDTO> orderDoneValueList(Integer itCd);
+   void cartSearchUnable(CartSearchUnableDTO cartSearchUnableDTO);
 
-	Integer searchCount();
+   void updateTM(Integer dlvyCd);
 
-	void orderDone(CartOrdDTO cartOrdDTO);
+   List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
 
-	void cartSearchUnable(CartSearchUnableDTO cartSearchUnableDTO);
+   Integer dlvyCdMaxValue(Integer tItCd);
 
-	void updateTM(Integer dlvyCd);
-
-	List<DeliveryInfoDTO> dlvyState(Integer dlvyCd);
-
-
+   Integer maxValueOrdCd();
 
 }

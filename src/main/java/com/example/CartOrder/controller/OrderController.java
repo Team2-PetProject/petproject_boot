@@ -80,7 +80,7 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 	
-	@GetMapping("/check/orderSearch/")
+	@GetMapping("/check/orderSearch")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
 	public ComResponseEntity<List<OrderSearchDTO>> orderSearch
@@ -101,8 +101,8 @@ public class OrderController {
 		@PathVariable(name = "itNm", required = false) String itNm,
 		@PathVariable("startDay") String startDay,
 		@PathVariable("endDay")String endDay) {
-
-			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, endDay);
+			int intEndDay = Integer.parseInt(endDay)+1;
+			OrderSearchDTO orderSearchDTO = extracted(curPage, startDay, intEndDay+"");
 			orderSearchDTO.setItNm(itNm);
 		   List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
 		   return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
@@ -112,7 +112,6 @@ public class OrderController {
 		@ResponseBody
 		@ApiOperation(value = "dlvyState")
 		private ComResponseEntity<List<DeliveryInfoDTO>> dlvyState (@PathVariable("dlvyCd") Integer dlvyCd) {
-			System.out.println("ddd");
 			List<DeliveryInfoDTO> deliveryInfoList =orderService.dlvyState(dlvyCd);
 			return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 		}

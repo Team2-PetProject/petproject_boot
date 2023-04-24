@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.member.dto.MemberBoardDTO;
@@ -27,7 +28,6 @@ public class MemberBoardController {
 	@Autowired
 	MemberBoardService memberBoardService;
 
-	//2조 화이팅
 	// 게시판 리스트
 	@ApiOperation(value = "boardList")
 	@GetMapping("check/board/{curPage}")
@@ -42,7 +42,7 @@ public class MemberBoardController {
 
 	// 게시판 상세 조회
 	@ApiOperation(value = "boardSearch")
-	@GetMapping("check/board/{curPage}/{title}")
+	@GetMapping("check/board/{curPage}/title/{title}")
 	public ComResponseEntity<List<MemberBoardSearchDTO>> boardSearch(
 			@PathVariable(name = "curPage", required = false) Integer curPage,
 			@PathVariable(name = "title") String title) {

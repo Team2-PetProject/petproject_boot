@@ -9,19 +9,20 @@ public class MemberReplyDTO {
 
 	private Integer rplCd;
 	private String mbId;
-	private Double boardCd;
+	private Integer boardCd;
 	private String rplCn;
 	private Integer parentRpl;
 	private Date crtTm;
 	private Date upTm;
 	private Integer depth;
+
 	public Integer getRplCd() {
 		return rplCd;
 	}
 	public String getMbId() {
 		return mbId;
 	}
-	public Double getBoardCd() {
+	public Integer getBoardCd() {
 		return boardCd;
 	}
 	public String getRplCn() {
@@ -45,7 +46,7 @@ public class MemberReplyDTO {
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
-	public void setBoardCd(Double boardCd) {
+	public void setBoardCd(Integer boardCd) {
 		this.boardCd = boardCd;
 	}
 	public void setRplCn(String rplCn) {

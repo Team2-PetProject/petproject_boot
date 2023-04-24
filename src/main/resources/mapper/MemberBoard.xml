@@ -86,6 +86,7 @@
 		,CN
 		,RPL_CNT
 		,CRT_TM
+		,UP_TM
 		)
 		VALUES
 		(
@@ -95,6 +96,7 @@
 		,#{cn}
 		,#{rplCnt}
 		,#{crtTm}
+		NULL
 		)
 	</insert>
 

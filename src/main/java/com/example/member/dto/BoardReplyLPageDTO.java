@@ -14,6 +14,7 @@ public class BoardReplyLPageDTO {
 	private Integer endIdx;
 	private Integer totalPage;
 	private Integer boardCd;
+	private Integer parentRpl;
 	public List<MemberReplyDTO> getList() {
 		return list;
 	}
@@ -37,6 +38,9 @@ public class BoardReplyLPageDTO {
 	}
 	public Integer getBoardCd() {
 		return boardCd;
+	}
+	public Integer getParentRpl() {
+		return parentRpl;
 	}
 	public void setList(List<MemberReplyDTO> list) {
 		this.list = list;
@@ -62,6 +66,9 @@ public class BoardReplyLPageDTO {
 	public void setBoardCd(Integer boardCd) {
 		this.boardCd = boardCd;
 	}
+	public void setParentRpl(Integer parentRpl) {
+		this.parentRpl = parentRpl;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -81,6 +88,8 @@ public class BoardReplyLPageDTO {
 		builder.append(totalPage);
 		builder.append(", boardCd=");
 		builder.append(boardCd);
+		builder.append(", parentRpl=");
+		builder.append(parentRpl);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -1,21 +1,28 @@
 package com.example.member.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.example.member.dto.BoardReplyLPageDTO;
 import com.example.member.dto.MemberReplyDTO;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberReplyDAO {
 
 	Integer totalCountReply(Integer boardCd);
 
-	BoardReplyLPageDTO boardReplyList(BoardReplyLPageDTO boardReplyListDTO);
+	List<MemberReplyDTO> boardReplyList(BoardReplyLPageDTO boardReplyListDTO);
 
 	Integer addReply(MemberReplyDTO memberReplyDTO);
 
-	Integer depthMaxValue(Integer parentRpl);
+	Integer addSubReply(MemberReplyDTO memberReplyDTO);
 
+	Integer depthMaxValue(MemberReplyDTO memberReplyDTO);
+
+	Integer updateReply(MemberReplyDTO memberReplyDTO);
+
+	Integer deleteReply(MemberReplyDTO memberReplyDTO);
 
 
 }

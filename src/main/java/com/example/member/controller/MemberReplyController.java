@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.common.dto.ComResponseDTO;
 import com.example.common.dto.ComResponseEntity;
 import com.example.member.dto.BoardReplyLPageDTO;
-import com.example.member.dto.MemberBoardDTO;
 import com.example.member.dto.MemberReplyDTO;
 import com.example.member.service.MemberReplyService;
 
@@ -42,36 +41,36 @@ public class MemberReplyController {
 	public ComResponseEntity<Integer> addReply(@PathVariable(name = "boardCd")Integer boardCd,
 			@RequestBody MemberReplyDTO memberReplyDTO) {
 		memberReplyDTO.setBoardCd(boardCd);
-		Integer addReply = memberReplyService.addReply(memberReplyDTO);
+		memberReplyService.addReply(memberReplyDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}
 
 	// 대댓글 만들기
 	@ApiOperation(value = "addSubReply")
 	@PostMapping("check/board/addReply/{boardCd}/{rplCd}")
-	public ComResponseEntity<MemberReplyDTO> createSubReply(@PathVariable(name = "boardCd")Integer boardCd,
+	public ComResponseEntity<Integer> addSubReply(@PathVariable(name = "boardCd")Integer boardCd,
 			@PathVariable(name = "rplCd") Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
 
-		memberReplyDTO = memberReplyService.addSubReply(boardCd, rplCd,memberReplyDTO);
-		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판", memberReplyDTO));
+		memberReplyService.addSubReply(boardCd, rplCd,memberReplyDTO);
+		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}
 
 	// 댓글 수정
 	@ApiOperation(value = "updateReply")
 	@PutMapping("check/board/updateReply/{boardCd}/{rplCd}")
-	public ComResponseEntity<MemberReplyDTO> updateReply(@PathVariable(name = "boardCd") Integer boardCd,
-			@PathVariable(name = "rplCd")Integer rplCd) {
-		MemberReplyDTO updateReply = memberReplyService.updateReply(boardCd, rplCd);
-		return new ComResponseEntity<>(new ComResponseDTO<>("게시글수정", updateReply));
+	public ComResponseEntity<Integer> updateReply(@PathVariable(name = "boardCd") Integer boardCd,
+			@PathVariable(name = "rplCd")Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
+		memberReplyService.updateReply(boardCd, rplCd,memberReplyDTO);
+		return new ComResponseEntity<>(new ComResponseDTO<>("게시글수정"));
 	}
 
 	// 게시판삭제
 	@ApiOperation(value = "deleteReply")
 	@DeleteMapping("check/board/deleteReply/{boardCd}/{rplCd}")
-	public ComResponseEntity<MemberReplyDTO> deleteReply(@PathVariable(name = "boardCd") Integer boardCd,
+	public ComResponseEntity<Integer> deleteReply(@PathVariable(name = "boardCd") Integer boardCd,
 			@PathVariable(name = "rplCd")Integer rplCd) {
-		MemberReplyDTO deleteReply = memberReplyService.deleteReply(boardCd, rplCd);
-		return new ComResponseEntity<>(new ComResponseDTO<>("게시글삭제", deleteReply));
+		memberReplyService.deleteReply(boardCd, rplCd);
+		return new ComResponseEntity<>(new ComResponseDTO<>("게시글삭제"));
 	}
 
 }

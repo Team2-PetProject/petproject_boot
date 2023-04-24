@@ -89,7 +89,7 @@
 		)
 		VALUES
 		(
-		#{boardCd}
+		TB_BOARD_SEQ.NEXTVAL
 		,#{mbId}
 		,#{title}
 		,#{cn}

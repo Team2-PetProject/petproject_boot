@@ -2,8 +2,10 @@ package com.example.member.dto;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+@Alias("MemberBoardPageDTO")
 public class MemberBoardPageDTO {
-		
+
 		private List<MemberBoardListDTO> list;
 		private Integer curPage; //현재 볼 페이지 번호
 		private Integer perPage = 10; //한 페이지에 보여질 목록 수
@@ -53,6 +55,6 @@ public class MemberBoardPageDTO {
 		public void setTotalPage(Integer totalPage) {
 			this.totalPage = totalPage;
 		}
-		
-		
+
+
 }

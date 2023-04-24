@@ -43,7 +43,7 @@ public class OrderService {
 	public List<OrderDoneDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
 		String mbId = SessionAttributeManager.getMemberId();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
-		
+
 		Integer dlvyCd;
 		Integer inv = invRandom();
 		Integer searchCountTItCd = orderDao.searchCount(mbId);
@@ -55,14 +55,14 @@ public class OrderService {
 		} else {
 			logger.info("maxOrdCd Value" + maxOrdCd + "OrderInfoDTO : " +orderInfoDTO);
 		}
-		
-		
+
+
 		if (searchCountTItCd == null || searchCountTItCd == 0) {
 			searchCountTItCd = 1;
-		} 
-		
+		}
+
 		Integer tItCd = searchCountTItCd + 1;
-		
+
 		List<Integer> dlvyCds = new ArrayList<Integer>();
 		for (int i = 0; i < cartCds.size(); i++) {
 			inv = inv + i;
@@ -79,7 +79,7 @@ public class OrderService {
 		cartOrdDTO.setOrdCd(ordCd);
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
-		
+
 		for (Integer cartCd : cartCds) {
 			cartOrdSet = orderDao.cartOrdSet(cartCd);
 			cartOrdDTO.setCartCd(cartCd);
@@ -101,7 +101,7 @@ public class OrderService {
 				if (upDateDlvyCd>0 ) {
 					orderDao.updateTM(upDateDlvyCd);
 				}else {
-					logger.info("upDateDlvyCd Value" + upDateDlvyCd);
+					logger.error("upDateDlvyCd Value" + upDateDlvyCd);
 				}
 			}
 		}

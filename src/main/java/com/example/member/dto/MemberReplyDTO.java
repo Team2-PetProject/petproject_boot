@@ -4,86 +4,69 @@ import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("MemberBoardDTO")
+@Alias("MemberReplyDTO")
 public class MemberReplyDTO {
 
-	private Double rplCd;
+	private Integer rplCd;
 	private String mbId;
 	private Double boardCd;
 	private String rplCn;
-	private Double parentRpl;
+	private Integer parentRpl;
 	private Date crtTm;
 	private Date upTm;
-	private Double depth;
-
-	public Double getRplCd() {
+	private Integer depth;
+	public Integer getRplCd() {
 		return rplCd;
 	}
-
-	public void setRplCd(Double rplCd) {
-		this.rplCd = rplCd;
-	}
-
 	public String getMbId() {
 		return mbId;
 	}
-
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
-	}
-
 	public Double getBoardCd() {
 		return boardCd;
 	}
-
-	public void setBoardCd(Double boardCd) {
-		this.boardCd = boardCd;
-	}
-
 	public String getRplCn() {
 		return rplCn;
 	}
-
-	public void setRplCn(String rplCn) {
-		this.rplCn = rplCn;
-	}
-
-	public Double getParentRpl() {
+	public Integer getParentRpl() {
 		return parentRpl;
 	}
-
-	public void setParentRpl(Double parentRpl) {
-		this.parentRpl = parentRpl;
-	}
-
 	public Date getCrtTm() {
 		return crtTm;
 	}
-
-	public void setCrtTm(Date crtTm) {
-		this.crtTm = crtTm;
-	}
-
 	public Date getUpTm() {
 		return upTm;
 	}
-
+	public Integer getDepth() {
+		return depth;
+	}
+	public void setRplCd(Integer rplCd) {
+		this.rplCd = rplCd;
+	}
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
+	}
+	public void setBoardCd(Double boardCd) {
+		this.boardCd = boardCd;
+	}
+	public void setRplCn(String rplCn) {
+		this.rplCn = rplCn;
+	}
+	public void setParentRpl(Integer parentRpl) {
+		this.parentRpl = parentRpl;
+	}
+	public void setCrtTm(Date crtTm) {
+		this.crtTm = crtTm;
+	}
 	public void setUpTm(Date upTm) {
 		this.upTm = upTm;
 	}
-
-	public Double getDepth() {
-		return depth;
-	}
-
-	public void setDepth(Double depth) {
+	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MemberBoardDTO [rplCd=");
+		builder.append("MemberReplyDTO [rplCd=");
 		builder.append(rplCd);
 		builder.append(", mbId=");
 		builder.append(mbId);
@@ -102,5 +85,6 @@ public class MemberReplyDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 }

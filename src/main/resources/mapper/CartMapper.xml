@@ -75,7 +75,7 @@
 		FROM 
 			TB_CART
 		WHERE
-			CART_CD = #{CART_CD}
+			CART_CD = #{cartCd}
 	</delete>
 
 	<delete id="checkDelete" parameterType="Integer">
@@ -83,7 +83,7 @@
 		FROM
 			TB_CART
 		WHERE
-			CART_CD = #{CART_CD}
+			CART_CD = #{cartCd}
 	</delete>
 
 	<update id="amountUpdate" parameterType="com.example.CartOrder.dto.AmountUpdateDTO">

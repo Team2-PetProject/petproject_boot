@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.member.dao.MemberBoardDAO.java">
+
+	<select id="totalCount" parameterType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_BOARD
+	</select>
+
+	<select id="boardList" parameterType="MemberBoardPageDTO"
+		resultType="MemberBoardPageDTO">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		ROWNUM AS IDX
+		,BOARD.*
+		(
+		SELECT
+		BOARD_CD
+		,MB_ID
+		,TITLE
+		,CN
+		,RPL_CNT
+		,CRT_TM
+		,UP_TM
+		FROM
+		TB_BOARD
+		ORDER BY CRT_TM DESC
+		)
+		AS BOARD
+		)
+		WHERE
+		IDX
+		BETWEEN
+		#{startIdx}
+		AND
+		#{endIdx}
+	</select>
+
+	<select id="boardSearch" parameterType="MemberBoardSearchDTO"
+		resultType="MemberBoardSearchDTO">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		ROWNUM AS IDX
+		,BOARD.*
+		(
+		SELECT
+		BOARD_CD
+		,MB_ID
+		,TITLE
+		,CN
+		,RPL_CNT
+		,CRT_TM
+		,UP_TM
+		FROM
+		TB_BOARD
+		WHERE
+		TITLE = #{title}
+		ORDER BY CRT_TM DESC
+		) AS BOARD
+		)
+		WHERE
+		IDX
+		BETWEEN
+		#{startIdx}
+		AND
+		#{endIdx}
+	</select>
+
+	<insert id="addBoard" parameterType="MemberBoardDTO">
+		INSERT INTO
+		TB_BOARD
+		(
+		BOARD_CD
+		,MB_ID
+		,TITLE
+		,CN
+		,RPL_CNT
+		,CRT_TM
+		)
+		VALUES
+		(
+		#{boardCd}
+		,#{mbId}
+		,#{title}
+		,#{cn}
+		,#{rplCnt}
+		,#{crtTm}
+		)
+	</insert>
+
+	<update id="updateBoard" parameterType="MemberBoardDTO">
+		UPDATE
+		TB_BOARD
+		SET
+		CN = #{cn}
+		WHERE
+		BOARD_CD = #{boardCd}
+
+	</update>
+
+	<delete id="deleteBoard" parameterType="MemberBoardDTO">
+		DELETE
+		FROM
+		TB_BOARD
+		WHERE
+		BOARD_CD = #{boardCd}
+	</delete>
+
+</mapper>

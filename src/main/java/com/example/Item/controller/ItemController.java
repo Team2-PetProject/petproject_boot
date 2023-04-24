@@ -40,7 +40,7 @@ public class ItemController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("카테고리별 상품 정보", itemLists));
 	}
 
-	@GetMapping("/itemRetrieve/{itCd}") // 단순 조회 부분
+	@GetMapping("/itemRetrieve/{itCd}") 
 	@ApiOperation(value = "상품 상세히 보기")
 	public ComResponseEntity<ItemRetrieveDTO> itemRetrieve(@PathVariable("itCd") Integer itCd) {
 		ItemRetrieveDTO itemRetrieveDTO = itemService.selectItemRetrieve(itCd);

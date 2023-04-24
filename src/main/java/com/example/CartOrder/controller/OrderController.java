@@ -32,6 +32,7 @@ public class OrderController {
 	OrderService orderService;
 	OrderHistoryPageDTO orderSearchPage;
 
+	//상품자세히 보기에서 주문
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping(value = { "/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}",
@@ -50,11 +51,11 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문상품 정보", itemJoinList));
 	}
 
+	//장바구니에서 주문
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
 	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
-//		String mbId = SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
 
@@ -78,6 +79,7 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 
+	//처음 주문내역 조회
 	@GetMapping("/check/orderSearch")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
@@ -88,6 +90,7 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
 	}
 
+	//상세 주문내역 조회
 	@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
 	@ResponseBody
 	@ApiOperation(value = "daySearch")
@@ -102,6 +105,7 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
 	}
 
+	//주문 상태 페이지
 	@GetMapping
 	@ResponseBody
 	@ApiOperation(value = "dlvyState")

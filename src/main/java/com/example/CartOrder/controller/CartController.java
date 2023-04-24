@@ -31,7 +31,8 @@ import io.swagger.annotations.ApiOperation;
 public class CartController {
 	@Autowired
 	CartService cartService;
-
+	
+	//장바구니 리스트
 	@GetMapping("/check/cartList")
 	@ApiOperation(value = "cartList")
 	@CrossOrigin
@@ -40,6 +41,7 @@ public class CartController {
 		return ResponseEntity.ok(cartLists);
 	}
 
+	//장바구니 추가
 	@PostMapping("/check/cartAdd")
 	@ApiOperation(value = "cartAdd")
 	public ComResponseEntity<Map<String, Object>> CartAdd(@RequestBody CartDTO cart) {
@@ -52,16 +54,15 @@ public class CartController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 추가 성공", cartAdd));
 	}
 
-	// 한개 삭제 메소드
+	// 한개 삭제
 	@DeleteMapping("/check/cartDelete/{cartCd}")
 	@ApiOperation(value = "cartDelete")
 	public ComResponseEntity<Void> cartDelete(@PathVariable("cartCd") Integer cartCd) {
-		// cartCd로 바로 삭제
 		cartService.cartDelete(cartCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 상품 삭제 성공"));
 	}
 
-	// 전체 삭제
+	// 선택 삭제
 	@DeleteMapping(value = "/check/checkDelete")
 	@ApiOperation(value = "checkDelete")
 	public ComResponseEntity<Void> checkDelete(@RequestParam("cartCd") List<Integer> list) {

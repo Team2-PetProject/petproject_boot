@@ -28,7 +28,7 @@ public class FavoriteController {
 	@Autowired
 	ItemService itemService;
 
-	// 수정완
+	// 상품 찜 목록
 	@GetMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteList")
@@ -37,6 +37,7 @@ public class FavoriteController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("찜 상품 정보", favoriteLists));
 	}
 
+	//상품 찜 리스트에 상품 추가
 	@PostMapping("/check/favorite/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteAdd")
@@ -49,6 +50,7 @@ public class FavoriteController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("찜 상품 추가"));
 	}
 
+	//상품 찜 리스트에서 삭제
 	@DeleteMapping("/check/favorite/itCd/{itCd}")
 	@ResponseBody
 	@ApiOperation(value = "favoriteDelete")

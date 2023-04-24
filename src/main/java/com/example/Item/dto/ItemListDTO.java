@@ -5,6 +5,7 @@ public class ItemListDTO {
 	private String cat;
 	private Integer startIdx;
 	private Integer endIdx;
+	
 	public String getCat() {
 		return cat;
 	}

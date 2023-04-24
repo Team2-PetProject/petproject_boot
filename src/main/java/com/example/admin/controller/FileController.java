@@ -24,6 +24,8 @@ public class FileController {
 	@Autowired 
 	FileUploadService fileUploadService; 
 	 
+	
+	//이미지 보기
 	@GetMapping("/view/{imgCd}")
 	@ApiOperation(value = "이미지 보기")
 	public ResponseEntity<byte[]> findOne(@PathVariable Integer imgCd){
@@ -32,9 +34,9 @@ public class FileController {
 		headers.add("Content-Type", dto.getDi());
 		headers.add("Content-Length", String.valueOf(dto.getFl().length));
 		return new ResponseEntity<byte[]>(dto.getFl(), headers, HttpStatus.OK);
-//		return new ComResponseEntity<>(new ComResponseDTO<>("이미지 보기", dto));
 	}
 	
+	//상세이미지 보기
 	@GetMapping("/detailView/{imgCd}")
 	@ApiOperation(value = "상세이미지 보기")
 	public ResponseEntity<byte[]> findDetail(@PathVariable Integer imgCd){

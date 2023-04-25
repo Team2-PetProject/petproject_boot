@@ -136,6 +136,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(commonInfo());
     }
+	
     private Set<String> getConsumeContentTypes(){
     	Set<String> consumes = new HashSet<String>();
     	consumes.add("application/json;charset=UTF-8");

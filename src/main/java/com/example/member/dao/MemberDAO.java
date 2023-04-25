@@ -22,5 +22,4 @@ public interface MemberDAO {
 
 	public Integer pwUpdate(LoginDTO loginDTO);
 
-	
 }

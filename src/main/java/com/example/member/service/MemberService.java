@@ -85,5 +85,6 @@ public class MemberService {
 		Integer n = memberDao.pwUpdate(loginDTO);
 		return n;
 	}
+	
 
 }// end class

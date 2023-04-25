@@ -3,7 +3,6 @@ package com.example.member.service;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -11,9 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
-
-import com.example.member.controller.MemberController;
+import org.springframework.stereotype.Service;	
 
 @Service
 public class EmailService {
@@ -54,9 +51,9 @@ public class EmailService {
     public MimeMessage createEmailForm(String email) throws MessagingException, UnsupportedEncodingException {
 
         createCode(); //인증 코드 생성
-        String setFrom = "보내는 사람 이메일"; //application.yml - mail 에 설정한 자신의 이메일 주소(보내는 사람)
+        String setFrom = "보내는 사람 이메일 주소"; //email-config에 설정한 자신의 이메일 주소(보내는 사람)
         String toEmail = email; //받는 사람
-        String title = "Kkosunnae 인증 번호"; //제목
+        String title = "Kkosunnae 이메일 인증 번호"; //제목
 
         MimeMessage message = emailSender.createMimeMessage();
         message.addRecipients(MimeMessage.RecipientType.TO, email); //보낼 이메일 설정

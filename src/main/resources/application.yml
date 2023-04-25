@@ -22,7 +22,7 @@ spring:
 #          allow-credentials: true
 #          max-age: 3600
 
-# email 인증
+#Naver smtp server 사용
   mail:
     host: smtp.naver.com
     port: 465
@@ -32,7 +32,7 @@ spring:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true
       mail.smtp.ssl.trust: smtp.naver.com
-      mail.smtp.starttls.enable: true      
+      mail.smtp.starttls.enable: true 
 
 
 #myBatis 설정 : *로 설정하면 해당 위치에 있는 모든 mapper 등록

@@ -10,15 +10,12 @@ public class EmailAuthRequestDTO {
 	private String email1;
 	private String email2;
 	
-	
-	
 	public String getMbId() {
 		return mbId;
 	}
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
-	
 	public String getPw() {
 		return pw;
 	}

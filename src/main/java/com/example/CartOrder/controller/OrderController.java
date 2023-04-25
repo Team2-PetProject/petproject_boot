@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.CartOrder.dto.CartOrdJoinDTO;
 import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
-import com.example.CartOrder.dto.OrderSearchListDTO;
-import com.example.CartOrder.dto.SearchResultDTO;
+import com.example.CartOrder.dto.OrderSearchPagingDTO;
 import com.example.CartOrder.service.OrderService;
 import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
@@ -31,7 +31,6 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 
-	// 상품자세히 보기에서 주문
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping(value = { "/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}",
@@ -44,16 +43,17 @@ public class OrderController {
 		cartOrdJoinDTO.setAmount(amount);
 		cartOrdJoinDTO.setOptCd(optCd);
 		cartOrdJoinDTO.setMbId(mbId);
-		orderService.fastOrderConfirm(cartOrdJoinDTO);
+		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
 		List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문상품 정보", itemJoinList));
 	}
 
-	// 장바구니에서 주문
+	// 주문하기
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
 	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
+		String mbId = SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
 
@@ -72,46 +72,46 @@ public class OrderController {
 	@PostMapping("/check/orderDone")
 	public ComResponseEntity<List<OrderDoneDTO>> orderDone(@RequestParam("cartCd") List<Integer> cartCd,
 			@RequestBody OrderInfoDTO orderInfoDTO) {
-		System.err.println(orderInfoDTO);
 		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd, orderInfoDTO);
+		System.err.println(cartOrdDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 
-	// 처음 주문내역 조회
 	@GetMapping("/check/orderSearch")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
-	public ComResponseEntity<OrderSearchDTO> orderSearch(
-			@PathVariable(name = "curPage", required = false) Integer curPage) {
-		if (curPage == null || curPage == 0) {
-			curPage = 1;
-		}
-		String mbId = SessionAttributeManager.getMemberId();
-		Integer totalCount = orderService.totalCount(mbId);
-		OrderSearchDTO orderSearchDTO = searchPaging(curPage, totalCount,mbId);
-		OrderSearchDTO orderSearch = orderService.orderSearch(orderSearchDTO);
-		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearch));
+	public ComResponseEntity<OrderSearchPagingDTO> orderSearch(
+			@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage) {
+		OrderSearchPagingDTO orderSearchPagingDTO = new OrderSearchPagingDTO();
+		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
+
+		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage);
+		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
+		orderSearchPagingDTO.setList(orderSearchList);
+		System.err.println(orderSearchPagingDTO);
+
+		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchPagingDTO));
 	}
 
-	// 상세 주문내역 조회
 	@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
 	@ResponseBody
 	@ApiOperation(value = "daySearch")
-	public ComResponseEntity<List<SearchResultDTO>> daySearch(
-			@PathVariable(name = "curPage", required = false) Integer curPage,
+	public ComResponseEntity<OrderSearchPagingDTO> daySearch(
+			@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
 			@PathVariable(name = "itNm", required = false) String itNm, @PathVariable("startDay") String startDay,
 			@PathVariable("endDay") String endDay) {
-		if (curPage == null || curPage == 0) {
-			curPage = 1;
-		}
-		String mbId = SessionAttributeManager.getMemberId();
-		Integer totalCount = orderService.totalCount(mbId);
-
-		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회"));
+		OrderSearchPagingDTO orderSearchPagingDTO = new OrderSearchPagingDTO();
+		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
+		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage);
+		orderSearchDTO.setItNm(itNm);
+		orderSearchDTO.setStartDay(startDay);
+		orderSearchDTO.setEndDay(endDay);
+		List<OrderSearchDTO> itemSearchList = orderService.daySearch(orderSearchDTO);
+		orderSearchPagingDTO.setList(itemSearchList);
+		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", orderSearchPagingDTO));
 	}
 
-	// 주문 상태 페이지
-	@GetMapping
+	@GetMapping("/check/dlvyState/{dlvyCd}")
 	@ResponseBody
 	@ApiOperation(value = "dlvyState")
 	private ComResponseEntity<List<DeliveryInfoDTO>> dlvyState(@PathVariable("dlvyCd") Integer dlvyCd) {
@@ -119,18 +119,17 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 	}
 
-	private OrderSearchDTO searchPaging(Integer curPage, Integer totalCount, String mbId) {
-		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
-		Integer perPage = orderSearchDTO.getPerPage();
-		Integer totalPage = (int) Math.ceil((double) totalCount / (double) perPage);
-		Integer startIdx = ((curPage - 1) * perPage) + 1;
-		Integer endIdx = curPage * perPage;
-		orderSearchDTO.setCurPage(curPage);
-		orderSearchDTO.setStartIdx(startIdx);
-		orderSearchDTO.setEndIdx(endIdx);
-		orderSearchDTO.setTotalPage(1);
-		orderSearchDTO.setMbId(mbId);
-		return orderSearchDTO;
+	private void setPaging(OrderSearchPagingDTO orderSearchPagingDTO, OrderSearchDTO orderSearchDTO, Integer curPage) {
+		String mbId = SessionAttributeManager.getMemberId();
+		Integer perPage = orderSearchPagingDTO.getPerPage();
+	    Integer totalCount = orderService.totalCount(mbId);
+	    Integer totalPage = (int) Math.ceil(totalCount / perPage);
+	    Integer startIdx = (curPage - 1) * perPage;
+	    Integer endIdx = perPage * curPage - 1;
+	    orderSearchDTO.setMbId(mbId);
+	    orderSearchDTO.setStartIdx(startIdx);
+	    orderSearchDTO.setEndIdx(endIdx);
+	    orderSearchPagingDTO.setCurPage(curPage);
+	    orderSearchPagingDTO.setTotalPage(totalPage);
 	}
-
 }

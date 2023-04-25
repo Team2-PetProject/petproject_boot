@@ -28,6 +28,7 @@ public class MemberReplyController {
 	@GetMapping("check/board/{boardCd}/{curPage}")
 	public ComResponseEntity<BoardReplyLPageDTO> boardReplyList(@PathVariable(name = "boardCd") Integer boardCd,
 			@PathVariable(name = "curPage", required = false) Integer curPage) {
+		System.out.println(boardCd);
 		if (curPage == 0) {
 			curPage = 1;
 		}

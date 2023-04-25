@@ -107,10 +107,10 @@ public class MemberController {
 		return new ComResponseEntity<Void>(comResponseDTO);
 	}
 
-	@GetMapping("check/mypage/{mbId}")
+	@GetMapping("check/mypage")
 	@ApiOperation(value = "회원정보보기")
-	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId) {
-
+	public ComResponseEntity<MemberDTO> mypage() {
+		String mbId = SessionAttributeManager.getMemberId();
 		MemberDTO memberDTO = service.mypage(mbId);
 		ComResponseDTO<MemberDTO> comResponseDTO = new ComResponseDTO<MemberDTO>();
 		comResponseDTO.setMessage("회원정보보기");

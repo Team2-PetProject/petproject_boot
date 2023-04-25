@@ -52,7 +52,9 @@ public class MemberBoardController {
 	@ApiOperation(value = "addBoard")
 	@PostMapping("check/board/addBoard")
 	public ComResponseEntity<Integer> addBoard(@RequestBody MemberBoardDTO memberBoardDTO) {
+		
 		memberBoardService.addBoard(memberBoardDTO);
+		System.out.println(memberBoardDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}
 

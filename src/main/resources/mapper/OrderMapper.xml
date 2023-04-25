@@ -279,7 +279,7 @@
             ,#{amount}
             ,#{price}
             ,#{imgCd}
-            ,#{optCd}
+            ,#{optCd, jdbcType=INTEGER}
  	       )
 
    </insert>

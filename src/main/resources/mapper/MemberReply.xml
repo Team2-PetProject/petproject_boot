@@ -65,7 +65,7 @@
 		,#{mbId}
 		,#{boardCd}
 		,#{rplCn}
-		,#{parentRpl}
+		,#{parentRpl, jdbcType=INTEGER}
 		,1
 		,SYSDATE
 		,SYSDATE

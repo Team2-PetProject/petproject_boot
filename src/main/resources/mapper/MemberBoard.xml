@@ -108,8 +108,8 @@
 		,#{title}
 		,#{cn}
 		,#{rplCnt}
-		,#{crtTm}
-		,NULL
+		,sysdate
+		,sysdate
 		)
 	</insert>
 

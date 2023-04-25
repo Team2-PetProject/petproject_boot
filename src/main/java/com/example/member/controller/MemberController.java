@@ -129,10 +129,10 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping("check/mypage/{mbId}")
+	@GetMapping("check/mypage")
 	@ApiOperation(value = "회원정보보기")
-	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId){
-		
+	public ComResponseEntity<MemberDTO> mypage(){
+		String mbId = SessionAttributeManager.getMemberId();
 		MemberDTO memberDTO = service.mypage(mbId);
 		ComResponseDTO<MemberDTO> comResponseDTO = new ComResponseDTO<MemberDTO>();
 		comResponseDTO.setMessage("회원정보보기");
@@ -144,7 +144,6 @@ public class MemberController {
 	@PutMapping("check/update")
 	@ApiOperation(value = "회원정보수정")
 	public ComResponseEntity<Void> update(@RequestBody MemberDTO memberDTO){
-		
 		Integer n = service.memberUpdate(memberDTO);
 		
 		logger.info("업데이트갯수>>>>>>"+n);

@@ -17,6 +17,7 @@ import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
+import com.example.common.SessionAttributeManager;
 
 @Service
 public class OrderService {
@@ -42,13 +43,12 @@ public class OrderService {
 
 	@Transactional
 	public List<OrderDoneDTO> orderDone(List<Integer> cartCds, OrderInfoDTO orderInfoDTO) {
-//		String mbId=SessionAttributeManager.getMemberId();
-		String mbId = "1";
+		String mbId=SessionAttributeManager.getMemberId();
 		Integer inv = invRandom();
 		DeliveryInfoDTO dlvyInfo = new DeliveryInfoDTO();
 		dlvyInfo.setInv(inv);
 		Integer dlvyCd = orderDao.dlvyInfo(dlvyInfo);
-		orderInfoDTO.setDlvyCd(dlvyCd);
+		orderInfoDTO.setDlvyCd(dlvyInfo.getDlvyCd());
 		Integer ordCd = orderDao.ordInfo(orderInfoDTO);
 		logger.info(dlvyCd+" ||");
 		Integer searchCountTItCd = orderDao.searchCount();
@@ -58,7 +58,7 @@ public class OrderService {
 		Integer tItCd = searchCountTItCd + 1;
 		CartOrdDTO cartOrdDTO = new CartOrdDTO();
 		cartOrdDTO.settItCd(tItCd);
-		cartOrdDTO.setOrdCd(ordCd);
+		cartOrdDTO.setOrdCd(orderInfoDTO.getOrdCd());
 		cartOrdDTO.setMbId(mbId);
 		CartOrdJoinDTO cartOrdSet = new CartOrdJoinDTO();
 		for (Integer cartCd : cartCds) {
@@ -78,7 +78,9 @@ public class OrderService {
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
 
 		}
-		if(dlvyCd>1) {orderDao.updateTM(dlvyCd);}
+		if (dlvyCd>1) {
+			dlvyCd=dlvyCd-1;
+		}
 		orderDao.updateTM(dlvyCd);
 		List<OrderDoneDTO> valueList = orderDao.orderDoneValueList(tItCd);
 		return valueList;

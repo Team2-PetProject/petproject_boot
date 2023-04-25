@@ -21,6 +21,19 @@ spring:
 #          allowed-headers: "*"
 #          allow-credentials: true
 #          max-age: 3600
+
+# email 인증
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: 아이디@naver.com
+    password: 비밀번호
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.naver.com
+      mail.smtp.starttls.enable: true
+      
       
 
 

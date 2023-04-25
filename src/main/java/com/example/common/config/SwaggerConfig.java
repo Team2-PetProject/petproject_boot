@@ -123,6 +123,19 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(commonInfo());
     }
+	@Bean
+    public Docket emailApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+        		.consumes(getConsumeContentTypes())
+        		.produces(getProduceContentTypes())
+                .groupName("email")
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/app/emailConfirm/**"))
+                .build()
+                .apiInfo(commonInfo());
+    }
     private Set<String> getConsumeContentTypes(){
     	Set<String> consumes = new HashSet<String>();
     	consumes.add("application/json;charset=UTF-8");

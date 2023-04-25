@@ -2,17 +2,13 @@ package com.example.CartOrder.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,13 +30,11 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-
 	OrderHistoryPageDTO orderSearchPage;
+	
 	@ApiOperation(value = "fastOrderConfirm")
 	@ResponseBody
 	@PostMapping(value= {"/check/orderConfirm/{itCd}/{amount}/optCd/{optCd}", "/check/orderConfirm/{itCd}/{amount}/optCd"})
-//	@RequestMapping("/check/orderConfirm/{itCd}/{amount}/{optCd}")
-//	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO){
 	public ComResponseEntity<List<CartOrdJoinDTO>> fastOrderConfirm(@PathVariable("itCd") Integer itCd,
 			@PathVariable("amount") Integer amount,
 			@PathVariable(name="optCd" , required = false) Integer optCd){
@@ -56,11 +50,10 @@ public class OrderController {
 	}
 
 
-
-
+	//주문하기
 	@ApiOperation(value = "orderConfirm")
 	@ResponseBody
-	@GetMapping("/check/orderConfirm/")
+	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
 		String mbId=SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
@@ -84,11 +77,10 @@ public class OrderController {
 	(@RequestParam("cartCd") List<Integer> cartCd, @RequestBody OrderInfoDTO orderInfoDTO) {
 		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd,orderInfoDTO);
 		System.err.println(cartOrdDTO);
+		System.out.println("orderDone>>>>>>>>>>>"+cartOrdDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
-
-
-
+	
 	@GetMapping("/check/orderSearch/")
 	@ResponseBody
 	@ApiOperation(value = "orderSearch")
@@ -98,7 +90,7 @@ public class OrderController {
 		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
 		System.err.println(orderSearchList);
 	   return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchList));
-	}
+	} 
 
 
 		@GetMapping("/check/orderSearch/{startDay}/{endDay}/{itNm}")
@@ -117,10 +109,11 @@ public class OrderController {
 		   return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 조회", itemSearchList));
 		}
 
-		@GetMapping
+		@GetMapping("/check/dlvyState/{dlvyCd}")
 		@ResponseBody
 		@ApiOperation(value = "dlvyState")
 		private ComResponseEntity<List<DeliveryInfoDTO>> dlvyState (@PathVariable("dlvyCd") Integer dlvyCd) {
+			System.out.println("ddd");
 			List<DeliveryInfoDTO> deliveryInfoList =orderService.dlvyState(dlvyCd);
 			return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 		}
@@ -138,10 +131,8 @@ public class OrderController {
 		   Integer totalCount = orderService.totalCount(mbId);
 		   Integer perPage = orderSearchPage.getPerPage();
 		   Integer totalPage = (int)Math.ceil(totalCount / perPage);
-		   Integer startIdx = (curPage-1) * perPage + 1;
-		   System.err.println("startIdx>>>>"+startIdx);
-		   Integer endIdx = perPage*curPage;
-		   System.err.println("endIdx>>>>"+endIdx);
+		   Integer startIdx = (curPage-1) * perPage;
+		   Integer endIdx = perPage*curPage-1;
 		   OrderSearchDTO orderSearchDTO= new OrderSearchDTO();
 		   orderSearchDTO.setMbId(mbId);
 		   orderSearchDTO.setPerPage(perPage);

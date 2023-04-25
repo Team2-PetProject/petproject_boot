@@ -17,6 +17,10 @@ public interface MemberDAO {
 	public MemberDTO login(LoginDTO loginDTO);
 
 	public Integer memberUpdate(MemberDTO memberDTO);
+	
+	public String idSearch(MemberDTO mDto);
+
+	public Integer pwUpdate(LoginDTO loginDTO);
 
 	
 }

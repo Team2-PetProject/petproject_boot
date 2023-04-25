@@ -91,9 +91,9 @@
 
 	<select id="countrplCnt" parameterType="Integer" resultType="Integer">
 	SELECT
-	MAX(RPL_CNT)
+	MAX(RPL_CD)
 	FROM
-	TB_BOARD
+	TB_REPLY
 	WHERE
 	BOARD_CD = #{boardCd}
 	</select>

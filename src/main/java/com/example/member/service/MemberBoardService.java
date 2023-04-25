@@ -35,7 +35,8 @@ public class MemberBoardService {
 
 	public MemberBoardDTO boardSelectOne(Integer boardCd) {
 		Integer rplCnt = memberBoardDAO.countrplCnt(boardCd);
-		MemberBoardDTO boardSelectOne = memberBoardDAO.boardSelectOne(boardCd);
+		MemberBoardDTO boardSelectOne = new MemberBoardDTO();
+		boardSelectOne = memberBoardDAO.boardSelectOne(boardCd);
 		boardSelectOne.setRplCnt(rplCnt);
 		return boardSelectOne;
 	}

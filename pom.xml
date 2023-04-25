@@ -115,6 +115,12 @@
 		<artifactId>spring-boot-configuration-processor</artifactId>
 		<optional>true</optional>
 	</dependency>
+	<!-- Email 전송 위한 -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-mail</artifactId>
+	</dependency>
+	<!--  -->
 	</dependencies>
 
 	<build>

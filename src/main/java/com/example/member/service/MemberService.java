@@ -72,5 +72,18 @@ public class MemberService {
 		Integer n = memberDao.memberUpdate(memberDTO);
 		return n;
 	}
+	
+	public String idSearch(MemberDTO mDto) {
+		String mbId = memberDao.idSearch(mDto);
+		return mbId;
+	}
+
+	public Integer pwUpdate(LoginDTO loginDTO) {
+		String pw = loginDTO.getPw();
+		pw = encryptSHA512(pw);
+		loginDTO.setPw(pw);
+		Integer n = memberDao.pwUpdate(loginDTO);
+		return n;
+	}
 
 }// end class

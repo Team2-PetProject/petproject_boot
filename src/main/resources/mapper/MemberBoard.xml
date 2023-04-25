@@ -89,6 +89,32 @@
 		#{endIdx}
 	</select>
 
+	<select id="countrplCnt" parameterType="Integer" resultType="Integer">
+	SELECT
+	MAX(RPL_CNT)
+	FROM
+	TB_BOARD
+	WHERE
+	BOARD_CD = #{boardCd}
+
+	</select>
+
+	<select id="boardSelectOne" parameterType="Integer" resultType="MemberBoardDTO">
+	SELECT
+	BOARD_CD
+	,MB_ID
+	,TITLE
+	,CN
+	,RPL_CNT
+	,CRT_TM
+	,UP_TM
+	FROM
+	TB_BOARD
+	WHERE
+	BOARD_CD = #{boardCd}
+	</select>
+
+
 	<insert id="addBoard" parameterType="MemberBoardDTO">
 		INSERT INTO
 		TB_BOARD

@@ -33,6 +33,13 @@ public class MemberBoardService {
 		return memberBoardPageDTO;
 	}
 
+	public MemberBoardDTO boardSelectOne(Integer boardCd) {
+		Integer rplCnt = memberBoardDAO.countrplCnt(boardCd);
+		MemberBoardDTO boardSelectOne = memberBoardDAO.boardSelectOne(boardCd);
+		boardSelectOne.setRplCnt(rplCnt);
+		return boardSelectOne;
+	}
+
 	public Integer addBoard(MemberBoardDTO memberBoardDTO) {
 		String mbId = SessionAttributeManager.getMemberId();
 		memberBoardDTO.setMbId(mbId);
@@ -72,4 +79,7 @@ public class MemberBoardService {
 
 		return memberBoardPageDTO;
 	}
+
+
+
 }

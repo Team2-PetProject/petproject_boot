@@ -25,4 +25,8 @@ public interface MemberBoardDAO {
 
 	Integer deleteBoard(MemberBoardDTO memberBoardDTO);
 
+	Integer countrplCnt(Integer boardCd);
+
+	MemberBoardDTO boardSelectOne(Integer boardCd);
+
 }

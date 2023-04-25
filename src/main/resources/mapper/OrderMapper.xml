@@ -89,7 +89,7 @@
    </select>
 
    <select id="orderSearch" parameterType="OrderSearchDTO"
-      resultType="OrderSearchListDTO">
+      resultType="OrderSearchDTO">
       SELECT
       *
       FROM
@@ -136,7 +136,7 @@
                #{endIdx}
    </select>
 
-   <select id="daySearch" parameterType="OrderSearchDTO" resultType="SearchResultDTO">
+   <select id="daySearch" parameterType="OrderSearchDTO" resultType="OrderSearchDTO">
       SELECT
       *
       FROM

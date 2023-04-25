@@ -125,9 +125,11 @@
 		RPL_CD = #{rplCd}
 	</update>
 
-	<delete id="deleteReply" parameterType="memberReplyDTO">
-		DELETE
+	<update id="deleteReply" parameterType="memberReplyDTO">
+		UPDATE
 		TB_REPLY
+		SET
+		RPL_CN = NULL
 		WHERE
 		MB_ID
 		= #{mbId}
@@ -135,6 +137,6 @@
 		BOARD_CD = #{boardCd}
 		AND
 		RPL_CD = #{rplCd}
-	</delete>
+	</update>
 
 </mapper>

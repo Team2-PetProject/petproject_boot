@@ -113,17 +113,16 @@ public class OrderService {
 
 	// 주문 내역 기본화면
 	@Transactional
-	public OrderSearchDTO orderSearch(OrderSearchDTO orderSearchDTO) {
+	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
 		System.err.println("service"+orderSearchDTO);
-		List<OrderSearchListDTO> orderSearchList = orderDao.orderSearch(orderSearchDTO);
-		orderSearchDTO.setList(orderSearchList);
-		System.err.println(orderSearchDTO);
-		return orderSearchDTO;
+		List<OrderSearchDTO> orderSearchList = orderDao.orderSearch(orderSearchDTO);
+		return orderSearchList;
 	}
 
 	// 기간 주문 내역 조회
+
 	@Transactional
-	public List<SearchResultDTO> daySearch(OrderSearchDTO orderSearchDTO) {
+	public List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO) {
 		return orderDao.daySearch(orderSearchDTO);
 	}
 

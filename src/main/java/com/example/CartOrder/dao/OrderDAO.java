@@ -22,9 +22,9 @@ public interface OrderDAO {
 
 	Integer totalCount(String mbId);
 
-	List<OrderSearchListDTO> orderSearch(OrderSearchDTO orderSearchDTO);
+	List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO);
 
-	List<SearchResultDTO> daySearch(OrderSearchDTO orderSearchDTO);
+	List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO);
 
 	Integer fastOrderConfirm(CartOrdJoinDTO cartOrdJoinDTO);
 

@@ -96,7 +96,6 @@
 	TB_BOARD
 	WHERE
 	BOARD_CD = #{boardCd}
-
 	</select>
 
 	<select id="boardSelectOne" parameterType="Integer" resultType="MemberBoardDTO">

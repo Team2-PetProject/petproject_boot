@@ -15,33 +15,43 @@ public class CartDTO {
 	public Integer getCartCd() {
 		return cartCd;
 	}
+
 	public void setCartCd(Integer cartCd) {
 		this.cartCd = cartCd;
 	}
+
 	public Integer getItCd() {
 		return itCd;
 	}
+
 	public void setItCd(Integer itCd) {
 		this.itCd = itCd;
 	}
+
 	public String getMbId() {
 		return mbId;
 	}
+
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
+
 	public Integer getAmount() {
 		return amount;
 	}
+
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
+
 	public Integer getOptCd() {
 		return optCd;
 	}
+
 	public void setOptCd(Integer optCd) {
 		this.optCd = optCd;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -58,8 +68,5 @@ public class CartDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-
-
-
 
 }

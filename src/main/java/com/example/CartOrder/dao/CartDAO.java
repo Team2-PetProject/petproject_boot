@@ -23,8 +23,6 @@ public interface CartDAO {
 
 	Integer amountUpdate(AmountUpdateDTO amountUpdateDTO);
 
-
-
 	List<ArrayOptCdDTO> typeSearch(Integer itCd);
 
 	Integer cartTotal(String mbId);
@@ -32,12 +30,5 @@ public interface CartDAO {
 	List<Integer> cartCdList(String mbId);
 
 	List<CartConfirmDTO> cartList(String mbId);
-
-
-
-
-
-
-
 
 }

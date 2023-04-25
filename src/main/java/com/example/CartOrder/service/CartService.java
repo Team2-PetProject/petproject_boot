@@ -55,7 +55,7 @@ public class CartService {
 		String mbId = SessionAttributeManager.getMemberId();
 		List<CartConfirmDTO> cartLists = cartDao.cartList(mbId);
 		List<CartConfirmDTO> reCartList = new ArrayList<CartConfirmDTO>();
-		
+
 		for (CartConfirmDTO cartConfirmDTO : cartLists) {
 			Integer cartCd = cartConfirmDTO.getCartCd();
 			List<ArrayOptCdDTO> optList = cartDao.typeSearch(cartCd);

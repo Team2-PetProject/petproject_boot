@@ -6,5 +6,6 @@ import com.example.CartOrder.dto.UpTmDTO;
 
 @Mapper
 public interface DeliveryInfoDAO {
+
 	void insertEndTm(UpTmDTO upTmDTO);
 }

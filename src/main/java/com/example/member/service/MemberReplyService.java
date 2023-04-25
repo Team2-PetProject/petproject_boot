@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.LoggersPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,7 @@ public class MemberReplyService {
 		memberReplyDTO.setRplCd(rplCd);
 		memberReplyDTO.setMbId(mbId);
 		Integer deleteReply = memberReplyDAO.deleteReply(memberReplyDTO);
+		logger.error("deleteReply 메소드 deleteReply Value 값" +  deleteReply);
 		return deleteReply;
 	}
 

@@ -91,7 +91,6 @@ public class MemberController {
 
 		} else {
 			comResponseDTO.setMessage("존재하지 않는 회원");
-//			return new ComResponseEntity<Void>(comResponseDTO, HttpStatus.NOT_FOUND);
 			return new ComResponseEntity<Void>(comResponseDTO);
 		}
 
@@ -100,7 +99,6 @@ public class MemberController {
 	@DeleteMapping("check/logout")
 	@ApiOperation(value = "로그아웃")
 	public ComResponseEntity<Void> logout(HttpSession session) {
-
 		SessionAttributeManager.getSession().invalidate();
 		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
 		comResponseDTO.setMessage("로그아웃 성공");
@@ -110,7 +108,6 @@ public class MemberController {
 	@GetMapping("check/mypage/{mbId}")
 	@ApiOperation(value = "회원정보보기")
 	public ComResponseEntity<MemberDTO> mypage(@PathVariable String mbId) {
-
 		MemberDTO memberDTO = service.mypage(mbId);
 		ComResponseDTO<MemberDTO> comResponseDTO = new ComResponseDTO<MemberDTO>();
 		comResponseDTO.setMessage("회원정보보기");
@@ -121,15 +118,11 @@ public class MemberController {
 	@PutMapping("check/update")
 	@ApiOperation(value = "회원정보수정")
 	public ComResponseEntity<Void> update(@RequestBody MemberDTO memberDTO) {
-
 		Integer n = service.memberUpdate(memberDTO);
-
 		logger.info("업데이트갯수>>>>>>" + n);
-
 		ComResponseDTO<Void> comResponseDTO = new ComResponseDTO<Void>();
 		comResponseDTO.setMessage("회원정보수정 성공");
 		return new ComResponseEntity<Void>(comResponseDTO);
-
 	}
 
 }

@@ -3,8 +3,8 @@ package com.example.CartOrder.dto;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
-@Alias("OrderSearchListDTO")
 
+@Alias("OrderSearchListDTO")
 public class OrderSearchListDTO {
 
 	private Integer tItCd;
@@ -22,69 +22,91 @@ public class OrderSearchListDTO {
 	public Integer gettItCd() {
 		return tItCd;
 	}
+
 	public Integer getCartCd() {
 		return cartCd;
 	}
+
 	public Integer getItCd() {
 		return itCd;
 	}
+
 	public String getItNm() {
 		return itNm;
 	}
+
 	public Integer getDlvyCd() {
 		return dlvyCd;
 	}
+
 	public Integer getImgCd() {
 		return imgCd;
 	}
+
 	public String getMbId() {
 		return mbId;
 	}
+
 	public Integer getPrice() {
 		return price;
 	}
+
 	public Integer getAmount() {
 		return amount;
 	}
+
 	public Date getPayTm() {
 		return payTm;
 	}
+
 	public String getOptNm() {
 		return optNm;
 	}
+
 	public void settItCd(Integer tItCd) {
 		this.tItCd = tItCd;
 	}
+
 	public void setCartCd(Integer cartCd) {
 		this.cartCd = cartCd;
 	}
+
 	public void setItCd(Integer itCd) {
 		this.itCd = itCd;
 	}
+
 	public void setItNm(String itNm) {
 		this.itNm = itNm;
 	}
+
 	public void setDlvyCd(Integer dlvyCd) {
 		this.dlvyCd = dlvyCd;
 	}
+
 	public void setImgCd(Integer imgCd) {
 		this.imgCd = imgCd;
 	}
+
 	public void setMbId(String mbId) {
 		this.mbId = mbId;
 	}
+
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
+
 	public void setPayTm(Date payTm) {
 		this.payTm = payTm;
 	}
+
 	public void setOptNm(String optNm) {
 		this.optNm = optNm;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

@@ -95,4 +95,21 @@
 
 	</update>
 	
+	<update id="pwUpdate" parameterType="com.example.member.dto.LoginDTO">
+	
+		UPDATE TB_MEMBER
+		SET
+			PW = #{pw}
+		WHERE MB_ID = #{mbId}
+	</update>
+	
+	
+	<select id="idSearch" parameterType="com.example.member.dto.EmailAuthRequestDTO" resultType="string">
+		SELECT 
+			MB_ID
+		FROM TB_MEMBER
+		WHERE EMAIL1 = #{email1} AND EMAIL2 = #{email2}
+	
+	</select>
+	
 </mapper>

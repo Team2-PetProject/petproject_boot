@@ -140,7 +140,8 @@
 			ROWNUM "IDX"
 			,ITEM.*
 		FROM
-		(SELECT
+			(
+		SELECT
 			IT_CD
 			,IMG_CD
 			,IT_NM

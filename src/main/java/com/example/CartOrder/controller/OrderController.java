@@ -1,3 +1,5 @@
+
+
 package com.example.CartOrder.controller;
 
 import java.util.ArrayList;
@@ -124,11 +126,10 @@ public class OrderController {
 
 	private void setPaging(OrderSearchPagingDTO orderSearchPagingDTO, OrderSearchDTO orderSearchDTO,
 			Integer curPage, String mbId, Integer totalCount) {
-
 		Integer perPage = orderSearchPagingDTO.getPerPage();
 	    Integer totalPage = (int) Math.ceil(totalCount / perPage);
-	    Integer startIdx = (curPage - 1) * perPage;
-	    Integer endIdx = perPage * curPage - 1;
+	    Integer startIdx = (curPage - 1) * perPage + 1;
+	    Integer endIdx = perPage * curPage;
 	    orderSearchDTO.setMbId(mbId);
 	    orderSearchDTO.setStartIdx(startIdx);
 	    orderSearchDTO.setEndIdx(endIdx);

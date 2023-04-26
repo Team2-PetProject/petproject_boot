@@ -131,8 +131,8 @@
 			   ,#{title}
 			   ,#{cn}
 			   ,#{rplCnt}
-			   ,#{crtTm}
-			   ,NULL
+			   ,SYSDATE
+			   ,SYSDATE
 		)
 	</insert>
 
@@ -147,14 +147,13 @@
 
 	</update>
 
-	<delete id="deleteBoard" parameterType="MemberBoardDTO">
-		DELETE
-		FROM
+	<update id="deleteBoard" parameterType="MemberBoardDTO">
+		UPDATE
 			   TB_BOARD
+		SET
+			   CN = NULL
 		WHERE
-			   MB_ID = #{mbId}
-		AND
 			   BOARD_CD = #{boardCd}
-	</delete>
+	</update>
 
 </mapper>

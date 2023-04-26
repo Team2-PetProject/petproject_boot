@@ -25,8 +25,9 @@
                )
    </insert>
 
-   <update id="cartSearchUnable">
-      UPDATE TB_CART
+   <update id="cartSearchUnable" parameterType="CartSearchUnableDTO">
+      UPDATE
+      	 TB_CART
       SET
          AMOUNT = #{amount}
       WHERE
@@ -35,8 +36,7 @@
          CART_CD = #{cartCd}
    </update>
 
-   <select id="cartOrdJoin" parameterType="CartOrdJoinDTO"
-      resultType="CartOrdJoinDTO">
+   <select id="cartOrdJoin" parameterType="CartOrdJoinDTO" resultType="CartOrdJoinDTO">
        SELECT
                   CART_CD
                   ,MB_ID
@@ -99,8 +99,7 @@
                IT_NM = #{itNm}
    </select>
 
-   <select id="orderSearch" parameterType="OrderSearchDTO"
-      resultType="OrderSearchDTO">
+   <select id="orderSearch" parameterType="OrderSearchDTO" resultType="OrderSearchDTO">
       SELECT
       *
       FROM
@@ -206,7 +205,8 @@
                #{endIdx}
    </select>
 
-   <insert id="dlvyInfo" parameterType="DeliveryInfoDTO" useGeneratedKeys="true" keyColumn="DLVY_CD" keyProperty="dlvyCd">
+   <insert id="dlvyInfo" parameterType="DeliveryInfoDTO" useGeneratedKeys="true"
+   	keyColumn="DLVY_CD" keyProperty="dlvyCd">
    <selectKey keyProperty="dlvyCd" resultType="Integer" order="BEFORE">
       SELECT
          TB_DELIVERY_INFO_SEQ.NEXTVAL
@@ -228,9 +228,9 @@
             )
    </insert>
 
-   <insert id="ordInfo" parameterType="OrderInfoDTO" useGeneratedKeys="true" keyProperty="ordCd" keyColumn="ORD_CD">
-      <selectKey keyProperty="ordCd" resultType="Integer"
-         order="BEFORE">
+   <insert id="ordInfo" parameterType="OrderInfoDTO" useGeneratedKeys="true"
+   keyProperty="ordCd" keyColumn="ORD_CD">
+      <selectKey keyProperty="ordCd" resultType="Integer" order="BEFORE">
          SELECT
                TB_ORDER_INFO_SEQ.NEXTVAL
          FROM

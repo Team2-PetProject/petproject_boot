@@ -53,7 +53,7 @@ public class EmailService {
         createCode(); //인증 코드 생성
         String setFrom = "보내는 사람 이메일 주소"; //email-config에 설정한 자신의 이메일 주소(보내는 사람)
         String toEmail = email; //받는 사람
-        String title = "Kkosunnae 이메일 인증 번호"; //제목
+        String title = "안녕하세요. 꼬순내  인증 메일 입니다."; //제목
 
         MimeMessage message = emailSender.createMimeMessage();
         message.addRecipients(MimeMessage.RecipientType.TO, email); //보낼 이메일 설정

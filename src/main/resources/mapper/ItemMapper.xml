@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.Item.dao.ItemDAO">
-	
+
 	<select id="totalCount" resultType="Integer">
 		SELECT
 			COUNT(*)
@@ -12,14 +12,14 @@
 		WHERE
 			CAT = #{cat}
 	</select>
-	
+
 	<select id="totalItem" resultType="Integer">
 		SELECT
 			COUNT(*)
 		FROM
 			TB_ITEM
 	</select>
-	
+
 	<insert id="insertItem" parameterType="com.example.Item.dto.ItemDTO">
 		INSERT INTO TB_ITEM
 			(
@@ -28,8 +28,8 @@
 			, IT_NM
 			, PRICE
 			, CAT
-			) 
-		VALUES 
+			)
+		VALUES
 			(
 			TB_ITEM_SEQ.NEXTVAL
 			, #{imgCd}
@@ -40,11 +40,11 @@
 		<selectKey keyProperty="itCd" resultType="Integer">
 			SELECT
 				TB_ITEM_SEQ.CURRVAL
-			FROM 
+			FROM
 				DUAL
 		</selectKey>
 	</insert>
-	
+
 	<select id="selectItem" parameterType="Integer" resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 			IT_CD AS IT_CD
@@ -53,12 +53,12 @@
 			, PRICE AS PRICE
 			, CAT AS CAT
 			, OPT_CD AS OPT_CD
-		FROM 
+		FROM
 			TB_ITEM
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	
+
 	<update id="updateItem" parameterType="com.example.Item.dto.ItemDTO">
 		UPDATE
 			TB_ITEM
@@ -69,7 +69,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	
+
 	<select id="favoriteList" parameterType="com.example.favorite.dto.MemberItemDTO"
 		resultType="com.example.Item.dto.ItemDTO">
 		SELECT
@@ -92,8 +92,8 @@
 			MB_ID = #{mbId}
 		AND
 			IT_CD = #{itCd}
-		) 
-		AS MP_ITEM 
+		)
+		AS MP_ITEM
 		ON
 			TB_ITEM.IT_CD = MP_ITEM.IT_CD
 	</select>
@@ -131,7 +131,7 @@
 			IT_CD = #{itCd}
 	</insert>
 
-	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO" 
+	<select id="itemList" parameterType="com.example.Item.dto.ItemListDTO"
 	resultType="com.example.Item.dto.ItemDTO">
 		SELECT
 		*
@@ -159,7 +159,7 @@
 		AND
 			 #{endIdx}
 	</select>
-	
+
 	<select id="adminList" parameterType="com.example.Item.dto.ItemListDTO"
 		resultType="com.example.admin.dto.ItemCdNmDTO">
 		SELECT
@@ -176,7 +176,7 @@
 		WHERE
 			NUM BETWEEN #{startIdx} AND #{endIdx}
 	</select>
-	
+
 	<update id="deleteOptCd" parameterType="Integer">
 		UPDATE
 			TB_ITEM
@@ -185,7 +185,7 @@
 		WHERE
 			IT_CD = #{itCd}
 	</update>
-	
+
 	<delete id="deleteItem" parameterType="Integer">
 		DELETE
 		FROM
@@ -194,8 +194,7 @@
 			IT_CD = #{itCd}
 	</delete>
 
-	<select id="selectOptCd" parameterType="Integer"
-		resultType="Integer">
+	<select id="selectOptCd" parameterType="Integer" resultType="Integer">
 		SELECT
 			OPT_CD
 		FROM
@@ -203,9 +202,8 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	
-	<select id="selectitInfoCd" parameterType="Integer"
-		resultType="Integer">
+
+	<select id="selectitInfoCd" parameterType="Integer" resultType="Integer">
 		SELECT
 			IT_INFO_CD
 		FROM
@@ -213,5 +211,5 @@
 		WHERE
 			IT_CD = #{itCd}
 	</select>
-	
+
 </mapper>

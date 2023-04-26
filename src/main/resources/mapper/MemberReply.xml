@@ -3,140 +3,137 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.member.dao.MemberReplyDAO">
-	<select id="totalCountReply" parameterType="Integer"
-		resultType="Integer">
+	<select id="totalCountReply" parameterType="Integer" resultType="Integer">
 		SELECT
-		COUNT(*)
+			   COUNT(*)
 		FROM
-		TB_REPLY
+			   TB_REPLY
 		WHERE
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 
 	</select>
 
-	<select id="boardReplyList" parameterType="boardReplyListDTO"
-		resultType="MemberReplyDTO">
+	<select id="boardReplyList" parameterType="boardReplyListDTO" resultType="MemberReplyDTO">
 		SELECT
-		ROWNUM AS IDX,
-		REPLY.*
+			   ROWNUM AS IDX,
+			   REPLY.*
 		FROM
 		(
 		SELECT
-		RPL_CD,
-		MB_ID,
-		BOARD_CD,
-		RPL_CN,
-		PARENT_RPL,
-		CRT_TM,
-		UP_TM,
-		DEPTH
+			   RPL_CD
+			   ,MB_ID
+			   ,BOARD_CD
+			   ,RPL_CN
+			   ,PARENT_RPL
+			   ,CRT_TM
+			   ,UP_TM
+			   ,DEPTH
 		FROM
-		TB_REPLY
+			   TB_REPLY
 		WHERE
-		BOARD_CD = #{boardCd}
-		START WITH
-		PARENT_RPL = #{parentRpl}
+			   BOARD_CD = #{boardCd}
 		CONNECT BY PRIOR
-		RPL_CD = PARENT_RPL
+			   RPL_CD = PARENT_RPL
 		ORDER SIBLINGS BY
-		CRT_TM ASC
+			   CRT_TM ASC
 		) REPLY
 		WHERE
-		ROWNUM BETWEEN #{startIdx} AND #{endIdx}
+			   IDX
+		BETWEEN
+			   #{startIdx}
+		AND
+			   #{endIdx}
 
 	</select>
 
 	<insert id="addReply" parameterType="memberReplyDTO">
 		INSERT INTO
-		TB_REPLY
+			TB_REPLY
 		(
-		RPL_CD
-		,MB_ID
-		,BOARD_CD
-		,RPL_CN
-		,PARENT_RPL
-		,DEPTH
-		,CRT_TM
-		,UP_TM
+			   RPL_CD
+			   ,MB_ID
+			   ,BOARD_CD
+			   ,RPL_CN
+			   ,PARENT_RPL
+			   ,DEPTH
+			   ,CRT_TM
+			   ,UP_TM
 		)
 		VALUES
 		(
-		TB_REPLY_SEQ.NEXTVAL
-		,#{mbId}
-		,#{boardCd}
-		,#{rplCn}
-		,#{parentRpl, jdbcType=INTEGER}
-		,1
-		,SYSDATE
-		,SYSDATE
+			   TB_REPLY_SEQ.NEXTVAL
+			   ,#{mbId}
+			   ,#{boardCd}
+			   ,#{rplCn}
+			   ,#{parentRpl}
+			   ,1
+			   ,SYSDATE
+			   ,SYSDATE
 		)
 	</insert>
 
 	<insert id="addSubReply" parameterType="memberReplyDTO">
 		INSERT INTO
-		TB_REPLY
+			   TB_REPLY
 		(
-		RPL_CD
-		,MB_ID
-		,BOARD_CD
-		,RPL_CN
-		,PARENT_RPL
-		,DEPTH
-		,CRT_TM
-		,UP_TM
+			   RPL_CD
+			   ,MB_ID
+			   ,BOARD_CD
+			   ,RPL_CN
+			   ,PARENT_RPL
+			   ,DEPTH
+			   ,CRT_TM
+			   ,UP_TM
 		)
 		VALUES
 		(
-		TB_REPLY_SEQ.NEXTVAL
-		,#{mbId}
-		,#{boardCd}
-		,#{rplCn}
-		,#{parentRpl}
-		,#{depth}
-		,SYSDATE
-		,SYSDATE
+			   TB_REPLY_SEQ.NEXTVAL
+			   ,#{mbId}
+			   ,#{boardCd}
+			   ,#{rplCn}
+			   ,#{parentRpl}
+			   ,#{depth}
+			   ,SYSDATE
+			   ,SYSDATE
 		)
 	</insert>
 
-	<select id="depthMaxValue" parameterType="memberReplyDTO"
-		resultType="Integer">
+	<select id="depthMaxValue" parameterType="memberReplyDTO" resultType="Integer">
 		SELECT
-		MAX(DEPTH)
+			   MAX(DEPTH)
 		FROM
-		TB_REPLY
+			   TB_REPLY
 		WHERE
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 		AND
-		RPL_CD = #{rplCd}
+			   RPL_CD = #{rplCd}
 	</select>
 
 	<update id="updateReply" parameterType="memberReplyDTO">
 		UPDATE
-		TB_REPLY
+			   TB_REPLY
 		SET
-		RPL_CN =
-		#{rplCn}
-		UP_TM = SYSDATE
+			   RPL_CN = #{rplCn}
+			   ,UP_TM = SYSDATE
 		WHERE
-		MB_ID = #{mbId}
+			   MB_ID = #{mbId}
 		AND
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 		AND
-		RPL_CD = #{rplCd}
+			RPL_CD = #{rplCd}
 	</update>
 
 	<update id="deleteReply" parameterType="memberReplyDTO">
 		UPDATE
-		TB_REPLY
+			   TB_REPLY
 		SET
-		RPL_CN = NULL
+			   RPL_CN = NULL
 		WHERE
-		MB_ID
-		= #{mbId}
+			   MB_ID = #{mbId}
 		AND
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 		AND
-		RPL_CD = #{rplCd}
+			   RPL_CD = #{rplCd}
 	</update>
 
 </mapper>

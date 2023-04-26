@@ -39,7 +39,7 @@ public class MemberReplyController {
 	// 댓글 만들기
 	@ApiOperation(value = "addReply")
 	@PostMapping("check/board/addReply/{boardCd}")
-	public ComResponseEntity<Integer> addReply(@PathVariable(name = "boardCd")Integer boardCd,
+	public ComResponseEntity<Integer> addReply(@PathVariable(name = "boardCd") Integer boardCd,
 			@RequestBody MemberReplyDTO memberReplyDTO) {
 		memberReplyDTO.setBoardCd(boardCd);
 		memberReplyService.addReply(memberReplyDTO);
@@ -49,10 +49,10 @@ public class MemberReplyController {
 	// 대댓글 만들기
 	@ApiOperation(value = "addSubReply")
 	@PostMapping("check/board/addReply/{boardCd}/{rplCd}")
-	public ComResponseEntity<Integer> addSubReply(@PathVariable(name = "boardCd")Integer boardCd,
+	public ComResponseEntity<Integer> addSubReply(@PathVariable(name = "boardCd") Integer boardCd,
 			@PathVariable(name = "rplCd") Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
 
-		memberReplyService.addSubReply(boardCd, rplCd,memberReplyDTO);
+		memberReplyService.addSubReply(boardCd, rplCd, memberReplyDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}
 
@@ -60,8 +60,8 @@ public class MemberReplyController {
 	@ApiOperation(value = "updateReply")
 	@PutMapping("check/board/updateReply/{boardCd}/{rplCd}")
 	public ComResponseEntity<Integer> updateReply(@PathVariable(name = "boardCd") Integer boardCd,
-			@PathVariable(name = "rplCd")Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
-		memberReplyService.updateReply(boardCd, rplCd,memberReplyDTO);
+			@PathVariable(name = "rplCd") Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
+		memberReplyService.updateReply(boardCd, rplCd, memberReplyDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("게시글수정"));
 	}
 
@@ -69,7 +69,7 @@ public class MemberReplyController {
 	@ApiOperation(value = "deleteReply")
 	@DeleteMapping("check/board/deleteReply/{boardCd}/{rplCd}")
 	public ComResponseEntity<Integer> deleteReply(@PathVariable(name = "boardCd") Integer boardCd,
-			@PathVariable(name = "rplCd")Integer rplCd) {
+			@PathVariable(name = "rplCd") Integer rplCd) {
 		memberReplyService.deleteReply(boardCd, rplCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("게시글삭제"));
 	}

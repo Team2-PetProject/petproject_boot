@@ -1,6 +1,7 @@
 package com.example.common.dto;
 
 public class AdminDTO {
+
 	private String[] list;
 
 	public String[] getList() {
@@ -10,6 +11,5 @@ public class AdminDTO {
 	public void setList(String[] list) {
 		this.list = list;
 	}
-	
-	
+
 }

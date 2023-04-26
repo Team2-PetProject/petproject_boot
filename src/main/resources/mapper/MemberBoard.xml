@@ -6,111 +6,109 @@
 
 	<select id="totalCountBoard" resultType="Integer">
 		SELECT
-		COUNT(*)
+			   COUNT(*)
 		FROM
-		TB_BOARD
+			   TB_BOARD
 	</select>
 
 	<select id = "totalSearchCount" resultType="Integer">
 		SELECT
-		COUNT(*)
+			   COUNT(*)
 		FROM
-		TB_BOARD
+			   TB_BOARD
 		WHERE
-		TITLE = #{title}
+			   TITLE = #{title}
 
 	</select>
 
-	<select id="boardList" parameterType="MemberBoardPageDTO"
-		resultType="MemberBoardListDTO">
+	<select id="boardList" parameterType="MemberBoardPageDTO" resultType="MemberBoardListDTO">
 		SELECT
 		*
 		FROM
 		(
 		SELECT
-		ROWNUM AS IDX
-		,BOARD.*
+			   ROWNUM AS IDX
+			   ,BOARD.*
 		FROM
 		(
 		SELECT
-		BOARD_CD
-		,MB_ID
-		,TITLE
-		,CN
-		,RPL_CNT
-		,CRT_TM
-		,UP_TM
+			   BOARD_CD
+			   ,MB_ID
+			   ,TITLE
+			   ,CN
+			   ,RPL_CNT
+			   ,CRT_TM
+			   ,UP_TM
 		FROM
-		TB_BOARD
+			   TB_BOARD
 		ORDER BY CRT_TM DESC
 		)
 		"BOARD"
 		)
 		WHERE
-		IDX
+			   IDX
 		BETWEEN
-		#{startIdx}
+			   #{startIdx}
 		AND
-		#{endIdx}
+			   #{endIdx}
 	</select>
 
-	<select id="boardSearch" parameterType="MemberBoardPageDTO"
-		resultType="MemberBoardListDTO">
+	<select id="boardSearch" parameterType="MemberBoardPageDTO" resultType="MemberBoardListDTO">
 		SELECT
 		*
 		FROM
 		(
 		SELECT
-		ROWNUM AS IDX
-		,BOARD.*
+			   ROWNUM AS IDX
+			   ,BOARD.*
 		FROM
 		(
 		SELECT
-		BOARD_CD
-		,MB_ID
-		,TITLE
-		,CN
-		,RPL_CNT
-		,CRT_TM
-		,UP_TM
+			   BOARD_CD
+			   ,MB_ID
+			   ,TITLE
+			   ,CN
+			   ,RPL_CNT
+			   ,CRT_TM
+			   ,UP_TM
 		FROM
-		TB_BOARD
+			   TB_BOARD
 		WHERE
-		TITLE = #{title}
+			   TITLE = #{title}
 		ORDER BY CRT_TM DESC
 		)
 		"BOARD"
 		)
 		WHERE
-		IDX
+			   IDX
 		BETWEEN
-		#{startIdx}
+			   #{startIdx}
 		AND
-		#{endIdx}
+			   #{endIdx}
 	</select>
 
 	<select id="countrplCnt" parameterType="Integer" resultType="Integer">
 	SELECT
-	MAX(RPL_CD)
+		MAX(RPL_CD)
 	FROM
-	TB_REPLY
+		TB_REPLY
 	WHERE
-	BOARD_CD = #{boardCd}
+		BOARD_CD = #{boardCd}
 	</select>
 
 	<select id="boardSelectOne" parameterType="Integer" resultType="MemberBoardDTO">
 	SELECT
-	BOARD_CD
-	,MB_ID
-	,TITLE
-	,CN
-	,RPL_CNT
-	,CRT_TM
-	,UP_TM
+		BOARD_CD
+		,MB_ID
+		,TITLE
+		,CN
+		,RPL_CNT
+		,CRT_TM
+		,UP_TM
 	FROM
-	TB_BOARD
+		TB_BOARD
 	WHERE
-	BOARD_CD = #{boardCd}
+		BOARD_CD = #{boardCd}
 	</select>
 
 
@@ -118,45 +116,45 @@
 		INSERT INTO
 		TB_BOARD
 		(
-		BOARD_CD
-		,MB_ID
-		,TITLE
-		,CN
-		,RPL_CNT
-		,CRT_TM
-		,UP_TM
+			   BOARD_CD
+			   ,MB_ID
+			   ,TITLE
+			   ,CN
+			   ,RPL_CNT
+			   ,CRT_TM
+			   ,UP_TM
 		)
 		VALUES
 		(
-		TB_BOARD_SEQ.NEXTVAL
-		,#{mbId}
-		,#{title}
-		,#{cn}
-		,#{rplCnt}
-		,sysdate
-		,sysdate
+			   TB_BOARD_SEQ.NEXTVAL
+			   ,#{mbId}
+			   ,#{title}
+			   ,#{cn}
+			   ,#{rplCnt}
+			   ,#{crtTm}
+			   ,NULL
 		)
 	</insert>
 
 	<update id="updateBoard" parameterType="MemberBoardDTO">
 		UPDATE
-		TB_BOARD
+			   TB_BOARD
 		SET
-		CN =
-		#{cn}
+			   CN = #{cn}
+			   ,UP_TM = SYSDATE
 		WHERE
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 
 	</update>
 
 	<delete id="deleteBoard" parameterType="MemberBoardDTO">
 		DELETE
 		FROM
-		TB_BOARD
+			   TB_BOARD
 		WHERE
-		MB_ID = #{mbId}
+			   MB_ID = #{mbId}
 		AND
-		BOARD_CD = #{boardCd}
+			   BOARD_CD = #{boardCd}
 	</delete>
 
 </mapper>

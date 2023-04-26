@@ -14,6 +14,7 @@ import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
 import com.example.CartOrder.dto.OrderSearchListDTO;
 import com.example.CartOrder.dto.SearchResultDTO;
+import com.example.CartOrder.dto.TotalDayOrderCountDTO;
 
 @Mapper
 public interface OrderDAO {
@@ -51,5 +52,7 @@ public interface OrderDAO {
 	Integer dlvyCdMaxValue(Integer tItCd);
 
 	Integer maxValueOrdCd();
+
+	Integer totalDayOrderCount(TotalDayOrderCountDTO totalDayOrderCountDTO);
 
 }

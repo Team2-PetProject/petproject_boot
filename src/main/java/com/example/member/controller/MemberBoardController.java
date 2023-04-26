@@ -34,16 +34,14 @@ public class MemberBoardController {
 		MemberBoardPageDTO boardList = memberBoardService.boardList(curPage);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판", boardList));
 	}
-	// 게시판  상세
+
+	// 게시판 상세
 	@ApiOperation(value = "boardSelect")
 	@GetMapping("check/board/boardCd/{boardCd}")
-	public ComResponseEntity<MemberBoardDTO> boardSelectOne(
-			@PathVariable(name = "boardCd") Integer boardCd) {
+	public ComResponseEntity<MemberBoardDTO> boardSelectOne(@PathVariable(name = "boardCd") Integer boardCd) {
 		MemberBoardDTO boardSelectOne = memberBoardService.boardSelectOne(boardCd);
 		return new ComResponseEntity<>(new ComResponseDTO<>("게시판상세", boardSelectOne));
 	}
-
-
 
 	// 게시판 이름으로 조회
 	@ApiOperation(value = "boardSearch")
@@ -73,7 +71,7 @@ public class MemberBoardController {
 	@PutMapping("check/board/update/{boardCd}")
 	public ComResponseEntity<Integer> updateBoard(@PathVariable(name = "boardCd") Integer boardCd,
 			@RequestBody MemberBoardDTO memberBoardDTO) {
-		memberBoardService.updateBoard(boardCd,memberBoardDTO);
+		memberBoardService.updateBoard(boardCd, memberBoardDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("게시글수정"));
 	}
 

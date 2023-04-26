@@ -15,7 +15,7 @@ import com.example.common.dto.PortInterceptorDTO;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		LoginInterceptorDTO loginList = getLogin();
@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer{
            .allowCredentials(true)
            .maxAge(3600);
 	}
-	
+
 	@Bean
 	@ConfigurationProperties(prefix="login")
 	public LoginInterceptorDTO getLogin() {
@@ -48,7 +48,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public AdminDTO getAdmin() {
 		return new AdminDTO();
 	}
-	
+
 	@Bean
 	@ConfigurationProperties(prefix="port")
 	public PortInterceptorDTO getPort() {

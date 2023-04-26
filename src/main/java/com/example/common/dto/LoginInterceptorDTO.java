@@ -1,6 +1,7 @@
 package com.example.common.dto;
 
 public class LoginInterceptorDTO {
+
 	private String[] list;
 
 	public String[] getList() {
@@ -10,5 +11,5 @@ public class LoginInterceptorDTO {
 	public void setList(String[] list) {
 		this.list = list;
 	}
-	
+
 }

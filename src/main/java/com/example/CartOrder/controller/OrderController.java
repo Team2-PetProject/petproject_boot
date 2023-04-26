@@ -18,6 +18,7 @@ import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
 import com.example.CartOrder.dto.OrderSearchPagingDTO;
+import com.example.CartOrder.dto.TotalDayOrderCountDTO;
 import com.example.CartOrder.service.OrderService;
 import com.example.common.SessionAttributeManager;
 import com.example.common.dto.ComResponseDTO;
@@ -43,7 +44,7 @@ public class OrderController {
 		cartOrdJoinDTO.setAmount(amount);
 		cartOrdJoinDTO.setOptCd(optCd);
 		cartOrdJoinDTO.setMbId(mbId);
-		Integer addCart = orderService.fastOrderConfirm(cartOrdJoinDTO);
+		orderService.fastOrderConfirm(cartOrdJoinDTO);
 		List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문상품 정보", itemJoinList));
 	}
@@ -53,10 +54,8 @@ public class OrderController {
 	@ResponseBody
 	@GetMapping("/check/orderConfirm")
 	public ComResponseEntity<List<CartOrdJoinDTO>> orderConfirm(@RequestParam("cartCd") List<Integer> cartCds) {
-		String mbId = SessionAttributeManager.getMemberId();
 		CartOrdJoinDTO cartOrdJoinDTO = new CartOrdJoinDTO();
 		List<CartOrdJoinDTO> itemJoinLists = new ArrayList<CartOrdJoinDTO>();
-
 		for (Integer cartCd : cartCds) {
 			cartOrdJoinDTO.setCartCd(cartCd);
 			List<CartOrdJoinDTO> itemJoinList = orderService.cartOrdJoin(cartOrdJoinDTO);
@@ -73,7 +72,6 @@ public class OrderController {
 	public ComResponseEntity<List<OrderDoneDTO>> orderDone(@RequestParam("cartCd") List<Integer> cartCd,
 			@RequestBody OrderInfoDTO orderInfoDTO) {
 		List<OrderDoneDTO> cartOrdDTO = orderService.orderDone(cartCd, orderInfoDTO);
-		System.err.println(cartOrdDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문완료", cartOrdDTO));
 	}
 
@@ -84,11 +82,11 @@ public class OrderController {
 			@RequestParam(value = "curPage", required = false, defaultValue = "1") Integer curPage) {
 		OrderSearchPagingDTO orderSearchPagingDTO = new OrderSearchPagingDTO();
 		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
-
-		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage);
+		String mbId = SessionAttributeManager.getMemberId();
+		Integer totalCount = orderService.totalCount(mbId);
+		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage, mbId, totalCount);
 		List<OrderSearchDTO> orderSearchList = orderService.orderSearch(orderSearchDTO);
 		orderSearchPagingDTO.setList(orderSearchList);
-		System.err.println(orderSearchPagingDTO);
 
 		return new ComResponseEntity<>(new ComResponseDTO<>("주문내역 상품", orderSearchPagingDTO));
 	}
@@ -102,7 +100,12 @@ public class OrderController {
 			@PathVariable("endDay") String endDay) {
 		OrderSearchPagingDTO orderSearchPagingDTO = new OrderSearchPagingDTO();
 		OrderSearchDTO orderSearchDTO = new OrderSearchDTO();
-		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage);
+		String mbId = SessionAttributeManager.getMemberId();
+		TotalDayOrderCountDTO totalDayOrderCountDTO = new TotalDayOrderCountDTO();
+		totalDayOrderCountDTO.setMbId(mbId);
+		totalDayOrderCountDTO.setItNm(itNm);
+		Integer totalDayOrderCount = orderService.totalDayOrderCount(totalDayOrderCountDTO);
+		setPaging(orderSearchPagingDTO, orderSearchDTO, curPage, mbId, totalDayOrderCount);
 		orderSearchDTO.setItNm(itNm);
 		orderSearchDTO.setStartDay(startDay);
 		orderSearchDTO.setEndDay(endDay);
@@ -119,10 +122,10 @@ public class OrderController {
 		return new ComResponseEntity<>(new ComResponseDTO<>("배송정보", deliveryInfoList));
 	}
 
-	private void setPaging(OrderSearchPagingDTO orderSearchPagingDTO, OrderSearchDTO orderSearchDTO, Integer curPage) {
-		String mbId = SessionAttributeManager.getMemberId();
+	private void setPaging(OrderSearchPagingDTO orderSearchPagingDTO, OrderSearchDTO orderSearchDTO,
+			Integer curPage, String mbId, Integer totalCount) {
+
 		Integer perPage = orderSearchPagingDTO.getPerPage();
-	    Integer totalCount = orderService.totalCount(mbId);
 	    Integer totalPage = (int) Math.ceil(totalCount / perPage);
 	    Integer startIdx = (curPage - 1) * perPage;
 	    Integer endIdx = perPage * curPage - 1;

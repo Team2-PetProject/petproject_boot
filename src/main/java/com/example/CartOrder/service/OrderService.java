@@ -20,6 +20,7 @@ import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
 import com.example.CartOrder.dto.OrderSearchListDTO;
 import com.example.CartOrder.dto.SearchResultDTO;
+import com.example.CartOrder.dto.TotalDayOrderCountDTO;
 import com.example.common.SessionAttributeManager;
 
 @Service
@@ -50,14 +51,13 @@ public class OrderService {
 		Integer inv = invRandom();
 		Integer searchCountTItCd = orderDao.searchCount(mbId);
 		Integer maxOrdCd = orderDao.maxValueOrdCd();
-		if (maxOrdCd!=0) {
+		if (maxOrdCd != 0) {
 			orderInfoDTO.setOrdCd(maxOrdCd + 1);
-		} else if (maxOrdCd==0) {
+		} else if (maxOrdCd == 0) {
 			orderInfoDTO.setOrdCd(maxOrdCd);
 		} else {
-			logger.info("maxOrdCd Value" + maxOrdCd + "OrderInfoDTO : " +orderInfoDTO);
+			logger.info("maxOrdCd Value" + maxOrdCd + "OrderInfoDTO : " + orderInfoDTO);
 		}
-
 
 		if (searchCountTItCd == null || searchCountTItCd == 0) {
 			searchCountTItCd = 1;
@@ -98,11 +98,11 @@ public class OrderService {
 			cartSearchUnableDTO.setCartCd(cartCd);
 			orderDao.cartSearchUnable(cartSearchUnableDTO);
 		}
-		if (dlvyCds.size()!=0) {
+		if (dlvyCds.size() != 0) {
 			for (Integer upDateDlvyCd : dlvyCds) {
-				if (upDateDlvyCd>0 ) {
+				if (upDateDlvyCd > 0) {
 					orderDao.updateTM(upDateDlvyCd);
-				}else {
+				} else {
 					logger.error("upDateDlvyCd Value" + upDateDlvyCd);
 				}
 			}
@@ -114,13 +114,11 @@ public class OrderService {
 	// 주문 내역 기본화면
 	@Transactional
 	public List<OrderSearchDTO> orderSearch(OrderSearchDTO orderSearchDTO) {
-		System.err.println("service"+orderSearchDTO);
 		List<OrderSearchDTO> orderSearchList = orderDao.orderSearch(orderSearchDTO);
 		return orderSearchList;
 	}
 
 	// 기간 주문 내역 조회
-
 	@Transactional
 	public List<OrderSearchDTO> daySearch(OrderSearchDTO orderSearchDTO) {
 		return orderDao.daySearch(orderSearchDTO);
@@ -142,6 +140,10 @@ public class OrderService {
 	@Transactional
 	public List<DeliveryInfoDTO> dlvyState(Integer dlvyCd) {
 		return orderDao.dlvyState(dlvyCd);
+	}
+
+	public Integer totalDayOrderCount(TotalDayOrderCountDTO totalDayOrderCountDTO) {
+		return orderDao.totalDayOrderCount(totalDayOrderCountDTO);
 	}
 
 }

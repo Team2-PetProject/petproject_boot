@@ -10,15 +10,19 @@ public class DeliveryInfoDTO {
 	private Integer inv;
 	private String dlvyStart;
 	private String dlvyEnd;
+
 	public Integer getDlvyCd() {
 		return dlvyCd;
 	}
+
 	public void setDlvyCd(Integer dlvyCd) {
 		this.dlvyCd = dlvyCd;
 	}
+
 	public String getCom() {
 		return com;
 	}
+
 	public void setCom(String com) {
 		this.com = com;
 	}
@@ -26,21 +30,27 @@ public class DeliveryInfoDTO {
 	public Integer getInv() {
 		return inv;
 	}
+
 	public void setInv(Integer inv) {
 		this.inv = inv;
 	}
+
 	public String getDlvyStart() {
 		return dlvyStart;
 	}
+
 	public void setDlvyStart(String dlvyStart) {
 		this.dlvyStart = dlvyStart;
 	}
+
 	public String getDlvyEnd() {
 		return dlvyEnd;
 	}
+
 	public void setDlvyEnd(String dlvyEnd) {
 		this.dlvyEnd = dlvyEnd;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -57,7 +67,5 @@ public class DeliveryInfoDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-
-
 
 }

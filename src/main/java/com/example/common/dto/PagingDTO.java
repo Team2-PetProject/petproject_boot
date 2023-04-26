@@ -6,9 +6,10 @@ import com.example.common.constant.ComConstant;
 
 @Alias("PagingDTO")
 public class PagingDTO {
+
 	private Integer curPage;
 	private Integer perPage;
-	
+
 	public PagingDTO() {
 		this.curPage = ComConstant.DEFAULT_CURPAGE;
 		this.perPage = ComConstant.DEFAULT_PERPAGE;
@@ -45,10 +46,10 @@ public class PagingDTO {
 		}
 		return (curPage-1)*perPage+1;
 	}
-	
+
 	public Integer getEndIdx() {
 		Integer startIdx = getStartIdx();
 		return this.perPage*startIdx;
 	}
-	
+
 }

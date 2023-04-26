@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.SessionAttributeManager;
 import com.example.member.dao.MemberBoardDAO;
@@ -16,6 +17,7 @@ public class MemberBoardService {
 	@Autowired
 	MemberBoardDAO memberBoardDAO;
 
+	@Transactional
 	public MemberBoardPageDTO boardList(Integer curPage) {
 		Integer totalCount = memberBoardDAO.totalCountBoard();
 		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
@@ -23,7 +25,7 @@ public class MemberBoardService {
 		memberBoardPageDTO.setList(boardList);
 		return memberBoardPageDTO;
 	}
-
+	@Transactional
 	public MemberBoardPageDTO boardSearch(Integer curPage, String title) {
 		Integer totalCount = memberBoardDAO.totalSearchCount(title);
 		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
@@ -32,7 +34,7 @@ public class MemberBoardService {
 		memberBoardPageDTO.setList(boardList);
 		return memberBoardPageDTO;
 	}
-
+	@Transactional
 	public MemberBoardDTO boardSelectOne(Integer boardCd) {
 		Integer rplCnt = memberBoardDAO.countrplCnt(boardCd);
 		MemberBoardDTO boardSelectOne = new MemberBoardDTO();
@@ -40,14 +42,14 @@ public class MemberBoardService {
 		boardSelectOne.setRplCnt(rplCnt);
 		return boardSelectOne;
 	}
-
+	@Transactional
 	public Integer addBoard(MemberBoardDTO memberBoardDTO) {
 		String mbId = SessionAttributeManager.getMemberId();
 		memberBoardDTO.setMbId(mbId);
 		Integer addBoard = memberBoardDAO.addBoard(memberBoardDTO);
 		return addBoard;
 	}
-
+	@Transactional
 	public Integer updateBoard(Integer boardCd, MemberBoardDTO memberBoardDTO) {
 		String mbId = SessionAttributeManager.getMemberId();
 		memberBoardDTO.setBoardCd(boardCd);
@@ -55,7 +57,7 @@ public class MemberBoardService {
 		Integer updateBoard = memberBoardDAO.updateBoard(memberBoardDTO);
 		return updateBoard;
 	}
-
+	@Transactional
 	public Integer deleteBoard(Integer boardCd) {
 		String mbId = SessionAttributeManager.getMemberId();
 		MemberBoardDTO memberBoardDTO = new MemberBoardDTO();

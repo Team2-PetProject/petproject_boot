@@ -24,5 +24,4 @@ public interface MemberReplyDAO {
 
 	Integer deleteReply(MemberReplyDTO memberReplyDTO);
 
-
 }

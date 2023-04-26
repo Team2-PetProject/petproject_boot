@@ -77,6 +77,17 @@
                MB_ID = #{mbId}
    </select>
 
+   <select id="totalDayOrderCount" parameterType="TotalDayOrderCountDTO" resultType="Integer">
+  	 SELECT
+               COUNT(*)
+       FROM
+               MP_CART_ORD
+      WHERE
+               MB_ID = #{mbId}
+      	AND
+      		   IT_NM = #{itNm}
+   </select>
+
    <select id="totalSearchCount" parameterType="String" resultType="Integer">
       SELECT
                COUNT(*)

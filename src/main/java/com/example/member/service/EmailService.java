@@ -51,7 +51,7 @@ public class EmailService {
     public MimeMessage createEmailForm(String email) throws MessagingException, UnsupportedEncodingException {
 
         createCode(); //인증 코드 생성
-        String setFrom = "보내는 사람 이메일 주소"; //email-config에 설정한 자신의 이메일 주소(보내는 사람)
+        String setFrom = "보내는 사람 이메일 주소"; //email-config에 설정한 자신의 이메일 주소(보내는 사람)//
         String toEmail = email; //받는 사람
         String title = "안녕하세요. 꼬순내  인증 메일 입니다."; //제목
 

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,14 +30,14 @@ import io.swagger.annotations.ApiOperation;
 public class CartController {
 	@Autowired
 	CartService cartService;
-	
+
 	//장바구니 리스트
 	@GetMapping("/check/cartList")
 	@ApiOperation(value = "cartList")
 	@CrossOrigin
-	public ResponseEntity<List<CartConfirmDTO>> cartList() {
+	public ComResponseEntity<List<CartConfirmDTO>> cartList() {
 		List<CartConfirmDTO> cartLists = cartService.cartList();
-		return ResponseEntity.ok(cartLists);
+		return new ComResponseEntity<>(new ComResponseDTO<>("장바구니 리스트", cartLists));
 	}
 
 	//장바구니 추가

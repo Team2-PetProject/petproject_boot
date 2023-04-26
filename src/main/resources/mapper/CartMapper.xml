@@ -12,16 +12,16 @@
 		FROM
 			TB_OPTION_TYPE
 		INNER JOIN
-			TB_OPTION 
-	    ON 
+			TB_OPTION
+	    ON
 			TB_OPTION_TYPE.TY_CD = TB_OPTION.TY_CD
 		INNER JOIN
-			TB_ITEM TB_ITEM 
-		ON 
+			TB_ITEM TB_ITEM
+		ON
 			TB_OPTION_TYPE.IT_CD = TB_ITEM.IT_CD
 		INNER JOIN
-			TB_CART TB_CART 
-		ON 
+			TB_CART TB_CART
+		ON
 			TB_ITEM.IT_CD = TB_CART.IT_CD
 		WHERE
 			TB_CART.CART_CD = #{cartCd}
@@ -71,8 +71,8 @@
 	</insert>
 
 	<delete id="cartDelete" parameterType="Integer">
-		DELETE 
-		FROM 
+		DELETE
+		FROM
 			TB_CART
 		WHERE
 			CART_CD = #{cartCd}
@@ -87,7 +87,7 @@
 	</delete>
 
 	<update id="amountUpdate" parameterType="com.example.CartOrder.dto.AmountUpdateDTO">
-		UPDATE 
+		UPDATE
 			TB_CART
 		SET
 			AMOUNT = #{amount}
@@ -98,7 +98,7 @@
 	</update>
 
 	<update id="specUpdate" parameterType="com.example.CartOrder.dto.SpecUpdateDTO">
-		UPDATE 
+		UPDATE
 			TB_CART
 		SET
 			OPT_CD = #{optCd}

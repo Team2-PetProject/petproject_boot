@@ -18,8 +18,6 @@ import com.example.CartOrder.dto.DeliveryInfoDTO;
 import com.example.CartOrder.dto.OrderDoneDTO;
 import com.example.CartOrder.dto.OrderInfoDTO;
 import com.example.CartOrder.dto.OrderSearchDTO;
-import com.example.CartOrder.dto.OrderSearchListDTO;
-import com.example.CartOrder.dto.SearchResultDTO;
 import com.example.CartOrder.dto.TotalDayOrderCountDTO;
 import com.example.common.SessionAttributeManager;
 

@@ -50,7 +50,6 @@ public class MemberReplyController {
 	@PostMapping("check/board/addReply/{boardCd}/{rplCd}")
 	public ComResponseEntity<Integer> addSubReply(@PathVariable(name = "boardCd") Integer boardCd,
 			@PathVariable(name = "rplCd") Integer rplCd, @RequestBody MemberReplyDTO memberReplyDTO) {
-
 		memberReplyService.addSubReply(boardCd, rplCd, memberReplyDTO);
 		return new ComResponseEntity<>(new ComResponseDTO<>("후기게시판"));
 	}

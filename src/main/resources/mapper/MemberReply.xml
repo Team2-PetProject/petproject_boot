@@ -138,4 +138,12 @@
 			   RPL_CD = #{rplCd}
 	</update>
 
+	<update id="addReplyCount" parameterType="MemberReplyDTO">
+		UPDATE
+			   TB_BOARD
+		SET
+			   RPL_CNT = RPL_CNT + 1
+		WHERE
+			   BOARD_CD = #{boardCd};
+	</update>
 </mapper>

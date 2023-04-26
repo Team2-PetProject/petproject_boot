@@ -35,6 +35,7 @@ public class MemberReplyService {
 		memberReplyDTO.setMbId(mbId);
 		memberReplyDTO.setParentRpl(0);
 		Integer addReply = memberReplyDAO.addReply(memberReplyDTO);
+		memberReplyDAO.addReplyCount(memberReplyDTO);
 		return addReply;
 	}
 	@Transactional
@@ -48,7 +49,7 @@ public class MemberReplyService {
 		memberReplyDTO.setDepth(depth);
 		memberReplyDTO.setParentRpl(rplCd); // 버튼 누를 때 넘어온 댓글번호를 부모 댓글로 삼는다.
 		Integer addReply = memberReplyDAO.addSubReply(memberReplyDTO);
-
+		memberReplyDAO.addReplyCount(memberReplyDTO);
 		return addReply;
 	}
 	@Transactional

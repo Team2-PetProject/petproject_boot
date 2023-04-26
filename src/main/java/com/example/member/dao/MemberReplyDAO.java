@@ -24,4 +24,8 @@ public interface MemberReplyDAO {
 
 	Integer deleteReply(MemberReplyDTO memberReplyDTO);
 
+	void addReplyCount(MemberReplyDTO memberReplyDTO);
+
+
+
 }

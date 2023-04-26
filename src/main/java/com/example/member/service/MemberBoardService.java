@@ -31,6 +31,7 @@ public class MemberBoardService {
 		MemberBoardPageDTO memberBoardPageDTO = paging(curPage,totalCount);
 		memberBoardPageDTO.setTitle(title);
 		List<MemberBoardListDTO> boardList = memberBoardDAO.boardSearch(memberBoardPageDTO);
+
 		memberBoardPageDTO.setList(boardList);
 		return memberBoardPageDTO;
 	}
@@ -79,7 +80,6 @@ public class MemberBoardService {
 		memberBoardPageDTO.setEndIdx(startIdx);
 		memberBoardPageDTO.setEndIdx(endIdx);
 		memberBoardPageDTO.setTotalPage(totalPage);
-
 		return memberBoardPageDTO;
 	}
 

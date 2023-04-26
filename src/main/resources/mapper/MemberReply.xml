@@ -32,6 +32,8 @@
 			   TB_REPLY
 		WHERE
 			   BOARD_CD = #{boardCd}
+		START WITH
+			   PARENT_RPL = #{parentRpl}
 		CONNECT BY PRIOR
 			   RPL_CD = PARENT_RPL
 		ORDER SIBLINGS BY

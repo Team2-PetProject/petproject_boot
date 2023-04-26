@@ -33,6 +33,7 @@ public class MemberReplyService {
 	public Integer addReply(MemberReplyDTO memberReplyDTO) {
 		String mbId = SessionAttributeManager.getMemberId();
 		memberReplyDTO.setMbId(mbId);
+		memberReplyDTO.setParentRpl(0);
 		Integer addReply = memberReplyDAO.addReply(memberReplyDTO);
 		return addReply;
 	}

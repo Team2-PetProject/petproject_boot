@@ -36,7 +36,7 @@
          CART_CD = #{cartCd}
    </update>
 
-   <select id="cartOrdJoin" parameterType="CartOrdJoinDTO" resultType="CartOrdJoinDTO">
+       <select id="cartOrdJoin" parameterType="CartOrdJoinDTO" resultType="CartOrdJoinDTO">
        SELECT
                   CART_CD
                   ,MB_ID
@@ -55,10 +55,11 @@
                   TB_CART.IT_CD = TB_ITEM.IT_CD
                   LEFT JOIN
                   TB_OPTION TB_OPTION ON
-                  TB_ITEM.OPT_CD = TB_OPTION.OPT_CD
-
+                  TB_CART.OPT_CD = TB_OPTION.OPT_CD
          WHERE
                   CART_CD =#{cartCd}
+   </select>
+
    </select>
 
    <select id="maxValueOrdCd" parameterType="String" resultType="Integer">
